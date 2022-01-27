@@ -6,7 +6,7 @@ package com.team2502.robot2022;
 
 import com.team2502.robot2022.subsystems.HopperSubsystem;
 
-import com.team2502.robot2022.commands.ExampleCommand;
+import com.team2502.robot2022.commands.RunHopperCommand;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
@@ -22,7 +22,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final HopperSubsystem m_exampleSubsystem = new HopperSubsystem();
 
-  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+  private final RunHopperCommand m_autoCommand = new RunHopperCommand(m_exampleSubsystem);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
