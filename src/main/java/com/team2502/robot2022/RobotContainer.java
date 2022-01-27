@@ -4,7 +4,7 @@
 
 package com.team2502.robot2022;
 
-import com.team2502.robot2022.subsystems.ExampleSubsystem;
+import com.team2502.robot2022.subsystems.HopperSubsystem;
 
 import com.team2502.robot2022.commands.ExampleCommand;
 
@@ -20,7 +20,7 @@ import edu.wpi.first.wpilibj2.command.Command;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
+  private final HopperSubsystem m_exampleSubsystem = new HopperSubsystem();
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 

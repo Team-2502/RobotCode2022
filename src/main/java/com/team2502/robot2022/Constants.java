@@ -12,4 +12,15 @@ package com.team2502.robot2022;
  * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
-public final class Constants {}
+public final class Constants {
+    //MOTOR CONSTANTS
+    public static final class Motors{
+        public static final int HOPPER_SIDE_BELTS_RIGHT = 1;
+        public static final int HOPPER_SIDE_BELTS_LEFT = 2;
+        public static final int HOPPER_BOTTOM_BELT = 3;
+        public static final int HOPPER_EXIT_WHEEL = 4;
+    }
+
+
+
+}
