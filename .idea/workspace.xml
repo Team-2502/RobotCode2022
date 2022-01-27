@@ -27,6 +27,9 @@
       </state>
     </system>
   </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="TaskManager">
     <servers />
   </component>
