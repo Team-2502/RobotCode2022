@@ -17,8 +17,8 @@ public final class Constants {
     public static final class Motors{
         public static final int HOPPER_SIDE_BELTS_RIGHT = 1;
         public static final int HOPPER_SIDE_BELTS_LEFT = 2;
-        public static final int HOPPER_BOTTOM_BELT = 3;
-        public static final int HOPPER_EXIT_WHEEL = 4;
+        public static final int HOPPER_BACK_BELT = 3;
+        public static final int HOPPER_FRONT_BELT = 4;
     }
 
 

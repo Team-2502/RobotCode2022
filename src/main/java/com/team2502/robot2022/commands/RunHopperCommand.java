@@ -14,18 +14,18 @@ public class RunHopperCommand extends CommandBase {
   private final HopperSubsystem hopper;
   private final double speedLeft;
   private final double speedRight;
-  private final double speedBottom;
-  private final double speedExitWheel;
+  private final double speedBack;
+  private final double speedFront;
 
   public RunHopperCommand(HopperSubsystem hopper,
                           double speedLeft,
                           double speedRight,
-                          double speedBottom,
-                          double speedExitWheel) {
+                          double speedBack,
+                          double speedFront) {
     this.speedLeft = speedLeft;
     this.speedRight = speedRight;
-    this.speedBottom = speedBottom;
-    this.speedExitWheel = speedExitWheel;
+    this.speedBack = speedBack;
+    this.speedFront = speedFront;
     this.hopper = hopper;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(hopper);
@@ -40,8 +40,8 @@ public class RunHopperCommand extends CommandBase {
   public void execute() {
     hopper.runLeftBelt(speedLeft);
     hopper.runRightBelt(speedRight);
-    hopper.runBottomBelt(speedBottom);
-    hopper.runExitWheel(speedExitWheel);
+    hopper.runBackBelt(speedBack);
+    hopper.runFrontBelt(speedFront);
   }
 
   // Called once the command ends or is interrupted.
@@ -49,8 +49,8 @@ public class RunHopperCommand extends CommandBase {
   public void end(boolean interrupted) {
     hopper.runLeftBelt(0);
     hopper.runRightBelt(0);
-    hopper.runBottomBelt(0);
-    hopper.runExitWheel(0);
+    hopper.runBackBelt(0);
+    hopper.runFrontBelt(0);
   }
 
   // Returns true when the command should end.
