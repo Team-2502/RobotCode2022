@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class DrivetrainSubsystem {
+public class DrivetrainSubsystem extends SubsystemBase{
     private DifferentialDrive drive;
 
     public DrivetrainSubsystem(){
@@ -29,6 +29,10 @@ public class DrivetrainSubsystem {
         drivetrainFrontLeft.setNeutralMode(NeutralMode.Brake);
         drive = new DifferentialDrive(drivetrainFrontLeft, drivetrainFrontRight);
     }
+    public DifferentialDrive getDrive(){
+        return drive;
+    }
+
     public void setSpeed(double leftSpeed, double rightSpeed){
         drive.tankDrive(leftSpeed, rightSpeed);
     }
