@@ -37,10 +37,10 @@ public class DriveCommand extends CommandBase {
     public void execute() {
         switch(typeEntry.getSelected()) {
             case Tank:
-                drivetrain.getDrive().tankDrive(-leftJoystick.getY(), rightJoystick.getY(), true);
+                drivetrain.getDrive().tankDrive(leftJoystick.getY(), -rightJoystick.getY(), true);
                 break;
             case Arcade:
-                drivetrain.getDrive().arcadeDrive(rightJoystick.getX(), -leftJoystick.getY(), true);
+                drivetrain.getDrive().arcadeDrive(-rightJoystick.getX(), leftJoystick.getY(), true);
                 break;
             case Reverse:
                 drivetrain.getDrive().tankDrive(leftJoystick.getY(), rightJoystick.getY(), true);
