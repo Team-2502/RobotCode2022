@@ -34,14 +34,7 @@ public class TurnAngleCommand extends CommandBase {
 
     @Override
     public void execute() {
-        if(angle < turnAngle){
-            drivetrain.getDrive().tankDrive(-0.4, -0.4);
-        } else if(angle > turnAngle){
-            drivetrain.getDrive().tankDrive(-0.4, -0.4);
-        } else{
-            drivetrain.getDrive().tankDrive(0 ,0);
-            isDone = true;
-        }
+
     }
 
     public boolean isFinished(){ return isDone; }

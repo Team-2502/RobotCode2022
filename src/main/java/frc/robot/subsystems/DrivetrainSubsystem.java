@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.TalonFXInvertType;
 import com.ctre.phoenix.motorcontrol.WPI_MotorSafetyImplem;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+import com.kauailabs.navx.frc.AHRS;
 import frc.robot.Constants;
 import frc.robot.Constants.RobotMap.Motors;
 import edu.wpi.first.wpilibj.SPI;
@@ -18,6 +19,8 @@ public class DrivetrainSubsystem extends SubsystemBase{
     private WPI_TalonFX drivetrainFrontLeft;
     private WPI_TalonFX drivetrainBackRight;
     private WPI_TalonFX drivetrainFrontRight;
+
+    private AHRS navX = new AHRS();
 
     public DrivetrainSubsystem(){
         drivetrainBackLeft = new WPI_TalonFX(Motors.DRIVE_BACK_LEFT);
@@ -66,6 +69,11 @@ public class DrivetrainSubsystem extends SubsystemBase{
 		    * (24 / 50) // gearbox
 		    * (6 * Math.PI); // wheel radius */
 	    return drivetrainFrontRight.getSelectedSensorPosition()/1033.29; // magic number :)
+    }
+
+    @Override
+    public void periodic(){
+        SmartDashboard.putNumber("Angle", navX.getAngle());
     }
 
 }
