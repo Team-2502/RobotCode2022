@@ -46,7 +46,7 @@ public class TurnAngleCommand extends CommandBase {
 
 	double speed = trapezoidal.calculate(pid.calculate(error));
 	
-	speed = Util.constrain(speed,.3);
+	speed = Util.constrain(speed,.3); // keep speed from exceeding 30%
 
 	SmartDashboard.putNumber("speed", speed);
 
