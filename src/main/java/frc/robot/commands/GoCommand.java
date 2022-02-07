@@ -29,11 +29,12 @@ public class GoCommand extends CommandBase {
     public void initialize()
     {
 	this.startPos = drivetrain.getInchesTraveled();
-	this.pid = new PIDController(0.06,0.05,0.03);
-	this.trapezoidal = new Trapezoidal(.008);
+	this.pid = new PIDController(0.02,0.03,0.03);
+	this.trapezoidal = new Trapezoidal(.6);
 	pid.setTolerance(.2);
 
-        //drivetrain.setNeutralMode(NeutralMode.Brake);
+	pid.reset();
+	trapezoidal.reset();
     }
 
     @Override

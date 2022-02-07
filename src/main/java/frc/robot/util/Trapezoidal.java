@@ -1,6 +1,7 @@
 package frc.robot.util;
 
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /** class for creating trapezoidal curves, used to create a linear transition between two numbers */
 public class Trapezoidal {
@@ -61,11 +62,23 @@ public class Trapezoidal {
 	}
 
 	/**
+	 * Reset speed and target
+	 * */
+	public void reset() {
+		this.speed = 0;
+		this.target = 0;
+	}
+
+	/**
 	* Calculate next iteration of trapezoidal
 	* @return adjusted velocity
 	 */
 	public double calculate() {
-		double deltaTime = Timer.getFPGATimestamp() - lastTime;
+		double thisTime = Timer.getFPGATimestamp();
+		double deltaTime = thisTime - lastTime;
+		this.lastTime = thisTime;
+		SmartDashboard.putNumber("trapezoidal deltat", deltaTime);
+		SmartDashboard.putNumber("trapezoidal delta", maxAccel*deltaTime);
 		if (speed < target) { // accelerate if speed less than target
 			speed += deltaTime*maxAccel; // add maximum
 			speed = Math.min(speed,target); // constrain
