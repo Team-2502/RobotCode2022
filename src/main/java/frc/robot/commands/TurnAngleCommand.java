@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.util.Trapezoidal;
+import frc.robot.util.Util;
 
 public class TurnAngleCommand extends CommandBase {
 
@@ -38,16 +39,6 @@ public class TurnAngleCommand extends CommandBase {
 	trapezoidal.reset();
     }
 
-    /**
-    * Constrain val between -max and max
-    * @param val value to constrain
-    * @param max maximum and minimum value
-    * @return constrained value
-     */
-    double constrain(double val, double max) {
-	    return Math.max(-max,Math.min(max,val));
-    }
-
     @Override
     public void execute() {
 	double error = navx.getAngle() - turnAngle;
@@ -55,7 +46,7 @@ public class TurnAngleCommand extends CommandBase {
 
 	double speed = trapezoidal.calculate(pid.calculate(error));
 	
-	speed = constrain(speed,.3);
+	speed = Util.constrain(speed,.3);
 
 	SmartDashboard.putNumber("speed", speed);
 
