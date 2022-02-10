@@ -14,7 +14,9 @@ package com.team2502.robot2022;
  */
 public final class Constants {
     public static final class ClimberVars {
-        public static final int WENCH = 1; //talon SRX motor
-        public static final int PASSIVE_CLIMBER = 1; //solenoid
+        public static final int RIGHT_WENCH = 0; //talon SRX motor
+        public static final int LEFT_WENCH = 1; //talon SRX motor
+        public static final int RIGHT_PASSIVE_CLIMBER = 0; //solenoid
+        public static final int LEFT_PASSIVE_CLIMBER = 1; //solenoid
     }
 }
