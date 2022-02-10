@@ -12,9 +12,9 @@ import frc.robot.commands.GoCommand;
 import frc.robot.commands.TurnAngleCommand;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.DrivetrainSubsystem;
+import frc.robot.subsystems.*;
 import frc.robot.*;
-import frc.robot.commands.DriveCommand;
+import frc.robot.commands.*;
 import frc.robot.Constants;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
@@ -36,6 +36,8 @@ public class RobotContainer
     private final ExampleCommand autoCommand = new ExampleCommand(exampleSubsystem);
 
     protected final DrivetrainSubsystem DRIVE_TRAIN = new DrivetrainSubsystem();
+    private final HopperSubsystem HOPPER = new HopperSubsystem();
+    private final IntakeSubsystem INTAKE = new IntakeSubsystem();
 
     private final AHRS navx = new AHRS();
 

@@ -33,6 +33,11 @@ public final class Constants {
 	    public static final int SQUEEZE_MOTOR = 24;
 	    public static final int INTAKE_MOTOR = 8;
 
+	    public static final int HOPPER_SIDE_BELTS_RIGHT = 1;
+	    public static final int HOPPER_SIDE_BELTS_LEFT = 2;
+	    public static final int HOPPER_BACK_BELT = 3;
+	    public static final int HOPPER_FRONT_BELT = 4;
+
         }
     }
 }
