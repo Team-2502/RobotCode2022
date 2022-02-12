@@ -6,8 +6,9 @@ package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
-import com.team2502.robot2022.Constants.Motors;
+import frc.robot.Constants.RobotMap.Motors;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 public class HopperSubsystem extends SubsystemBase {
   //Assuming same hopper setup as 2020/2021 robot, can change motors

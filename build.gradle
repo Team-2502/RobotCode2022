@@ -85,3 +85,18 @@ jar {
 deployArtifact.jarTask = jar
 wpi.java.configureExecutableTasks(jar)
 wpi.java.configureTestTasks(test)
+
+task cock {
+    dependsOn allprojects.collect { proj ->
+        proj.tasks.matching {
+            it.name == 'build'
+        }
+    }
+}
+task dick {
+    dependsOn allprojects.collect { proj ->
+        proj.tasks.matching {
+            it.name == 'deploy'
+        }
+    }
+}
