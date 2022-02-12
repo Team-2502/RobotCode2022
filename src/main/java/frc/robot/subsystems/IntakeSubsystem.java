@@ -9,14 +9,17 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
 
+import static frc.robot.Constants.RobotMap.Motors.INTAKE_MOTOR;
+import static frc.robot.Constants.RobotMap.Motors.SQUEEZE_MOTOR;
+
 public class IntakeSubsystem extends SubsystemBase {
   private final CANSparkMax intakeMotor;
   private final CANSparkMax squeezeMotor;
 
   public IntakeSubsystem() {
-    intakeMotor = new CANSparkMax(Constants.Motors.INTAKE_MOTOR, CANSparkMaxLowLevel.MotorType.kBrushless);
+    intakeMotor = new CANSparkMax(INTAKE_MOTOR, CANSparkMaxLowLevel.MotorType.kBrushless);
     intakeMotor.setSmartCurrentLimit(25);
-    squeezeMotor = new CANSparkMax(Constants.Motors.SQUEEZE_MOTOR, CANSparkMaxLowLevel.MotorType.kBrushless);
+    squeezeMotor = new CANSparkMax(SQUEEZE_MOTOR, CANSparkMaxLowLevel.MotorType.kBrushless);
     squeezeMotor.setSmartCurrentLimit(25);
   }
 
