@@ -7,14 +7,11 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.GoCommand;
-import frc.robot.commands.TurnAngleCommand;
+import frc.robot.commands.*;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.*;
-import frc.robot.commands.DriveCommand;
 import frc.robot.Constants;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
@@ -66,6 +63,9 @@ public class RobotContainer
 
 	    JoystickButton TurnAngleButton = new JoystickButton(JOYSTICK_DRIVE_LEFT, 1);
 	    TurnAngleButton.whenPressed(new TurnAngleCommand(DRIVE_TRAIN, 90, navx));
+
+        JoystickButton DriveAtRpmButton = new JoystickButton(JOYSTICK_DRIVE_LEFT, 2);
+        DriveAtRpmButton.whenPressed(new spinDtAtRpmCommand(DRIVE_TRAIN, 50));
         // Add button to command mappings here.
         // See https://docs.wpilib.org/en/stable/docs/software/commandbased/binding-commands-to-triggers.html
     }

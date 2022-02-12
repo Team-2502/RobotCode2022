@@ -5,6 +5,7 @@ import com.ctre.phoenix.motorcontrol.TalonFXInvertType;
 import com.ctre.phoenix.motorcontrol.WPI_MotorSafetyImplem;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.math.controller.PIDController;
 import frc.robot.Constants;
 import frc.robot.Constants.RobotMap.Motors;
 import edu.wpi.first.wpilibj.SPI;
@@ -71,9 +72,18 @@ public class DrivetrainSubsystem extends SubsystemBase{
 	    return drivetrainFrontRight.getSelectedSensorPosition()/1033.29; // magic number :)
     }
 
-    @Override
-    public void periodic(){
-        SmartDashboard.putNumber("Angle", navX.getAngle());
+    public void setNeutralMode(NeutralMode nm)
+    {
+        drivetrainFrontRight.setNeutralMode(nm);
+        drivetrainFrontLeft.setNeutralMode(nm);
     }
 
+    public double getRpm(){ return (drivetrainFrontLeft.getSelectedSensorVelocity() * 600) / 2048; }
+
+    @Override
+    public void periodic(){
+
+        SmartDashboard.putNumber("Angle", navX.getAngle());
+        SmartDashboard.putNumber("RPM", getRpm());
+    }
 }

@@ -1,4 +1,5 @@
 package frc.robot.commands;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import frc.robot.subsystems.DrivetrainSubsystem;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -30,7 +31,7 @@ public class DriveCommand extends CommandBase {
     @Override
     public void initialize()
     {
-        //drivetrain.setNeutralMode(NeutralMode.Brake);
+        drivetrain.setNeutralMode(NeutralMode.Brake);
     }
 
     @Override
