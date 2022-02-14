@@ -8,9 +8,8 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.*;
-import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.DrivetrainSubsystem;
+import frc.robot.subsystems.*;
 import frc.robot.*;
 import frc.robot.Constants;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -34,10 +33,15 @@ public class RobotContainer
 
     protected final DrivetrainSubsystem DRIVE_TRAIN = new DrivetrainSubsystem();
 
+    protected final ShooterSubsystem SHOOTER = new ShooterSubsystem();
+
+    protected final TurretSubsystem TURRET = new TurretSubsystem();
+
     private final AHRS navx = new AHRS();
 
     private static final Joystick JOYSTICK_DRIVE_RIGHT = new Joystick(Constants.OI.JOYSTICK_DRIVE_RIGHT);
     private static final Joystick JOYSTICK_DRIVE_LEFT = new Joystick(Constants.OI.JOYSTICK_DRIVE_LEFT);
+  private static final Joystick JOYSTICK_OPERATOR = new Joystick(Constants.OI.JOYSTICK_OPERATOR);
     
     
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -64,8 +68,8 @@ public class RobotContainer
 	    JoystickButton TurnAngleButton = new JoystickButton(JOYSTICK_DRIVE_LEFT, 1);
 	    TurnAngleButton.whenPressed(new TurnAngleCommand(DRIVE_TRAIN, 90, navx));
 
-        JoystickButton DriveAtRpmButton = new JoystickButton(JOYSTICK_DRIVE_LEFT, 2);
-        DriveAtRpmButton.whenPressed(new spinDtAtRpmCommand(DRIVE_TRAIN, 50));
+            JoystickButton RunShooterManualButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_FLYWHEEL_MANUAL); // enable manual with button 11 on operator
+	    RunShooterManualButton.toggleWhenPressed(new RunShooterManualCommand(SHOOTER, TURRET, Constants.Subsystem.Shooter.SHOOTER_MANUAL_RPM_MID, JOYSTICK_OPERATOR)); // use lever from operator joystick
         // Add button to command mappings here.
         // See https://docs.wpilib.org/en/stable/docs/software/commandbased/binding-commands-to-triggers.html
     }

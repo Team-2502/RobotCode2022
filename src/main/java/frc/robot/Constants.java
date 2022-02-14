@@ -15,14 +15,20 @@ package frc.robot;
  */
 public final class Constants {
 
+    /** control mappings */
     public static final class OI {
 
         public static final int JOYSTICK_DRIVE_RIGHT = 0;
         public static final int JOYSTICK_DRIVE_LEFT = 1;
+        public static final int JOYSTICK_OPERATOR = 2;
+
+        public static final int BUTTON_FLYWHEEL_MANUAL = 1;
     }
 
+    /** hardware ids */
     public static final class RobotMap {
 
+	/** can motor ids */
         public static final class Motors {
             // Talon FX
             public static final int DRIVE_FRONT_RIGHT = 1;
@@ -30,6 +36,26 @@ public final class Constants {
             public static final int DRIVE_BACK_RIGHT = 2;
             public static final int DRIVE_BACK_LEFT = 4;
 
+            // SparkMax
+            public static final int SHOOTER_LEFT = 6;
+            public static final int SHOOTER_RIGHT = 7;
+
+	    public static final int TURRET_TRAVERSE = 8;
+        }
+    }
+
+    /** subsystem-specific constants */
+    public static final class Subsystem {
+
+        public static final class Shooter{
+            public static final double SHOOTER_P = 0.0008;
+            public static final double SHOOTER_I = 0.0;
+            public static final double SHOOTER_D = 0.0;
+            public static final double SHOOTER_IZ = 0;
+            public static final double SHOOTER_FF = 0.00019;
+            public static final double SHOOTER_MAX_OUTPUT = 1;
+            public static final double SHOOTER_MIN_OUTPUT = -0.1;
+            public static final double SHOOTER_MANUAL_RPM_MID = 2600; // center of manual range, max is ~4200 with current pid
         }
     }
 }
