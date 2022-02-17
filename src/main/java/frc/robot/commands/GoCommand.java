@@ -25,6 +25,10 @@ public class GoCommand extends CommandBase {
         addRequirements(drivetrain);
     }
 
+    double constrain(double val, double max) {
+        return Math.max(-max,Math.min(max,val));
+    }
+
     @Override
     public void initialize()
     {
@@ -42,6 +46,7 @@ public class GoCommand extends CommandBase {
 	    double error = (drivetrain.getInchesTraveled()-startPos)+goalPoint;
 	    //double speed = pid.calculate(error);
 	    double speed = trapezoidal.calculate(pid.calculate(error));
+        speed = constrain(speed,.3);
 	    drivetrain.setSpeed(-speed,speed);
     }
 
