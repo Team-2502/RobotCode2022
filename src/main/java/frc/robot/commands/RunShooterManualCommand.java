@@ -17,19 +17,19 @@ public class RunShooterManualCommand extends CommandBase {
 	this.turret = turret;
         this.defaultSpeed = defaultSpeed; // middle of range
 	this.controlJoystick = controlJoystick; // joystick with lever (throttle)
-        addRequirements(shooter);
+        addRequirements(shooter, turret);
     }
 
     @Override
     public void initialize() {
-        shooter.setShooterSpeedRPM(defaultSpeed); // set to middle of range on init
+        shooter.setShooterSpeedRPM(0); // stop on init
 	turret.stop();
     }
 
     @Override
     public void execute() {
-	double speedInput = controlJoystick.getThrottle(); // get lever value
-	double targetRpm = (1-speedInput)*defaultSpeed; // value decreases as you twist the lever up, ranges from -1 to 1 (mapped to 0-2)
+	double speedInput = controlJoystick.getThrottle(); // get slider value
+	double targetRpm = (1-speedInput)*defaultSpeed; // value decreases as you move the slider up, ranges from -1 to 1 (mapped to 0-2)
     	shooter.setShooterSpeedRPM(targetRpm);
 
 	turret.runMotor(-controlJoystick.getTwist());
