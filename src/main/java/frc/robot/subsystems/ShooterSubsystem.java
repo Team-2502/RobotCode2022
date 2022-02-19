@@ -11,7 +11,7 @@ public class ShooterSubsystem extends SubsystemBase {
     private final CANSparkMax shooterRight;
     private final CANSparkMax shooterLeft;
 
-    public final CANPIDController rightPID;
+    public final SparkMaxPIDController rightPID;
     private final CANEncoder rightEncoder;
 
     public ShooterSubsystem() {
@@ -31,7 +31,7 @@ public class ShooterSubsystem extends SubsystemBase {
     public void periodic() { SmartDashboard.putNumber("Shooter Velocity", rightEncoder.getVelocity()); }
 
     public void setShooterSpeedRPM(double speed) {
-        rightPID.setReference(speed, ControlType.kVelocity);
+        rightPID.setReference(speed, CANSparkMax.ControlType.kVelocity);
         SmartDashboard.putNumber("Shooter Target Velocity", speed);
     }
 
