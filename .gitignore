@@ -37,9 +37,7 @@
 ### Intellij ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and WebStorm
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
-
 .idea/*
-
 
 ### Java ###
 # Compiled class file
@@ -164,5 +162,5 @@ gradle-app.setting
 bin/
 imgui.ini
 
-
+build.gradle
 # End of https://www.gitignore.io/api/c++,java,linux,macos,gradle,windows,visualstudiocode
