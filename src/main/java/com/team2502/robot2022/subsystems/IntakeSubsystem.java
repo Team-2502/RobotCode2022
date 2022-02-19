@@ -2,15 +2,14 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.subsystems;
+package com.team2502.robot2022.subsystems;
 
-import frc.robot.Constants;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
 
-import static frc.robot.Constants.RobotMap.Motors.INTAKE_MOTOR;
-import static frc.robot.Constants.RobotMap.Motors.SQUEEZE_MOTOR;
+import static com.team2502.robot2022.Constants.RobotMap.Motors.INTAKE_MOTOR;
+import static com.team2502.robot2022.Constants.RobotMap.Motors.SQUEEZE_MOTOR;
 
 public class IntakeSubsystem extends SubsystemBase {
   private final CANSparkMax intakeMotor;

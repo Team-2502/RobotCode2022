@@ -1,9 +1,8 @@
-package frc.robot.subsystems;
+package com.team2502.robot2022.subsystems;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
-import frc.robot.Constants;
-import frc.robot.Constants.RobotMap.Motors;
+import com.team2502.robot2022.Constants.RobotMap.Motors;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class TurretSubsystem extends SubsystemBase {

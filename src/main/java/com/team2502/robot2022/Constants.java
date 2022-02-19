@@ -3,7 +3,7 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot;
+package com.team2502.robot2022;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -55,7 +55,7 @@ public final class Constants {
     /** subsystem-specific constants */
     public static final class Subsystem {
 
-        public static final class Shooter{
+        public static final class Shooter {
             public static final double SHOOTER_P = 0.0008;
             public static final double SHOOTER_I = 0.0;
             public static final double SHOOTER_D = 0.0;
@@ -64,6 +64,13 @@ public final class Constants {
             public static final double SHOOTER_MAX_OUTPUT = 1;
             public static final double SHOOTER_MIN_OUTPUT = -0.1;
             public static final double SHOOTER_MANUAL_RPM_MID = 2600; // center of manual range, max is ~4200 with current pid
+        }
+
+        public static final class Climber {
+            public static final int RIGHT_WENCH = 0; //talon SRX motor
+            public static final int LEFT_WENCH = 1; //talon SRX motor
+            public static final int RIGHT_PASSIVE_CLIMBER = 0; //solenoid
+            public static final int LEFT_PASSIVE_CLIMBER = 1; //solenoid
         }
     }
 }

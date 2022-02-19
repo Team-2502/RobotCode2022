@@ -1,7 +1,7 @@
-package frc.robot.subsystems;
+package com.team2502.robot2022.subsystems;
 
 import com.revrobotics.*;
-import frc.robot.Constants;
+import com.team2502.robot2022.Constants;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;

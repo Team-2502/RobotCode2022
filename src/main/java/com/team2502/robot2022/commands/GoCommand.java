@@ -1,12 +1,8 @@
-package frc.robot.commands;
-import frc.robot.subsystems.DrivetrainSubsystem;
+package com.team2502.robot2022.commands;
+import com.team2502.robot2022.subsystems.DrivetrainSubsystem;
 import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.util.Trapezoidal;
+import com.team2502.robot2022.util.Trapezoidal;
 
 public class GoCommand extends CommandBase {
 

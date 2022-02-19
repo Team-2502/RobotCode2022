@@ -3,16 +3,13 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot;
+package com.team2502.robot2022;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.*;
+import com.team2502.robot2022.commands.*;
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.*;
-import frc.robot.*;
-import frc.robot.commands.*;
-import frc.robot.Constants;
+import com.team2502.robot2022.subsystems.*;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
 import com.kauailabs.navx.frc.AHRS;
