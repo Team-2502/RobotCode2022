@@ -27,7 +27,13 @@ public final class Constants {
         public static final int JOYSTICK_DRIVE_LEFT = 1;
         public static final int JOYSTICK_OPERATOR = 2;
 
-        public static final int BUTTON_FLYWHEEL_MANUAL = 2;
+        public static final int SHOOT_BUTTON = 1;
+        public static final int SPIN_FLYWHEEL_BUTTON = 2;
+
+        public static final int BUTTON_FLYWHEEL_MANUAL = 999; //Not used
+
+        public static final int RUN_INTAKE_BUTTON = 3;
+        public static final int RUN_INTAKE_BACKWARDS_BUTTON = 8;
     }
 
     /**
@@ -48,10 +54,11 @@ public final class Constants {
             public static final int SQUEEZE_MOTOR = 24;
             public static final int INTAKE_MOTOR = 23;
 
-            public static final int HOPPER_SIDE_BELTS_RIGHT = 11;
-            public static final int HOPPER_SIDE_BELTS_LEFT = 12;
-            public static final int HOPPER_BACK_BELT = 13;
-            public static final int HOPPER_FRONT_BELT = 14;
+            public static final int HOPPER_TOP_BELT = 11;
+            public static final int HOPPER_BOTTOM_BELT = 12;
+
+            public static final int LOAD_MOTOR_1 = 14;
+            public static final int LOAD_MOTOR_2 = 15;
 
             // SparkMax
             public static final int SHOOTER_LEFT = 6;

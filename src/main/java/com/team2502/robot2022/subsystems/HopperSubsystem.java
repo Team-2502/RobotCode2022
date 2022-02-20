@@ -10,24 +10,25 @@ import com.team2502.robot2022.Constants.RobotMap.Motors;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class HopperSubsystem extends SubsystemBase {
-  //Assuming same hopper setup as 2020/2021 robot, can change motors
-  private final CANSparkMax hopperSideBeltsRight; //TODO figure out wpilib reps of hardware (baby neo)
-  private final CANSparkMax hopperSideBeltsLeft;
-  private final CANSparkMax hopperFrontBelt;
-  private final CANSparkMax hopperBackBelt;
+  private final CANSparkMax hopperTopBelt;
+  private final CANSparkMax hopperBottomBelt;
 
   public HopperSubsystem() {
-    hopperSideBeltsRight =  new CANSparkMax(Motors.HOPPER_SIDE_BELTS_RIGHT, CANSparkMaxLowLevel.MotorType.kBrushless);
-    hopperSideBeltsLeft =  new CANSparkMax(Motors.HOPPER_SIDE_BELTS_LEFT, CANSparkMaxLowLevel.MotorType.kBrushless);
-    hopperBackBelt =  new CANSparkMax(Motors.HOPPER_BACK_BELT, CANSparkMaxLowLevel.MotorType.kBrushless);
-    hopperFrontBelt =  new CANSparkMax(Motors.HOPPER_FRONT_BELT, CANSparkMaxLowLevel.MotorType.kBrushless);
+    hopperTopBelt =  new CANSparkMax(Motors.HOPPER_TOP_BELT, CANSparkMaxLowLevel.MotorType.kBrushless);
+    hopperBottomBelt =  new CANSparkMax(Motors.HOPPER_BOTTOM_BELT, CANSparkMaxLowLevel.MotorType.kBrushless);
   }
 
-  public void runLeftBelt(double speed) { hopperSideBeltsLeft.set(speed); }
+  public void runTopBelt(double speed) { hopperTopBelt.set(speed); }
 
-  public void runRightBelt(double speed) { hopperSideBeltsRight.set(speed); }
+  public void runBottomBelt(double speed) { hopperBottomBelt.set(speed); }
 
-  public void runBackBelt(double speed) { hopperBackBelt.set(speed); }
+  public void runBothBelt(double speed) {
+    hopperTopBelt.set(speed);
+    hopperBottomBelt.set(speed);
+  }
 
-  public void runFrontBelt(double speed) { hopperFrontBelt.set(speed); }
+  public void stop() {
+    hopperTopBelt.set(0);
+    hopperBottomBelt.set(0);
+  }
 }

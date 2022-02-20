@@ -14,12 +14,18 @@ public class ShooterSubsystem extends SubsystemBase {
     public final SparkMaxPIDController rightPID;
     private final CANEncoder rightEncoder;
 
+    private final CANSparkMax loadMotor1;
+    private final CANSparkMax loadMotor2;
+
     public ShooterSubsystem() {
         shooterLeft = new CANSparkMax(Constants.RobotMap.Motors.SHOOTER_LEFT, CANSparkMaxLowLevel.MotorType.kBrushless);
         shooterLeft.setSmartCurrentLimit(35);
         shooterRight = new CANSparkMax(Constants.RobotMap.Motors.SHOOTER_RIGHT, CANSparkMaxLowLevel.MotorType.kBrushless);
         shooterRight.setSmartCurrentLimit(35);
-        shooterLeft.follow(shooterRight, true); // follow right motor, inverted 
+        shooterLeft.follow(shooterRight, true); // follow right motor, inverted
+
+        loadMotor1 = new CANSparkMax(Constants.RobotMap.Motors.LOAD_MOTOR_1, CANSparkMaxLowLevel.MotorType.kBrushless);
+        loadMotor2 = new CANSparkMax(Constants.RobotMap.Motors.LOAD_MOTOR_2, CANSparkMaxLowLevel.MotorType.kBrushless);
 
         rightPID = shooterRight.getPIDController();
         rightEncoder = shooterRight.getEncoder();
@@ -35,7 +41,19 @@ public class ShooterSubsystem extends SubsystemBase {
         SmartDashboard.putNumber("Shooter Target Velocity", speed);
     }
 
-    public void stopShooter() { shooterRight.set(0); }
+    public void loadBalls(double speed) {
+        loadMotor1.set(speed);
+        loadMotor2.set(speed);
+    }
+
+    public void stopShooter() {
+        shooterRight.set(0);
+    }
+
+    public void stopLoader() {
+        loadMotor1.stopMotor();
+        loadMotor2.stopMotor();
+    }
 
     public boolean isShooterRunning() { return shooterLeft.get() != 0 || shooterRight.get() != 0; }
 

@@ -66,6 +66,21 @@ public class RobotContainer
 	    JoystickButton TurnAngleButton = new JoystickButton(JOYSTICK_DRIVE_LEFT, 1);
 	    TurnAngleButton.whenPressed(new TurnAngleCommand(DRIVETRAIN, 90, navx));
 
+        JoystickButton RunShooterManualButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_FLYWHEEL_MANUAL);
+        RunShooterManualButton.whenHeld(new RunShooterManualCommand(SHOOTER, TURRET, Constants.Subsystem.Shooter.SHOOTER_MANUAL_RPM_MID, JOYSTICK_OPERATOR)); // use lever from operator joystick
+
+        JoystickButton RunIntakeButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_INTAKE_BUTTON);
+        RunIntakeButton.whenPressed(new RunIntakeCommand(INTAKE, 0.4, 0.75));
+
+        JoystickButton RunIntakeBackwardsButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_INTAKE_BACKWARDS_BUTTON);
+        RunIntakeBackwardsButton.whenPressed(new RunIntakeCommand(INTAKE, -0.4, -0.75));
+
+        JoystickButton ShootButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.SHOOT_BUTTON);
+        ShootButton.whenPressed(new ShootCommand(SHOOTER, 0.5));
+
+        JoystickButton SpinFlywheelButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.SPIN_FLYWHEEL_BUTTON);
+        SpinFlywheelButton.whenPressed(new RunFlywheelCommand(SHOOTER, 1000));
+
         // Add button to command mappings here.
         // See https://docs.wpilib.org/en/stable/docs/software/commandbased/binding-commands-to-triggers.html
     }

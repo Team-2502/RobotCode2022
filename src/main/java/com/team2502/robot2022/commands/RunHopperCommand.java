@@ -12,20 +12,12 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class RunHopperCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final HopperSubsystem hopper;
-  private final double speedLeft;
-  private final double speedRight;
-  private final double speedBack;
-  private final double speedFront;
+  private final double speedTop;
+  private final double speedBottom;
 
-  public RunHopperCommand(HopperSubsystem hopper,
-                          double speedLeft,
-                          double speedRight,
-                          double speedBack,
-                          double speedFront) {
-    this.speedLeft = speedLeft;
-    this.speedRight = speedRight;
-    this.speedBack = speedBack;
-    this.speedFront = speedFront;
+  public RunHopperCommand(HopperSubsystem hopper, double speedTop, double speedBottom) {
+    this.speedTop = speedTop;
+    this.speedBottom = speedBottom;
     this.hopper = hopper;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(hopper);
@@ -38,19 +30,14 @@ public class RunHopperCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    hopper.runLeftBelt(speedLeft);
-    hopper.runRightBelt(speedRight);
-    hopper.runBackBelt(speedBack);
-    hopper.runFrontBelt(speedFront);
+    hopper.runBottomBelt(speedBottom);
+    hopper.runTopBelt(speedTop);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    hopper.runLeftBelt(0);
-    hopper.runRightBelt(0);
-    hopper.runBackBelt(0);
-    hopper.runFrontBelt(0);
+    hopper.stop();
   }
 
   // Returns true when the command should end.
