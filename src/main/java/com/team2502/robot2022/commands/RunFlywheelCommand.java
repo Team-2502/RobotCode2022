@@ -15,6 +15,7 @@ public class RunFlywheelCommand extends CommandBase {
     public RunFlywheelCommand(ShooterSubsystem shooter, double speed) {
         this.shooter = shooter;
         this.speed = speed;
+        addRequirements(shooter);
     }
 
     @Override
