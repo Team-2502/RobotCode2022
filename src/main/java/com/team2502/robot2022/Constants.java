@@ -18,7 +18,9 @@ import java.util.HashMap;
  */
 public final class Constants {
 
-    /** control mappings */
+    /**
+     * control mappings
+     */
     public static final class OI {
 
         public static final int JOYSTICK_DRIVE_RIGHT = 0;
@@ -28,10 +30,14 @@ public final class Constants {
         public static final int BUTTON_FLYWHEEL_MANUAL = 2;
     }
 
-    /** hardware ids */
+    /**
+     * hardware ids
+     */
     public static final class RobotMap {
 
-	/** can motor ids */
+        /**
+         * can motor ids
+         */
         public static final class Motors {
             // Talon FX
             public static final int DRIVE_FRONT_RIGHT = 1;
@@ -39,19 +45,19 @@ public final class Constants {
             public static final int DRIVE_BACK_RIGHT = 2;
             public static final int DRIVE_BACK_LEFT = 4;
 
-	    public static final int SQUEEZE_MOTOR = 24;
-	    public static final int INTAKE_MOTOR = 23;
+            public static final int SQUEEZE_MOTOR = 24;
+            public static final int INTAKE_MOTOR = 23;
 
-	    public static final int HOPPER_SIDE_BELTS_RIGHT = 11;
-	    public static final int HOPPER_SIDE_BELTS_LEFT = 12;
-	    public static final int HOPPER_BACK_BELT = 13;
-	    public static final int HOPPER_FRONT_BELT = 14;
+            public static final int HOPPER_SIDE_BELTS_RIGHT = 11;
+            public static final int HOPPER_SIDE_BELTS_LEFT = 12;
+            public static final int HOPPER_BACK_BELT = 13;
+            public static final int HOPPER_FRONT_BELT = 14;
 
             // SparkMax
             public static final int SHOOTER_LEFT = 6;
             public static final int SHOOTER_RIGHT = 7;
 
-	    public static final int TURRET_TRAVERSE = 8;
+            public static final int TURRET_TRAVERSE = 8;
         }
     }
 
