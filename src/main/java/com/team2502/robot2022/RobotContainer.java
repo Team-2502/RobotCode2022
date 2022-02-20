@@ -10,10 +10,13 @@ import edu.wpi.first.wpilibj.XboxController;
 import com.team2502.robot2022.commands.*;
 import edu.wpi.first.wpilibj2.command.Command;
 import com.team2502.robot2022.subsystems.*;
+import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
 import com.kauailabs.navx.frc.AHRS;
 
+import java.util.Set;
 
 
 /**
@@ -25,30 +28,25 @@ import com.kauailabs.navx.frc.AHRS;
 public class RobotContainer
 {
     // The robot's subsystems and commands are defined here...
-    private final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
-    
-    private final ExampleCommand autoCommand = new ExampleCommand(exampleSubsystem);
-
-    protected final DrivetrainSubsystem DRIVE_TRAIN = new DrivetrainSubsystem();
-    private final HopperSubsystem HOPPER = new HopperSubsystem();
-    private final IntakeSubsystem INTAKE = new IntakeSubsystem();
-
-    protected final ShooterSubsystem SHOOTER = new ShooterSubsystem();
-
+    protected final DrivetrainSubsystem DRIVETRAIN = new DrivetrainSubsystem();
+    protected final HopperSubsystem HOPPER = new HopperSubsystem();
+    protected final IntakeSubsystem INTAKE = new IntakeSubsystem();
+    protected final ClimberSubsystem CLIMBER = new ClimberSubsystem();
     protected final TurretSubsystem TURRET = new TurretSubsystem();
+    protected final ShooterSubsystem SHOOTER = new ShooterSubsystem();
+    protected final VisionSubsystem VISION = new VisionSubsystem();
 
     private final AHRS navx = new AHRS();
 
     private static final Joystick JOYSTICK_DRIVE_RIGHT = new Joystick(Constants.OI.JOYSTICK_DRIVE_RIGHT);
     private static final Joystick JOYSTICK_DRIVE_LEFT = new Joystick(Constants.OI.JOYSTICK_DRIVE_LEFT);
-  private static final Joystick JOYSTICK_OPERATOR = new Joystick(Constants.OI.JOYSTICK_OPERATOR);
+    private static final Joystick JOYSTICK_OPERATOR = new Joystick(Constants.OI.JOYSTICK_OPERATOR);
     
     
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer()
     {
-
-      DRIVE_TRAIN.setDefaultCommand(new DriveCommand(DRIVE_TRAIN, JOYSTICK_DRIVE_LEFT, JOYSTICK_DRIVE_RIGHT));
+      DRIVETRAIN.setDefaultCommand(new DriveCommand(DRIVETRAIN, JOYSTICK_DRIVE_LEFT, JOYSTICK_DRIVE_RIGHT));
         // Configure the button bindings
         configureButtonBindings();
     }
@@ -63,10 +61,10 @@ public class RobotContainer
     private void configureButtonBindings()
     {
 	    JoystickButton GoAFootButton = new JoystickButton(JOYSTICK_DRIVE_RIGHT, 1);
-	    GoAFootButton.whenPressed(new GoCommand(DRIVE_TRAIN,12));
+	    GoAFootButton.whenPressed(new GoCommand(DRIVETRAIN,12));
 
 	    JoystickButton TurnAngleButton = new JoystickButton(JOYSTICK_DRIVE_LEFT, 1);
-	    TurnAngleButton.whenPressed(new TurnAngleCommand(DRIVE_TRAIN, 90, navx));
+	    TurnAngleButton.whenPressed(new TurnAngleCommand(DRIVETRAIN, 90, navx));
 
             JoystickButton RunShooterManualButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_FLYWHEEL_MANUAL);
 	    RunShooterManualButton.whenHeld(new RunShooterManualCommand(SHOOTER, TURRET, Constants.Subsystem.Shooter.SHOOTER_MANUAL_RPM_MID, JOYSTICK_OPERATOR)); // use lever from operator joystick
@@ -83,6 +81,6 @@ public class RobotContainer
     public Command getAutonomousCommand()
     {
         // An ExampleCommand will run in autonomous
-        return autoCommand;
+        return new CommandBase(){};
     }
 }
