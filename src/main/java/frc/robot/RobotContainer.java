@@ -60,16 +60,16 @@ public class RobotContainer
     private void configureButtonBindings()
     {
         JoystickButton RunIntakeButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_INTAKE_BUTTON);
-        RunIntakeButton.whenHeld(new RunIntakeCommand(INTAKE, 0.8, 0.3));
+        RunIntakeButton.whenHeld(new RunIntakeCommand(INTAKE, 0.5, 0.75));
 
         JoystickButton RunIntakeBackwardsButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_INTAKE_BACKWARDS_BUTTON);
-        RunIntakeBackwardsButton.whenHeld(new RunIntakeCommand(INTAKE, -0.8, -0.3));
+        RunIntakeBackwardsButton.whenHeld(new RunIntakeCommand(INTAKE, -0.5, -0.75));
 
         JoystickButton RunShooterManualButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_FLYWHEEL_MANUAL);
-        RunShooterManualButton.whenHeld(new RunShooterManualCommand(SHOOTER, TURRET, Constants.Subsystem.Shooter.SHOOTER_MANUAL_RPM_MID, JOYSTICK_OPERATOR)); // use lever from operator joystick
+        RunShooterManualButton.whenPressed(new RunShooterManualCommand(SHOOTER, TURRET, Constants.Subsystem.Shooter.SHOOTER_MANUAL_RPM_MID, JOYSTICK_OPERATOR)); // use lever from operator joystick
 
         JoystickButton ShootButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.SHOOT_BUTTON);
-        ShootButton.whenPressed(new ShootCommand(SHOOTER, 0.5));
+        ShootButton.whenHeld(new ShootCommand(SHOOTER, 0.5));
         // Add button to command mappings here.
         // See https://docs.wpilib.org/en/stable/docs/software/commandbased/binding-commands-to-triggers.html
     }

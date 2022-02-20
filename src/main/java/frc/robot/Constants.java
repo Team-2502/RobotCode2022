@@ -67,8 +67,8 @@ public final class Constants {
             public static final int SUSHI_MOTOR_1 = 10;
             public static final int SUSHI_MOTOR_2 = 11;
 
-            public static final int SHOOTER_LEFT = 12;
-            public static final int SHOOTER_RIGHT = 13;
+            public static final int SHOOTER_LEFT = 13;
+            public static final int SHOOTER_RIGHT = 12;
 
             public static final int TURRET_TRAVERSE = 14;
         }
@@ -92,7 +92,7 @@ public final class Constants {
             public static final double SHOOTER_IZ = 0;
             public static final double SHOOTER_FF = 0.00019;
             public static final double SHOOTER_MAX_OUTPUT = 1;
-            public static final double SHOOTER_MIN_OUTPUT = -0.1;
+            public static final double SHOOTER_MIN_OUTPUT = -1;
             public static final double SHOOTER_MANUAL_RPM_MID = 2600; // center of manual range, max is ~4200 with current pid
         }
 

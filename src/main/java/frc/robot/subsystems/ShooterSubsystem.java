@@ -25,12 +25,12 @@ public class ShooterSubsystem extends SubsystemBase {
         loadMotor1 = new CANSparkMax(Motors.SUSHI_MOTOR_1, CANSparkMaxLowLevel.MotorType.kBrushless);
         loadMotor2 = new CANSparkMax(Motors.SUSHI_MOTOR_2, CANSparkMaxLowLevel.MotorType.kBrushless);
 
-        shooterLeft.follow(shooterRight, true); // follow right motor, inverted
+        shooterRight.follow(shooterLeft, true); // follow right motor, inverted
 
         shooterLeft.setSmartCurrentLimit(35);
         shooterRight.setSmartCurrentLimit(35);
 
-        rightPID = shooterRight.getPIDController();
+        rightPID = shooterLeft.getPIDController();
         rightEncoder = shooterRight.getEncoder();
 
         setupPID();
@@ -40,13 +40,13 @@ public class ShooterSubsystem extends SubsystemBase {
     public void periodic() { SmartDashboard.putNumber("Shooter Velocity", rightEncoder.getVelocity()); }
 
     public void setShooterSpeedRPM(double speed) {
-        rightPID.setReference(speed, CANSparkMax.ControlType.kVelocity);
+        rightPID.setReference(-speed, CANSparkMax.ControlType.kVelocity);
         SmartDashboard.putNumber("Shooter Target Velocity", speed);
     }
 
     public void loadBalls(double speed) {
         loadMotor1.set(speed);
-        loadMotor2.set(speed);
+        loadMotor2.set(-speed);
     }
 
     public void stopShooter() {
