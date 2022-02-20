@@ -5,18 +5,17 @@
 
 package com.team2502.robot2022;
 
+import com.team2502.robot2022.commands.solenoid.ToggleDriveTrainGearCommand;
+import com.team2502.robot2022.commands.solenoid.ToggleIntakeCommand;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import com.team2502.robot2022.commands.*;
 import edu.wpi.first.wpilibj2.command.Command;
 import com.team2502.robot2022.subsystems.*;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
 import com.kauailabs.navx.frc.AHRS;
-
-import java.util.Set;
 
 
 /**
@@ -29,7 +28,6 @@ public class RobotContainer
 {
     // The robot's subsystems and commands are defined here...
     protected final DrivetrainSubsystem DRIVETRAIN = new DrivetrainSubsystem();
-    protected final HopperSubsystem HOPPER = new HopperSubsystem();
     protected final IntakeSubsystem INTAKE = new IntakeSubsystem();
     protected final ClimberSubsystem CLIMBER = new ClimberSubsystem();
     protected final TurretSubsystem TURRET = new TurretSubsystem();
@@ -66,6 +64,9 @@ public class RobotContainer
 	    JoystickButton TurnAngleButton = new JoystickButton(JOYSTICK_DRIVE_LEFT, 1);
 	    TurnAngleButton.whenPressed(new TurnAngleCommand(DRIVETRAIN, 90, navx));
 
+        JoystickButton DrivetrainShiftButton = new JoystickButton(JOYSTICK_DRIVE_RIGHT, Constants.OI.SHIFT);
+        DrivetrainShiftButton.whenPressed(new ToggleDriveTrainGearCommand(DRIVETRAIN));
+
         JoystickButton RunShooterManualButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_FLYWHEEL_MANUAL);
         RunShooterManualButton.whenHeld(new RunShooterManualCommand(SHOOTER, TURRET, Constants.Subsystem.Shooter.SHOOTER_MANUAL_RPM_MID, JOYSTICK_OPERATOR)); // use lever from operator joystick
 
@@ -74,6 +75,9 @@ public class RobotContainer
 
         JoystickButton RunIntakeBackwardsButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_INTAKE_BACKWARDS_BUTTON);
         RunIntakeBackwardsButton.whenPressed(new RunIntakeCommand(INTAKE, -0.4, -0.75));
+
+        JoystickButton ToggleIntakeButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.TOGGLE_INTAKE);
+        ToggleIntakeButton.whenPressed(new ToggleIntakeCommand(INTAKE));
 
         JoystickButton ShootButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.SHOOT_BUTTON);
         ShootButton.whenPressed(new ShootCommand(SHOOTER, 0.5));

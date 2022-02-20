@@ -4,43 +4,65 @@
 
 package com.team2502.robot2022.subsystems;
 
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
 
-import static com.team2502.robot2022.Constants.RobotMap.Motors.*;
+import static com.team2502.robot2022.Constants.RobotMap.*;
 
 public class IntakeSubsystem extends SubsystemBase {
-  private final CANSparkMax intakeMotor;
-  private final CANSparkMax squeezeMotor;
-  private final CANSparkMax bottomBelt;
+    private final CANSparkMax intakeMotor;
+    private final CANSparkMax topBelt;
+    private final CANSparkMax bottomBelt;
 
-  public IntakeSubsystem() {
-    intakeMotor = new CANSparkMax(INTAKE_MOTOR, CANSparkMaxLowLevel.MotorType.kBrushless);
-    intakeMotor.setSmartCurrentLimit(25);
-    squeezeMotor = new CANSparkMax(SQUEEZE_MOTOR, CANSparkMaxLowLevel.MotorType.kBrushless);
-    squeezeMotor.setSmartCurrentLimit(25);
-    bottomBelt = new CANSparkMax(HOPPER_BOTTOM_BELT, CANSparkMaxLowLevel.MotorType.kBrushless);
-    bottomBelt.setSmartCurrentLimit(25);
-  }
+    private final Solenoid intakeDeploySolenoid;
 
-  public void run(double intakeSpeed, double beltSpeed) {
-    intakeMotor.set(intakeSpeed);
-    squeezeMotor.set(beltSpeed);
-    bottomBelt.set(beltSpeed);
-  }
+    public IntakeSubsystem() {
+        intakeMotor = new CANSparkMax(Motors.INTAKE_MOTOR, CANSparkMaxLowLevel.MotorType.kBrushless);
+        topBelt = new CANSparkMax(Motors.SQUEEZE_MOTOR, CANSparkMaxLowLevel.MotorType.kBrushless);
+        bottomBelt = new CANSparkMax(Motors.HOPPER_BOTTOM_BELT, CANSparkMaxLowLevel.MotorType.kBrushless);
 
-  public void runSqueeze(double speed) {
-    squeezeMotor.set(speed);
-  }
+        intakeDeploySolenoid = new Solenoid(PneumaticsModuleType.REVPH, Solenoids.INTAKE);
 
-  public void stop() {
-    intakeMotor.stopMotor();
-    bottomBelt.stopMotor();
-    squeezeMotor.stopMotor();
-  }
+        intakeMotor.setSmartCurrentLimit(25);
+        topBelt.setSmartCurrentLimit(25);
+        bottomBelt.setSmartCurrentLimit(25);
+    }
 
-  public void stopSqueeze() {
-    squeezeMotor.set(0);
-  }
+    public void run(double intakeSpeed, double beltSpeed) {
+        intakeMotor.set(intakeSpeed);
+        topBelt.set(beltSpeed);
+        bottomBelt.set(beltSpeed);
+    }
+
+    public void runSqueeze(double speed) {
+        topBelt.set(speed);
+    }
+
+    public void stop() {
+        intakeMotor.stopMotor();
+        bottomBelt.stopMotor();
+        topBelt.stopMotor();
+    }
+
+    public void stopSqueeze() {
+        topBelt.set(0);
+    }
+
+    public void deployIntake()
+    {
+        intakeDeploySolenoid.set(true);
+    }
+
+    public void retractIntake()
+    {
+        intakeDeploySolenoid.set(false);
+    }
+
+    public void toggleIntake()
+    {
+        intakeDeploySolenoid.set(!intakeDeploySolenoid.get());
+    }
 }

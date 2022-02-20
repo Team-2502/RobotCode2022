@@ -32,7 +32,15 @@ public final class Constants {
         public static final int BUTTON_FLYWHEEL_MANUAL = 999; //Not used
 
         public static final int RUN_INTAKE_BUTTON = 3;
-        public static final int RUN_INTAKE_BACKWARDS_BUTTON = 8;
+        public static final int RUN_INTAKE_BACKWARDS_BUTTON = 4;
+
+        // Right Drive Joystick
+
+        public static final int SHIFT = 1;
+
+        // Left Drive Joystick
+        // Operator Joystick
+        public static final int TOGGLE_INTAKE = 8;
     }
 
     public static final class RobotMap {
@@ -64,8 +72,10 @@ public final class Constants {
 
         public static final class Solenoids
         {
-            public static final int RIGHT_PASSIVE_CLIMBER = 0;
-            public static final int LEFT_PASSIVE_CLIMBER = 1;
+            public static final int DRIVETRAIN = 1;
+            public static final int INTAKE = 2;
+            public static final int RIGHT_PASSIVE_CLIMBER = 3;
+            public static final int LEFT_PASSIVE_CLIMBER = 4;
         }
     }
 

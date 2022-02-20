@@ -1,7 +1,8 @@
 package com.team2502.robot2022.subsystems;
 
 import com.revrobotics.*;
-import com.team2502.robot2022.Constants;
+import com.team2502.robot2022.Constants.RobotMap.*;
+import com.team2502.robot2022.Constants.Subsystem.Shooter;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -18,14 +19,16 @@ public class ShooterSubsystem extends SubsystemBase {
     private final CANSparkMax loadMotor2;
 
     public ShooterSubsystem() {
-        shooterLeft = new CANSparkMax(Constants.RobotMap.Motors.SHOOTER_LEFT, CANSparkMaxLowLevel.MotorType.kBrushless);
-        shooterLeft.setSmartCurrentLimit(35);
-        shooterRight = new CANSparkMax(Constants.RobotMap.Motors.SHOOTER_RIGHT, CANSparkMaxLowLevel.MotorType.kBrushless);
-        shooterRight.setSmartCurrentLimit(35);
+        shooterLeft = new CANSparkMax(Motors.SHOOTER_LEFT, CANSparkMaxLowLevel.MotorType.kBrushless);
+        shooterRight = new CANSparkMax(Motors.SHOOTER_RIGHT, CANSparkMaxLowLevel.MotorType.kBrushless);
+
+        loadMotor1 = new CANSparkMax(Motors.LOAD_MOTOR_1, CANSparkMaxLowLevel.MotorType.kBrushless);
+        loadMotor2 = new CANSparkMax(Motors.LOAD_MOTOR_2, CANSparkMaxLowLevel.MotorType.kBrushless);
+
         shooterLeft.follow(shooterRight, true); // follow right motor, inverted
 
-        loadMotor1 = new CANSparkMax(Constants.RobotMap.Motors.LOAD_MOTOR_1, CANSparkMaxLowLevel.MotorType.kBrushless);
-        loadMotor2 = new CANSparkMax(Constants.RobotMap.Motors.LOAD_MOTOR_2, CANSparkMaxLowLevel.MotorType.kBrushless);
+        shooterLeft.setSmartCurrentLimit(35);
+        shooterRight.setSmartCurrentLimit(35);
 
         rightPID = shooterRight.getPIDController();
         rightEncoder = shooterRight.getEncoder();
@@ -58,12 +61,12 @@ public class ShooterSubsystem extends SubsystemBase {
     public boolean isShooterRunning() { return shooterLeft.get() != 0 || shooterRight.get() != 0; }
 
     public void setupPID() {
-        rightPID.setP(Constants.Subsystem.Shooter.SHOOTER_P);
-        rightPID.setI(Constants.Subsystem.Shooter.SHOOTER_I);
-        rightPID.setD(Constants.Subsystem.Shooter.SHOOTER_D);
-        rightPID.setIZone(Constants.Subsystem.Shooter.SHOOTER_IZ);
-        rightPID.setFF(Constants.Subsystem.Shooter.SHOOTER_FF);
-        rightPID.setOutputRange(Constants.Subsystem.Shooter.SHOOTER_MIN_OUTPUT, Constants.Subsystem.Shooter.SHOOTER_MAX_OUTPUT);
+        rightPID.setP(Shooter.SHOOTER_P);
+        rightPID.setI(Shooter.SHOOTER_I);
+        rightPID.setD(Shooter.SHOOTER_D);
+        rightPID.setIZone(Shooter.SHOOTER_IZ);
+        rightPID.setFF(Shooter.SHOOTER_FF);
+        rightPID.setOutputRange(Shooter.SHOOTER_MIN_OUTPUT, Shooter.SHOOTER_MAX_OUTPUT);
         shooterRight.burnFlash();
     }
 
