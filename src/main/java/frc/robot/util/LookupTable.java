@@ -1,4 +1,4 @@
-package com.team2502.robot2022.util;
+package frc.robot.util;
 
 import java.util.*;
 import java.util.stream.Collectors;

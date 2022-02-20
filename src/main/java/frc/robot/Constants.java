@@ -4,7 +4,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot;
-import com.team2502.robot2022.util.LookupTable;
+import frc.robot.util.LookupTable;
 
 import java.util.HashMap;
 
@@ -45,6 +45,8 @@ public final class Constants {
         public static final int RUN_INTAKE_BACKWARDS_BUTTON = 4;
 
         public static final int RUN_CLIMBER_WENCH_BUTTON = 5;
+
+        public static final int VISION_TURRET_ALIGN = 13;
     }
 
     public static final class RobotMap {
@@ -107,7 +109,7 @@ public final class Constants {
             public static final double FRICTION_I = 0.003;
 
             //Everything in this class is referenced in the Vision Subsystem, and explained at least partially there.
-            public static final String LIMELIGHT_NETWORK_TABLE = "limelight"; //the name in the network table of the limelight
+            public static final String LIMELIGHT_NETWORK_TABLE = "limelight-turret"; //the name in the network table of the limelight
 
 
             //these would be the numbers corresponding to various settings of the limelight
