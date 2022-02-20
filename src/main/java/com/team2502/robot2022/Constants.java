@@ -57,19 +57,18 @@ public final class Constants {
             public static final int LEFT_WINCH = 6;
 
             // SparkMax
-            public static final int SQUEEZE_MOTOR = 1;
-            public static final int INTAKE_MOTOR = 2;
+            public static final int SQUEEZE_MOTOR = 8;
+            public static final int INTAKE_MOTOR = 7;
 
-            public static final int HOPPER_TOP_BELT = 3;
-            public static final int HOPPER_BOTTOM_BELT = 4;
+            public static final int HOPPER_BOTTOM_BELT = 9;
 
-            public static final int LOAD_MOTOR_1 = 5;
-            public static final int LOAD_MOTOR_2 = 6;
+            public static final int SUSHI_MOTOR_1 = 10;
+            public static final int SUSHI_MOTOR_2 = 11;
 
-            public static final int SHOOTER_LEFT = 7;
-            public static final int SHOOTER_RIGHT = 8;
+            public static final int SHOOTER_LEFT = 12;
+            public static final int SHOOTER_RIGHT = 13;
 
-            public static final int TURRET_TRAVERSE = 9;
+            public static final int TURRET_TRAVERSE = 14;
         }
 
         public static final class Solenoids

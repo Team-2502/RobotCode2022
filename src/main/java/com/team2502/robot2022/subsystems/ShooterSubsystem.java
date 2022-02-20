@@ -22,8 +22,8 @@ public class ShooterSubsystem extends SubsystemBase {
         shooterLeft = new CANSparkMax(Motors.SHOOTER_LEFT, CANSparkMaxLowLevel.MotorType.kBrushless);
         shooterRight = new CANSparkMax(Motors.SHOOTER_RIGHT, CANSparkMaxLowLevel.MotorType.kBrushless);
 
-        loadMotor1 = new CANSparkMax(Motors.LOAD_MOTOR_1, CANSparkMaxLowLevel.MotorType.kBrushless);
-        loadMotor2 = new CANSparkMax(Motors.LOAD_MOTOR_2, CANSparkMaxLowLevel.MotorType.kBrushless);
+        loadMotor1 = new CANSparkMax(Motors.SUSHI_MOTOR_1, CANSparkMaxLowLevel.MotorType.kBrushless);
+        loadMotor2 = new CANSparkMax(Motors.SUSHI_MOTOR_2, CANSparkMaxLowLevel.MotorType.kBrushless);
 
         shooterLeft.follow(shooterRight, true); // follow right motor, inverted
 
