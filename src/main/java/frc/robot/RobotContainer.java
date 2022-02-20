@@ -12,14 +12,8 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
 import com.kauailabs.navx.frc.AHRS;
-import frc.robot.commands.DriveCommand;
-import frc.robot.commands.RunIntakeCommand;
-import frc.robot.commands.RunShooterManualCommand;
-import frc.robot.subsystems.DrivetrainSubsystem;
-import frc.robot.subsystems.IntakeSubsystem;
-import frc.robot.subsystems.ShooterSubsystem;
-import frc.robot.subsystems.TurretSubsystem;
-import frc.robot.commands.ShootCommand;
+import frc.robot.commands.*;
+import frc.robot.subsystems.*;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -34,6 +28,7 @@ public class RobotContainer
     protected final IntakeSubsystem INTAKE = new IntakeSubsystem();
     protected final TurretSubsystem TURRET = new TurretSubsystem();
     protected final ShooterSubsystem SHOOTER = new ShooterSubsystem();
+    protected final VisionSubsystem VISION = new VisionSubsystem();
 
     private final AHRS navx = new AHRS();
 
@@ -70,6 +65,10 @@ public class RobotContainer
 
         JoystickButton ShootButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.SHOOT_BUTTON);
         ShootButton.whenHeld(new ShootCommand(SHOOTER, 0.5));
+
+        JoystickButton VisionAlignDrivetrainButton = new JoystickButton(JOYSTICK_DRIVE_LEFT, Constants.OI.VISION_DRIVETRAIN_ALIGN);
+        VisionAlignDrivetrainButton.whenHeld(new VisionAlignDrivetrain(VISION, DRIVETRAIN, JOYSTICK_DRIVE_LEFT, JOYSTICK_DRIVE_RIGHT));
+
         // Add button to command mappings here.
         // See https://docs.wpilib.org/en/stable/docs/software/commandbased/binding-commands-to-triggers.html
     }
