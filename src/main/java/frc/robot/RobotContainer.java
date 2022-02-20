@@ -7,16 +7,18 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.*;
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.*;
-import frc.robot.*;
-import frc.robot.Constants;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
 import com.kauailabs.navx.frc.AHRS;
-
-
+import frc.robot.commands.DriveCommand;
+import frc.robot.commands.RunIntakeCommand;
+import frc.robot.commands.RunShooterManualCommand;
+import frc.robot.subsystems.DrivetrainSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.subsystems.TurretSubsystem;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -27,33 +29,27 @@ import com.kauailabs.navx.frc.AHRS;
 public class RobotContainer
 {
     // The robot's subsystems and commands are defined here...
-    private final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
-    
-    private final ExampleCommand autoCommand = new ExampleCommand(exampleSubsystem);
-
-    protected final DrivetrainSubsystem DRIVE_TRAIN = new DrivetrainSubsystem();
-
-    protected final ShooterSubsystem SHOOTER = new ShooterSubsystem();
-
+    protected final DrivetrainSubsystem DRIVETRAIN = new DrivetrainSubsystem();
+    protected final IntakeSubsystem INTAKE = new IntakeSubsystem();
     protected final TurretSubsystem TURRET = new TurretSubsystem();
+    protected final ShooterSubsystem SHOOTER = new ShooterSubsystem();
 
     private final AHRS navx = new AHRS();
 
     private static final Joystick JOYSTICK_DRIVE_RIGHT = new Joystick(Constants.OI.JOYSTICK_DRIVE_RIGHT);
     private static final Joystick JOYSTICK_DRIVE_LEFT = new Joystick(Constants.OI.JOYSTICK_DRIVE_LEFT);
-  private static final Joystick JOYSTICK_OPERATOR = new Joystick(Constants.OI.JOYSTICK_OPERATOR);
-    
-    
+    private static final Joystick JOYSTICK_OPERATOR = new Joystick(Constants.OI.JOYSTICK_OPERATOR);
+
+
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer()
     {
-
-      DRIVE_TRAIN.setDefaultCommand(new DriveCommand(DRIVE_TRAIN, JOYSTICK_DRIVE_LEFT, JOYSTICK_DRIVE_RIGHT));
+        DRIVETRAIN.setDefaultCommand(new DriveCommand(DRIVETRAIN, JOYSTICK_DRIVE_LEFT, JOYSTICK_DRIVE_RIGHT));
         // Configure the button bindings
         configureButtonBindings();
     }
-    
-    
+
+
     /**
      * Use this method to define your button->command mappings. Buttons can be created by
      * instantiating a {@link GenericHID} or one of its subclasses ({@link
@@ -62,19 +58,19 @@ public class RobotContainer
      */
     private void configureButtonBindings()
     {
-	    JoystickButton GoAFootButton = new JoystickButton(JOYSTICK_DRIVE_RIGHT, 1);
-	    GoAFootButton.whenPressed(new GoCommand(DRIVE_TRAIN,12));
+        JoystickButton RunIntakeButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_INTAKE_BUTTON);
+        RunIntakeButton.whenHeld(new RunIntakeCommand(INTAKE, 0.3, 0.2));
 
-	    JoystickButton TurnAngleButton = new JoystickButton(JOYSTICK_DRIVE_LEFT, 1);
-	    TurnAngleButton.whenPressed(new TurnAngleCommand(DRIVE_TRAIN, 90, navx));
+        JoystickButton RunIntakeBackwardsButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_INTAKE_BACKWARDS_BUTTON);
+        RunIntakeBackwardsButton.whenHeld(new RunIntakeCommand(INTAKE, -0.3, 0.2));
 
-            JoystickButton RunShooterManualButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_FLYWHEEL_MANUAL); // enable manual with button 11 on operator
-	    RunShooterManualButton.toggleWhenPressed(new RunShooterManualCommand(SHOOTER, TURRET, Constants.Subsystem.Shooter.SHOOTER_MANUAL_RPM_MID, JOYSTICK_OPERATOR)); // use lever from operator joystick
+        JoystickButton RunShooterManualButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_FLYWHEEL_MANUAL);
+        RunShooterManualButton.whenHeld(new RunShooterManualCommand(SHOOTER, TURRET, Constants.Subsystem.Shooter.SHOOTER_MANUAL_RPM_MID, JOYSTICK_OPERATOR)); // use lever from operator joystick
         // Add button to command mappings here.
         // See https://docs.wpilib.org/en/stable/docs/software/commandbased/binding-commands-to-triggers.html
     }
-    
-    
+
+
     /**
      * Use this to pass the autonomous command to the main {@link Robot} class.
      *
@@ -83,6 +79,6 @@ public class RobotContainer
     public Command getAutonomousCommand()
     {
         // An ExampleCommand will run in autonomous
-        return autoCommand;
+        return new CommandBase(){};
     }
 }
