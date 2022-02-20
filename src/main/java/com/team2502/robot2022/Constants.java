@@ -31,15 +31,15 @@ public final class Constants {
         public static final int SHIFT = 1;
 
         // Left Drive Joystick
-        // None
+        public static final int VISION_DRIVETRAIN_ALIGN = 1;
 
         // Operator Joystick
         public static final int TOGGLE_INTAKE = 8;
 
         public static final int SHOOT_BUTTON = 1;
-        public static final int SPIN_FLYWHEEL_BUTTON = 2;
+        public static final int SPIN_FLYWHEEL_BUTTON = 3090; //not used
 
-        public static final int BUTTON_FLYWHEEL_MANUAL = 999; //Not used
+        public static final int BUTTON_FLYWHEEL_MANUAL = 2; //used
 
         public static final int RUN_INTAKE_BUTTON = 3;
         public static final int RUN_INTAKE_BACKWARDS_BUTTON = 4;
@@ -95,6 +95,15 @@ public final class Constants {
         }
 
         public static final class Vision {
+	    // drivetrain
+            public static final double FRICTION_LOW = 0.29;
+            public static final double VISION_TURNING_P_LOW = 0.015;
+
+	    // turret
+            public static final double FRICTION_TURRET = 0.07;
+            public static final double FRICTION_P = 0.006;
+            public static final double FRICTION_I = 0.003;
+
             //Everything in this class is referenced in the Vision Subsystem, and explained at least partially there.
             public static final String LIMELIGHT_NETWORK_TABLE = "limelight"; //the name in the network table of the limelight
 
