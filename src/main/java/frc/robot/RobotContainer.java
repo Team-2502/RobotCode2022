@@ -19,6 +19,7 @@ import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.TurretSubsystem;
+import frc.robot.commands.ShootCommand;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -59,13 +60,16 @@ public class RobotContainer
     private void configureButtonBindings()
     {
         JoystickButton RunIntakeButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_INTAKE_BUTTON);
-        RunIntakeButton.whenHeld(new RunIntakeCommand(INTAKE, 0.3, 0.2));
+        RunIntakeButton.whenHeld(new RunIntakeCommand(INTAKE, 0.8, 0.3));
 
         JoystickButton RunIntakeBackwardsButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_INTAKE_BACKWARDS_BUTTON);
-        RunIntakeBackwardsButton.whenHeld(new RunIntakeCommand(INTAKE, -0.3, 0.2));
+        RunIntakeBackwardsButton.whenHeld(new RunIntakeCommand(INTAKE, -0.8, -0.3));
 
         JoystickButton RunShooterManualButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_FLYWHEEL_MANUAL);
         RunShooterManualButton.whenHeld(new RunShooterManualCommand(SHOOTER, TURRET, Constants.Subsystem.Shooter.SHOOTER_MANUAL_RPM_MID, JOYSTICK_OPERATOR)); // use lever from operator joystick
+
+        JoystickButton ShootButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.SHOOT_BUTTON);
+        ShootButton.whenPressed(new ShootCommand(SHOOTER, 0.5));
         // Add button to command mappings here.
         // See https://docs.wpilib.org/en/stable/docs/software/commandbased/binding-commands-to-triggers.html
     }
