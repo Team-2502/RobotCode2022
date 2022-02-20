@@ -128,5 +128,13 @@ public final class Constants {
                 DIST_TO_RPM_STANDSTILL_TABLE = new LookupTable(distToRPMStandstill); //Initialize the DIST_TO_RPM_STANDSTILL_TABLE, setting it to the values of the above hashmap
             }
         }
+        public static final class RaspberryVision {
+            // drivetrain
+            public static final double FRICTION_LOW = 0.29;
+            public static final double VISION_TURNING_P_LOW = 0.015;
+
+            //Everything in this class is referenced in the Vision Subsystem, and explained at least partially there.
+            public static final String LIMELIGHT_NETWORK_TABLE = "PhotonVision"; //the name in the network table of the limelight
+        }
     }
 }
