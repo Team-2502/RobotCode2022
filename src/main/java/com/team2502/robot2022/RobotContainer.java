@@ -82,6 +82,9 @@ public class RobotContainer
         JoystickButton VisionAlignDrivetrainButton = new JoystickButton(JOYSTICK_DRIVE_LEFT, Constants.OI.VISION_DRIVETRAIN_ALIGN);
         VisionAlignDrivetrainButton.whileHeld(new VisionAlignDrivetrain(VISION, DRIVETRAIN, JOYSTICK_DRIVE_LEFT, JOYSTICK_DRIVE_RIGHT));
 
+        JoystickButton RunClimberWenchButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_CLIMBER_WENCH_BUTTON);
+        RunClimberWenchButton.whenHeld(new RunClimberCommand(CLIMBER));
+
         // Add button to command mappings here.
         // See https://docs.wpilib.org/en/stable/docs/software/commandbased/binding-commands-to-triggers.html
     }
