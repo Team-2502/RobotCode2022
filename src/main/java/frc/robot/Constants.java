@@ -55,8 +55,8 @@ public final class Constants {
             public static final int DRIVE_FRONT_LEFT = 3;
             public static final int DRIVE_BACK_RIGHT = 2;
             public static final int DRIVE_BACK_LEFT = 4;
-            public static final int RIGHT_WINCH = 5;
-            public static final int LEFT_WINCH = 6;
+            public static final int RIGHT_WENCH = 5;
+            public static final int LEFT_WENCH = 6;
 
             // SparkMax
             public static final int SQUEEZE_MOTOR = 8;
@@ -109,10 +109,10 @@ public final class Constants {
             //Everything in this class is referenced in the Vision Subsystem, and explained at least partially there.
             public static final String LIMELIGHT_NETWORK_TABLE = "limelight"; //the name in the network table of the limelight
 
-            //placeholders. Have same values as 2021 bot.
+
             //these would be the numbers corresponding to various settings of the limelight
-            public static final double limelightOff = 1;
-            public static final double limelightOn = 3;
+            public static final double limelightOff = 2;
+            public static final double limelightOn = 0;
             public static final double limelightPipelineDefault = 0;
 
             public static final LookupTable TARGETY_TO_DISTANCE_TABLE; //lookup table to convert Y values from the limelight to distances
