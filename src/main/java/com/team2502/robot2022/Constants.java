@@ -26,6 +26,16 @@ public final class Constants {
         public static final int JOYSTICK_OPERATOR = 2;
 
         // Buttons
+
+        // Right Drive Joystick
+        public static final int SHIFT = 1;
+
+        // Left Drive Joystick
+        // None
+
+        // Operator Joystick
+        public static final int TOGGLE_INTAKE = 8;
+
         public static final int SHOOT_BUTTON = 1;
         public static final int SPIN_FLYWHEEL_BUTTON = 2;
 
@@ -33,14 +43,6 @@ public final class Constants {
 
         public static final int RUN_INTAKE_BUTTON = 3;
         public static final int RUN_INTAKE_BACKWARDS_BUTTON = 4;
-
-        // Right Drive Joystick
-
-        public static final int SHIFT = 1;
-
-        // Left Drive Joystick
-        // Operator Joystick
-        public static final int TOGGLE_INTAKE = 8;
     }
 
     public static final class RobotMap {

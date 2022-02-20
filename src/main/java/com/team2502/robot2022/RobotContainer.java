@@ -58,12 +58,6 @@ public class RobotContainer
      */
     private void configureButtonBindings()
     {
-	    JoystickButton GoAFootButton = new JoystickButton(JOYSTICK_DRIVE_RIGHT, 1);
-	    GoAFootButton.whenPressed(new GoCommand(DRIVETRAIN,12));
-
-	    JoystickButton TurnAngleButton = new JoystickButton(JOYSTICK_DRIVE_LEFT, 1);
-	    TurnAngleButton.whenPressed(new TurnAngleCommand(DRIVETRAIN, 90, navx));
-
         JoystickButton DrivetrainShiftButton = new JoystickButton(JOYSTICK_DRIVE_RIGHT, Constants.OI.SHIFT);
         DrivetrainShiftButton.whenPressed(new ToggleDriveTrainGearCommand(DRIVETRAIN));
 
