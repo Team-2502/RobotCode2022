@@ -18,15 +18,14 @@ import java.util.HashMap;
  */
 public final class Constants {
 
-    /**
-     * control mappings
-     */
     public static final class OI {
 
+        // Joysticks
         public static final int JOYSTICK_DRIVE_RIGHT = 0;
         public static final int JOYSTICK_DRIVE_LEFT = 1;
         public static final int JOYSTICK_OPERATOR = 2;
 
+        // Buttons
         public static final int SHOOT_BUTTON = 1;
         public static final int SPIN_FLYWHEEL_BUTTON = 2;
 
@@ -36,35 +35,37 @@ public final class Constants {
         public static final int RUN_INTAKE_BACKWARDS_BUTTON = 8;
     }
 
-    /**
-     * hardware ids
-     */
     public static final class RobotMap {
 
-        /**
-         * can motor ids
-         */
         public static final class Motors {
             // Talon FX
             public static final int DRIVE_FRONT_RIGHT = 1;
             public static final int DRIVE_FRONT_LEFT = 3;
             public static final int DRIVE_BACK_RIGHT = 2;
             public static final int DRIVE_BACK_LEFT = 4;
-
-            public static final int SQUEEZE_MOTOR = 24;
-            public static final int INTAKE_MOTOR = 23;
-
-            public static final int HOPPER_TOP_BELT = 11;
-            public static final int HOPPER_BOTTOM_BELT = 12;
-
-            public static final int LOAD_MOTOR_1 = 14;
-            public static final int LOAD_MOTOR_2 = 15;
+            public static final int RIGHT_WINCH = 5;
+            public static final int LEFT_WINCH = 6;
 
             // SparkMax
-            public static final int SHOOTER_LEFT = 6;
-            public static final int SHOOTER_RIGHT = 7;
+            public static final int SQUEEZE_MOTOR = 1;
+            public static final int INTAKE_MOTOR = 2;
 
-            public static final int TURRET_TRAVERSE = 8;
+            public static final int HOPPER_TOP_BELT = 3;
+            public static final int HOPPER_BOTTOM_BELT = 4;
+
+            public static final int LOAD_MOTOR_1 = 5;
+            public static final int LOAD_MOTOR_2 = 6;
+
+            public static final int SHOOTER_LEFT = 7;
+            public static final int SHOOTER_RIGHT = 8;
+
+            public static final int TURRET_TRAVERSE = 9;
+        }
+
+        public static final class Solenoids
+        {
+            public static final int RIGHT_PASSIVE_CLIMBER = 0;
+            public static final int LEFT_PASSIVE_CLIMBER = 1;
         }
     }
 
@@ -80,13 +81,6 @@ public final class Constants {
             public static final double SHOOTER_MAX_OUTPUT = 1;
             public static final double SHOOTER_MIN_OUTPUT = -0.1;
             public static final double SHOOTER_MANUAL_RPM_MID = 2600; // center of manual range, max is ~4200 with current pid
-        }
-
-        public static final class Climber {
-            public static final int RIGHT_WENCH = 0; //talon SRX motor
-            public static final int LEFT_WENCH = 1; //talon SRX motor
-            public static final int RIGHT_PASSIVE_CLIMBER = 0; //solenoid
-            public static final int LEFT_PASSIVE_CLIMBER = 1; //solenoid
         }
 
         public static final class Vision {
