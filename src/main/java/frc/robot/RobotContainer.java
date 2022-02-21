@@ -54,18 +54,17 @@ public class RobotContainer
      */
     private void configureButtonBindings()
     {
-        JoystickButton RunIntakeButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_INTAKE_BUTTON);
+        JoystickButton RunIntakeButton = new JoystickButton(JOYSTICK_DRIVE_LEFT, Constants.OI.RUN_INTAKE_BUTTON);
         RunIntakeButton.whenHeld(new RunIntakeCommand(INTAKE, 0.5, 0.85));
 
-        JoystickButton RunIntakeBackwardsButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_INTAKE_BACKWARDS_BUTTON);
-        //RunIntakeBackwardsButton.whenHeld(new RunIntakeCommand(INTAKE, -0.5, -0.85));
+        JoystickButton RunIntakeBackwardsButton = new JoystickButton(JOYSTICK_DRIVE_RIGHT, Constants.OI.RUN_INTAKE_BACKWARDS_BUTTON);
         RunIntakeBackwardsButton.whenHeld(new ShootCommand(SHOOTER, INTAKE, -0.6, -0.5, -0.85));
 
         JoystickButton RunShooterManualButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_FLYWHEEL_MANUAL);
         RunShooterManualButton.whenHeld(new RunShooterManualCommand(SHOOTER, TURRET, Constants.Subsystem.Shooter.SHOOTER_MANUAL_RPM_MID, JOYSTICK_OPERATOR)); // use lever from operator joystick
 
-        JoystickButton ShootButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.SHOOT_BUTTON);
-        ShootButton.whenHeld(new ShootCommand(SHOOTER, INTAKE, 0.5, 0, 0.85));
+        JoystickButton RollersButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.SHOOT_BUTTON);
+        RollersButton.whenHeld(new ShootCommand(SHOOTER, INTAKE, 0.5, 0, 0));
 
         JoystickButton VisionAlignDrivetrainButton = new JoystickButton(JOYSTICK_DRIVE_LEFT, Constants.OI.VISION_DRIVETRAIN_ALIGN);
         VisionAlignDrivetrainButton.whenHeld(new VisionAlignDrivetrain(VISION, DRIVETRAIN, JOYSTICK_DRIVE_LEFT, JOYSTICK_DRIVE_RIGHT));
