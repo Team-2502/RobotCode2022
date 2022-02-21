@@ -5,7 +5,13 @@ import com.ctre.phoenix.motorcontrol.TalonFXInvertType;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.kauailabs.navx.frc.AHRS;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import com.team2502.robot2022.Constants.RobotMap.Motors;
+=======
+import com.team2502.robot2022.Constants.RobotMap.*;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import edu.wpi.first.wpilibj.Solenoid;
+>>>>>>> parent of 7eda782... Merge pull request #1 from Team-2502/Re-Merged
 =======
 import com.team2502.robot2022.Constants.RobotMap.*;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;

@@ -5,7 +5,10 @@
 package com.team2502.robot2022.commands;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import com.team2502.robot2022.subsystems.IntakeSubsystem;
+=======
+>>>>>>> parent of 7eda782... Merge pull request #1 from Team-2502/Re-Merged
 =======
 >>>>>>> parent of 7eda782... Merge pull request #1 from Team-2502/Re-Merged
 import com.team2502.robot2022.subsystems.ShooterSubsystem;
