@@ -46,7 +46,7 @@ public final class Constants {
         public static final int RUN_INTAKE_BACKWARDS_BUTTON = 4;
 
         public static final int RUN_CLIMBER_WENCH_BUTTON = 5;
-        public static final int VISION_TURRET_ALIGN = 99;
+        public static final int VISION_TURRET_ALIGN = 11;
     }
 
     public static final class RobotMap {
@@ -109,7 +109,7 @@ public final class Constants {
             public static final double FRICTION_I = 0.003;
 
             //Everything in this class is referenced in the Vision Subsystem, and explained at least partially there.
-            public static final String LIMELIGHT_NETWORK_TABLE = "limelight"; //the name in the network table of the limelight
+            public static final String LIMELIGHT_NETWORK_TABLE = "limelight-turret"; //the name in the network table of the limelight
 
 
             //these would be the numbers corresponding to various settings of the limelight
