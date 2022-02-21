@@ -55,8 +55,8 @@ public final class Constants {
             public static final int DRIVE_FRONT_LEFT = 3;
             public static final int DRIVE_BACK_RIGHT = 2;
             public static final int DRIVE_BACK_LEFT = 4;
-            public static final int RIGHT_WENCH = 5;
-            public static final int LEFT_WENCH = 6;
+            public static final int RIGHT_WINCH = 5;
+            public static final int LEFT_WINCH = 6;
 
             // SparkMax
             public static final int SQUEEZE_MOTOR = 8;

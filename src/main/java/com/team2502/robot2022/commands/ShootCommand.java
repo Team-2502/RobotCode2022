@@ -4,25 +4,21 @@
 
 package com.team2502.robot2022.commands;
 
+<<<<<<< HEAD
 import com.team2502.robot2022.subsystems.IntakeSubsystem;
+=======
+>>>>>>> parent of 7eda782... Merge pull request #1 from Team-2502/Re-Merged
 import com.team2502.robot2022.subsystems.ShooterSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class ShootCommand extends CommandBase {
 
     private ShooterSubsystem shooter;
-    private IntakeSubsystem intake;
-    private double intakeSpeed;
-    private double rollerSpeed;
-    private double beltSpeed;
     private double speed;
 
-    public ShootCommand(ShooterSubsystem shooter, IntakeSubsystem intake, double rollerSpeed, double intakeSpeed, double beltSpeed) {
+    public ShootCommand(ShooterSubsystem shooter, double speed) {
         this.shooter = shooter;
-        this.intake = intake;
-        this.rollerSpeed = rollerSpeed;
-        this.intakeSpeed = intakeSpeed;
-        this.beltSpeed = beltSpeed;
+        this.speed = speed;
     }
 
     @Override
@@ -31,15 +27,11 @@ public class ShootCommand extends CommandBase {
 
     @Override
     public void execute() {
-        shooter.loadBalls(rollerSpeed);
-        intake.run(intakeSpeed, beltSpeed);
+        shooter.loadBalls(speed);
     }
 
     @Override
-    public void end(boolean kInterrupted) {
-        shooter.stopLoader();
-        intake.stop();
-    }
+    public void end(boolean kInterrupted) { shooter.stopLoader(); }
 
     @Override
     public boolean isFinished() {

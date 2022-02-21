@@ -26,14 +26,14 @@ public class IntakeSubsystem extends SubsystemBase {
 
         intakeDeploySolenoid = new Solenoid(PneumaticsModuleType.REVPH, Solenoids.INTAKE);
 
-        intakeMotor.setSmartCurrentLimit(40);
+        intakeMotor.setSmartCurrentLimit(25);
         topBelt.setSmartCurrentLimit(25);
         bottomBelt.setSmartCurrentLimit(25);
     }
 
     public void run(double intakeSpeed, double beltSpeed) {
         intakeMotor.set(intakeSpeed);
-        topBelt.set(-beltSpeed);
+        topBelt.set(beltSpeed);
         bottomBelt.set(beltSpeed);
     }
 

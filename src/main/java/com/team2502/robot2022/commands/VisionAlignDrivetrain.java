@@ -32,8 +32,8 @@ public class VisionAlignDrivetrain extends CommandBase {
 
     @Override
     public void initialize() {
-        frictionConstant = Constants.Subsystem.Vision.FRICTION_LOW;
-        p = Constants.Subsystem.Vision.VISION_TURNING_P_LOW;
+    frictionConstant = Constants.Subsystem.Vision.FRICTION_LOW;
+    p = Constants.Subsystem.Vision.VISION_TURNING_P_LOW;
 
     }
 
