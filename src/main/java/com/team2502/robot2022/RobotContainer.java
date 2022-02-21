@@ -58,7 +58,6 @@ public class RobotContainer
         RunIntakeButton.whenHeld(new RunIntakeCommand(INTAKE, 0.5, 0.85));
 
         JoystickButton RunIntakeBackwardsButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_INTAKE_BACKWARDS_BUTTON);
-        //RunIntakeBackwardsButton.whenHeld(new RunIntakeCommand(INTAKE, -0.5, -0.85));
         RunIntakeBackwardsButton.whenHeld(new ShootCommand(SHOOTER, INTAKE, -0.6, -0.5, -0.85));
 
         JoystickButton RunShooterManualButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_FLYWHEEL_MANUAL);
