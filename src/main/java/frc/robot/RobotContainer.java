@@ -55,13 +55,13 @@ public class RobotContainer
     private void configureButtonBindings()
     {
         JoystickButton RunIntakeButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_INTAKE_BUTTON);
-        RunIntakeButton.whenHeld(new RunIntakeCommand(INTAKE, 0.5, 0.75));
+        RunIntakeButton.whenHeld(new RunIntakeCommand(INTAKE, 0.5, 0.85));
 
         JoystickButton RunIntakeBackwardsButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_INTAKE_BACKWARDS_BUTTON);
-        RunIntakeBackwardsButton.whenHeld(new RunIntakeCommand(INTAKE, -0.5, -0.75));
+        RunIntakeBackwardsButton.whenHeld(new RunIntakeCommand(INTAKE, -0.5, -0.85));
 
         JoystickButton RunShooterManualButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_FLYWHEEL_MANUAL);
-        RunShooterManualButton.whenPressed(new RunShooterManualCommand(SHOOTER, TURRET, Constants.Subsystem.Shooter.SHOOTER_MANUAL_RPM_MID, JOYSTICK_OPERATOR)); // use lever from operator joystick
+        RunShooterManualButton.whenHeld(new RunShooterManualCommand(SHOOTER, TURRET, Constants.Subsystem.Shooter.SHOOTER_MANUAL_RPM_MID, JOYSTICK_OPERATOR)); // use lever from operator joystick
 
         JoystickButton ShootButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.SHOOT_BUTTON);
         ShootButton.whenHeld(new ShootCommand(SHOOTER, 0.5));

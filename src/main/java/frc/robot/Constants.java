@@ -4,8 +4,9 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot;
-import com.team2502.robot2022.util.LookupTable;
 
+import frc.robot.util.LookupTable;
+import frc.robot.util.LookupTable;
 import java.util.HashMap;
 
 /**

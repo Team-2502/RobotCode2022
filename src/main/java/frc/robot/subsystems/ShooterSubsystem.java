@@ -27,8 +27,8 @@ public class ShooterSubsystem extends SubsystemBase {
 
         shooterRight.follow(shooterLeft, true); // follow right motor, inverted
 
-        shooterLeft.setSmartCurrentLimit(35);
-        shooterRight.setSmartCurrentLimit(35);
+        shooterLeft.setSmartCurrentLimit(39);
+        shooterRight.setSmartCurrentLimit(39);
 
         rightPID = shooterLeft.getPIDController();
         rightEncoder = shooterRight.getEncoder();
