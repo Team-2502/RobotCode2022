@@ -2,14 +2,14 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.subsystems;
+package com.team2502.robot2022.subsystems;
 
+import com.team2502.robot2022.Constants;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import static frc.robot.Constants.Subsystem.Vision.*;
 
 public class VisionSubsystem extends SubsystemBase {
     private final NetworkTable limelight; //Creates a NetworkTable object. This one is for getting data from the limelight.
@@ -23,7 +23,7 @@ public class VisionSubsystem extends SubsystemBase {
 
 
     public VisionSubsystem() {
-        limelight = NetworkTableInstance.getDefault().getTable(LIMELIGHT_NETWORK_TABLE); //Tells the limelight object to correspond with the network table of a key specified in constants, which in turn corresponds with the limelight.
+        limelight = NetworkTableInstance.getDefault().getTable(Constants.Subsystem.Vision.LIMELIGHT_NETWORK_TABLE); //Tells the limelight object to correspond with the network table of a key specified in constants, which in turn corresponds with the limelight.
         smartDashboard = NetworkTableInstance.getDefault().getTable("SmartDashboard"); //Tells the smartDashboard object to correspond with the shuffleboard one.
     }
 
@@ -72,7 +72,7 @@ public class VisionSubsystem extends SubsystemBase {
      * Used to not blind[hyperbole] any unfortunate soul that happens to look at the limelight when we are not using it
      */
     public void limelightOff() {
-        limelight.getEntry("ledMode").setNumber(limelightOff);
+        limelight.getEntry("ledMode").setNumber(Constants.Subsystem.Vision.limelightOff);
     }
 
     /**
@@ -82,7 +82,7 @@ public class VisionSubsystem extends SubsystemBase {
      * Used to turn the limelight back on so that we can aim[after turning it off for not-blinding-the-ref purposes]
      */
     public void limelightOn() {
-        limelight.getEntry("ledMode").setNumber(limelightOn);
+        limelight.getEntry("ledMode").setNumber(Constants.Subsystem.Vision.limelightOn);
     }
 
     /**
@@ -92,7 +92,7 @@ public class VisionSubsystem extends SubsystemBase {
      * Used to turn the limelight off when we initialize[for not-blinding-the-ref purposes]
      */
     public void limelightPipeline() {
-        limelight.getEntry("ledMode").setNumber(limelightPipelineDefault);
+        limelight.getEntry("ledMode").setNumber(Constants.Subsystem.Vision.limelightPipelineDefault);
     }
 
     /**
@@ -104,7 +104,7 @@ public class VisionSubsystem extends SubsystemBase {
      * @return The distance to the target(hoop)
      */
     public double getDistance() {
-        return TARGETY_TO_DISTANCE_TABLE.get(targetY);
+        return Constants.Subsystem.Vision.TARGETY_TO_DISTANCE_TABLE.get(targetY);
     }
 
     /**
@@ -116,6 +116,6 @@ public class VisionSubsystem extends SubsystemBase {
      * @return An RPM for the shooter to spin at.
      */
     public double getShooterSpeedStandstill() {
-        return DIST_TO_RPM_STANDSTILL_TABLE.get(TARGETY_TO_DISTANCE_TABLE.get(targetY));
+        return Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(Constants.Subsystem.Vision.TARGETY_TO_DISTANCE_TABLE.get(targetY));
     }
 }

@@ -1,4 +1,4 @@
-package frc.robot.util;
+package com.team2502.robot2022.util;
 
 /** class for static utility routines */
 public class Util {
