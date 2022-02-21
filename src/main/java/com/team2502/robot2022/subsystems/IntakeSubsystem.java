@@ -2,7 +2,7 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package com.team2502.robot2022.subsystems;
+package frc.robote.subsystems;
 
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
 
-import static com.team2502.robot2022.Constants.RobotMap.*;
+import static frc.robote.Constants.RobotMap.*;
 
 public class IntakeSubsystem extends SubsystemBase {
     private final CANSparkMax intakeMotor;
@@ -26,14 +26,14 @@ public class IntakeSubsystem extends SubsystemBase {
 
         intakeDeploySolenoid = new Solenoid(PneumaticsModuleType.REVPH, Solenoids.INTAKE);
 
-        intakeMotor.setSmartCurrentLimit(25);
+        intakeMotor.setSmartCurrentLimit(40);
         topBelt.setSmartCurrentLimit(25);
         bottomBelt.setSmartCurrentLimit(25);
     }
 
     public void run(double intakeSpeed, double beltSpeed) {
         intakeMotor.set(intakeSpeed);
-        topBelt.set(beltSpeed);
+        topBelt.set(-beltSpeed);
         bottomBelt.set(beltSpeed);
     }
 

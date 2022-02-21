@@ -9,7 +9,6 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
 import static com.team2502.robot2022.Constants.Subsystem.Vision.*;
 
 public class VisionSubsystem extends SubsystemBase {
@@ -45,6 +44,8 @@ public class VisionSubsystem extends SubsystemBase {
         SmartDashboard.putNumber("Limelight Target X", targetX);
         SmartDashboard.putNumber("Limelight Target Y", targetY);
         SmartDashboard.putNumber("Limelight Target Area", targetArea);
+
+        //SmartDashboard.putNumber("Limelight Distance To Target", getDistance());
 
 
     }

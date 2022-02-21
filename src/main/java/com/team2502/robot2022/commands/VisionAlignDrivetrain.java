@@ -1,8 +1,8 @@
-package com.team2502.robot2022.commands;
+package frc.robote.commands;
 
-import com.team2502.robot2022.Constants;
-import com.team2502.robot2022.subsystems.DrivetrainSubsystem;
-import com.team2502.robot2022.subsystems.VisionSubsystem;
+import frc.robote.Constants;
+import frc.robote.subsystems.DrivetrainSubsystem;
+import frc.robote.subsystems.VisionSubsystem;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -32,8 +32,8 @@ public class VisionAlignDrivetrain extends CommandBase {
 
     @Override
     public void initialize() {
-    frictionConstant = Constants.Subsystem.Vision.FRICTION_LOW;
-    p = Constants.Subsystem.Vision.VISION_TURNING_P_LOW;
+        frictionConstant = Constants.Subsystem.Vision.FRICTION_LOW;
+        p = Constants.Subsystem.Vision.VISION_TURNING_P_LOW;
 
     }
 
