@@ -74,7 +74,7 @@ public class RobotContainer
         ToggleIntakeButton.whenPressed(new ToggleIntakeCommand(INTAKE));
 
         JoystickButton ShootButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.SHOOT_BUTTON);
-        ShootButton.whenPressed(new ShootCommand(SHOOTER, 0.5));
+        ShootButton.whenPressed(new ShootCommand(SHOOTER, INTAKE, 0.5, 0, 0.5));
 
         JoystickButton SpinFlywheelButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.SPIN_FLYWHEEL_BUTTON);
         SpinFlywheelButton.whenPressed(new RunFlywheelCommand(SHOOTER, 1000));

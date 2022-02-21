@@ -1,8 +1,8 @@
-package frc.robote.commands;
+package com.team2502.robot2022.commands;
 
-import frc.robote.Constants;
-import frc.robote.subsystems.DrivetrainSubsystem;
-import frc.robote.subsystems.VisionSubsystem;
+import com.team2502.robot2022.Constants;
+import com.team2502.robot2022.subsystems.DrivetrainSubsystem;
+import com.team2502.robot2022.subsystems.VisionSubsystem;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
