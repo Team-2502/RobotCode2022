@@ -1,12 +1,8 @@
-package frc.robot.subsystems;
+package com.team2502.robot2022.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import edu.wpi.first.wpilibj.PneumaticsModuleType;
-import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
-import frc.robot.Constants.RobotMap.Motors;
+import com.team2502.robot2022.Constants.RobotMap;
 
 public class ClimberSubsystem extends SubsystemBase {
     //    private final Solenoid piston_right;
@@ -17,8 +13,8 @@ public class ClimberSubsystem extends SubsystemBase {
     public ClimberSubsystem(){
 //        piston_right = new Solenoid(PneumaticsModuleType.REVPH, RIGHT_PASSIVE_CLIMBER);
 //        piston_left = new Solenoid(PneumaticsModuleType.REVPH, LEFT_PASSIVE_CLIMBER);
-        motor_right = new WPI_TalonFX(Motors.RIGHT_WENCH);
-        motor_left = new WPI_TalonFX(Motors.LEFT_WENCH);
+        motor_right = new WPI_TalonFX(RobotMap.Motors.RIGHT_WENCH);
+        motor_left = new WPI_TalonFX(RobotMap.Motors.LEFT_WENCH);
     }
 
     public void runClimber(double speed) {
