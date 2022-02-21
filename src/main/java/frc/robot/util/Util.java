@@ -16,17 +16,15 @@ public class Util {
     * Adjust value so (|val| >= friction)
     * @param val value to adjust
     * @param friction minimum
-    *
+    * @return adjusted value
     */
     public static double frictionAdjust(double val, double friction) {
         double frictionVal = val < friction ? friction : 0;
     
-	// this saves like 2 cycles
-	val -= frictionVal;
         if (val > 0) {
-		val += 2* frictionVal;
+		return val +  frictionVal;
+        } else {
+		return val - frictionVal;
         }
-
-        return val;
     }
 }
