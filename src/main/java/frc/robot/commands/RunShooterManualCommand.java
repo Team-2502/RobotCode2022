@@ -32,7 +32,7 @@ public class RunShooterManualCommand extends CommandBase {
         double targetRpm = (1-speedInput)*defaultSpeed; // value decreases as you move the slider up, ranges from -1 to 1 (mapped to 0-2)
         shooter.setShooterSpeedRPM(targetRpm);
 
-        turret.runMotor(-controlJoystick.getTwist());
+        turret.runMotor(Math.pow(-controlJoystick.getTwist(),3));
     }
 
     @Override
