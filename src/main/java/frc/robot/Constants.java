@@ -102,7 +102,7 @@ public final class Constants {
             public static final double VISION_TURNING_P_LOW = 0.015;
 
             // turret
-            public static final double FRICTION_TURRET = 0.07;
+            public static final double FRICTION_TURRET = 0.024;
             public static final double FRICTION_P = 0.006;
             public static final double FRICTION_I = 0.003;
 
