@@ -46,6 +46,7 @@ public final class Constants {
 
         public static final int RUN_CLIMBER_WENCH_BUTTON = 5;
         public static final int VISION_TURRET_ALIGN = 11;
+        public static final int VISION_TURRET_UNALIGN = 12;
     }
 
     public static final class RobotMap {
