@@ -5,11 +5,14 @@
 package com.team2502.robot2022.subsystems;
 
 import com.team2502.robot2022.Constants;
+import com.team2502.robot2022.Constants.Subsystem.Vision;
+
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import com.team2502.robot2022.util.Util;
 
 public class VisionSubsystem extends SubsystemBase {
     private final NetworkTable limelight; //Creates a NetworkTable object. This one is for getting data from the limelight.
@@ -44,6 +47,7 @@ public class VisionSubsystem extends SubsystemBase {
         SmartDashboard.putNumber("Limelight Target X", targetX);
         SmartDashboard.putNumber("Limelight Target Y", targetY);
         SmartDashboard.putNumber("Limelight Target Area", targetArea);
+        SmartDashboard.putNumber("Limelight Target Distance", getDistance());
 
         //SmartDashboard.putNumber("Limelight Distance To Target", getDistance());
 
@@ -99,12 +103,12 @@ public class VisionSubsystem extends SubsystemBase {
      * Calculates the distance to the target[hoop] based on the Y of the target given by the limelight.
      * Does so by taking the value the limelight gives from it's 'ty' network table entry
      * (table for sending arbitrary values between the limelight, robot, and driver station)
-     * and putting it through a lookup table in the Constants class(specifically the TARGETY_TO_DISTANCE_TABLE).
+     * and putting it through the trigonometrical coding and algorithms
      *
      * @return The distance to the target(hoop)
      */
     public double getDistance() {
-        return Constants.Subsystem.Vision.TARGETY_TO_DISTANCE_TABLE.get(targetY);
+        return Util.findDist(Vision.LIMELIGHT_HEIGHT, Vision.BASKET_HEIGHT, Vision.LIMELIGHT_ELEVATION, targetY);
     }
 
     /**
