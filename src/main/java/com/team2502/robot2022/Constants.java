@@ -98,6 +98,12 @@ public final class Constants {
             public static final double SHOOTER_MANUAL_RPM_MID = 2600; // center of manual range, max is ~4200 with current pid
         }
 
+	public static final class Turret {
+            public static final double TRAVERSE_POWER = 0.29; // (traverseInput ^ pow)
+            public static final double TRAVERSE_FRICTION = 0.024; // min val for turret to move
+	    
+	}
+
         public static final class Vision {
             // drivetrain
             public static final double FRICTION_LOW = 0.29;

@@ -4,6 +4,7 @@ import com.team2502.robot2022.subsystems.TurretSubsystem;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import com.team2502.robot2022.Constants.Subsystem.Turret;
 
 public class TurnTurretCommand extends CommandBase {
 
@@ -19,6 +20,6 @@ public class TurnTurretCommand extends CommandBase {
 
     @Override
     public void execute() {
-        turret.runMotor(Math.pow(-operator.getTwist(),3));
+        turret.runMotor(Math.pow(-operator.getTwist(),Turret.TRAVERSE_POWER));
     }
 }

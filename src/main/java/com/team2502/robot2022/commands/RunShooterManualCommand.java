@@ -5,6 +5,7 @@ import com.team2502.robot2022.subsystems.ShooterSubsystem;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import com.team2502.robot2022.Constants.Subsystem.Turret;
 
 public class RunShooterManualCommand extends CommandBase {
     private final ShooterSubsystem shooter;
@@ -32,7 +33,7 @@ public class RunShooterManualCommand extends CommandBase {
         double targetRpm = (1-speedInput)*defaultSpeed; // value decreases as you move the slider up, ranges from -1 to 1 (mapped to 0-2)
         shooter.setShooterSpeedRPM(targetRpm);
 
-        turret.runMotor(Math.pow(-controlJoystick.getTwist(),3));
+        turret.runMotor(Math.pow(-controlJoystick.getTwist(),Turret.TRAVERSE_POWER));
     }
 
     @Override
