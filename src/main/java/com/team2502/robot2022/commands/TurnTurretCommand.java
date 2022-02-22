@@ -19,6 +19,6 @@ public class TurnTurretCommand extends CommandBase {
 
     @Override
     public void execute() {
-        turret.runMotor(operator.getTwist());
+        turret.runMotor(Math.pow(-operator.getTwist(),3));
     }
 }
