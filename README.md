@@ -60,3 +60,5 @@ The vision align turret command is responsable for turing the turret to auto aim
 
 ### Vision Go To Ball Command
 The vision go to ball command makes the robot go to a ball that is the correct color seen by the camera mounted on the front of the robot. This command is used in auto to go to a ball.
+
+![](https://drive.google.com/uc?id=1FJ24piuOmyX83aRY6UMdU286dqvR5mIR =950x250 )
