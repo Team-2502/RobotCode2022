@@ -166,3 +166,29 @@ well. We call the method with speeds for both the intake and belts. The top belt
 when a ball touches it it will suck it up, but not too fast that the ball is shot through the hopper. The stop method in the intake subsystem stops all 3 motors.
 
 ## Run Shooter Manual Command
+
+    @Override
+    public void initialize() {
+        shooter.setShooterSpeedRPM(0); // stop on init
+        turret.stop();
+    }
+
+    @Override
+    public void execute() {
+        double speedInput = controlJoystick.getThrottle(); // get slider value
+        double targetRpm = (1-speedInput)*defaultSpeed; // value decreases as you move the slider up, ranges from -1 to 1 (mapped to 0-2)
+        shooter.setShooterSpeedRPM(targetRpm);
+
+        turret.runMotor(Math.pow(-controlJoystick.getTwist(),Turret.TRAVERSE_POWER));
+    }
+
+    @Override
+    public void end(boolean interrupted) {
+        shooter.stopShooter(); // this will coast
+        turret.stop();
+    }
+
+    @Override
+    public boolean isFinished() {
+        return false;
+    }
