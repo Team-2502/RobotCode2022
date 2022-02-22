@@ -74,16 +74,14 @@ public class RobotContainer
         JoystickButton VisionAlignTurretButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.VISION_TURRET_ALIGN);
         VisionAlignTurretButton.whenHeld(new VisionAlignTurret(VISION, TURRET));
 
-<<<<<<< HEAD
         JoystickButton ShiftButton = new JoystickButton(JOYSTICK_DRIVE_RIGHT, Constants.OI.SHIFT);
         ShiftButton.whenPressed(new ShiftCommand(DRIVETRAIN));
 
         JoystickButton ToggleIntakeButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.TOGGLE_INTAKE);
         ToggleIntakeButton.whenPressed(new ToggleIntakeCommand(INTAKE));
-=======
+
         JoystickButton VisionUnAlignTurretButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.VISION_TURRET_UNALIGN);
         VisionUnAlignTurretButton.whileHeld(new VisionUnAlignTurret(VISION, TURRET));
->>>>>>> 1023f62c68f4805c98ab5c53efb4fe2b21017578
 
         // Add button to command mappings here.
         // See https://docs.wpilib.org/en/stable/docs/software/commandbased/binding-commands-to-triggers.html

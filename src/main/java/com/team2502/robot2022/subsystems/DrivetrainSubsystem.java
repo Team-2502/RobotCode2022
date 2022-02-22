@@ -52,6 +52,9 @@ public class DrivetrainSubsystem extends SubsystemBase{
         drive.stopMotor();
     }
 
+    public void setHighGear() { solenoid.set(true); }
+    public void setLowGear() { solenoid.set(false); }
+
     /**
     * Average drivetrain motor revs
     * @return double revs since restart
@@ -84,12 +87,18 @@ public class DrivetrainSubsystem extends SubsystemBase{
 
     public double getRpm(){ return (drivetrainFrontLeft.getSelectedSensorVelocity() * 600) / 2048; }
 
+    public boolean getGear() {
+        double highGear;
+        if(solenoid.get() == false){ return true; }
+        else return false;
+    }
+
     @Override
     public void periodic(){
 
         SmartDashboard.putNumber("Angle", navX.getAngle());
         SmartDashboard.putNumber("RPM", getRpm());
 
-        SmartDashboard.putBoolean("High Gear", solenoid.get());
+        SmartDashboard.putBoolean("High Gear", getGear());
     }
 }

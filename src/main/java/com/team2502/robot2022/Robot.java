@@ -4,6 +4,7 @@
 
 package com.team2502.robot2022;
 
+import com.team2502.robot2022.subsystems.DrivetrainSubsystem;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -77,6 +78,8 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+
+    m_robotContainer.DRIVETRAIN.setHighGear();
   }
 
   /** This function is called periodically during operator control. */

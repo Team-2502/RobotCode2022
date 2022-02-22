@@ -4,7 +4,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.team2502.robot2022.Constants;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class ClimberSubsystem extends SubsystemBase {
+public class  ClimberSubsystem extends SubsystemBase {
     //    private final Solenoid piston_right;
 //    private final Solenoid piston_left;
     private final WPI_TalonFX motor_right;
