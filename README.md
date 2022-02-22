@@ -1,3 +1,5 @@
+# WIP
+
 # TEAM 2502 *insert robot name here* ROBOT CODE
 
 ## CODE
@@ -61,4 +63,67 @@ The vision align turret command is responsable for turing the turret to auto aim
 ### Vision Go To Ball Command
 The vision go to ball command makes the robot go to a ball that is the correct color seen by the camera mounted on the front of the robot. This command is used in auto to go to a ball.
 
-![](https://drive.google.com/uc?id=1FJ24piuOmyX83aRY6UMdU286dqvR5mIR =950x250 )
+
+## ALL THE CODE EXPLAINED
+
+### Drive Command
+`   @Override
+    public void initialize()
+    {
+        drivetrain.setNeutralMode(NeutralMode.Brake);
+    }
+
+    @Override
+    public void execute() {
+        switch(typeEntry.getSelected()) {
+            case Tank:
+                drivetrain.getDrive().tankDrive(rightJoystick.getY(), -leftJoystick.getY(), true);
+                break;
+            case Arcade:
+                drivetrain.getDrive().arcadeDrive(rightJoystick.getX(), leftJoystick.getY(), true);
+                break;
+            case Reverse:
+                drivetrain.getDrive().tankDrive(leftJoystick.getY(), rightJoystick.getY(), true);
+        }
+    }
+    private enum Drivetype {
+        Tank,
+        Arcade,
+        Reverse
+    }
+}`
+
+In the subsystem, during initialization we set the coast mode to brake. The two options for this are coast and brake, coast makes the motors slowly spin to a stop after the command is done. When brake uses power to stop the motor fast.
+
+In the drive command we have 3 differnt ways of driving, tank, arcade, and reverse. Tank drive uses the left joystick to control the left motors of the drivetrain when the right controls the right. Arcade uses the left joystick to move forward and backward, when the right joystick turns the robot. Reverse is the same as arcade but the joysticks are flipped.
+
+### Go command
+
+`public void initialize()
+    {
+	this.startPos = drivetrain.getInchesTraveled();
+	this.pid = new PIDController(0.02,0.03,0.03);
+	this.trapezoidal = new Trapezoidal(.6);
+	pid.setTolerance(.2);
+
+	pid.reset();
+	trapezoidal.reset();
+    }
+
+    @Override
+    public void execute() {
+	    double error = (drivetrain.getInchesTraveled()-startPos)+goalPoint;
+	    //double speed = pid.calculate(error);
+	    double speed = trapezoidal.calculate(pid.calculate(error));
+        speed = constrain(speed,.3);
+	    drivetrain.setSpeed(-speed,speed);
+    }
+
+    @Override
+    public boolean isFinished() {
+	    return pid.atSetpoint();
+    }
+}`
+
+The go command uses a pid and trapazoidal to turn the motors percisly and efficintly. The go command uses the encoder ticks from the drivetrain that is converted to inches so we can track how far the robot moves. We take the encoder ticks, and since we cant reset the ticks we add our target ticks to the current ticks so we know how many ticks we need to go to to have moved the selected amount of inces. This command is used in auto.
+
