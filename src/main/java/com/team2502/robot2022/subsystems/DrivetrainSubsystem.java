@@ -5,6 +5,8 @@ import com.ctre.phoenix.motorcontrol.TalonFXInvertType;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.kauailabs.navx.frc.AHRS;
 import com.team2502.robot2022.Constants;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -19,11 +21,15 @@ public class DrivetrainSubsystem extends SubsystemBase{
 
     private AHRS navX = new AHRS();
 
+    private Solenoid solenoid;
+
     public DrivetrainSubsystem(){
         drivetrainBackLeft = new WPI_TalonFX(Constants.RobotMap.Motors.DRIVE_BACK_LEFT);
         drivetrainFrontLeft = new WPI_TalonFX(Constants.RobotMap.Motors.DRIVE_FRONT_LEFT);
         drivetrainFrontRight = new WPI_TalonFX(Constants.RobotMap.Motors.DRIVE_FRONT_RIGHT);
         drivetrainBackRight = new WPI_TalonFX(Constants.RobotMap.Motors.DRIVE_BACK_RIGHT);
+
+        solenoid = new Solenoid(PneumaticsModuleType.REVPH, Constants.RobotMap.Solenoids.DRIVETRAIN);
 
         drivetrainBackLeft.follow(drivetrainFrontLeft);//backleft follows front left motor
         drivetrainBackRight.follow(drivetrainFrontRight);
@@ -57,6 +63,8 @@ public class DrivetrainSubsystem extends SubsystemBase{
 		   )/2;
     }
 
+    public void toggleDrivetrain() { solenoid.toggle(); }
+
     /**
     * inches since init
     * @return inches since initialization
@@ -81,5 +89,7 @@ public class DrivetrainSubsystem extends SubsystemBase{
 
         SmartDashboard.putNumber("Angle", navX.getAngle());
         SmartDashboard.putNumber("RPM", getRpm());
+
+        SmartDashboard.putBoolean("High Gear", solenoid.get());
     }
 }

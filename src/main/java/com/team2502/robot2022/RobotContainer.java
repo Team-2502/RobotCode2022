@@ -41,6 +41,8 @@ public class RobotContainer
     public RobotContainer()
     {
         DRIVETRAIN.setDefaultCommand(new DriveCommand(DRIVETRAIN, JOYSTICK_DRIVE_LEFT, JOYSTICK_DRIVE_RIGHT));
+
+        TURRET.setDefaultCommand(new TurnTurretCommand(TURRET, JOYSTICK_OPERATOR));
         // Configure the button bindings
         configureButtonBindings();
     }
@@ -54,10 +56,10 @@ public class RobotContainer
      */
     private void configureButtonBindings()
     {
-        JoystickButton RunIntakeButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_INTAKE_BUTTON);
+        JoystickButton RunIntakeButton = new JoystickButton(JOYSTICK_DRIVE_LEFT, Constants.OI.RUN_INTAKE_BUTTON);
         RunIntakeButton.whenHeld(new RunIntakeCommand(INTAKE, 0.5, 0.85));
 
-        JoystickButton RunIntakeBackwardsButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_INTAKE_BACKWARDS_BUTTON);
+        JoystickButton RunIntakeBackwardsButton = new JoystickButton(JOYSTICK_DRIVE_RIGHT, Constants.OI.RUN_INTAKE_BACKWARDS_BUTTON);
         RunIntakeBackwardsButton.whenHeld(new ShootCommand(SHOOTER, INTAKE, -0.6, -0.5, -0.85));
 
         JoystickButton RunShooterManualButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_FLYWHEEL_MANUAL);
@@ -71,6 +73,12 @@ public class RobotContainer
 
         JoystickButton VisionAlignTurretButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.VISION_TURRET_ALIGN);
         VisionAlignTurretButton.whenHeld(new VisionAlignTurret(VISION, TURRET));
+
+        JoystickButton ShiftButton = new JoystickButton(JOYSTICK_DRIVE_RIGHT, Constants.OI.SHIFT);
+        ShiftButton.whenPressed(new ShiftCommand(DRIVETRAIN));
+
+        JoystickButton ToggleIntakeButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.TOGGLE_INTAKE);
+        ToggleIntakeButton.whenPressed(new ToggleIntakeCommand(INTAKE));
 
         // Add button to command mappings here.
         // See https://docs.wpilib.org/en/stable/docs/software/commandbased/binding-commands-to-triggers.html
