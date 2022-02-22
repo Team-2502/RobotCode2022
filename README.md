@@ -147,10 +147,6 @@ know how many ticks we need to go to to have moved the selected amount of inces.
     }
 
     @Override
-    public void initialize() {
-    }
-
-    @Override
     public void execute() {
         intake.run(speedIntake, speedBelt);
     }
@@ -165,4 +161,8 @@ know how many ticks we need to go to to have moved the selected amount of inces.
         return false;
     }
 
-The run intake command 
+The run intake command runs the intake and the belts because the squeeze wheels are connected to the top belt, so we are just going to spin the bottom belt as 
+well. We call the method with speeds for both the intake and belts. The top belt and the bottom belt run at the same speed. The intake is running fast enough that 
+when a ball touches it it will suck it up, but not too fast that the ball is shot through the hopper. The stop method in the intake subsystem stops all 3 motors.
+
+## Run Shooter Manual Command
