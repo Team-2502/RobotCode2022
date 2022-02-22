@@ -8,16 +8,20 @@ This is the robot code that is run on Talon Robotics 2022 robot. The robot uses 
 ## SUBSYSTEMS
 
 ### Climber Subsystem
-This is the subsystem that controlles the wenches and the pheumatics for the climber. Our climber uses pistions to clamp on the static climbers, and pistons to tilt the climber backwards to grab onto another bar.
+This is the subsystem that controlles the wenches and the pheumatics for the climber. Our climber uses pistions to clamp on the static climbers, and pistons to \
+tilt the climber backwards to grab onto another bar.
 
 ### Drivetrain Subsystem
-The drive train subsystem controlles four talon 500 motors that move the robot. We are using two speed gearboxes, changing gears using a phenumatic pisiton that is  a toggle in code.
+The drive train subsystem controlles four talon 500 motors that move the robot. We are using two speed gearboxes, changing gears using a phenumatic pisiton that is 
+a toggle in code.
 
 ### Intake Subsystem
-The intake subsystem controlles a neo, and two baby neos. The squeze wheels are mounted with the top belt so the hopper is also in this subsystem. The neo runs the active intake, when the baby neos power the top belt, that also has the squeeze wheels, and the bottom belt.
+The intake subsystem controlles a neo, and two baby neos. The squeze wheels are mounted with the top belt so the hopper is also in this subsystem. The neo runs the 
+active intake, when the baby neos power the top belt, that also has the squeeze wheels, and the bottom belt.
 
 ### Shooter Subsystem
-The shooter subsystem controlls two neos that spin the flywheel extremly fast. There is a PID controller that has our flywheel spin at a select rotations per minute.
+The shooter subsystem controlls two neos that spin the flywheel extremly fast. There is a PID controller that has our flywheel spin at a select rotations per 
+minute.
 
 ### Turret Subsystem
 The turret subsystem controlles a baby neo that turns a gear connected to the turrets sproket.
@@ -31,7 +35,8 @@ The vision subsystem is whats responsable for finding and tracking the hoop.
 The drive command is responsable for making the robot move.
 
 ### Go Command
-The go command can make the robot move a certian amount of inces based of data from the drivetrain encoders. Using an encoder to get. This command can be called in automous to move a distace when called.
+The go command can make the robot move a certian amount of inces based of data from the drivetrain encoders. Using an encoder to get. This command can be called in 
+automous to move a distace when called.
 
 ### Run Intake Command
 the run intake command runs the intake and the hopper.
@@ -61,13 +66,15 @@ The Vision align drivetrain command is from last seasons robot, the command alig
 The vision align turret command is responsable for turing the turret to auto aim at the hoop. This command can be called in auto to shoot a ball in the hoop.
 
 ### Vision Go To Ball Command
-The vision go to ball command makes the robot go to a ball that is the correct color seen by the camera mounted on the front of the robot. This command is used in auto to go to a ball.
+The vision go to ball command makes the robot go to a ball that is the correct color seen by the camera mounted on the front of the robot. This command is used in 
+auto to go to a ball.
 
 
 ## ALL THE CODE EXPLAINED
 
 ### Drive Command
-`   @Override
+
+    @Override
     public void initialize()
     {
         drivetrain.setNeutralMode(NeutralMode.Brake);
@@ -91,16 +98,18 @@ The vision go to ball command makes the robot go to a ball that is the correct c
         Arcade,
         Reverse
     }
-}`
 
-In the subsystem, during initialization we set the coast mode to brake. The two options for this are coast and brake, coast makes the motors slowly spin to a stop after the command is done. When brake uses power to stop the motor fast.
+In the subsystem, during initialization we set the coast mode to brake. The two options for this are coast and brake, coast makes the motors slowly spin to a stop 
+after the command is done. When brake uses power to stop the motor fast.
 
-In the drive command we have 3 differnt ways of driving, tank, arcade, and reverse. Tank drive uses the left joystick to control the left motors of the drivetrain when the right controls the right. Arcade uses the left joystick to move forward and backward, when the right joystick turns the robot. Reverse is the same as arcade but the joysticks are flipped.
+In the drive command we have 3 differnt ways of driving, tank, arcade, and reverse. Tank drive uses the left joystick to control the left motors of the drivetrain 
+when the right controls the right. Arcade uses the left joystick to move forward and backward, when the right joystick turns the robot. Reverse is the same as 
+arcade but the joysticks are flipped.
 
 ### Go command
 
-`public void initialize()
-    {
+	@Override
+	public void initialize() {
 	this.startPos = drivetrain.getInchesTraveled();
 	this.pid = new PIDController(0.02,0.03,0.03);
 	this.trapezoidal = new Trapezoidal(.6);
@@ -123,7 +132,37 @@ In the drive command we have 3 differnt ways of driving, tank, arcade, and rever
     public boolean isFinished() {
 	    return pid.atSetpoint();
     }
-}`
 
-The go command uses a pid and trapazoidal to turn the motors percisly and efficintly. The go command uses the encoder ticks from the drivetrain that is converted to inches so we can track how far the robot moves. We take the encoder ticks, and since we cant reset the ticks we add our target ticks to the current ticks so we know how many ticks we need to go to to have moved the selected amount of inces. This command is used in auto.
+The go command uses a pid and trapazoidal to turn the motors percisly and efficintly. The go command uses the encoder ticks from the drivetrain that is converted 
+to inches so we can track how far the robot moves. We take the encoder ticks, and since we cant reset the ticks we add our target ticks to the current ticks so we 
+know how many ticks we need to go to to have moved the selected amount of inces. This command is used in auto.
 
+### Run intake command
+
+    public RunIntakeCommand(IntakeSubsystem intake, double speedIntake, double speedBelt) {
+        this.intake = intake;
+        this.speedIntake = speedIntake;
+        this.speedBelt = speedBelt;
+        addRequirements(intake);
+    }
+
+    @Override
+    public void initialize() {
+    }
+
+    @Override
+    public void execute() {
+        intake.run(speedIntake, speedBelt);
+    }
+
+    @Override
+    public void end(boolean kInterrupted) {
+        intake.stop();
+    }
+
+    @Override
+    public boolean isFinished() {
+        return false;
+    }
+
+The run intake command 
