@@ -70,6 +70,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
+    m_robotContainer.INTAKE.retractIntake();
   }
 
   /** This function is called periodically during autonomous. */
@@ -87,7 +88,6 @@ public class Robot extends TimedRobot {
     }
 
     m_robotContainer.DRIVETRAIN.setHighGear();
-    m_robotContainer.INTAKE.retractIntake();
   }
 
   /** This function is called periodically during operator control. */
