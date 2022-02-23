@@ -87,6 +87,7 @@ public class Robot extends TimedRobot {
     }
 
     m_robotContainer.DRIVETRAIN.setHighGear();
+    m_robotContainer.INTAKE.retractIntake();
   }
 
   /** This function is called periodically during operator control. */
