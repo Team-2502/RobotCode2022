@@ -47,7 +47,7 @@ public class AutoSwitcher {
     public enum AutoMode
     {
         TEST_TURN((d,i,v,s,t) -> new TurnToAngleCommand(d, 179D)),
-        //TEST_FRICTION((d,i,v,s,t) -> new SequentialCommandGroup(new VoltageDriveCommand(d, -0.29, 0.29))),
+        TEST_FRICTION((d,i,v,s,t) -> new SequentialCommandGroup(new VoltageDriveCommand(d, -0.29, 0.29))),
         DO_NOTHING("Do Nothing", DoNothingCommand::new); // always put last
 
         /**
