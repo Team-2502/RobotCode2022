@@ -1,4 +1,4 @@
-package com.team2502.robot2022.commands;
+package com.team2502.robot2022.commands.vision;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.team2502.robot2022.Constants;

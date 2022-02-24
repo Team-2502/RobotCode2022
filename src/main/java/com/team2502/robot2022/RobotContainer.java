@@ -6,6 +6,11 @@
 package com.team2502.robot2022;
 
 import com.team2502.robot2022.commands.*;
+import com.team2502.robot2022.commands.solenoid.ShiftCommand;
+import com.team2502.robot2022.commands.solenoid.ToggleIntakeCommand;
+import com.team2502.robot2022.commands.vision.VisionAlignDrivetrain;
+import com.team2502.robot2022.commands.vision.VisionAlignTurret;
+import com.team2502.robot2022.commands.vision.VisionUnAlignTurret;
 import com.team2502.robot2022.subsystems.*;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
@@ -13,9 +18,6 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
-import com.kauailabs.navx.frc.AHRS;
-
-import java.lang.management.OperatingSystemMXBean;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a

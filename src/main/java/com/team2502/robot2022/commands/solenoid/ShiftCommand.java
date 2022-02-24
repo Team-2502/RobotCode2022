@@ -1,4 +1,4 @@
-package com.team2502.robot2022.commands;
+package com.team2502.robot2022.commands.solenoid;
 
 import com.team2502.robot2022.subsystems.DrivetrainSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
