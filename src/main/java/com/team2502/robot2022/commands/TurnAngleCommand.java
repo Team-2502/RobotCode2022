@@ -13,27 +13,25 @@ public class TurnAngleCommand extends CommandBase {
     private final DrivetrainSubsystem drivetrain;
     private double turnAngle;
     private double startAngle;
-    AHRS navx;
     Trapezoidal trapezoidal;
     double error;
 
     private PIDController pid;
 
-    public TurnAngleCommand(DrivetrainSubsystem drivetrain, double turnAngle, AHRS navx) {
+    public TurnAngleCommand(DrivetrainSubsystem drivetrain, double turnAngle) {
         this.drivetrain = drivetrain;
         this.turnAngle = turnAngle;
-        this.navx = navx;
-	this.trapezoidal = new Trapezoidal(0.4);
-	this.pid = new PIDController(0.12, 0.03, 0.002);
-	this.pid.setTolerance(0.25); // quit when within 0.25 degrees
+        this.trapezoidal = new Trapezoidal(0.4);
+        this.pid = new PIDController(0.12, 0.03, 0.002);
+        this.pid.setTolerance(0.25); // quit when within 0.25 degrees
 
         addRequirements(drivetrain);
     }
 
     @Override
     public void initialize() {
-        navx.reset();
-        startAngle = navx.getAngle();
+        drivetrain.resetHeading();
+        startAngle = drivetrain.getHeading();
         turnAngle = startAngle + turnAngle;
 	pid.reset();
 	trapezoidal.reset();
@@ -42,10 +40,10 @@ public class TurnAngleCommand extends CommandBase {
 
     @Override
     public void execute() {
-        if(navx.getAngle() > 0) {
-            error = navx.getAngle() - turnAngle;
+        if(drivetrain.getHeading() > 0) {
+            error = drivetrain.getHeading() - turnAngle;
         } else{
-            error = navx.getAngle() + turnAngle;
+            error = drivetrain.getHeading() + turnAngle;
         }
 	SmartDashboard.putNumber("error", error);
 

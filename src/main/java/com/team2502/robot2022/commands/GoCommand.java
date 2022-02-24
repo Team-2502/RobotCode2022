@@ -28,13 +28,13 @@ public class GoCommand extends CommandBase {
     @Override
     public void initialize()
     {
-	this.startPos = drivetrain.getInchesTraveled();
-	this.pid = new PIDController(0.02,0.03,0.03);
-	this.trapezoidal = new Trapezoidal(.6);
-	pid.setTolerance(.2);
+        this.startPos = drivetrain.getInchesTraveled();
+        this.pid = new PIDController(0.02,0.03,0.03);
+        this.trapezoidal = new Trapezoidal(.6);
+        pid.setTolerance(.2);
 
-	pid.reset();
-	trapezoidal.reset();
+        pid.reset();
+        trapezoidal.reset();
     }
 
     @Override

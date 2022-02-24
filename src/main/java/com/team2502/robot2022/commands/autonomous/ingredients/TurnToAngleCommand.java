@@ -7,7 +7,6 @@ import edu.wpi.first.wpilibj2.command.PIDCommand;
 
 public class TurnToAngleCommand extends PIDCommand {
 
-
     public TurnToAngleCommand(DrivetrainSubsystem drivetrain, double setpoint) {
         super(
                 new PIDController(Constants.Auto.TURN_TO_ANGLE_KP, 0D, 0D), // Define PIDController
@@ -20,7 +19,7 @@ public class TurnToAngleCommand extends PIDCommand {
                     power = output + ((output > 0)? kFriction:-kFriction);
                     drivetrain.setSpeed(-power, power);
                 },
-                drivetrain
+                drivetrain // Add requirements
         );
 
         getController().enableContinuousInput(-180.0f, 180.0f);
