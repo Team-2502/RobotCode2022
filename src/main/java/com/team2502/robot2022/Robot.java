@@ -56,7 +56,9 @@ public class Robot extends TimedRobot {
 
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
-  public void disabledInit() {}
+  public void disabledInit() {
+    m_robotContainer.INTAKE.retractIntake();
+  }
 
   @Override
   public void disabledPeriodic() {}
@@ -70,7 +72,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
-    m_robotContainer.INTAKE.retractIntake();
+    m_robotContainer.INTAKE.deployIntake();
   }
 
   /** This function is called periodically during autonomous. */
@@ -87,7 +89,8 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
 
-    m_robotContainer.DRIVETRAIN.setHighGear();
+    m_robotContainer.DRIVETRAIN.setLowGear();
+    m_robotContainer.INTAKE.deployIntake();
   }
 
   /** This function is called periodically during operator control. */

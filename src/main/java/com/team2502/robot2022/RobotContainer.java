@@ -15,6 +15,8 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
 import com.kauailabs.navx.frc.AHRS;
 
+import java.lang.management.OperatingSystemMXBean;
+
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -29,6 +31,8 @@ public class RobotContainer
     protected final TurretSubsystem TURRET = new TurretSubsystem();
     protected final ShooterSubsystem SHOOTER = new ShooterSubsystem();
     protected final VisionSubsystem VISION = new VisionSubsystem();
+    protected final PiVisionSubsystem PI_VISION = new PiVisionSubsystem();
+    protected final ClimberSubsystem CLIMBER = new ClimberSubsystem();
 
     private final AHRS navx = new AHRS();
 
@@ -81,6 +85,12 @@ public class RobotContainer
 
         JoystickButton ToggleIntakeButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.TOGGLE_INTAKE);
         ToggleIntakeButton.whenPressed(new ToggleIntakeCommand(INTAKE));
+
+        JoystickButton RunClimberButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_CLIMBER_WENCH_BUTTON);
+        RunClimberButton.whenHeld(new RunClimberCommand(CLIMBER, 0.4));
+
+        JoystickButton RunClimberBackwardsButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_CLIMBER_WENCH_BACKWARDS_BUTTON);
+        RunClimberBackwardsButton.whenHeld(new RunClimberCommand(CLIMBER, -0.4));
 
         // Add button to command mappings here.
         // See https://docs.wpilib.org/en/stable/docs/software/commandbased/binding-commands-to-triggers.html

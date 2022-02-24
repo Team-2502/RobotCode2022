@@ -2,6 +2,7 @@ package com.team2502.robot2022.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.team2502.robot2022.Constants;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class  ClimberSubsystem extends SubsystemBase {
@@ -17,9 +18,15 @@ public class  ClimberSubsystem extends SubsystemBase {
         motor_left = new WPI_TalonFX(Constants.RobotMap.Motors.LEFT_WENCH);
     }
 
+    @Override
+    public void periodic() {
+        SmartDashboard.putNumber("Right voltage", motor_right.getMotorOutputVoltage());
+        SmartDashboard.putNumber("Left voltage", motor_left.getMotorOutputVoltage());
+    }
+
     public void runClimber(double speed) {
         motor_right.set(speed);
-        motor_left.set(speed);
+        motor_left.set(-speed);
     }
 
     public void stopClimber() {

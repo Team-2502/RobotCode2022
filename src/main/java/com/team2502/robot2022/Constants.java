@@ -44,7 +44,9 @@ public final class Constants {
         public static final int RUN_INTAKE_BUTTON = 3;
         public static final int RUN_INTAKE_BACKWARDS_BUTTON = 4;
 
-        public static final int RUN_CLIMBER_WENCH_BUTTON = 5;
+        public static final int RUN_CLIMBER_WENCH_BUTTON = 14;
+        public static final int RUN_CLIMBER_WENCH_BACKWARDS_BUTTON = 15;
+
         public static final int VISION_TURRET_ALIGN = 11;
         public static final int VISION_TURRET_UNALIGN = 12;
     }
