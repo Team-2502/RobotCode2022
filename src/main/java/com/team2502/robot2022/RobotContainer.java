@@ -34,8 +34,6 @@ public class RobotContainer
     protected final PiVisionSubsystem PI_VISION = new PiVisionSubsystem();
     protected final ClimberSubsystem CLIMBER = new ClimberSubsystem();
 
-    private final AHRS navx = new AHRS();
-
     private static final Joystick JOYSTICK_DRIVE_RIGHT = new Joystick(Constants.OI.JOYSTICK_DRIVE_RIGHT);
     private static final Joystick JOYSTICK_DRIVE_LEFT = new Joystick(Constants.OI.JOYSTICK_DRIVE_LEFT);
     private static final Joystick JOYSTICK_OPERATOR = new Joystick(Constants.OI.JOYSTICK_OPERATOR);
