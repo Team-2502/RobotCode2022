@@ -11,14 +11,18 @@ public class TurnTurretCommand extends CommandBase {
     TurretSubsystem turret;
     Joystick operator;
 
+    //TurnTurretCommand is created here. requires the Subsystem and the joystick
     public TurnTurretCommand(TurretSubsystem turret, Joystick operator){
+        //sets turret and operator to values given from command
         this.turret = turret;
         this.operator = operator;
 
+        //only one command can use the subsystem at a time
         addRequirements(turret);
     }
 
     @Override
+    //reduces inputted power and sends to turret subsystem
     public void execute() {
         turret.runMotor(Math.pow(-Math.pow(operator.getTwist(),2),Turret.TRAVERSE_POWER));
     }

@@ -13,23 +13,29 @@ public class RunIntakeCommand extends CommandBase {
 
     private final IntakeSubsystem intake;
 
+    //RunIntakeCommand is created here and asks for the subsystem and two speeds
     public RunIntakeCommand(IntakeSubsystem intake, double speedIntake, double speedBelt) {
+        //sets variables to values given to command
         this.intake = intake;
         this.speedIntake = speedIntake;
         this.speedBelt = speedBelt;
+        //only one command can use the subsystem at a time
         addRequirements(intake);
     }
 
     @Override
     public void initialize() {
+        //when initialized the command won't do anything
     }
 
     @Override
+    //runs intakeSubsystem and sends it received speeds
     public void execute() {
         intake.run(speedIntake, speedBelt);
     }
 
     @Override
+    //will stop intake when commands ends
     public void end(boolean kInterrupted) {
         intake.stop();
     }

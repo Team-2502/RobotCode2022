@@ -12,6 +12,7 @@ public class  ClimberSubsystem extends SubsystemBase {
     private final WPI_TalonFX motor_left;
 
     public ClimberSubsystem(){
+        //defines climber motors as Talons and gives correct ID from Constants
 //        piston_right = new Solenoid(PneumaticsModuleType.REVPH, RIGHT_PASSIVE_CLIMBER);
 //        piston_left = new Solenoid(PneumaticsModuleType.REVPH, LEFT_PASSIVE_CLIMBER);
         motor_right = new WPI_TalonFX(Constants.RobotMap.Motors.RIGHT_WENCH);
@@ -20,16 +21,19 @@ public class  ClimberSubsystem extends SubsystemBase {
 
     @Override
     public void periodic() {
+        //every few microseconds will send motor voltage to driverstation display
         SmartDashboard.putNumber("Right voltage", motor_right.getMotorOutputVoltage());
         SmartDashboard.putNumber("Left voltage", motor_left.getMotorOutputVoltage());
     }
 
     public void runClimber(double speed) {
+        //when runClimber command is run will ask for value and set motors speed to said value
         motor_right.set(speed);
         motor_left.set(-speed);
     }
 
     public void stopClimber() {
+        //will stop motors when command is run
         motor_right.set(0);
         motor_left.set(0);
     }

@@ -36,6 +36,7 @@ public class RobotContainer
     protected final PiVisionSubsystem PI_VISION = new PiVisionSubsystem();
     protected final ClimberSubsystem CLIMBER = new ClimberSubsystem();
 
+    //Joysticks are defined here
     private static final Joystick JOYSTICK_DRIVE_RIGHT = new Joystick(Constants.OI.JOYSTICK_DRIVE_RIGHT);
     private static final Joystick JOYSTICK_DRIVE_LEFT = new Joystick(Constants.OI.JOYSTICK_DRIVE_LEFT);
     private static final Joystick JOYSTICK_OPERATOR = new Joystick(Constants.OI.JOYSTICK_OPERATOR);
@@ -44,6 +45,7 @@ public class RobotContainer
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer()
     {
+        //command here are always running when initialized
         DRIVETRAIN.setDefaultCommand(new DriveCommand(DRIVETRAIN, JOYSTICK_DRIVE_LEFT, JOYSTICK_DRIVE_RIGHT));
 
         TURRET.setDefaultCommand(new TurnTurretCommand(TURRET, JOYSTICK_OPERATOR));
@@ -58,6 +60,8 @@ public class RobotContainer
      * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
      * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
      */
+    //commands controlled by buttons are here
+    //Buttons are defined here
     private void configureButtonBindings()
     {
         JoystickButton RunIntakeButton = new JoystickButton(JOYSTICK_DRIVE_LEFT, Constants.OI.RUN_INTAKE_BUTTON);
@@ -77,7 +81,6 @@ public class RobotContainer
 
         JoystickButton VisionAlignTurretButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.VISION_TURRET_ALIGN);
         VisionAlignTurretButton.whenHeld(new VisionAlignTurret(VISION, TURRET));
-        //VisionAlignTurretButton.whileHeld(new VisionUnAlignTurret(VISION, TURRET));
         VisionAlignTurretButton.whenReleased(new VisionUnAlignTurret(VISION, TURRET));
 
         JoystickButton ShiftButton = new JoystickButton(JOYSTICK_DRIVE_RIGHT, Constants.OI.SHIFT);
