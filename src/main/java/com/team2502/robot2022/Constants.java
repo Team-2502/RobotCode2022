@@ -84,6 +84,9 @@ public final class Constants {
     public static final class Auto
     {
         public static final double TURN_TO_ANGLE_KP = 0.015;
+
+        public static final int TURN_TOLERANCE_DEG = 1;
+        public static final int TURN_RATE_TOLERANCE_DEG_PER_SEC = 1;
     }
 
     /** subsystem-specific constants */

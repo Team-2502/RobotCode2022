@@ -24,5 +24,12 @@ public class TurnToAngleCommand extends PIDCommand {
         );
 
         getController().enableContinuousInput(-180.0f, 180.0f);
+
+        getController().setTolerance(Constants.Auto.TURN_TOLERANCE_DEG, Constants.Auto.TURN_RATE_TOLERANCE_DEG_PER_SEC);
+    }
+
+    @Override
+    public boolean isFinished() {
+        return false;
     }
 }
