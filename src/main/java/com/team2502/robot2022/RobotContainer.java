@@ -15,8 +15,6 @@ import com.team2502.robot2022.subsystems.*;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
-import com.kauailabs.navx.frc.AHRS;
-
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -33,8 +31,6 @@ public class RobotContainer
     protected final TurretSubsystem TURRET = new TurretSubsystem();
     protected final ShooterSubsystem SHOOTER = new ShooterSubsystem();
     protected final VisionSubsystem VISION = new VisionSubsystem();
-
-    private final AHRS navx = new AHRS();
 
     private static final Joystick JOYSTICK_DRIVE_RIGHT = new Joystick(Constants.OI.JOYSTICK_DRIVE_RIGHT);
     private static final Joystick JOYSTICK_DRIVE_LEFT = new Joystick(Constants.OI.JOYSTICK_DRIVE_LEFT);

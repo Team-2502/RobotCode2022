@@ -81,6 +81,11 @@ public final class Constants {
         }
     }
 
+    public static final class Auto
+    {
+        public static final double TURN_TO_ANGLE_KP = 0.015;
+    }
+
     /** subsystem-specific constants */
     public static final class Subsystem {
 
@@ -91,18 +96,38 @@ public final class Constants {
             public static final double SHOOTER_IZ = 0;
             public static final double SHOOTER_FF = 0.00019;
             public static final double SHOOTER_MAX_OUTPUT = 1;
-            public static final double SHOOTER_MIN_OUTPUT = -0.1;
+            public static final double SHOOTER_MIN_OUTPUT = -1;
             public static final double SHOOTER_MANUAL_RPM_MID = 2600; // center of manual range, max is ~4200 with current pid
         }
 
-        public static final class Vision {
-            //Everything in this class is referenced in the Vision Subsystem, and explained at least partially there.
-            public static final String LIMELIGHT_NETWORK_TABLE = "limelight"; //the name in the network table of the limelight
+        public static final class Turret {
+            public static final double TRAVERSE_POWER = 0.29; // (traverseInput ^ pow)
+            public static final double TRAVERSE_FRICTION = 0.024; // min val for turret to move
 
-            //placeholders. Have same values as 2021 bot.
+        }
+
+        public static final class Vision {
+            // drivetrain
+            public static final double FRICTION_LOW = 0.29;
+            public static final double VISION_TURNING_P_LOW = 0.015;
+
+            // turret
+            public static final double FRICTION_TURRET = 0.024;
+            public static final double FRICTION_P = 0.006;
+            public static final double FRICTION_I = 0.003;
+
+            public static final double LIMELIGHT_HEIGHT = 26; // limelight aperture to ground in inches
+            public static final double LIMELIGHT_ELEVATION = 37; // limelight elevation in degrees
+
+            public static final double BASKET_HEIGHT = 96; // basket vision target to ground
+
+            //Everything in this class is referenced in the Vision Subsystem, and explained at least partially there.
+            public static final String LIMELIGHT_NETWORK_TABLE = "limelight-turret"; //the name in the network table of the limelight
+
+
             //these would be the numbers corresponding to various settings of the limelight
-            public static final double limelightOff = 1;
-            public static final double limelightOn = 3;
+            public static final double limelightOff = 2;
+            public static final double limelightOn = 0;
             public static final double limelightPipelineDefault = 0;
 
             public static final LookupTable TARGETY_TO_DISTANCE_TABLE; //lookup table to convert Y values from the limelight to distances
@@ -117,6 +142,15 @@ public final class Constants {
                 //add items to lookup table here
                 DIST_TO_RPM_STANDSTILL_TABLE = new LookupTable(distToRPMStandstill); //Initialize the DIST_TO_RPM_STANDSTILL_TABLE, setting it to the values of the above hashmap
             }
+        }
+
+        public static final class RaspberryVision {
+            // drivetrain
+            public static final double FRICTION_LOW = 0.29;
+            public static final double VISION_TURNING_P_LOW = 0.015;
+
+            //Everything in this class is referenced in the Vision Subsystem, and explained at least partially there.
+            public static final String LIMELIGHT_NETWORK_TABLE = "PhotonVision"; //the name in the network table of the limelight
         }
     }
 }

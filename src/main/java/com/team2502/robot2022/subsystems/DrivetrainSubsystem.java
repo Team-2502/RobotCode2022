@@ -98,6 +98,16 @@ public class DrivetrainSubsystem extends SubsystemBase{
 
     public double getRpm(){ return (drivetrainFrontLeft.getSelectedSensorVelocity() * 600) / 2048; }
 
+    public double getHeading()
+    {
+        return Math.IEEEremainder(-navX.getAngle(), 360D);
+    }
+
+    public void resetHeading()
+    {
+        navX.reset();
+    }
+
     @Override
     public void periodic(){
         SmartDashboard.putNumber("Angle", navX.getAngle());
