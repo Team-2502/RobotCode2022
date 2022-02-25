@@ -33,29 +33,30 @@ public class TurnAngleCommand extends CommandBase {
         drivetrain.resetHeading();
         startAngle = drivetrain.getHeading();
         turnAngle = startAngle + turnAngle;
-	pid.reset();
-	trapezoidal.reset();
-    error = 0;
+        pid.reset();
+        trapezoidal.reset();
+        error = 0;
     }
 
     @Override
     public void execute() {
         if(drivetrain.getHeading() > 0) {
             error = drivetrain.getHeading() - turnAngle;
-        } else{
+        } else {
             error = drivetrain.getHeading() + turnAngle;
         }
-	SmartDashboard.putNumber("error", error);
 
-	double speed = trapezoidal.calculate(pid.calculate(error + 4));
-	
-	speed = Util.constrain(speed,.3);
+        SmartDashboard.putNumber("error", error);
 
-	SmartDashboard.putNumber("speed", speed);
+        double speed = trapezoidal.calculate(pid.calculate(error + 4));
 
-	drivetrain.setSpeed(speed, speed);
+        speed = Util.constrain(speed,.3);
+
+        SmartDashboard.putNumber("speed", speed);
+
+        drivetrain.setSpeed(speed, speed);
 
     }
 
-    public boolean isFinished(){ return pid.atSetpoint(); }
+    public boolean isFinished() { return pid.atSetpoint(); }
 }

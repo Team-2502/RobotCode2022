@@ -34,12 +34,10 @@ public class VisionAlignDrivetrain extends CommandBase {
     public void initialize() {
         frictionConstant = Constants.Subsystem.Vision.FRICTION_LOW;
         p = Constants.Subsystem.Vision.VISION_TURNING_P_LOW;
-
     }
 
     @Override
     public void execute() {
-
         double tx = vision.getTargetX();
         double steering_adjust = 0.0f;
 

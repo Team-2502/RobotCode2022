@@ -46,9 +46,10 @@ public class DriveCommand extends CommandBase {
             case Reverse:
                 drivetrain.getDrive().tankDrive(leftJoystick.getY(), rightJoystick.getY(), true);
         }
-	SmartDashboard.putNumber("distance traveled", drivetrain.getInchesTraveled());
-	SmartDashboard.putNumber("tics traveled", drivetrain.getRevsAvg());
+        SmartDashboard.putNumber("distance traveled", drivetrain.getInchesTraveled());
+        SmartDashboard.putNumber("tics traveled", drivetrain.getRevsAvg());
     }
+
     private enum Drivetype {
         Tank,
         Arcade,

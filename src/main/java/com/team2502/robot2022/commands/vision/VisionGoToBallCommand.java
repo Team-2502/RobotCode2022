@@ -44,9 +44,8 @@ public class VisionGoToBallCommand extends CommandBase {
     @Override
     public void initialize() {
         drivetrain.setNeutralMode(NeutralMode.Coast);
-            frictionConstant = Constants.Subsystem.Vision.FRICTION_LOW;
-            p = Constants.Subsystem.Vision.VISION_TURNING_P_LOW;
-
+        frictionConstant = Constants.Subsystem.Vision.FRICTION_LOW;
+        p = Constants.Subsystem.Vision.VISION_TURNING_P_LOW;
     }
 
     @Override
