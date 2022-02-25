@@ -24,9 +24,14 @@ public class PiVisionSubsystem extends SubsystemBase {
     //And the area. Not sure what this is even for, but we might use it.
     private double targetArea;
 
+    NetworkTableInstance inst = NetworkTableInstance.getDefault();
+    NetworkTable table = inst.getTable("datatable");
+
+    private final NetworkTable camera;
+
 
     public PiVisionSubsystem() {
-        //PhotonCamera camera = new PhotonCamera("Microsoft_LifeCam_HD-3000-input");
+        camera = NetworkTableInstance.getDefault().getTable("Photonvision");
         smartDashboard = NetworkTableInstance.getDefault().getTable("SmartDashboard"); //Tells the smartDashboard object to correspond with the shuffleboard one.
     }
 
@@ -34,18 +39,19 @@ public class PiVisionSubsystem extends SubsystemBase {
     @Override
     public void periodic() {
 
+        NetworkTableEntry TX_ENTRY = camera.getEntry("targetPixelsX");
+        NetworkTableEntry TY_ENTRY = camera.getEntry("targetPixelsY");
+        NetworkTableEntry AREA_ENTRY = camera.getEntry("targetArea");
+
+        targetX = TX_ENTRY.getDouble(0.0);
+        targetY = TY_ENTRY.getDouble(0.0);
+        targetArea = AREA_ENTRY.getDouble(0.0);
+
         SmartDashboard.putNumber("Camera Target X", targetX);
         SmartDashboard.putNumber("Camera Target Y", targetY);
         SmartDashboard.putNumber("Camera Target Area", targetArea);
     }
 
-    /**
-     * Gets the X of the target(anything that the limelight sees to meet it's set parameters) on the limelight screen
-     * from the limelight's NetworkTable(communication of arbitrary values between the limelight, driver station, and robot).
-     * Used in the to turn the turret to where the hoop is.
-     *
-     * @return That X value
-     */
     public double getTargetX() {
         return targetX;
     }
