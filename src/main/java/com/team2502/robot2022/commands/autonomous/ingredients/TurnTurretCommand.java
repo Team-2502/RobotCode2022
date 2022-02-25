@@ -15,7 +15,7 @@ import com.team2502.robot2022.Constants.Subsystem.Turret;
 
 public class TurnTurretCommand extends ProfiledPIDCommand {
 
-    public TurnTurretCommand(TurretSubsystem turret, VisionSubsystem vision, DoubleSupplier measurementSource, Supplier<TrapezoidProfile.State> goalSource, BiConsumer<Double, TrapezoidProfile.State> useOutput, Subsystem... requirements) {
+    public TurnTurretCommand(TurretSubsystem turret, VisionSubsystem vision) {
         super(new ProfiledPIDController(
                         Turret.TURRET_P,
                         Turret.TURRET_I,
@@ -26,7 +26,7 @@ public class TurnTurretCommand extends ProfiledPIDCommand {
                 vision::getTurretSetpoint,
                 (t, u) ->
                 {
-
+                    turret.runMotor(t);
                 },
                 turret,
                 vision
