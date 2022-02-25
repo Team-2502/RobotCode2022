@@ -77,7 +77,7 @@ public class DrivetrainSubsystem extends SubsystemBase{
 	    /*return (getRevsAvg()/2048) // encoder
 		    * (24 / 50) // gearbox
 		    * (6 * Math.PI); // wheel radius */
-	    return drivetrainFrontRight.getSelectedSensorPosition() / Drivetrain.TICKS_PER_ROTATION;
+	    return drivetrainFrontRight.getSelectedSensorPosition() / Drivetrain.TICKS_PER_INCH;
     }
 
     public void setNeutralMode(NeutralMode nm)

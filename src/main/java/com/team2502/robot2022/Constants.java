@@ -176,7 +176,7 @@ public final class Constants {
         }
 
         public static final class Drivetrain {
-            public static final double TICKS_PER_ROTATION = 1033.29;
+            public static final double TICKS_PER_INCH = 1033.29;
         }
     }
 }
