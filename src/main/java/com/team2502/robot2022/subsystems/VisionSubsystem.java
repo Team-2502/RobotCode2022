@@ -7,6 +7,7 @@ package com.team2502.robot2022.subsystems;
 import com.team2502.robot2022.Constants;
 import com.team2502.robot2022.Constants.Subsystem.Vision;
 
+import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
@@ -109,6 +110,12 @@ public class VisionSubsystem extends SubsystemBase {
      */
     public double getDistance() {
         return Util.findDist(Vision.LIMELIGHT_HEIGHT, Vision.BASKET_HEIGHT, Vision.LIMELIGHT_ELEVATION, targetY);
+    }
+
+
+    public TrapezoidProfile.State getTurretSetpoint()
+    {
+        return new TrapezoidProfile.State(0D, 0D); // TODO make this method (Angle and ∆Angle of the high goal w/ relation to the turret)
     }
 
     /**

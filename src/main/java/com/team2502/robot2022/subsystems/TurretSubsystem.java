@@ -34,6 +34,11 @@ public class TurretSubsystem extends SubsystemBase {
         turnMotor.set(speed);
     }
 
+    public double getAngle()
+    {
+        return 0D; //TODO Make this method
+    }
+
     /**
      * Method to stop the motor, using the WPIlib set() method under the turnMotor object
      */

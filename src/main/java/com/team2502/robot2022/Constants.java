@@ -109,6 +109,18 @@ public final class Constants {
         }
 
         public static final class Turret {
+            public static final double TURRET_P = 0.0008;
+            public static final double TURRET_I = 0.0;
+            public static final double TURRET_D = 0.0;
+            public static final double MAX_VEL = 1;
+            public static final double MAX_ACCEL = 1;
+
+            public static final double MIN_ANGLE = 0;
+            public static final double MAX_ANGLE = 180;
+
+            public static final double TURN_TOLERANCE_DEG = 1;
+            public static final double TURN_RATE_TOLERANCE_DEG_PER_S = 1;
+
             public static final double TRAVERSE_POWER = 0.29; // (traverseInput ^ pow)
             public static final double TRAVERSE_FRICTION = 0.024; // min val for turret to move
 
