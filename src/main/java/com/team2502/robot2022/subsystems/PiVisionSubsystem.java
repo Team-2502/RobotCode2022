@@ -13,8 +13,6 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.team2502.robot2022.util.Util;
-import org.photonvision.PhotonCamera;
-import org.photonvision.targeting.PhotonTrackedTarget;
 
 public class PiVisionSubsystem extends SubsystemBase {
     //private final NetworkTable camera; //Creates a NetworkTable object. This one is for getting data from the limelight.
@@ -26,8 +24,6 @@ public class PiVisionSubsystem extends SubsystemBase {
     //And the area. Not sure what this is even for, but we might use it.
     private double targetArea;
 
-    private PhotonCamera camera = new PhotonCamera("Microsoft_LifeCam_HD-3000-input");
-
 
     public PiVisionSubsystem() {
         //PhotonCamera camera = new PhotonCamera("Microsoft_LifeCam_HD-3000-input");
@@ -37,16 +33,6 @@ public class PiVisionSubsystem extends SubsystemBase {
 
     @Override
     public void periodic() {
-        var result = camera.getLatestResult();
-        PhotonTrackedTarget target = result.getBestTarget();
-
-        try {
-            targetX = target.getYaw();
-            targetY = target.getPitch();
-            targetArea = target.getArea();
-        } catch(NullPointerException e){
-            System.out.println(e);
-        }
 
         SmartDashboard.putNumber("Camera Target X", targetX);
         SmartDashboard.putNumber("Camera Target Y", targetY);
