@@ -112,7 +112,7 @@ public class VisionSubsystem extends SubsystemBase {
     }
 
     /**
-     * Calculates the optimal speed for the shooter to spin, given the y of the target given by the limelight.
+     * Calculates the optimal speed for the shooter to spin, given the y of the targe2t given by the limelight.
      * Does so by taking the y given by the limelight, putting it through a lookup table to get the distance,
      * then putting it through another lookup table to get the optimal speed.
      * Used to accurately shoot from arbitrary distances from the target.
