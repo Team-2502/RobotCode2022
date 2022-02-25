@@ -8,34 +8,40 @@ import com.team2502.robot2022.subsystems.IntakeSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class RunIntakeCommand extends CommandBase {
-  private final double speedIntake;
-  private final double speedBelt;
+    private final double speedIntake;
+    private final double speedBelt;
 
-  private final IntakeSubsystem intake;
+    private final IntakeSubsystem intake;
 
-  public RunIntakeCommand(IntakeSubsystem intake, double speedIntake, double speedBelt) {
-    this.intake = intake;
-    this.speedIntake = speedIntake;
-    this.speedBelt = speedBelt;
-    addRequirements(intake);
-  }
+    //RunIntakeCommand is created here and asks for the subsystem and two speeds
+    public RunIntakeCommand(IntakeSubsystem intake, double speedIntake, double speedBelt) {
+        //sets variables to values given to command
+        this.intake = intake;
+        this.speedIntake = speedIntake;
+        this.speedBelt = speedBelt;
+        //only one command can use the subsystem at a time
+        addRequirements(intake);
+    }
 
-  @Override
-  public void initialize() {
-  }
+    @Override
+    public void initialize() {
+        //when initialized the command won't do anything
+    }
 
-  @Override
-  public void execute() {
-    intake.run(speedIntake, speedBelt);
-  }
+    @Override
+    //runs intakeSubsystem and sends it received speeds
+    public void execute() {
+        intake.run(speedIntake, speedBelt);
+    }
 
-  @Override
-  public void end(boolean kInterrupted) {
-    intake.stop();
-  }
+    @Override
+    //will stop intake when commands ends
+    public void end(boolean kInterrupted) {
+        intake.stop();
+    }
 
-  @Override
-  public boolean isFinished() {
-    return false;
-  }
+    @Override
+    public boolean isFinished() {
+        return false;
+    }
 }

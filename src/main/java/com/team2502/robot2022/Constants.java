@@ -31,18 +31,24 @@ public final class Constants {
         public static final int SHIFT = 1;
 
         // Left Drive Joystick
-        // None
+        public static final int VISION_DRIVETRAIN_ALIGN = 1;
 
         // Operator Joystick
         public static final int TOGGLE_INTAKE = 8;
 
         public static final int SHOOT_BUTTON = 1;
-        public static final int SPIN_FLYWHEEL_BUTTON = 2;
+        public static final int SPIN_FLYWHEEL_BUTTON = 3090; //not used
 
-        public static final int BUTTON_FLYWHEEL_MANUAL = 999; //Not used
+        public static final int BUTTON_FLYWHEEL_MANUAL = 2; //used
 
         public static final int RUN_INTAKE_BUTTON = 3;
         public static final int RUN_INTAKE_BACKWARDS_BUTTON = 4;
+
+        public static final int RUN_CLIMBER_WENCH_BUTTON = 14;
+        public static final int RUN_CLIMBER_WENCH_BACKWARDS_BUTTON = 15;
+
+        public static final int VISION_TURRET_ALIGN = 11;
+        public static final int VISION_TURRET_UNALIGN = 12;
     }
 
     public static final class RobotMap {
@@ -53,29 +59,28 @@ public final class Constants {
             public static final int DRIVE_FRONT_LEFT = 3;
             public static final int DRIVE_BACK_RIGHT = 2;
             public static final int DRIVE_BACK_LEFT = 4;
-            public static final int RIGHT_WINCH = 5;
-            public static final int LEFT_WINCH = 6;
+            public static final int RIGHT_WENCH = 5;
+            public static final int LEFT_WENCH = 6;
 
             // SparkMax
-            public static final int SQUEEZE_MOTOR = 1;
-            public static final int INTAKE_MOTOR = 2;
+            public static final int SQUEEZE_MOTOR = 8;
+            public static final int INTAKE_MOTOR = 7;
 
-            public static final int HOPPER_TOP_BELT = 3;
-            public static final int HOPPER_BOTTOM_BELT = 4;
+            public static final int HOPPER_BOTTOM_BELT = 9;
 
-            public static final int LOAD_MOTOR_1 = 5;
-            public static final int LOAD_MOTOR_2 = 6;
+            public static final int SUSHI_MOTOR_1 = 10;
+            public static final int SUSHI_MOTOR_2 = 11;
 
-            public static final int SHOOTER_LEFT = 7;
-            public static final int SHOOTER_RIGHT = 8;
+            public static final int SHOOTER_LEFT = 13;
+            public static final int SHOOTER_RIGHT = 12;
 
-            public static final int TURRET_TRAVERSE = 9;
+            public static final int TURRET_TRAVERSE = 14;
         }
 
         public static final class Solenoids
         {
-            public static final int DRIVETRAIN = 1;
-            public static final int INTAKE = 2;
+            public static final int DRIVETRAIN = 0;
+            public static final int INTAKE = 15;
             public static final int RIGHT_PASSIVE_CLIMBER = 3;
             public static final int LEFT_PASSIVE_CLIMBER = 4;
         }

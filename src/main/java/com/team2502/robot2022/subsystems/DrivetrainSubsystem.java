@@ -4,7 +4,7 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.TalonFXInvertType;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.kauailabs.navx.frc.AHRS;
-import com.team2502.robot2022.Constants.RobotMap.*;
+import com.team2502.robot2022.Constants;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -14,24 +14,24 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class DrivetrainSubsystem extends SubsystemBase{
     private DifferentialDrive drive;
 
-    private final WPI_TalonFX drivetrainBackLeft;
-    private final WPI_TalonFX drivetrainFrontLeft;
-    private final WPI_TalonFX drivetrainBackRight;
-    private final WPI_TalonFX drivetrainFrontRight;
-
-    private final Solenoid gearShiftSolenoid;
+    private WPI_TalonFX drivetrainBackLeft;
+    private WPI_TalonFX drivetrainFrontLeft;
+    private WPI_TalonFX drivetrainBackRight;
+    private WPI_TalonFX drivetrainFrontRight;
 
     private AHRS navX = new AHRS();
 
+    private Solenoid solenoid;
+
     public DrivetrainSubsystem(){
-        drivetrainBackLeft = new WPI_TalonFX(Motors.DRIVE_BACK_LEFT);
-        drivetrainFrontLeft = new WPI_TalonFX(Motors.DRIVE_FRONT_LEFT);
-        drivetrainFrontRight = new WPI_TalonFX(Motors.DRIVE_FRONT_RIGHT);
-        drivetrainBackRight = new WPI_TalonFX(Motors.DRIVE_BACK_RIGHT);
+        drivetrainBackLeft = new WPI_TalonFX(Constants.RobotMap.Motors.DRIVE_BACK_LEFT);
+        drivetrainFrontLeft = new WPI_TalonFX(Constants.RobotMap.Motors.DRIVE_FRONT_LEFT);
+        drivetrainFrontRight = new WPI_TalonFX(Constants.RobotMap.Motors.DRIVE_FRONT_RIGHT);
+        drivetrainBackRight = new WPI_TalonFX(Constants.RobotMap.Motors.DRIVE_BACK_RIGHT);
 
-        gearShiftSolenoid = new Solenoid(PneumaticsModuleType.REVPH, Solenoids.DRIVETRAIN);
+        solenoid = new Solenoid(PneumaticsModuleType.REVPH, Constants.RobotMap.Solenoids.DRIVETRAIN);
 
-        drivetrainBackLeft.follow(drivetrainFrontLeft); //backleft follows front left motor
+        drivetrainBackLeft.follow(drivetrainFrontLeft);//backleft follows front left motor
         drivetrainBackRight.follow(drivetrainFrontRight);
 
         drivetrainBackRight.setInverted(TalonFXInvertType.CounterClockwise);
@@ -48,25 +48,12 @@ public class DrivetrainSubsystem extends SubsystemBase{
     public void setSpeed(double leftSpeed, double rightSpeed){
         drive.tankDrive(leftSpeed, rightSpeed);
     }
-
     public void brake(){
         drive.stopMotor();
     }
 
-    public void toggleGear()
-    {
-        gearShiftSolenoid.set(!gearShiftSolenoid.get());
-    }
-
-    public void enterHighGear()
-    {
-        gearShiftSolenoid.set(true);
-    }
-
-    public void enterLowGear()
-    {
-        gearShiftSolenoid.set(false);
-    }
+    public void setHighGear() { solenoid.set(true); }
+    public void setLowGear() { solenoid.set(false); }
 
     /**
     * Average drivetrain motor revs
@@ -78,6 +65,8 @@ public class DrivetrainSubsystem extends SubsystemBase{
 			    drivetrainFrontLeft.getSelectedSensorPosition()
 		   )/2;
     }
+
+    public void toggleDrivetrain() { solenoid.toggle(); }
 
     /**
     * inches since init
@@ -108,9 +97,18 @@ public class DrivetrainSubsystem extends SubsystemBase{
         navX.reset();
     }
 
+    public boolean getGear() {
+        double highGear;
+        if(solenoid.get() == false){ return true; }
+        else return false;
+    }
+
     @Override
     public void periodic(){
+
         SmartDashboard.putNumber("Angle", navX.getAngle());
         SmartDashboard.putNumber("RPM", getRpm());
+
+        SmartDashboard.putBoolean("High Gear", getGear());
     }
 }

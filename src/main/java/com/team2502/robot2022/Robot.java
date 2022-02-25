@@ -4,9 +4,15 @@
 
 package com.team2502.robot2022;
 
+import com.team2502.robot2022.subsystems.DrivetrainSubsystem;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import com.team2502.robot2022.subsystems.IntakeSubsystem;
+
+
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -28,6 +34,8 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+    //new Solenoid(PneumaticsModuleType.REVPH, Constants.RobotMap.Solenoids.INTAKE);
+    //new IntakeSubsystem().retractIntake();
   }
 
   /**
@@ -48,7 +56,9 @@ public class Robot extends TimedRobot {
 
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
-  public void disabledInit() {}
+  public void disabledInit() {
+    m_robotContainer.INTAKE.retractIntake();
+  }
 
   @Override
   public void disabledPeriodic() {}
@@ -62,6 +72,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
+    m_robotContainer.INTAKE.deployIntake();
   }
 
   /** This function is called periodically during autonomous. */
@@ -77,6 +88,9 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+
+    m_robotContainer.DRIVETRAIN.setLowGear();
+    m_robotContainer.INTAKE.deployIntake();
   }
 
   /** This function is called periodically during operator control. */

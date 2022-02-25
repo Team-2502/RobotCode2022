@@ -1,12 +1,12 @@
 package com.team2502.robot2022.commands;
 import com.kauailabs.navx.frc.AHRS;
+import com.team2502.robot2022.util.Trapezoidal;
+import com.team2502.robot2022.util.Util;
 import edu.wpi.first.math.controller.PIDController;
 import com.team2502.robot2022.subsystems.DrivetrainSubsystem;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import com.team2502.robot2022.util.Trapezoidal;
-import com.team2502.robot2022.util.Util;
 
 public class TurnAngleCommand extends CommandBase {
 
@@ -49,7 +49,7 @@ public class TurnAngleCommand extends CommandBase {
 
 	double speed = trapezoidal.calculate(pid.calculate(error + 4));
 	
-	speed = Util.constrain(speed,.3); // keep speed from exceeding 30%
+	speed = Util.constrain(speed,.3);
 
 	SmartDashboard.putNumber("speed", speed);
 
