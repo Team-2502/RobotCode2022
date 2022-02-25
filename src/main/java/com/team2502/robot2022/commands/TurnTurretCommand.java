@@ -24,6 +24,6 @@ public class TurnTurretCommand extends CommandBase {
     @Override
     //reduces inputted power and sends to turret subsystem
     public void execute() {
-        turret.runMotor(Math.pow(-Math.pow(operator.getTwist(),2),Turret.TRAVERSE_POWER));
+        turret.runMotor(-Math.pow(operator.getTwist(),Turret.TRAVERSE_POWER));
     }
 }
