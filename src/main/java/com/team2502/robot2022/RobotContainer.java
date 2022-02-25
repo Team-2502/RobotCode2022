@@ -41,9 +41,11 @@ public class RobotContainer
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer()
     {
-      DRIVETRAIN.setDefaultCommand(new DriveCommand(DRIVETRAIN, JOYSTICK_DRIVE_LEFT, JOYSTICK_DRIVE_RIGHT));
+        DRIVETRAIN.setDefaultCommand(new DriveCommand(DRIVETRAIN, JOYSTICK_DRIVE_LEFT, JOYSTICK_DRIVE_RIGHT));
         // Configure the button bindings
         configureButtonBindings();
+
+        AutoSwitcher.putToSmartDashboard();
     }
     
     
@@ -89,6 +91,12 @@ public class RobotContainer
     public Command getAutonomousCommand()
     {
         // An ExampleCommand will run in autonomous
-        return new CommandBase(){};
+        return AutoSwitcher.getAutoInstance().getInstance(
+                DRIVETRAIN,
+                INTAKE,
+                VISION,
+                SHOOTER,
+                TURRET
+        );
     }
 }
