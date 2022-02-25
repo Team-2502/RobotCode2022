@@ -174,5 +174,9 @@ public final class Constants {
             //Everything in this class is referenced in the Vision Subsystem, and explained at least partially there.
             public static final String LIMELIGHT_NETWORK_TABLE = "PhotonVision"; //the name in the network table of the limelight
         }
+
+        public static final class Drivetrain {
+            public static final double TICKS_PER_ROTATION = 1033.29;
+        }
     }
 }

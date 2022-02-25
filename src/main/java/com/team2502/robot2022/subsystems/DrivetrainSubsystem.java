@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import com.team2502.robot2022.Constants.Subsystem.Drivetrain;
 
 public class DrivetrainSubsystem extends SubsystemBase{
     private DifferentialDrive drive;
@@ -76,7 +77,7 @@ public class DrivetrainSubsystem extends SubsystemBase{
 	    /*return (getRevsAvg()/2048) // encoder
 		    * (24 / 50) // gearbox
 		    * (6 * Math.PI); // wheel radius */
-	    return drivetrainFrontRight.getSelectedSensorPosition()/1033.29; // magic number :)
+	    return drivetrainFrontRight.getSelectedSensorPosition() / Drivetrain.TICKS_PER_ROTATION;
     }
 
     public void setNeutralMode(NeutralMode nm)
