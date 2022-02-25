@@ -5,11 +5,6 @@ import com.team2502.robot2022.subsystems.VisionSubsystem;
 import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.wpilibj2.command.ProfiledPIDCommand;
-import edu.wpi.first.wpilibj2.command.Subsystem;
-
-import java.util.function.BiConsumer;
-import java.util.function.DoubleSupplier;
-import java.util.function.Supplier;
 
 import com.team2502.robot2022.Constants.Subsystem.Turret;
 
@@ -24,10 +19,7 @@ public class TurnTurretCommand extends ProfiledPIDCommand {
                         ),
                 turret::getAngle,
                 vision::getTurretSetpoint,
-                (t, u) ->
-                {
-                    turret.runMotor(t);
-                },
+                (t, u) -> turret.runMotor(t),
                 turret,
                 vision
         );

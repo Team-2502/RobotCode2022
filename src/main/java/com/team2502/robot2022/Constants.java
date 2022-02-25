@@ -121,6 +121,8 @@ public final class Constants {
             public static final double TURN_TOLERANCE_DEG = 1;
             public static final double TURN_RATE_TOLERANCE_DEG_PER_S = 1;
 
+            public static final double TURRET_GEAR_RATIO = 0D; // TODO Find this value
+
             public static final double TRAVERSE_POWER = 0.29; // (traverseInput ^ pow)
             public static final double TRAVERSE_FRICTION = 0.024; // min val for turret to move
 
