@@ -24,9 +24,8 @@ public final class VisionUnAlignTurret extends CommandBase {
 
     @Override
     public void initialize() {
-    frictionConstant = Constants.Subsystem.Vision.FRICTION_TURRET;
-    p = Constants.Subsystem.Vision.FRICTION_P;
-
+        frictionConstant = Constants.Subsystem.Vision.FRICTION_TURRET;
+        p = Constants.Subsystem.Vision.FRICTION_P;
     }
 
     @Override
