@@ -1,11 +1,11 @@
-package com.team2502.robot2022.commands;
+package com.team2502.robot2022.commands.autonomous.ingredients;
 import com.team2502.robot2022.subsystems.DrivetrainSubsystem;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import com.team2502.robot2022.util.Trapezoidal;
 import com.team2502.robot2022.util.Util;
 
-public class GoCommand extends CommandBase {
+public class DistanceDriveCommand extends CommandBase {
 
 
     private final DrivetrainSubsystem drivetrain;
@@ -15,12 +15,12 @@ public class GoCommand extends CommandBase {
     private Trapezoidal trapezoidal;
 
     /**
-    * Go command
+    * Distance command
     * moves forward the distance specified
     * @param drivetrain drivetrain subsystem
     * @param goalPoint distance to travel in inches
      */
-    public GoCommand(DrivetrainSubsystem drivetrain, double goalPoint) {
+    public DistanceDriveCommand(DrivetrainSubsystem drivetrain, double goalPoint) {
         this.drivetrain = drivetrain;
 
 	this.goalPoint = goalPoint;
