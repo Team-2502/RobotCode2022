@@ -6,6 +6,7 @@ import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMax.SoftLimitDirection;
 import com.team2502.robot2022.Constants;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class TurretSubsystem extends SubsystemBase {
 
@@ -37,6 +38,7 @@ public class TurretSubsystem extends SubsystemBase {
     }
     @Override
     public void periodic(){ //Does not run anything constantly
+        SmartDashboard.putNumber("Turret pos", turnMotorEncoder.getPosition());
     }
 
     /**
