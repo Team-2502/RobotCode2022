@@ -141,7 +141,7 @@ public final class Constants {
             public static final double LIMELIGHT_HEIGHT = 26; // limelight aperture to ground in inches
             public static final double LIMELIGHT_ELEVATION = 37; // limelight elevation in degrees
 
-            public static final double BASKET_HEIGHT = 96; // basket vision target to ground
+            public static final double BASKET_HEIGHT = 100.5; // basket vision target to ground
 
             //Everything in this class is referenced in the Vision Subsystem, and explained at least partially there.
             public static final String LIMELIGHT_NETWORK_TABLE = "limelight-turret"; //the name in the network table of the limelight
