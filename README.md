@@ -28,10 +28,13 @@ We use a table of values to figure out how hard to shoot for a given distance
 
 high goal
 |Distance (measured) | Distance (camera) | RPM
-| --- | -- | -    |
-| 9ft | x  | 2600 |
-| 7ft | x  | 2502 |
-| 5ft | x  | x    |
+| ---  | -- | -    |
+| 15ft | x  | 3250 |
+| 13ft | x  | 2925 |
+| 11ft | x  | 2790 |
+| 9ft  | x  | 2620 |
+| 7ft  | x  | 2520 |
+| 5ft  | x  | x    |
 
 low goal
 |Distance (measured) | Distance (camera) | RPM
