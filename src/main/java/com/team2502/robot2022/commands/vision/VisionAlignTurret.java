@@ -45,7 +45,7 @@ public final class VisionAlignTurret extends CommandBase {
 
             if (tx > 1.0) {
                 steering_adjust = p * tx + frictionVal;
-            } else if (tx < 1.0) {    //robot needs to turn left
+            } else if (tx < 1.0) {    // robot needs to turn left
                 steering_adjust = p * tx - frictionVal;
             }
             turret.runMotor(-steering_adjust);

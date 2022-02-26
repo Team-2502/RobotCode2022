@@ -134,8 +134,8 @@ public final class Constants {
             public static final double VISION_TURNING_P_LOW = 0.015;
 
             // turret
-            public static final double FRICTION_TURRET = 0.024;
-            public static final double FRICTION_P = 0.006;
+            public static final double FRICTION_TURRET = 0.035;
+            public static final double FRICTION_P = 0.0085;
             public static final double FRICTION_I = 0.003;
 
             public static final double LIMELIGHT_HEIGHT = 26; // limelight aperture to ground in inches
