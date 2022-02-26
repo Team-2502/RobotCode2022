@@ -24,6 +24,21 @@ active intake, when the baby Neos power the top belt, that also has the squeeze 
 ### Shooter Subsystem
 The shooter subsystem controls two Neos that spin the flywheel extremely fast. There is a PID controller that has our flywheel spin at a select rotations per
 minute.
+We use a table of values to figure out how hard to shoot for a given distance
+
+high goal
+|Distance (measured) | Distance (camera) | RPM
+| --- | -- | -    |
+| 9ft | x  | 2600 |
+| 7ft | x  | 2502 |
+| 5ft | x  | x    |
+
+low goal
+|Distance (measured) | Distance (camera) | RPM
+| --- | -- | -    |
+| 5ft | x  | 1492 |
+| 3ft | x  | 1555 |
+
 
 ### Turret Subsystem
 The turret subsystem controls a baby Neo that turns a gear connected to the turret's sprocket.
