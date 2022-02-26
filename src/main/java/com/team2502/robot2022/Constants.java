@@ -35,7 +35,7 @@ public final class Constants {
         public static final int RUN_INTAKE_BUTTON = 3;
 
         // Operator Joystick
-        public static final int TOGGLE_INTAKE = 8;
+        public static final int TOGGLE_INTAKE = 6;
 
         public static final int SHOOT_BUTTON = 1;
         public static final int SPIN_FLYWHEEL_BUTTON = 3;
@@ -47,7 +47,7 @@ public final class Constants {
         public static final int RUN_CLIMBER_WENCH_BUTTON = 14;
         public static final int RUN_CLIMBER_WENCH_BACKWARDS_BUTTON = 15;
 
-        public static final int VISION_TURRET_ALIGN = 10;
+        public static final int VISION_TURRET_ALIGN = 7;
         public static final int VISION_TURRET_UNALIGN = 12;
     }
 
@@ -152,15 +152,15 @@ public final class Constants {
             public static final double limelightOn = 0;
             public static final double limelightPipelineDefault = 0;
 
-            public static final LookupTable TARGETY_TO_DISTANCE_TABLE; //lookup table to convert Y values from the limelight to distances
+            //public static final LookupTable TARGETY_TO_DISTANCE_TABLE; //lookup table to convert Y values from the limelight to distances
             public static final LookupTable DIST_TO_RPM_STANDSTILL_TABLE; //lookup table to convert distances from the hoop to rpms for the flywheel
 
             static {
-                HashMap<Double, Double> tyToDistMap = new HashMap<>(); //hashmap for the content of the TARGETY_TO_DISTANCE_TABLE
+                HashMap<Double, Double> distToRPMStandstill = new HashMap<>(); //hashmap for the content of the TARGETY_TO_DISTANCE_TABLE
                 //add items to lookup table here
-                TARGETY_TO_DISTANCE_TABLE = new LookupTable(tyToDistMap); //Initialize the TARGETY_TO_DISTANCE_TABLE, setting it to the values of the above hashmap
+                //TARGETY_TO_DISTANCE_TABLE = new LookupTable(distToRPMStandstill); //Initialize the TARGETY_TO_DISTANCE_TABLE, setting it to the values of the above hashmap
 
-                HashMap<Double, Double> distToRPMStandstill = new HashMap<>();//hashmap for the content of the DIST_TO_RPM_STANDSTILL_TABLE
+                //HashMap<Double, Double> distToRPMStandstill = new HashMap<>();//hashmap for the content of the DIST_TO_RPM_STANDSTILL_TABLE
                 distToRPMStandstill.put(7D,2520D);
                 distToRPMStandstill.put(9D,2620D);
                 distToRPMStandstill.put(11D,2620D);
