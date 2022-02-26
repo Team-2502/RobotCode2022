@@ -31,11 +31,11 @@ public final class Constants {
         public static final int SHIFT = 1;
 
         // Left Drive Joystick
-        public static final int VISION_DRIVETRAIN_ALIGN = 1;
-        public static final int RUN_INTAKE_BUTTON = 3;
+        public static final int VISION_DRIVETRAIN_ALIGN = 99;
+        public static final int RUN_INTAKE_BUTTON = 1;
 
         // Operator Joystick
-        public static final int TOGGLE_INTAKE = 6;
+        public static final int TOGGLE_INTAKE = 7;
 
         public static final int SHOOT_BUTTON = 1;
         public static final int SPIN_FLYWHEEL_BUTTON = 3;
@@ -47,7 +47,7 @@ public final class Constants {
         public static final int RUN_CLIMBER_WENCH_BUTTON = 14;
         public static final int RUN_CLIMBER_WENCH_BACKWARDS_BUTTON = 15;
 
-        public static final int VISION_TURRET_ALIGN = 7;
+        public static final int VISION_TURRET_ALIGN = 6;
         public static final int VISION_TURRET_UNALIGN = 12;
     }
 
@@ -148,7 +148,7 @@ public final class Constants {
 
 
             //these would be the numbers corresponding to various settings of the limelight
-            public static final double limelightOff = 2;
+            public static final double limelightOff = 3;
             public static final double limelightOn = 0;
             public static final double limelightPipelineDefault = 0;
 

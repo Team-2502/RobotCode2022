@@ -67,7 +67,7 @@ public class RobotContainer
     private void configureButtonBindings()
     {
         JoystickButton RunIntakeButton = new JoystickButton(JOYSTICK_DRIVE_LEFT, Constants.OI.RUN_INTAKE_BUTTON);
-        RunIntakeButton.whenHeld(new RunIntakeCommand(INTAKE, 0.5, 0.85));
+        RunIntakeButton.toggleWhenPressed(new RunIntakeCommand(INTAKE, 0.5, 0.85));
 
         JoystickButton RunIntakeBackwardsButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_INTAKE_BACKWARDS_BUTTON);
         RunIntakeBackwardsButton.whenHeld(new ShootCommand(SHOOTER, INTAKE, -0.6, -0.5, -0.85));

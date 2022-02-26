@@ -77,7 +77,7 @@ public class VisionSubsystem extends SubsystemBase {
      * Used to not blind[hyperbole] any unfortunate soul that happens to look at the limelight when we are not using it
      */
     public void limelightOff() {
-        limelight.getEntry("pipeline").setNumber(Constants.Subsystem.Vision.limelightOff);
+        limelight.getEntry("ledMode").setNumber(Constants.Subsystem.Vision.limelightOff);
     }
 
     /**
@@ -87,7 +87,7 @@ public class VisionSubsystem extends SubsystemBase {
      * Used to turn the limelight back on so that we can aim[after turning it off for not-blinding-the-ref purposes]
      */
     public void limelightOn() {
-        limelight.getEntry("pipeline").setNumber(Constants.Subsystem.Vision.limelightOn);
+        limelight.getEntry("ledMode").setNumber(Constants.Subsystem.Vision.limelightOn);
     }
 
     /**

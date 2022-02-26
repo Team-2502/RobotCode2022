@@ -27,6 +27,7 @@ public final class VisionAlignTurret extends CommandBase {
     public void initialize() {
         frictionConstant = Constants.Subsystem.Vision.FRICTION_TURRET;
         p = Constants.Subsystem.Vision.FRICTION_P;
+        vision.limelightOn();
     }
 
     @Override
@@ -61,5 +62,6 @@ public final class VisionAlignTurret extends CommandBase {
     @Override
     public void end(boolean interrupted) {
 	turret.stop();
+    vision.limelightOff();
     }
 }
