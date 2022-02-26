@@ -106,7 +106,7 @@ public class VisionSubsystem extends SubsystemBase {
      * (table for sending arbitrary values between the limelight, robot, and driver station)
      * and putting it through the trigonometrical coding and algorithms
      *
-     * @return The distance to the target(hoop)
+     * @return The distance to the target(hoop) in inches
      */
     public double getDistance() {
         return Util.findDist(Vision.LIMELIGHT_HEIGHT,  Vision.LIMELIGHT_ELEVATION, Vision.BASKET_HEIGHT, targetY);
