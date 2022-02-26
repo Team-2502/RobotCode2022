@@ -97,6 +97,9 @@ public class RobotContainer
         JoystickButton RunClimberBackwardsButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_CLIMBER_WENCH_BACKWARDS_BUTTON);
         RunClimberBackwardsButton.whenHeld(new RunClimberCommand(CLIMBER, -0.4));
 
+        JoystickButton RunShooterButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.SPIN_FLYWHEEL_BUTTON);
+        RunShooterButton.whenHeld(new RunShooterCommand(SHOOTER, VISION, 0));
+
         // Add button to command mappings here.
         // See https://docs.wpilib.org/en/stable/docs/software/commandbased/binding-commands-to-triggers.html
     }

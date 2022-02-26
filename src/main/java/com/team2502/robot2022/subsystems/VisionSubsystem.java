@@ -129,4 +129,8 @@ public class VisionSubsystem extends SubsystemBase {
     public double getShooterSpeedStandstill() {
         return Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(Constants.Subsystem.Vision.TARGETY_TO_DISTANCE_TABLE.get(targetY));
     }
+
+    public double getOptimalShooterSpeed() {
+        return Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(getDistance());
+    }
 }

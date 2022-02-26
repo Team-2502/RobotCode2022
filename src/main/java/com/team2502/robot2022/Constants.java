@@ -32,16 +32,16 @@ public final class Constants {
 
         // Left Drive Joystick
         public static final int VISION_DRIVETRAIN_ALIGN = 1;
+        public static final int RUN_INTAKE_BUTTON = 3;
 
         // Operator Joystick
         public static final int TOGGLE_INTAKE = 8;
 
         public static final int SHOOT_BUTTON = 1;
-        public static final int SPIN_FLYWHEEL_BUTTON = 3090; //not used
+        public static final int SPIN_FLYWHEEL_BUTTON = 3;
 
         public static final int BUTTON_FLYWHEEL_MANUAL = 2; //used
 
-        public static final int RUN_INTAKE_BUTTON = 3;
         public static final int RUN_INTAKE_BACKWARDS_BUTTON = 4;
 
         public static final int RUN_CLIMBER_WENCH_BUTTON = 14;
