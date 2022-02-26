@@ -29,6 +29,48 @@ public class Util {
     }
 
     /**
+    * Adjust value so (|val| >= friction), normalized (between -x and x)
+    * @param val value to adjust
+    * @param friction minimum
+    * @param normal value to normalize output to (assuming val is constrained)
+    * @return adjusted value
+    */
+    public static double frictionAdjustNormal(double val, double friction, double normal) {
+	    double constrained = (val/normal)-friction;
+	    return (frictionAdjust(constrained, friction));
+    }
+
+    /**
+    * normalize val from in range A to in range B (linear)
+    * @param val value to normalize
+    * @param minA low end of start range
+    * @param maxA high end of start range
+    * @param minB low end of end range
+    * @param maxB high end of end range
+    * @return val shifted from A to B
+     */
+    public static double normalize(double val, double minA, double maxA, double minB, double maxB) {
+	    return (((val-minA) * ((maxB-minB)/(maxA-minA))) + minB);
+    }
+
+    /**
+    * normalize val from in range A to in range B, positive or negative 
+    * @param val value to normalize
+    * @param minA low end of start range
+    * @param maxA high end of start range
+    * @param minB low end of end range
+    * @param maxB high end of end range
+    * @return val shifted from A to B
+     */
+    public static double normalizeSigned(double val, double minA, double maxA, double minB, double maxB) {
+	    return (val > 0 ? // if val positive
+			    normalize(val, minA, maxA, minB, maxB)
+			    : // if negative
+			    -normalize(Math.abs(val), minA, maxA, minB, maxB)
+			    );
+    }
+
+    /**
     * Converts a pixel value to an angle off the center of the camera
     * @param fov camera field of view in the wanted axis
     * @param resolution camera resolution in the wanted axis
