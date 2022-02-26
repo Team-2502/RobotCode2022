@@ -99,7 +99,7 @@ public class Util {
      */
     public static double findDist(double camHeight, double camElevation, double basketHeight, double targetElevation) {
 	    return (
-			    basketHeight - camHeight
+			    (basketHeight - camHeight)
 			    /
 			    Math.tan(Math.toRadians(targetElevation+ camElevation))
 		   );
