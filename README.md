@@ -27,9 +27,10 @@ minute.
 We use a table of values to figure out how hard to shoot for a given distance
 
 high goal
+
 |Distance (measured) | Distance (camera) | RPM
 | ---  | -- | -    |
-| 17ft | x  | 3750 |
+| 19ft | x  | 3750 |
 | 17ft | x  | 3570 |
 | 15ft | x  | 3250 |
 | 13ft | x  | 2925 |
@@ -39,7 +40,8 @@ high goal
 | 5ft  | x  | x    |
 
 low goal
-|Distance (measured) | Distance (camera) | RPM
+
+|Distance (measured) | Distance (camera) | RPM |
 | --- | -- | -    |
 | 5ft | x  | 1492 |
 | 3ft | x  | 1555 |
