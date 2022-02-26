@@ -97,7 +97,7 @@ public class VisionSubsystem extends SubsystemBase {
      * Used to turn the limelight off when we initialize[for not-blinding-the-ref purposes]
      */
     public void limelightPipeline() {
-        limelight.getEntry("ledMode").setNumber(Constants.Subsystem.Vision.limelightPipelineDefault);
+        limelight.getEntry("pipeline").setNumber(Constants.Subsystem.Vision.limelightPipelineDefault);
     }
 
     /**
@@ -127,10 +127,10 @@ public class VisionSubsystem extends SubsystemBase {
      * @return An RPM for the shooter to spin at.
      */
     public double getShooterSpeedStandstill() {
-        return Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(Constants.Subsystem.Vision.TARGETY_TO_DISTANCE_TABLE.get(targetY));
+        return Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(getDistance()/12);
     }
 
     public double getOptimalShooterSpeed() {
-        return Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(getDistance());
+        return Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(getDistance()/12);
     }
 }
