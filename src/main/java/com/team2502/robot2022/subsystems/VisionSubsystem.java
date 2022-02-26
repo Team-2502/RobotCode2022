@@ -109,7 +109,7 @@ public class VisionSubsystem extends SubsystemBase {
      * @return The distance to the target(hoop)
      */
     public double getDistance() {
-        return Util.findDist(Vision.LIMELIGHT_HEIGHT, Vision.BASKET_HEIGHT, Vision.LIMELIGHT_ELEVATION, targetY);
+        return Util.findDist(Vision.LIMELIGHT_HEIGHT,  Vision.LIMELIGHT_ELEVATION, Vision.BASKET_HEIGHT, targetY);
     }
 
 
