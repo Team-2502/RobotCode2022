@@ -123,7 +123,7 @@ public final class Constants {
 
             public static final double TURRET_GEAR_RATIO = 0D; // TODO Find this value
 
-            public static final double TRAVERSE_POWER = 1.9; // (traverseInput ^ pow)
+            public static final double TRAVERSE_POWER = 3; // (traverseInput ^ pow)
             public static final double TRAVERSE_FRICTION = 0.024; // min val for turret to move
 
         }
@@ -161,6 +161,9 @@ public final class Constants {
                 TARGETY_TO_DISTANCE_TABLE = new LookupTable(tyToDistMap); //Initialize the TARGETY_TO_DISTANCE_TABLE, setting it to the values of the above hashmap
 
                 HashMap<Double, Double> distToRPMStandstill = new HashMap<>();//hashmap for the content of the DIST_TO_RPM_STANDSTILL_TABLE
+		distToRPMStandstill.put(7D,2520D);
+		distToRPMStandstill.put(9D,2620D);
+		distToRPMStandstill.put(11D,2620D);
                 //add items to lookup table here
                 DIST_TO_RPM_STANDSTILL_TABLE = new LookupTable(distToRPMStandstill); //Initialize the DIST_TO_RPM_STANDSTILL_TABLE, setting it to the values of the above hashmap
             }
