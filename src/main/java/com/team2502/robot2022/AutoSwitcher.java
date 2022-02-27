@@ -58,7 +58,7 @@ public class AutoSwitcher {
 				new ParallelRaceGroup( // intake while moving forward
 				new RunIntakeCommand(i, 0.5, 0.85, true), // intake
 				new DistanceDriveCommand(d, 77.0), // move to ball
-				new WaitCommand(8)
+				new WaitCommand(4)
 					),
 				new ParallelRaceGroup( // align, then shoot
 				new VisionAlignTurret(v, t),
@@ -71,7 +71,7 @@ public class AutoSwitcher {
 					new WaitCommand(1.8), // spool up
 					new ShootCommand(s, i, 0.2, 0.85, 0.45, true) // shoot
 					),
-				new WaitCommand(6) // shoot for 6s before stopping
+				new WaitCommand(14) // shoot for 6s before stopping
 					),
 				new FreezeCommand(v,i,d,t,s),
 				new SpinFlywheelCommand(s, 0) // stop flywheel
