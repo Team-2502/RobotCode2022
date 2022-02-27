@@ -10,7 +10,6 @@ public class TraverseCommand extends CommandBase {
 
 
     private final TurretSubsystem turret;
-    private double startPos;
     private double goalPoint;
     private PIDController pid;
     private Trapezoidal trapezoidal;
@@ -32,8 +31,7 @@ public class TraverseCommand extends CommandBase {
     @Override
     public void initialize()
     {
-        this.startPos = turret.getRawAngle();
-        this.pid = new PIDController(0.02,0.03,0.03);
+        this.pid = new PIDController(0.02,0.0,0.0);
         this.trapezoidal = new Trapezoidal(1);
         pid.setTolerance(.2);
 
@@ -43,7 +41,7 @@ public class TraverseCommand extends CommandBase {
 
     @Override
     public void execute() {
-	double error = (turret.getRawAngle()-startPos)+goalPoint;
+	double error = (goalPoint-turret.getRawAngle());
 	//double speed = pid.calculate(error);
 	double speed = trapezoidal.calculate(pid.calculate(error));
         speed = Util.constrain(speed,.7);
