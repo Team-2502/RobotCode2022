@@ -32,7 +32,7 @@ public class DistanceDriveCommand extends CommandBase {
     public void initialize()
     {
         this.startPos = drivetrain.getInchesTraveled();
-        this.pid = new PIDController(0.06,0.03,0.03);
+        this.pid = new PIDController(0.02,0.03,0.03);
         this.trapezoidal = new Trapezoidal(.6);
         pid.setTolerance(.2);
 
@@ -45,7 +45,7 @@ public class DistanceDriveCommand extends CommandBase {
 	double error = (drivetrain.getInchesTraveled()-startPos)+goalPoint;
 	//double speed = pid.calculate(error);
 	double speed = trapezoidal.calculate(pid.calculate(error));
-        speed = Util.constrain(speed,.3);
+        speed = Util.constrain(speed,.7);
 	drivetrain.setSpeed(-speed,speed);
     }
 

@@ -69,7 +69,6 @@ public class AutoSwitcher {
 						),
 					new ShootCommand(s, i, 0.5, 0, 0.85, false) // shoot
 					),
-				new DistanceDriveCommand(d, 80.0),
 				new WaitCommand(6)
 					),
 				new WaitCommand(3)
