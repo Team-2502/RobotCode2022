@@ -86,6 +86,7 @@ public final class Constants {
             public static final int INTAKE = 15;
             public static final int RIGHT_PASSIVE_CLIMBER = 3;
             public static final int LEFT_PASSIVE_CLIMBER = 4;
+            public static final int RELEASE_CLIMBER = 7;
         }
     }
 

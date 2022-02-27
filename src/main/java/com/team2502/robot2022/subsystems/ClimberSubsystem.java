@@ -2,6 +2,8 @@ package com.team2502.robot2022.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.team2502.robot2022.Constants;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -11,12 +13,15 @@ public class  ClimberSubsystem extends SubsystemBase {
     private final WPI_TalonFX motor_right;
     private final WPI_TalonFX motor_left;
 
+    private final Solenoid releaseClimber;
+
     public ClimberSubsystem(){
         //defines climber motors as Talons and gives correct ID from Constants
 //        piston_right = new Solenoid(PneumaticsModuleType.REVPH, RIGHT_PASSIVE_CLIMBER);
 //        piston_left = new Solenoid(PneumaticsModuleType.REVPH, LEFT_PASSIVE_CLIMBER);
         motor_right = new WPI_TalonFX(Constants.RobotMap.Motors.RIGHT_WENCH);
         motor_left = new WPI_TalonFX(Constants.RobotMap.Motors.LEFT_WENCH);
+        releaseClimber = new Solenoid(PneumaticsModuleType.REVPH, Constants.RobotMap.Solenoids.RELEASE_CLIMBER);
     }
 
     @Override
@@ -36,6 +41,10 @@ public class  ClimberSubsystem extends SubsystemBase {
         //will stop motors when command is run
         motor_right.set(0);
         motor_left.set(0);
+    }
+
+    public void releaseClimber() {
+        releaseClimber.set(false);
     }
 
 //    public void retractSolenoid() {
