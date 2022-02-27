@@ -104,7 +104,7 @@ public class AutoSwitcher {
 					new WaitCommand(1.8), // spool up
 					new ShootCommand(s, i, 0.2, 0.85, 0.45, true) // shoot
 					),
-				new WaitCommand(14) // shoot for 6s before stopping
+				new WaitCommand(11) // shoot for 6s before stopping
 					),
 				new FreezeCommand(v,i,d,t,s),
 				new SpinFlywheelCommand(s, 0) // stop flywheel
