@@ -44,7 +44,6 @@ public class IntakeSubsystem extends SubsystemBase {
         intakeMotor.stopMotor();
         bottomBelt.stopMotor();
         topBelt.stopMotor();
-        intakeDeploySolenoid.set(false);
     }
 
     public void stopSqueeze() {

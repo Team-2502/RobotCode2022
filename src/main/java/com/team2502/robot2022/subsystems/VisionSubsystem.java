@@ -48,7 +48,7 @@ public class VisionSubsystem extends SubsystemBase {
         SmartDashboard.putNumber("Limelight Target X", targetX);
         SmartDashboard.putNumber("Limelight Target Y", targetY);
         SmartDashboard.putNumber("Limelight Target Area", targetArea);
-        SmartDashboard.putNumber("Limelight Target Distance", getDistance());
+        SmartDashboard.putNumber("Limelight Target Distance (feet)", getDistance()/12);
 
         //SmartDashboard.putNumber("Limelight Distance To Target", getDistance());
 
@@ -97,7 +97,7 @@ public class VisionSubsystem extends SubsystemBase {
      * Used to turn the limelight off when we initialize[for not-blinding-the-ref purposes]
      */
     public void limelightPipeline() {
-        limelight.getEntry("ledMode").setNumber(Constants.Subsystem.Vision.limelightPipelineDefault);
+        limelight.getEntry("pipeline").setNumber(Constants.Subsystem.Vision.limelightPipelineDefault);
     }
 
     /**
@@ -106,10 +106,10 @@ public class VisionSubsystem extends SubsystemBase {
      * (table for sending arbitrary values between the limelight, robot, and driver station)
      * and putting it through the trigonometrical coding and algorithms
      *
-     * @return The distance to the target(hoop)
+     * @return The distance to the target(hoop) in inches
      */
     public double getDistance() {
-        return Util.findDist(Vision.LIMELIGHT_HEIGHT, Vision.BASKET_HEIGHT, Vision.LIMELIGHT_ELEVATION, targetY);
+        return Util.findDist(Vision.LIMELIGHT_HEIGHT,  Vision.LIMELIGHT_ELEVATION, Vision.BASKET_HEIGHT, targetY);
     }
 
 
@@ -127,6 +127,10 @@ public class VisionSubsystem extends SubsystemBase {
      * @return An RPM for the shooter to spin at.
      */
     public double getShooterSpeedStandstill() {
-        return Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(Constants.Subsystem.Vision.TARGETY_TO_DISTANCE_TABLE.get(targetY));
+        return Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(getDistance()/12);
+    }
+
+    public double getOptimalShooterSpeed() {
+        return Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(getDistance()/12);
     }
 }

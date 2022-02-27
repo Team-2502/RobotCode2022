@@ -31,23 +31,23 @@ public final class Constants {
         public static final int SHIFT = 1;
 
         // Left Drive Joystick
-        public static final int VISION_DRIVETRAIN_ALIGN = 1;
+        public static final int VISION_DRIVETRAIN_ALIGN = 99;
+        public static final int RUN_INTAKE_BUTTON = 1;
 
         // Operator Joystick
-        public static final int TOGGLE_INTAKE = 8;
+        public static final int TOGGLE_INTAKE = 7;
 
         public static final int SHOOT_BUTTON = 1;
-        public static final int SPIN_FLYWHEEL_BUTTON = 3090; //not used
+        public static final int SPIN_FLYWHEEL_BUTTON = 3;
 
         public static final int BUTTON_FLYWHEEL_MANUAL = 2; //used
 
-        public static final int RUN_INTAKE_BUTTON = 3;
         public static final int RUN_INTAKE_BACKWARDS_BUTTON = 4;
 
         public static final int RUN_CLIMBER_WENCH_BUTTON = 14;
         public static final int RUN_CLIMBER_WENCH_BACKWARDS_BUTTON = 15;
 
-        public static final int VISION_TURRET_ALIGN = 11;
+        public static final int VISION_TURRET_ALIGN = 6;
         public static final int VISION_TURRET_UNALIGN = 12;
     }
 
@@ -134,35 +134,43 @@ public final class Constants {
             public static final double VISION_TURNING_P_LOW = 0.015;
 
             // turret
-            public static final double FRICTION_TURRET = 0.024;
-            public static final double FRICTION_P = 0.006;
+            public static final double FRICTION_TURRET = 0.035;
+            public static final double FRICTION_P = 0.0085;
             public static final double FRICTION_I = 0.003;
 
             public static final double LIMELIGHT_HEIGHT = 26; // limelight aperture to ground in inches
-            public static final double LIMELIGHT_ELEVATION = 37; // limelight elevation in degrees
+            public static final double LIMELIGHT_ELEVATION = 35; // limelight elevation in degrees
 
-            public static final double BASKET_HEIGHT = 96; // basket vision target to ground
+            public static final double BASKET_HEIGHT = 100.5; // basket vision target to ground
 
             //Everything in this class is referenced in the Vision Subsystem, and explained at least partially there.
             public static final String LIMELIGHT_NETWORK_TABLE = "limelight-turret"; //the name in the network table of the limelight
 
 
             //these would be the numbers corresponding to various settings of the limelight
-            public static final double limelightOff = 2;
+            public static final double limelightOff = 3;
             public static final double limelightOn = 0;
             public static final double limelightPipelineDefault = 0;
 
-            public static final LookupTable TARGETY_TO_DISTANCE_TABLE; //lookup table to convert Y values from the limelight to distances
+            //public static final LookupTable TARGETY_TO_DISTANCE_TABLE; //lookup table to convert Y values from the limelight to distances
             public static final LookupTable DIST_TO_RPM_STANDSTILL_TABLE; //lookup table to convert distances from the hoop to rpms for the flywheel
 
             static {
-                HashMap<Double, Double> tyToDistMap = new HashMap<>(); //hashmap for the content of the TARGETY_TO_DISTANCE_TABLE
+                HashMap<Double, Double> distToRPMStandstill = new HashMap<>(); //hashmap for the content of the TARGETY_TO_DISTANCE_TABLE
                 //add items to lookup table here
-                TARGETY_TO_DISTANCE_TABLE = new LookupTable(tyToDistMap); //Initialize the TARGETY_TO_DISTANCE_TABLE, setting it to the values of the above hashmap
+                //TARGETY_TO_DISTANCE_TABLE = new LookupTable(distToRPMStandstill); //Initialize the TARGETY_TO_DISTANCE_TABLE, setting it to the values of the above hashmap
 
-                HashMap<Double, Double> distToRPMStandstill = new HashMap<>();//hashmap for the content of the DIST_TO_RPM_STANDSTILL_TABLE
-                //add items to lookup table here
-                DIST_TO_RPM_STANDSTILL_TABLE = new LookupTable(distToRPMStandstill); //Initialize the DIST_TO_RPM_STANDSTILL_TABLE, setting it to the values of the above hashmap
+                //HashMap<Double, Double> distToRPMStandstill = new HashMap<>();//hashmap for the content of the DIST_TO_RPM_STANDSTILL_TABLE
+                distToRPMStandstill.put(7D,2520D);
+                distToRPMStandstill.put(9D,2620D);
+                distToRPMStandstill.put(11D,2620D);
+                distToRPMStandstill.put(13D, 2925D);
+                distToRPMStandstill.put(15D, 3250D);
+                distToRPMStandstill.put(17D, 3570D);
+                distToRPMStandstill.put(19D, 3750D);
+
+                    //add items to lookup table here
+                    DIST_TO_RPM_STANDSTILL_TABLE = new LookupTable(distToRPMStandstill); //Initialize the DIST_TO_RPM_STANDSTILL_TABLE, setting it to the values of the above hashmap
             }
         }
 

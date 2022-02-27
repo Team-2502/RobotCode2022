@@ -27,6 +27,7 @@ public final class VisionAlignTurret extends CommandBase {
     public void initialize() {
         frictionConstant = Constants.Subsystem.Vision.FRICTION_TURRET;
         p = Constants.Subsystem.Vision.FRICTION_P;
+        vision.limelightOn();
     }
 
     @Override
@@ -45,7 +46,7 @@ public final class VisionAlignTurret extends CommandBase {
 
             if (tx > 1.0) {
                 steering_adjust = p * tx + frictionVal;
-            } else if (tx < 1.0) {    //robot needs to turn left
+            } else if (tx < 1.0) {    // robot needs to turn left
                 steering_adjust = p * tx - frictionVal;
             }
             turret.runMotor(-steering_adjust);
@@ -61,5 +62,6 @@ public final class VisionAlignTurret extends CommandBase {
     @Override
     public void end(boolean interrupted) {
 	turret.stop();
+    vision.limelightOff();
     }
 }
