@@ -6,12 +6,12 @@
 package com.team2502.robot2022;
 
 import com.team2502.robot2022.commands.autonomous.ingredients.ShootCommand;
+import com.team2502.robot2022.commands.autonomous.ingredients.TraverseCommand;
 import com.team2502.robot2022.commands.*;
 import com.team2502.robot2022.commands.solenoid.ShiftCommand;
 import com.team2502.robot2022.commands.solenoid.ToggleIntakeCommand;
 import com.team2502.robot2022.commands.vision.VisionAlignDrivetrain;
 import com.team2502.robot2022.commands.vision.VisionAlignTurret;
-import com.team2502.robot2022.commands.vision.VisionUnAlignTurret;
 import com.team2502.robot2022.subsystems.*;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
@@ -105,6 +105,9 @@ public class RobotContainer
 
         JoystickButton ReleaseClimberButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RELEASE_CLIMBER_BUTTON);
         ReleaseClimberButton.whenPressed(new ReleaseClimberSolenoidCommand(CLIMBER));
+
+        JoystickButton CenterTurretButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.CENTER_TURRET);
+        CenterTurretButton.whenHeld(new TraverseCommand(TURRET, Constants.Subsystem.Turret.CENTER));
 
         // Add button to command mappings here.
         // See https://docs.wpilib.org/en/stable/docs/software/commandbased/binding-commands-to-triggers.html

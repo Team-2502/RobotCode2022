@@ -28,8 +28,8 @@ public class TurretSubsystem extends SubsystemBase {
         */
         turnMotor.setSmartCurrentLimit(20);
 
-	turnMotor.setSoftLimit(SoftLimitDirection.kForward,15);
-	turnMotor.setSoftLimit(SoftLimitDirection.kReverse,-15);
+	turnMotor.setSoftLimit(SoftLimitDirection.kForward,Constants.Subsystem.Turret.LIMIT_MAX);
+	turnMotor.setSoftLimit(SoftLimitDirection.kReverse,Constants.Subsystem.Turret.LIMIT_MIN);
 	turnMotor.enableSoftLimit(SoftLimitDirection.kForward,true);
 	turnMotor.enableSoftLimit(SoftLimitDirection.kReverse,true);
 
@@ -52,6 +52,10 @@ public class TurretSubsystem extends SubsystemBase {
     public double getAngle()
     {
         return turnMotorEncoder.getPosition() * Constants.Subsystem.Turret.TURRET_GEAR_RATIO; //TODO Make this method
+    }
+
+    public double getRawAngle() {
+	return turnMotorEncoder.getPosition();
     }
 
     /**

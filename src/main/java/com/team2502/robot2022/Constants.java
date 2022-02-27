@@ -52,6 +52,7 @@ public final class Constants {
 
         public static final int VISION_TURRET_ALIGN = 8;
         public static final int VISION_TURRET_UNALIGN = 12;
+        public static final int CENTER_TURRET = 14;
 
         public static final int RELEASE_CLIMBER_BUTTON = 7;
     }
@@ -123,6 +124,10 @@ public final class Constants {
 
             public static final double MIN_ANGLE = 0;
             public static final double MAX_ANGLE = 180;
+
+            public static final int LIMIT_MIN = 0;
+            public static final int LIMIT_MAX = 51;
+            public static final double CENTER = 27;
 
             public static final double TURN_TOLERANCE_DEG = 1;
             public static final double TURN_RATE_TOLERANCE_DEG_PER_S = 1;
