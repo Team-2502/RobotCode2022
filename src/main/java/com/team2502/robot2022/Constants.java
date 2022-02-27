@@ -151,7 +151,7 @@ public final class Constants {
 
 
             //these would be the numbers corresponding to various settings of the limelight
-            public static final double limelightOff = 3;
+            public static final double limelightOff = 2;
             public static final double limelightOn = 0;
             public static final double limelightPipelineDefault = 0;
 

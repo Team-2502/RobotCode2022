@@ -17,6 +17,8 @@ public class ShooterSubsystem extends SubsystemBase {
     private final CANSparkMax loadMotor1;
     private final CANSparkMax loadMotor2;
 
+    private double target;
+
     public ShooterSubsystem() {
         shooterLeft = new CANSparkMax(Constants.RobotMap.Motors.SHOOTER_LEFT, CANSparkMaxLowLevel.MotorType.kBrushless);
         shooterRight = new CANSparkMax(Constants.RobotMap.Motors.SHOOTER_RIGHT, CANSparkMaxLowLevel.MotorType.kBrushless);
@@ -25,6 +27,9 @@ public class ShooterSubsystem extends SubsystemBase {
         loadMotor2 = new CANSparkMax(Constants.RobotMap.Motors.SUSHI_MOTOR_2, CANSparkMaxLowLevel.MotorType.kBrushless);
 
         shooterRight.follow(shooterLeft, true); // follow right motor, inverted
+
+        SmartDashboard.putNumber("Shooter Target Velocity", 0);
+	target = 0;
 
         shooterLeft.setSmartCurrentLimit(39);
         shooterRight.setSmartCurrentLimit(39);
@@ -36,11 +41,16 @@ public class ShooterSubsystem extends SubsystemBase {
     }
 
     @Override
-    public void periodic() { SmartDashboard.putNumber("Shooter Velocity", -rightEncoder.getVelocity()); }
+    public void periodic() { 
+	    SmartDashboard.putNumber("Shooter Velocity", -rightEncoder.getVelocity()); 
+	    SmartDashboard.putBoolean("Within Constraints", Math.abs(rightEncoder.getVelocity() - target) < 25); 
+
+    }
 
     public void setShooterSpeedRPM(double speed) {
         rightPID.setReference(-speed, CANSparkMax.ControlType.kVelocity);
         SmartDashboard.putNumber("Shooter Target Velocity", speed);
+	target = -speed;
     }
 
     public void loadBalls(double speed) {
