@@ -3,6 +3,7 @@ import com.team2502.robot2022.commands.TurnAngleCommand;
 import com.team2502.robot2022.commands.autonomous.CommandFactory;
 import com.team2502.robot2022.commands.autonomous.groups.AutonomousCommandGroupFactory;
 import com.team2502.robot2022.commands.autonomous.ingredients.*;
+import com.team2502.robot2022.commands.autonomous.ingredients.FreezeCommand;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -55,23 +56,24 @@ public class AutoSwitcher {
         TEST_FRICTION((d,i,v,s,t) -> new SequentialCommandGroup(new VoltageDriveCommand(d, -0.29, 0.29))),
         TWO_BALL_SEXY((d,i,v,s,t) -> new SequentialCommandGroup(
 				new ParallelRaceGroup( // intake while moving forward
-				new RunIntakeCommand(i, 0.5, 0.85, true),
-				new DistanceDriveCommand(d, 80.0),
+				new RunIntakeCommand(i, 0.5, 0.85, true), // intake
+				new DistanceDriveCommand(d, 77.0), // move to ball
 				new WaitCommand(8)
 					),
-				new ParallelRaceGroup( // align while reversing, then shoot
+				new ParallelRaceGroup( // align, then shoot
 				new VisionAlignTurret(v, t),
-				new RunShooterCommand(s, v, 2502),
+				new SpinFlywheelCommand(s, 2780), // ~11ft on lookup table
 				new SequentialCommandGroup (
-					new ParallelRaceGroup ( // reverse intake for 1s
-						new WaitCommand(1),
+					new ParallelRaceGroup ( // reverse intake for 1s to unjam flywheel
+						new WaitCommand(.2),
 						new ShootCommand(s, i, -0.6, -0.5, -0.85, false)
 						),
+					new WaitCommand(1.8), // spool up
 					new ShootCommand(s, i, 0.5, 0, 0.85, false) // shoot
 					),
-				new WaitCommand(6)
+				new WaitCommand(6) // shoot for 6s before stopping
 					),
-				new WaitCommand(3)
+				new FreezeCommand(v,i,d,t,s)
 			)),
         DO_NOTHING("Do Nothing", DoNothingCommand::new); // always put last
 
