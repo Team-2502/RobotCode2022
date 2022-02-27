@@ -104,6 +104,11 @@ public class DrivetrainSubsystem extends SubsystemBase{
         else return false;
     }
 
+    public void stop() {
+        drivetrainFrontRight.stopMotor();
+        drivetrainFrontLeft.stopMotor();
+    }
+
     @Override
     public void periodic(){
 
