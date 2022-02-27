@@ -54,7 +54,7 @@ public class AutoSwitcher {
     {
         //TEST_TURN((d,i,v,s,t) -> new TurnToAngleCommand(d, 179D)), /// divst subby
         TEST_FRICTION((d,i,v,s,t) -> new SequentialCommandGroup(new VoltageDriveCommand(d, -0.29, 0.29))),
-        TWO_BALL_SEXY((d,i,v,s,t) -> new SequentialCommandGroup(
+        TWO_BALL((d,i,v,s,t) -> new SequentialCommandGroup(
 				new ParallelRaceGroup( // intake while moving forward
 				new RunIntakeCommand(i, 0.5, 0.85, true), // intake
 				new DistanceDriveCommand(d, 77.0), // move to ball
@@ -62,18 +62,19 @@ public class AutoSwitcher {
 					),
 				new ParallelRaceGroup( // align, then shoot
 				new VisionAlignTurret(v, t),
-				new SpinFlywheelCommand(s, 2780), // ~11ft on lookup table
+				new SpinFlywheelCommand(s, 3030), // ~11ft on lookup table
 				new SequentialCommandGroup (
 					new ParallelRaceGroup ( // reverse intake for 1s to unjam flywheel
 						new WaitCommand(.2),
-						new ShootCommand(s, i, -0.6, -0.5, -0.85, false)
+						new ShootCommand(s, i, -0.6, -0.5, -0.85, true)
 						),
 					new WaitCommand(1.8), // spool up
-					new ShootCommand(s, i, 0.5, 0, 0.85, false) // shoot
+					new ShootCommand(s, i, 0.2, 0.85, 0.45, true) // shoot
 					),
 				new WaitCommand(6) // shoot for 6s before stopping
 					),
-				new FreezeCommand(v,i,d,t,s)
+				new FreezeCommand(v,i,d,t,s),
+				new SpinFlywheelCommand(s, 0) // stop flywheel
 			)),
         DO_NOTHING("Do Nothing", DoNothingCommand::new); // always put last
 
