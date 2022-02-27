@@ -103,6 +103,9 @@ public class RobotContainer
         JoystickButton RunShooterButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.SPIN_FLYWHEEL_BUTTON);
         RunShooterButton.whenHeld(new RunShooterCommand(SHOOTER, VISION, 2502)); // run at 2502 rpm if target not visible
 
+        JoystickButton ReleaseClimberButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RELEASE_CLIMBER_BUTTON);
+        ReleaseClimberButton.whenPressed(new ReleaseClimberSolenoidCommand(CLIMBER));
+
         // Add button to command mappings here.
         // See https://docs.wpilib.org/en/stable/docs/software/commandbased/binding-commands-to-triggers.html
     }
