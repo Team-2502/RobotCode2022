@@ -7,6 +7,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
+import com.team2502.robot2022.commands.*;
+import com.team2502.robot2022.commands.vision.*;
 
 public class AutoSwitcher {
     /**
@@ -48,6 +53,28 @@ public class AutoSwitcher {
     {
         //TEST_TURN((d,i,v,s,t) -> new TurnToAngleCommand(d, 179D)), /// divst subby
         TEST_FRICTION((d,i,v,s,t) -> new SequentialCommandGroup(new VoltageDriveCommand(d, -0.29, 0.29))),
+        TWO_BALL_SEXY((d,i,v,s,t) -> new SequentialCommandGroup(
+				new ParallelRaceGroup( // intake while moving forward
+				new RunIntakeCommand(i, 0.5, 0.85, true),
+				new DistanceDriveCommand(d, 80.0),
+				new WaitCommand(6)
+					),
+				new ParallelRaceGroup( // align while reversing, then shoot
+				new VisionAlignTurret(v, t),
+				new RunShooterCommand(s, v, 2502),
+				new SequentialCommandGroup (
+					new ParallelRaceGroup ( // reverse intake for 1s
+						new WaitCommand(1),
+						new ShootCommand(s, i, -0.6, -0.5, -0.85, false)
+						),
+					new ShootCommand(s, i, 0.5, 0, 0.85, false) // shoot
+					),
+				new RunIntakeCommand(i, 0.5, 0.85, true),
+				new DistanceDriveCommand(d, 80.0),
+				new WaitCommand(6)
+					),
+				new WaitCommand(3)
+			)),
         DO_NOTHING("Do Nothing", DoNothingCommand::new); // always put last
 
         /**
