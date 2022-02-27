@@ -32,4 +32,9 @@ public class FreezeCommand extends CommandBase {
         shooter.stopShooter();
         shooter.stopLoader();
     }
+
+    @Override 
+    public boolean isFinished() {
+    	return true;
+    }
 }

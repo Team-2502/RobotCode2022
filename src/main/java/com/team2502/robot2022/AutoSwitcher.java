@@ -3,6 +3,7 @@ import com.team2502.robot2022.commands.TurnAngleCommand;
 import com.team2502.robot2022.commands.autonomous.CommandFactory;
 import com.team2502.robot2022.commands.autonomous.groups.AutonomousCommandGroupFactory;
 import com.team2502.robot2022.commands.autonomous.ingredients.*;
+import com.team2502.robot2022.commands.autonomous.ingredients.FreezeCommand;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -53,25 +54,56 @@ public class AutoSwitcher {
     {
         //TEST_TURN((d,i,v,s,t) -> new TurnToAngleCommand(d, 179D)), /// divst subby
         TEST_FRICTION((d,i,v,s,t) -> new SequentialCommandGroup(new VoltageDriveCommand(d, -0.29, 0.29))),
-        TWO_BALL_SEXY((d,i,v,s,t) -> new SequentialCommandGroup(
+        TAXI((d,i,v,s,t) -> new SequentialCommandGroup( // leaves the hangar
+				new WaitCommand(10), // wait for alliance members
+				new ParallelRaceGroup( //
+				new DistanceDriveCommand(d, 45.0), // move off line
+				new WaitCommand(4) // sanity check
+					)
+			)),
+        TWO_BALL((d,i,v,s,t) -> new SequentialCommandGroup(
 				new ParallelRaceGroup( // intake while moving forward
-				new RunIntakeCommand(i, 0.5, 0.85, true),
-				new DistanceDriveCommand(d, 80.0),
-				new WaitCommand(8)
+				new RunIntakeCommand(i, 0.5, 0.85, true), // intake
+				new DistanceDriveCommand(d, 77.0), // move to ball
+				new WaitCommand(4)
 					),
-				new ParallelRaceGroup( // align while reversing, then shoot
+				new ParallelRaceGroup( // align, then shoot
 				new VisionAlignTurret(v, t),
-				new RunShooterCommand(s, v, 2502),
+				new SpinFlywheelCommand(s, 3030), // ~11ft on lookup table
 				new SequentialCommandGroup (
-					new ParallelRaceGroup ( // reverse intake for 1s
-						new WaitCommand(1),
+					new ParallelRaceGroup ( // reverse intake for 1s to unjam flywheel
+						new WaitCommand(.2),
 						new ShootCommand(s, i, -0.6, -0.5, -0.85, false)
 						),
-					new ShootCommand(s, i, 0.5, 0, 0.85, false) // shoot
+					new WaitCommand(1.8), // spool up
+					new ShootCommand(s, i, 0.2, 0, 0.45, false) // shoot
 					),
-				new WaitCommand(6)
+				new WaitCommand(8) // shoot for 6s before stopping
 					),
-				new WaitCommand(3)
+				new FreezeCommand(v,i,d,t,s),
+				new SpinFlywheelCommand(s, 0) // stop flywheel
+			)),
+        THREE_BALL((d,i,v,s,t) -> new SequentialCommandGroup(
+				new ParallelRaceGroup( // intake while moving forward
+				new RunIntakeCommand(i, 0.5, 0.85, true), // intake
+				new DistanceDriveCommand(d, 77.0), // move to ball
+				new WaitCommand(4)
+					),
+				new ParallelRaceGroup( // align, then shoot
+				new VisionAlignTurret(v, t),
+				new SpinFlywheelCommand(s, 3030), // ~11ft on lookup table
+				new SequentialCommandGroup (
+					new ParallelRaceGroup ( // reverse intake for 1s to unjam flywheel
+						new WaitCommand(.2),
+						new ShootCommand(s, i, -0.6, -0.5, -0.85, true)
+						),
+					new WaitCommand(1.8), // spool up
+					new ShootCommand(s, i, 0.2, 0.85, 0.45, true) // shoot
+					),
+				new WaitCommand(14) // shoot for 6s before stopping
+					),
+				new FreezeCommand(v,i,d,t,s),
+				new SpinFlywheelCommand(s, 0) // stop flywheel
 			)),
         DO_NOTHING("Do Nothing", DoNothingCommand::new); // always put last
 

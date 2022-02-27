@@ -167,13 +167,13 @@ public final class Constants {
                 //TARGETY_TO_DISTANCE_TABLE = new LookupTable(distToRPMStandstill); //Initialize the TARGETY_TO_DISTANCE_TABLE, setting it to the values of the above hashmap
 
                 //HashMap<Double, Double> distToRPMStandstill = new HashMap<>();//hashmap for the content of the DIST_TO_RPM_STANDSTILL_TABLE
-                distToRPMStandstill.put(7D,2520D);
-                distToRPMStandstill.put(9D,2620D);
-                distToRPMStandstill.put(11D,2620D);
-                distToRPMStandstill.put(13D, 2925D);
-                distToRPMStandstill.put(15D, 3250D);
-                distToRPMStandstill.put(17D, 3570D);
-                distToRPMStandstill.put(19D, 3750D);
+                distToRPMStandstill.put(7D,2920D);
+                distToRPMStandstill.put(9D,3020D);
+                distToRPMStandstill.put(11D,3020D);
+                distToRPMStandstill.put(13D, 3325D);
+                distToRPMStandstill.put(15D, 3650D);
+                distToRPMStandstill.put(17D, 3970D);
+                distToRPMStandstill.put(19D, 4150D);
 
                     //add items to lookup table here
                     DIST_TO_RPM_STANDSTILL_TABLE = new LookupTable(distToRPMStandstill); //Initialize the DIST_TO_RPM_STANDSTILL_TABLE, setting it to the values of the above hashmap
