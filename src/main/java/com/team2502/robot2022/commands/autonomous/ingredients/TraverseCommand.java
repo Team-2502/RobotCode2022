@@ -13,17 +13,37 @@ public class TraverseCommand extends CommandBase {
     private double goalPoint;
     private PIDController pid;
     private Trapezoidal trapezoidal;
+    private boolean end;
 
     /**
-    * Distance command
-    * moves forward the distance specified
-    * @param drivetrain drivetrain subsystem
-    * @param goalPoint distance to travel in inches
+    * Traverse Command
+    * Points turret at the given position
+    * @param turret turret subsystem
+    * @param goalPoint point to go to in revolutions
      */
     public TraverseCommand(TurretSubsystem turret, double goalPoint) {
         this.turret = turret;
 
 	this.goalPoint = goalPoint;
+
+	end = true;
+
+        addRequirements(turret);
+    }
+
+    /**
+    * Traverse Command
+    * Points turret at the given position
+    * @param turret turret subsystem
+    * @param goalPoint point to go to in revolutions
+    * @param end stop when at setpoint
+     */
+    public TraverseCommand(TurretSubsystem turret, double goalPoint, boolean end) {
+        this.turret = turret;
+
+	this.goalPoint = goalPoint;
+
+	this.end = end;
 
         addRequirements(turret);
     }
@@ -50,6 +70,6 @@ public class TraverseCommand extends CommandBase {
 
     @Override
     public boolean isFinished() {
-	return pid.atSetpoint();
+	return pid.atSetpoint() && end;
     }
 }

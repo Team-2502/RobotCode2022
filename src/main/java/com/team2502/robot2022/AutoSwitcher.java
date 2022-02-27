@@ -58,6 +58,7 @@ public class AutoSwitcher {
 				new WaitCommand(10), // wait for alliance members
 				new ParallelRaceGroup( //
 				new DistanceDriveCommand(d, 45.0), // move off line
+				new TraverseCommand(t, Constants.Subsystem.Turret.CENTER), // center turret
 				new WaitCommand(4) // sanity check
 					)
 			)),
@@ -65,6 +66,8 @@ public class AutoSwitcher {
 				new ParallelRaceGroup( // intake while moving forward
 				new RunIntakeCommand(i, 0.5, 0.85, true), // intake
 				new DistanceDriveCommand(d, 77.0), // move to ball
+				new TraverseCommand(t, Constants.Subsystem.Turret.CENTER), // center turret
+
 				new WaitCommand(4)
 					),
 				new ParallelRaceGroup( // align, then shoot
@@ -87,6 +90,7 @@ public class AutoSwitcher {
 				new ParallelRaceGroup( // intake while moving forward
 				new RunIntakeCommand(i, 0.5, 0.85, true), // intake
 				new DistanceDriveCommand(d, 77.0), // move to ball
+				new TraverseCommand(t, Constants.Subsystem.Turret.CENTER), // center turret
 				new WaitCommand(4)
 					),
 				new ParallelRaceGroup( // align, then shoot
