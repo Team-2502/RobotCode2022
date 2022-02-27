@@ -31,11 +31,12 @@ public final class Constants {
         public static final int SHIFT = 1;
 
         // Left Drive Joystick
-        public static final int VISION_DRIVETRAIN_ALIGN = 99;
         public static final int RUN_INTAKE_DRIVER_BUTTON = 1;
         public static final int RUN_INTAKE_BACKWARDS_DRIVER_BUTTON = 2;
 
         // Operator Joystick
+        public static final int VISION_DRIVETRAIN_ALIGN = 10;
+
         public static final int TOGGLE_INTAKE = 4;
 
         public static final int SHOOT_BUTTON = 1;
