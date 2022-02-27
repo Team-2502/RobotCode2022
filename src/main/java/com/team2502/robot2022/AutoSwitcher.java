@@ -65,7 +65,7 @@ public class AutoSwitcher {
         TWO_BALL((d,i,v,s,t) -> new SequentialCommandGroup(
 				new ParallelRaceGroup( // intake while moving forward
 				new RunIntakeCommand(i, 0.5, 0.85, true), // intake
-				new DistanceDriveCommand(d, 77.0), // move to ball
+				new DistanceDriveCommand(d, 37.0), // move to ball
 				new TraverseCommand(t, Constants.Subsystem.Turret.CENTER), // center turret
 
 				new WaitCommand(4)
