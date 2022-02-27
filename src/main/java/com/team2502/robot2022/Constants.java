@@ -153,7 +153,7 @@ public final class Constants {
             //these would be the numbers corresponding to various settings of the limelight
             public static final double limelightOff = 2;
             public static final double limelightOn = 0;
-            public static final double limelightPipelineDefault = 0;
+            public static final double limelightPipelineDefault = 2;
 
             //public static final LookupTable TARGETY_TO_DISTANCE_TABLE; //lookup table to convert Y values from the limelight to distances
             public static final LookupTable DIST_TO_RPM_STANDSTILL_TABLE; //lookup table to convert distances from the hoop to rpms for the flywheel

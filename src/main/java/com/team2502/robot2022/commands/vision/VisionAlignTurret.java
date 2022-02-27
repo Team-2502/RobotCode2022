@@ -32,6 +32,7 @@ public final class VisionAlignTurret extends CommandBase {
 
     @Override
     public void execute() {
+	vision.limelightOn();
 
         double tx = vision.getTargetX();
         double steering_adjust = 0.0f;
