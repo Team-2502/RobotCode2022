@@ -12,4 +12,7 @@ public class ReleaseClimberSolenoidCommand extends CommandBase {
 
     @Override
     public void initialize() { climber.releaseClimber(); }
+
+    @Override
+    public boolean isFinished() { return true; }
 }

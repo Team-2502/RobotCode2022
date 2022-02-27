@@ -29,6 +29,8 @@ public class  ClimberSubsystem extends SubsystemBase {
         //every few microseconds will send motor voltage to driverstation display
         SmartDashboard.putNumber("Right voltage", motor_right.getMotorOutputVoltage());
         SmartDashboard.putNumber("Left voltage", motor_left.getMotorOutputVoltage());
+
+        SmartDashboard.putBoolean("Climber Solenoid", releaseClimber.get());
     }
 
     public void runClimber(double speed) {
@@ -44,7 +46,8 @@ public class  ClimberSubsystem extends SubsystemBase {
     }
 
     public void releaseClimber() {
-        releaseClimber.set(false);
+        //releaseClimber.set(!releaseClimber.get());
+        releaseClimber.toggle();
     }
 
 //    public void retractSolenoid() {
