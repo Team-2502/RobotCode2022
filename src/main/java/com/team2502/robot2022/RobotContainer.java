@@ -66,17 +66,20 @@ public class RobotContainer
     //Buttons are defined here
     private void configureButtonBindings()
     {
-        JoystickButton RunIntakeButton = new JoystickButton(JOYSTICK_DRIVE_LEFT, Constants.OI.RUN_INTAKE_BUTTON);
-        RunIntakeButton.toggleWhenPressed(new RunIntakeCommand(INTAKE, 0.5, 0.85));
+        JoystickButton RunIntakeButton = new JoystickButton(JOYSTICK_DRIVE_LEFT, Constants.OI.RUN_INTAKE_DRIVER_BUTTON);
+        RunIntakeButton.toggleWhenPressed(new RunIntakeCommand(INTAKE, 0.5, 0.85, true));
 
         JoystickButton RunIntakeBackwardsButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_INTAKE_BACKWARDS_BUTTON);
-        RunIntakeBackwardsButton.whenHeld(new ShootCommand(SHOOTER, INTAKE, -0.6, -0.5, -0.85));
+        RunIntakeBackwardsButton.whenHeld(new ShootCommand(SHOOTER, INTAKE, -0.6, -0.5, -0.85, false));
+
+        JoystickButton RunIntakeBackwardsDriverButton = new JoystickButton(JOYSTICK_DRIVE_LEFT, Constants.OI.RUN_INTAKE_BACKWARDS_DRIVER_BUTTON);
+        RunIntakeBackwardsDriverButton.toggleWhenPressed(new RunIntakeCommand(INTAKE, -0.5, -0.85, true));
 
         JoystickButton RunShooterManualButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_FLYWHEEL_MANUAL);
         RunShooterManualButton.whenHeld(new RunShooterManualCommand(SHOOTER, TURRET, Constants.Subsystem.Shooter.SHOOTER_MANUAL_RPM_MID, JOYSTICK_OPERATOR)); // use lever from operator joystick
 
         JoystickButton ShootButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.SHOOT_BUTTON);
-        ShootButton.whenHeld(new ShootCommand(SHOOTER, INTAKE, 0.5, 0, 0.85));
+        ShootButton.whenHeld(new ShootCommand(SHOOTER, INTAKE, 0.5, 0, 0.85, false));
 
         JoystickButton VisionAlignDrivetrainButton = new JoystickButton(JOYSTICK_DRIVE_LEFT, Constants.OI.VISION_DRIVETRAIN_ALIGN);
         VisionAlignDrivetrainButton.whenHeld(new VisionAlignDrivetrain(VISION, DRIVETRAIN, JOYSTICK_DRIVE_LEFT, JOYSTICK_DRIVE_RIGHT));

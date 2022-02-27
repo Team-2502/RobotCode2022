@@ -15,17 +15,22 @@ public class ShootCommand extends CommandBase {
     private double rollerSpeed;
     private double beltSpeed;
     private double speed;
+    private boolean toggleIntake;
 
-    public ShootCommand(ShooterSubsystem shooter, IntakeSubsystem intake, double rollerSpeed, double intakeSpeed, double beltSpeed) {
+    public ShootCommand(ShooterSubsystem shooter, IntakeSubsystem intake, double rollerSpeed, double intakeSpeed, double beltSpeed, boolean toggleIntake) {
         this.shooter = shooter;
         this.intake = intake;
         this.rollerSpeed = rollerSpeed;
         this.intakeSpeed = intakeSpeed;
         this.beltSpeed = beltSpeed;
+        this.toggleIntake = toggleIntake;
+
+        addRequirements(intake, shooter);
     }
 
     @Override
     public void initialize() {
+        if(toggleIntake == true){ intake.deployIntake(); }
     }
 
     @Override
@@ -38,6 +43,7 @@ public class ShootCommand extends CommandBase {
     public void end(boolean kInterrupted) {
         shooter.stopLoader();
         intake.stop();
+        intake.retractIntake();
     }
 
     @Override

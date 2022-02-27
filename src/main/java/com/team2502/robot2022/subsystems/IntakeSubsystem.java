@@ -52,12 +52,12 @@ public class IntakeSubsystem extends SubsystemBase {
 
     public void deployIntake()
     {
-        intakeDeploySolenoid.set(false);
+        intakeDeploySolenoid.set(true);
     }
 
     public void retractIntake()
     {
-        intakeDeploySolenoid.set(true);
+        intakeDeploySolenoid.set(false);
     }
 
     public void toggleIntake()
