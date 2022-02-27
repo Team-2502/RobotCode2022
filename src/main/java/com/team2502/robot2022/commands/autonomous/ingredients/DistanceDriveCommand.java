@@ -45,7 +45,7 @@ public class DistanceDriveCommand extends CommandBase {
 	double error = (drivetrain.getInchesTraveled()-startPos)+goalPoint;
 	//double speed = pid.calculate(error);
 	double speed = trapezoidal.calculate(pid.calculate(error));
-        speed = Util.constrain(speed,.3);
+        speed = Util.constrain(speed,.7);
 	drivetrain.setSpeed(-speed,speed);
     }
 

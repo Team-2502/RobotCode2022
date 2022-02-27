@@ -25,7 +25,7 @@ public class ShootCommand extends CommandBase {
         this.beltSpeed = beltSpeed;
         this.toggleIntake = toggleIntake;
 
-        addRequirements(intake, shooter);
+        addRequirements(intake);
     }
 
     @Override

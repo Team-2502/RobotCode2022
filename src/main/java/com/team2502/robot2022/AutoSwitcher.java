@@ -57,7 +57,7 @@ public class AutoSwitcher {
 				new ParallelRaceGroup( // intake while moving forward
 				new RunIntakeCommand(i, 0.5, 0.85, true),
 				new DistanceDriveCommand(d, 80.0),
-				new WaitCommand(6)
+				new WaitCommand(8)
 					),
 				new ParallelRaceGroup( // align while reversing, then shoot
 				new VisionAlignTurret(v, t),
@@ -69,8 +69,6 @@ public class AutoSwitcher {
 						),
 					new ShootCommand(s, i, 0.5, 0, 0.85, false) // shoot
 					),
-				new RunIntakeCommand(i, 0.5, 0.85, true),
-				new DistanceDriveCommand(d, 80.0),
 				new WaitCommand(6)
 					),
 				new WaitCommand(3)
