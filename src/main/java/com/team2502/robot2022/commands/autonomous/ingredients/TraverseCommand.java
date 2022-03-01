@@ -24,9 +24,9 @@ public class TraverseCommand extends CommandBase {
     public TraverseCommand(TurretSubsystem turret, double goalPoint) {
         this.turret = turret;
 
-	this.goalPoint = goalPoint;
+	    this.goalPoint = goalPoint;
 
-	end = true;
+	    end = true;
 
         addRequirements(turret);
     }
@@ -41,9 +41,9 @@ public class TraverseCommand extends CommandBase {
     public TraverseCommand(TurretSubsystem turret, double goalPoint, boolean end) {
         this.turret = turret;
 
-	this.goalPoint = goalPoint;
+	    this.goalPoint = goalPoint;
 
-	this.end = end;
+	    this.end = end;
 
         addRequirements(turret);
     }
@@ -61,11 +61,11 @@ public class TraverseCommand extends CommandBase {
 
     @Override
     public void execute() {
-	double error = (goalPoint-turret.getRawAngle());
-	//double speed = pid.calculate(error);
-	double speed = trapezoidal.calculate(pid.calculate(error));
+        double error = (goalPoint-turret.getRawAngle());
+        //double speed = pid.calculate(error);
+        double speed = trapezoidal.calculate(pid.calculate(error));
         speed = Util.constrain(speed,.7);
-	turret.runMotor(-speed);
+        turret.runMotor(-speed);
     }
 
     @Override
