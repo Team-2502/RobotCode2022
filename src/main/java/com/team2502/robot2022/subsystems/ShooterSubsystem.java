@@ -12,7 +12,7 @@ public class ShooterSubsystem extends SubsystemBase {
     private final CANSparkMax shooterLeft;
 
     public final SparkMaxPIDController rightPID;
-    private final CANEncoder rightEncoder;
+    private final RelativeEncoder rightEncoder;
 
     private final CANSparkMax loadMotor1;
     private final CANSparkMax loadMotor2;
@@ -29,7 +29,7 @@ public class ShooterSubsystem extends SubsystemBase {
         shooterRight.follow(shooterLeft, true); // follow right motor, inverted
 
         SmartDashboard.putNumber("Shooter Target Velocity", 0);
-	target = 0;
+	    target = 0;
 
         shooterLeft.setSmartCurrentLimit(39);
         shooterRight.setSmartCurrentLimit(39);

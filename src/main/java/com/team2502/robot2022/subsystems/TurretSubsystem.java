@@ -51,11 +51,11 @@ public class TurretSubsystem extends SubsystemBase {
 
     public double getAngle()
     {
-        return turnMotorEncoder.getPosition() * Constants.Subsystem.Turret.TURRET_GEAR_RATIO; //TODO Make this method
+        return turnMotorEncoder.getPosition() * 360D * Constants.Subsystem.Turret.TURRET_GEAR_RATIO; //TODO Make this method
     }
 
     public double getRawAngle() {
-	return turnMotorEncoder.getPosition();
+	    return turnMotorEncoder.getPosition();
     }
 
     /**
