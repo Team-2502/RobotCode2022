@@ -10,6 +10,9 @@ import com.team2502.robot2022.Constants.Subsystem.Turret;
 
 public class TurnTurretCommand extends ProfiledPIDCommand {
 
+    private VisionSubsystem vision;
+    private TurretSubsystem turret;
+
     public TurnTurretCommand(TurretSubsystem turret, VisionSubsystem vision) {
         super(new ProfiledPIDController(
                         Turret.TURRET_P,
@@ -18,11 +21,14 @@ public class TurnTurretCommand extends ProfiledPIDCommand {
                         new TrapezoidProfile.Constraints(Turret.MAX_VEL, Turret.MAX_ACCEL)
                         ),
                 turret::getAngle,
-                vision::getTurretSetpoint,
+                vision::getTargetX, //useOutput -> new TrapezoidProfile.State(vision.getTargetX(), turret.getAngle() + (vision.getLastTX() - vision.getTargetX()) * 50),
                 (t, u) -> turret.runMotor(t),
                 turret,
                 vision
         );
+
+        this.vision = vision;
+        this.turret = turret;
 
         getController().enableContinuousInput(Turret.MIN_ANGLE, Turret.MAX_ANGLE);
         getController().setTolerance(Turret.TURN_TOLERANCE_DEG, Turret.TURN_RATE_TOLERANCE_DEG_PER_S);
@@ -31,5 +37,10 @@ public class TurnTurretCommand extends ProfiledPIDCommand {
     @Override
     public boolean isFinished(){
         return false;
+    }
+
+    private TrapezoidProfile.State getTurretSetpoint()
+    {
+        return new TrapezoidProfile.State(vision.getTargetX(), turret.getAngle() + (vision.getLastTX() - vision.getTargetX()) * 50); // * 50 = /0.02 for timestep
     }
 }

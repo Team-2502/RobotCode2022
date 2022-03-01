@@ -21,6 +21,7 @@ public class VisionSubsystem extends SubsystemBase {
 
     //Create a doubles for where the target(what the limelight recognizes to fit the specified parameters) is on the limelight screen.
     private double targetX;
+    private double lastTX;
     private double targetY;
     //And the area. Not sure what this is even for, but we might use it.
     private double targetArea;
@@ -41,6 +42,7 @@ public class VisionSubsystem extends SubsystemBase {
         NetworkTableEntry TY_ENTRY = limelight.getEntry("ty");
         NetworkTableEntry AREA_ENTRY = limelight.getEntry("ta");
         //and set them to the variables we made earlier
+        lastTX = targetX;
         targetX = TX_ENTRY.getDouble(0.0);
         targetY = TY_ENTRY.getDouble(0.0);
         targetArea = AREA_ENTRY.getDouble(0.0);
@@ -112,10 +114,8 @@ public class VisionSubsystem extends SubsystemBase {
         return Util.findDist(Vision.LIMELIGHT_HEIGHT,  Vision.LIMELIGHT_ELEVATION, Vision.BASKET_HEIGHT, targetY);
     }
 
-
-    public TrapezoidProfile.State getTurretSetpoint()
-    {
-        return new TrapezoidProfile.State(0D, 0D); // TODO make this method (Angle and ∆Angle of the high goal w/ relation to the turret)
+    public double getLastTX() {
+        return lastTX;
     }
 
     /**
