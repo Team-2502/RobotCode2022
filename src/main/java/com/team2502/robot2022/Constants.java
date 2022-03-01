@@ -150,7 +150,7 @@ public final class Constants {
             public static final double FRICTION_I = 0.003;
 
             public static final double LIMELIGHT_HEIGHT = 26; // limelight aperture to ground in inches
-            public static final double LIMELIGHT_ELEVATION = 35; // limelight elevation in degrees
+            public static final double LIMELIGHT_ELEVATION = 35; // limelight elevation in degrees (measured at 36.9 TODO: retune after duluth)
 
             public static final double BASKET_HEIGHT = 100.5; // basket vision target to ground
 
