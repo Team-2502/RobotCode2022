@@ -91,6 +91,7 @@ public class Robot extends TimedRobot {
 
     m_robotContainer.DRIVETRAIN.setLowGear();
     m_robotContainer.INTAKE.deployIntake();
+    m_robotContainer.SHOOTER.stopShooter();
   }
 
   /** This function is called periodically during operator control. */

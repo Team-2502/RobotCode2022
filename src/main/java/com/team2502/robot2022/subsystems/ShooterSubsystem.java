@@ -60,6 +60,9 @@ public class ShooterSubsystem extends SubsystemBase {
 
     public void stopShooter() {
         shooterRight.set(0);
+        rightPID.setReference(0, CANSparkMax.ControlType.kVelocity);
+        SmartDashboard.putNumber("Shooter Target Velocity", 0);
+	target = 0;
     }
 
     public void stopLoader() {
