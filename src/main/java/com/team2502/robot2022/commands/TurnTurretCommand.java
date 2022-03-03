@@ -31,7 +31,7 @@ public class TurnTurretCommand extends CommandBase {
         turret.runMotor(
 			trapezoidal.calculate(
 				-Math.pow(operator.getTwist(),Turret.TRAVERSE_POWER
-					)
+					)/2 // prevent over-speed
 				)
 			);
     }

@@ -109,6 +109,19 @@ public class RobotContainer
         JoystickButton CenterTurretButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.CENTER_TURRET);
         CenterTurretButton.whenHeld(new TraverseCommand(TURRET, Constants.Subsystem.Turret.CENTER));
 
+//        JoystickButton runWinch1 = new JoyStickButton(JOYSTICK_OPERATOR, 18);
+//        runWinch1.whenHeld(new RunSingleWenchCommand(CLIMBER, 0, -0.3));
+//
+//        JoystickButton runWinch2 = new JoyStickButton(JOYSTICK_OPERATOR, 17);
+//        runWinch1.whenHeld(new RunSingleWenchCommand(CLIMBER, 1, 0.3));
+//
+//        JoystickButton runWench1Back = new JoyStickButton(JOYSTICK_OPERATOR, 16);
+//        runWench1.whenHeld(new RunSingleWenchCommand(CLIMBER, 0, 0.3));
+//
+//        JoystickButton runWench2Back = new JoyStickButton(JOYSTICK_OPERATOR, 15);
+//        runWench1.whenHeld(new RunSingleWenchCommand(CLIMBER, 1, -0.3));
+
+
         // Add button to command mappings here.
         // See https://docs.wpilib.org/en/stable/docs/software/commandbased/binding-commands-to-triggers.html
     }

@@ -53,6 +53,15 @@ public class  ClimberSubsystem extends SubsystemBase {
         releaseClimber.toggle();
     }
 
+
+    public void runLeftClimber(double speed) {
+        leftClimber.set(speed);
+    }
+
+    public void runRightClimber(double speed) {
+        rightClimber.set(speed);
+    }
+
 //    public void retractSolenoid() {
 //        piston_right.set(true);
 //        piston_left.set(true);
