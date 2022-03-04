@@ -132,10 +132,10 @@ public class RobotContainer
 	runWinchLeftBackward.whileHeld(new RunSingleWinchCommand(CLIMBER,-.4, RunSingleWinchCommand.Winch.LEFT));
 
 	JoystickButton runWinchRightForward = new JoystickButton(JOYSTICK_DRIVE_LEFT, Constants.OI.RUN_WINCH_RIGHT_FORWARD);
-	runWinchRightForward.whileHeld(new RunSingleWinchCommand(CLIMBER,.4, RunSingleWinchCommand.Winch.RIGHT));
+	runWinchRightForward.whileHeld(new RunSingleWinchCommand(CLIMBER,-.4, RunSingleWinchCommand.Winch.RIGHT));
 
 	JoystickButton runWinchRightBackward = new JoystickButton(JOYSTICK_DRIVE_LEFT, Constants.OI.RUN_WINCH_RIGHT_BACKWARD);
-	runWinchRightBackward.whileHeld(new RunSingleWinchCommand(CLIMBER,-.4, RunSingleWinchCommand.Winch.RIGHT));
+	runWinchRightBackward.whileHeld(new RunSingleWinchCommand(CLIMBER,.4, RunSingleWinchCommand.Winch.RIGHT));
     }
 
 
