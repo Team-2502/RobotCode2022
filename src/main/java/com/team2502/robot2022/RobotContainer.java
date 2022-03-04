@@ -7,6 +7,7 @@ package com.team2502.robot2022;
 
 import com.team2502.robot2022.commands.autonomous.ingredients.ShootCommand;
 import com.team2502.robot2022.commands.autonomous.ingredients.TraverseCommand;
+import com.team2502.robot2022.Constants.Subsystem.Vision;
 import com.team2502.robot2022.commands.*;
 import com.team2502.robot2022.commands.solenoid.ShiftCommand;
 import com.team2502.robot2022.commands.solenoid.ToggleIntakeCommand;
@@ -101,7 +102,7 @@ public class RobotContainer
         RunClimberBackwardsButton.whenHeld(new RunClimberCommand(CLIMBER, -0.4));
 
         JoystickButton RunShooterButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.SPIN_FLYWHEEL_BUTTON);
-        RunShooterButton.whenHeld(new RunShooterCommand(SHOOTER, VISION, 2502)); // run at 2502 rpm if target not visible
+        RunShooterButton.whenHeld(new RunShooterCommand(SHOOTER, VISION, Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(0D))); // Shoot for 0 distance if not found
 
         JoystickButton ReleaseClimberButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RELEASE_CLIMBER_BUTTON);
         ReleaseClimberButton.whenPressed(new ReleaseClimberSolenoidCommand(CLIMBER));
