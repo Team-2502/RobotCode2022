@@ -111,7 +111,9 @@ public class RobotContainer
         ReleaseClimberButton.whenPressed(new ReleaseClimberSolenoidCommand(CLIMBER));
 
         JoystickButton CenterTurretButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.CENTER_TURRET);
-        CenterTurretButton.whenHeld(new TraverseCommand(TURRET, Constants.Subsystem.Turret.CENTER));
+        CenterTurretButton
+		.whenHeld(new TraverseCommand(TURRET, Constants.Subsystem.Turret.CENTER))
+		.whileHeld(new RunShooterAtSpeedCommand(SHOOTER, Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(0D)));
 
 //        JoystickButton runWinch1 = new JoyStickButton(JOYSTICK_OPERATOR, 18);
 //        runWinch1.whenHeld(new RunSingleWenchCommand(CLIMBER, 0, -0.3));
