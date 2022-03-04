@@ -34,6 +34,11 @@ public final class Constants {
         public static final int RUN_INTAKE_DRIVER_BUTTON = 1;
         public static final int RUN_INTAKE_BACKWARDS_DRIVER_BUTTON = 2;
 
+        public static final int RUN_WINCH_RIGHT_FORWARD = 6;
+        public static final int RUN_WINCH_LEFT_FORWARD = 7;
+        public static final int RUN_WINCH_LEFT_BACKWARD = 8;
+        public static final int RUN_WINCH_RIGHT_BACKWARD = 9;
+
         // Operator Joystick
         public static final int VISION_DRIVETRAIN_ALIGN = 10;
 
