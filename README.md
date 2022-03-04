@@ -1,7 +1,7 @@
 # WIP
 
 
-# TEAM 2502 *insert robot name here* ROBOT CODE
+# TEAM 2502 **CERBERUS** ROBOT CODE
 
 ## CODE
 This is the robot code that is run on Talon Robotics 2022 robot. The robot uses command based programming, meaning we have subsystems and commands.
