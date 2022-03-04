@@ -111,7 +111,7 @@ public class VisionSubsystem extends SubsystemBase {
      * @return The distance to the target(hoop) in inches
      */
     public double getDistance() {
-        return Util.findDist(Vision.LIMELIGHT_HEIGHT,  Vision.LIMELIGHT_ELEVATION, Vision.BASKET_HEIGHT, targetY);
+        return Vision.JUICE_FACTOR+Util.findDist(Vision.LIMELIGHT_HEIGHT,  Vision.LIMELIGHT_ELEVATION, Vision.BASKET_HEIGHT, targetY);
     }
 
     public double getLastTX() {

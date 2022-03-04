@@ -24,7 +24,7 @@ public enum AutonomousCommandGroupFactory { // first auto is default
 					),
 				new ParallelRaceGroup( // align, then shoot
 				new VisionAlignTurret(v, t),
-				new SpinFlywheelCommand(s, 3030), // ~11ft on lookup table
+				new SpinFlywheelCommand(s, 3330), // ~11ft on lookup table
 				new SequentialCommandGroup (
 					new ParallelRaceGroup ( // reverse intake for 1s to unjam flywheel
 						new WaitCommand(.2),
