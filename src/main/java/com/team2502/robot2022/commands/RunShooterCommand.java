@@ -11,11 +11,13 @@ public class RunShooterCommand extends CommandBase {
     private final ShooterSubsystem shooter;
     private final VisionSubsystem vision;
     private final double defaultSpeed;
+    private final boolean useTestVal;
 
-    public RunShooterCommand(ShooterSubsystem shooter, VisionSubsystem vision, double defaultSpeed) {
+    public RunShooterCommand(ShooterSubsystem shooter, VisionSubsystem vision, double defaultSpeed, boolean useTestVal) {
         this.shooter = shooter;
         this.vision = vision;
         this.defaultSpeed = defaultSpeed;
+	this.useTestVal = useTestVal;
 
         addRequirements(shooter);
     }
@@ -30,7 +32,11 @@ public class RunShooterCommand extends CommandBase {
     public void execute() {
 	vision.limelightOn();
         if(vision.getTargetArea() > 0) {
-            shooter.setShooterSpeedRPM(vision.getOptimalShooterSpeed());
+            if (useTestVal) {
+		    shooter.setShooterSpeedRPM(vision.getAdjustedShooterSpeed());
+	    } else {
+		    shooter.setShooterSpeedRPM(vision.getOptimalShooterSpeed());
+	    }
         }
         else {
             shooter.setShooterSpeedRPM(defaultSpeed);

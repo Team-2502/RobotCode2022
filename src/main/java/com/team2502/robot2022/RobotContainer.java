@@ -102,7 +102,10 @@ public class RobotContainer
         RunClimberBackwardsButton.whenHeld(new RunClimberCommand(CLIMBER, -0.4));
 
         JoystickButton RunShooterButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.SPIN_FLYWHEEL_BUTTON);
-        RunShooterButton.whenHeld(new RunShooterCommand(SHOOTER, VISION, Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(0D))); // Shoot for 0 distance if not found
+        RunShooterButton.whenHeld(new RunShooterCommand(SHOOTER, VISION, Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(0D),false)); // Shoot for 0 distance if not found
+
+        JoystickButton RunShooterAdjButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.SPIN_FLYWHEEL_JUICED_BUTTON);
+        RunShooterAdjButton.whenHeld(new RunShooterCommand(SHOOTER, VISION, Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(0D),true)); // Shoot for 0 distance if not found
 
         JoystickButton ReleaseClimberButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RELEASE_CLIMBER_BUTTON);
         ReleaseClimberButton.whenPressed(new ReleaseClimberSolenoidCommand(CLIMBER));
