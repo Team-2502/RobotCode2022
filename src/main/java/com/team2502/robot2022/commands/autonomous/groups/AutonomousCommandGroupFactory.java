@@ -14,15 +14,31 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
  * class for autonomous command groups
  * put new groups before the do nothing group
  * */
-public enum AutonomousCommandGroupFactory {
-        TAXI((d,i,v,s,t) -> new SequentialCommandGroup( // leaves the hangar
-				new WaitCommand(10), // wait for alliance members
-				new ParallelRaceGroup( //
-				new DistanceDriveCommand(d, 45.0), // move off line
-				new TraverseCommand(t, Constants.Subsystem.Turret.CENTER,false), // center turret
-				new WaitCommand(4) // sanity check
-					)
+public enum AutonomousCommandGroupFactory { // first auto is default
+        THREE_BALL((d,i,v,s,t) -> new SequentialCommandGroup(
+				new ParallelRaceGroup( // intake while moving forward
+				new RunIntakeCommand(i, 0.5, 0.85, true), // intake
+				new DistanceDriveCommand(d, 77.0), // move to ball
+				new TraverseCommand(t, Constants.Subsystem.Turret.CENTER), // center turret
+				new WaitCommand(4)
+					),
+				new ParallelRaceGroup( // align, then shoot
+				new VisionAlignTurret(v, t),
+				new SpinFlywheelCommand(s, 3030), // ~11ft on lookup table
+				new SequentialCommandGroup (
+					new ParallelRaceGroup ( // reverse intake for 1s to unjam flywheel
+						new WaitCommand(.2),
+						new ShootCommand(s, i, -0.6, -0.5, -0.85, true)
+						),
+					new WaitCommand(1.8), // spool up
+					new ShootCommand(s, i, 0.2, 0.85, 0.45, true) // shoot
+					),
+				new WaitCommand(11) // shoot for 6s before stopping
+					),
+				new FreezeCommand(v,i,d,t,s),
+				new SpinFlywheelCommand(s, 0) // stop flywheel
 			)),
+
         TWO_BALL((d,i,v,s,t) -> new SequentialCommandGroup(
 				new ParallelRaceGroup( // intake while moving forward
 				new RunIntakeCommand(i, 0.5, 0.85, true), // intake
@@ -47,29 +63,16 @@ public enum AutonomousCommandGroupFactory {
 				new FreezeCommand(v,i,d,t,s),
 				new SpinFlywheelCommand(s, 0) // stop flywheel
 			)),
-        THREE_BALL((d,i,v,s,t) -> new SequentialCommandGroup(
-				new ParallelRaceGroup( // intake while moving forward
-				new RunIntakeCommand(i, 0.5, 0.85, true), // intake
-				new DistanceDriveCommand(d, 77.0), // move to ball
-				new TraverseCommand(t, Constants.Subsystem.Turret.CENTER), // center turret
-				new WaitCommand(4)
-					),
-				new ParallelRaceGroup( // align, then shoot
-				new VisionAlignTurret(v, t),
-				new SpinFlywheelCommand(s, 3030), // ~11ft on lookup table
-				new SequentialCommandGroup (
-					new ParallelRaceGroup ( // reverse intake for 1s to unjam flywheel
-						new WaitCommand(.2),
-						new ShootCommand(s, i, -0.6, -0.5, -0.85, true)
-						),
-					new WaitCommand(1.8), // spool up
-					new ShootCommand(s, i, 0.2, 0.85, 0.45, true) // shoot
-					),
-				new WaitCommand(11) // shoot for 6s before stopping
-					),
-				new FreezeCommand(v,i,d,t,s),
-				new SpinFlywheelCommand(s, 0) // stop flywheel
+
+        TAXI((d,i,v,s,t) -> new SequentialCommandGroup( // leaves the hangar
+				new WaitCommand(10), // wait for alliance members
+				new ParallelRaceGroup( //
+				new DistanceDriveCommand(d, 45.0), // move off line
+				new TraverseCommand(t, Constants.Subsystem.Turret.CENTER,false), // center turret
+				new WaitCommand(4) // sanity check
+					)
 			)),
+
         DO_NOTHING("Do Nothing", ((d,i,v,s,t) -> new DoNothingCommand())); // always put last
 
         AutonomousCommandGroupFactory(String name, CommandFactory commandFactory)

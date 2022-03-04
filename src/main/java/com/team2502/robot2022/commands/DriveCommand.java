@@ -22,7 +22,7 @@ public class DriveCommand extends CommandBase {
 
         typeEntry.addOption("Split Arcade", Drivetype.Arcade);
         typeEntry.addOption("Reverse", Drivetype.Reverse);
-        typeEntry.setDefaultOption("Tank", Drivetype.Tank);
+        typeEntry.setDefaultOption("Split Arcade", Drivetype.Arcade);
         SmartDashboard.putData("Drive Type", typeEntry);
 
         addRequirements(drivetrain);
