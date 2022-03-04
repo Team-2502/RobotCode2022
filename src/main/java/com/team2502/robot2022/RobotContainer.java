@@ -74,7 +74,7 @@ public class RobotContainer
         RunIntakeBackwardsButton.whenHeld(new ShootCommand(SHOOTER, INTAKE, -0.6, -0.5, -0.85, false));
 
         JoystickButton RunIntakeBackwardsDriverButton = new JoystickButton(JOYSTICK_DRIVE_LEFT, Constants.OI.RUN_INTAKE_BACKWARDS_DRIVER_BUTTON);
-        RunIntakeBackwardsDriverButton.toggleWhenPressed(new RunIntakeCommand(INTAKE, -0.5, -0.85, true));
+        RunIntakeBackwardsDriverButton.whenHeld(new RunIntakeCommand(INTAKE, -0.5, -0.85, true));
 
         JoystickButton RunShooterManualButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_FLYWHEEL_MANUAL);
         RunShooterManualButton.whenHeld(new RunShooterManualCommand(SHOOTER, TURRET, Constants.Subsystem.Shooter.SHOOTER_MANUAL_RPM_MID, JOYSTICK_OPERATOR)); // use lever from operator joystick
