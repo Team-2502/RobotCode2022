@@ -59,14 +59,14 @@ public final class Constants {
         public static final int VISION_TURRET_UNALIGN = 99;
         public static final int CENTER_TURRET = 11;
 
-        public static final int RELEASE_CLIMBER_BUTTON = 7;
+        public static final int RELEASE_CLIMBER_BUTTON = 99;
 
         public static final int RUN_WINCH_RIGHT_FORWARD = 12;
         public static final int RUN_WINCH_LEFT_FORWARD = 13;
         public static final int RUN_WINCH_LEFT_BACKWARD = 14;
         public static final int RUN_WINCH_RIGHT_BACKWARD = 15;
 	
-        public static final int SPIN_FLYWHEEL_JUICED_BUTTON = 16;
+        public static final int SPIN_FLYWHEEL_JUICED_BUTTON = 7;
     }
 
     public static final class RobotMap {
