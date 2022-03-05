@@ -61,7 +61,7 @@ public class VisionAlignDrivetrain extends CommandBase {
             drive.getDrive().tankDrive(leftPower + power, rightPower + power);
         }
         else {
-            drive.getDrive().tankDrive(-leftJoystick.getY(), -rightJoystick.getY(), true);
+            drive.getDrive().tankDrive(-leftJoystick.getY(), rightJoystick.getY(), true);
         }
     }
 
