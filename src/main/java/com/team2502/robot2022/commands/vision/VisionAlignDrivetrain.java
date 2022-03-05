@@ -46,22 +46,17 @@ public class VisionAlignDrivetrain extends CommandBase {
         seesTarget = vision.getTargetArea() != 0.0;
 
         if(seesTarget) {
-            double power = -(leftJoystick.getY() + rightJoystick.getY()) / 2;
-
-            boolean useFriction = power < frictionConstant;
-            double frictionVal = useFriction ? frictionConstant : 0;
-
             if (tx > 1.0) {
-                steering_adjust = p * tx + frictionVal;
+                steering_adjust = p * tx;
             } else if (tx < 1.0) {    //robot needs to turn left
-                steering_adjust = p * tx - frictionVal;
+                steering_adjust = p * tx;
             }
             leftPower = steering_adjust;
             rightPower = -steering_adjust;
-            drive.getDrive().tankDrive(-(leftPower + power), rightPower + power);
+            drive.getDrive().tankDrive(-leftPower, rightPower);
         }
         else {
-            drive.getDrive().tankDrive(-leftJoystick.getY(), rightJoystick.getY(), true);
+            drive.getDrive().tankDrive(0, 0, true);
         }
     }
 
