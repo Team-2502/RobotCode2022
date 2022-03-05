@@ -58,7 +58,7 @@ public class VisionAlignDrivetrain extends CommandBase {
             }
             leftPower = steering_adjust;
             rightPower = -steering_adjust;
-            drive.getDrive().tankDrive(leftPower + power, rightPower + power);
+            drive.getDrive().tankDrive(-(leftPower + power), rightPower + power);
         }
         else {
             drive.getDrive().tankDrive(-leftJoystick.getY(), rightJoystick.getY(), true);
