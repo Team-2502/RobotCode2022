@@ -107,8 +107,8 @@ public class RobotContainer
         JoystickButton RunShooterAdjButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.SPIN_FLYWHEEL_JUICED_BUTTON);
         RunShooterAdjButton.whenHeld(new RunShooterCommand(SHOOTER, VISION, Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(0D),true)); // Shoot for 0 distance if not found
 
-        JoystickButton ReleaseClimberButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RELEASE_CLIMBER_BUTTON);
-        ReleaseClimberButton.whenPressed(new ReleaseClimberSolenoidCommand(CLIMBER));
+       JoystickButton ReleaseClimberButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RELEASE_CLIMBER_BUTTON);
+       ReleaseClimberButton.whenPressed(new ReleaseClimberSolenoidCommand(CLIMBER));
 
         JoystickButton CenterTurretButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.CENTER_TURRET);
         CenterTurretButton
@@ -157,7 +157,8 @@ public class RobotContainer
                 INTAKE,
                 VISION,
                 SHOOTER,
-                TURRET
+                TURRET,
+                PI_VISION
         );
     }
 }

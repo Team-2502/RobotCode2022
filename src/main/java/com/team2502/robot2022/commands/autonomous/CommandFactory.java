@@ -11,6 +11,7 @@ public interface CommandFactory
             IntakeSubsystem intakeSubsystem,
             VisionSubsystem visionSubsystem,
             ShooterSubsystem shooterSubsystem,
-            TurretSubsystem turretSubsystem
+            TurretSubsystem turretSubsystem,
+            PiVisionSubsystem piVisionSubsystem
     );
 }

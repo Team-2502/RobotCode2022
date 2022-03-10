@@ -56,10 +56,10 @@ public final class Constants {
         public static final int RUN_CLIMBER_WENCH_BACKWARDS_BUTTON = 5;
 
         public static final int VISION_TURRET_ALIGN = 8;
-        public static final int VISION_TURRET_UNALIGN = 99;
+       // public static final int VISION_TURRET_UNALIGN = 99;
         public static final int CENTER_TURRET = 11;
 
-        public static final int RELEASE_CLIMBER_BUTTON = 99;
+       public static final int RELEASE_CLIMBER_BUTTON = 99;
 
         public static final int RUN_WINCH_RIGHT_FORWARD = 12;
         public static final int RUN_WINCH_LEFT_FORWARD = 13;
