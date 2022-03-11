@@ -31,7 +31,7 @@ public class PiVisionSubsystem extends SubsystemBase {
 
 
     public PiVisionSubsystem() {
-        camera = NetworkTableInstance.getDefault().getTable("Photonvision");
+        camera = NetworkTableInstance.getDefault().getTable("photonvision/Microsoft_LifeCam_HD-3000");
         smartDashboard = NetworkTableInstance.getDefault().getTable("SmartDashboard"); //Tells the smartDashboard object to correspond with the shuffleboard one.
     }
 
@@ -54,6 +54,10 @@ public class PiVisionSubsystem extends SubsystemBase {
 
     public double getTargetX() {
         return targetX;
+    }
+
+    public double getTargetY() {
+        return targetY;
     }
 
     public double getTargetArea() {
