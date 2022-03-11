@@ -54,18 +54,25 @@ public class DriveToBallCommand extends CommandBase {
         double steering_adjust = 0.0;
 
         seesTarget = vision.getTargetArea() != 0.0;
+        drivetrain.setHighGear();
+        drivetrain.getDrive().tankDrive(0.1,0.1);
 
         if (seesTarget) {
+            drivetrain.getDrive().tankDrive(1,1);
             double power = 0.25;
             if (tx > 0.01) {
                 steering_adjust = p * tx + frictionConstant;
             } else if (tx < 0.01) {    //robot needs to turn left
                 steering_adjust = p * tx - frictionConstant;
+            } else {
+                steering_adjust = 0;
             }
             rightPower = -steering_adjust / powerDivide; // Dividing so it turns slower
             leftPower = steering_adjust / powerDivide;
             //drive.getDrive().tankDrive(-leftJoystick.getY() + leftPower / 3.95 + -power / 4 + 0.3, -rightJoystick.getY() + rightPower / 3.95 + -power / 4 + 0.3);
             drivetrain.getDrive().tankDrive(leftPower - power, rightPower - power);
+        } else {
+            drivetrain.getDrive().tankDrive(0,0);
         }
 
     }
