@@ -3,6 +3,8 @@ package com.team2502.robot2022.subsystems;
 import com.ctre.phoenix.motorcontrol.FollowerType;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.team2502.robot2022.Constants;
+
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -14,6 +16,8 @@ public class  ClimberSubsystem extends SubsystemBase {
     private final WPI_TalonFX rightClimber;
     private final WPI_TalonFX leftClimber;
 
+    private final DigitalInput leftLimit;
+
     private final Solenoid releaseClimber;
 
     public ClimberSubsystem(){
@@ -23,6 +27,8 @@ public class  ClimberSubsystem extends SubsystemBase {
         rightClimber = new WPI_TalonFX(Constants.RobotMap.Motors.RIGHT_WENCH);
         leftClimber = new WPI_TalonFX(Constants.RobotMap.Motors.LEFT_WENCH);
         releaseClimber = new Solenoid(PneumaticsModuleType.REVPH, Constants.RobotMap.Solenoids.RELEASE_CLIMBER);
+
+	leftLimit = new DigitalInput(Constants.RobotMap.Sensors.CLIMBER_LIMIT_LEFT);
 
         leftClimber.follow(rightClimber);
     }
@@ -34,6 +40,8 @@ public class  ClimberSubsystem extends SubsystemBase {
         SmartDashboard.putNumber("Left voltage", leftClimber.getMotorOutputVoltage());
 
         SmartDashboard.putBoolean("Climber Solenoid", releaseClimber.get());
+
+        SmartDashboard.putBoolean("Climber limit", getLimitLeft());
     }
 
     public void runClimber(double speed) {
@@ -60,6 +68,17 @@ public class  ClimberSubsystem extends SubsystemBase {
 
     public void runRightClimber(double speed) {
         rightClimber.set(speed);
+    }
+
+    /**
+    * Gets left limit switch status
+    * normally false
+    * @return left limit switch status
+     */
+    public boolean getLimitLeft() {
+
+	    return leftLimit.get();
+	    
     }
 
 //    public void retractSolenoid() {

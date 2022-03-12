@@ -103,6 +103,11 @@ public final class Constants {
             public static final int LEFT_PASSIVE_CLIMBER = 4;
             public static final int RELEASE_CLIMBER = 7;
         }
+
+	public static final class Sensors
+	{
+            public static final int CLIMBER_LIMIT_LEFT = 0;
+	}
     }
 
     public static final class Auto
