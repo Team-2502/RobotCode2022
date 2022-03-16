@@ -42,15 +42,15 @@ public class ShooterSubsystem extends SubsystemBase {
 
     @Override
     public void periodic() { 
-	    SmartDashboard.putNumber("Shooter Velocity", -rightEncoder.getVelocity()); 
+	    SmartDashboard.putNumber("Shooter Velocity", rightEncoder.getVelocity()); 
 	    SmartDashboard.putBoolean("Within Constraints", Math.abs(rightEncoder.getVelocity() - target) < 25); 
 
     }
 
     public void setShooterSpeedRPM(double speed) {
-        rightPID.setReference(-speed, CANSparkMax.ControlType.kVelocity);
+        rightPID.setReference(speed, CANSparkMax.ControlType.kVelocity);
         SmartDashboard.putNumber("Shooter Target Velocity", speed);
-	target = -speed;
+	target = speed;
     }
 
     public void loadBalls(double speed) {
