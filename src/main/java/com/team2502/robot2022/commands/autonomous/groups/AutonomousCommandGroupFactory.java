@@ -73,6 +73,17 @@ public enum AutonomousCommandGroupFactory { // first auto is default
 				new WaitCommand(4) // sanity check
 					)
 			)),
+
+		GOTOBALL((d,i,v,s,t,p) -> new SequentialCommandGroup( // leaves the hangar
+				new WaitCommand(1), // wait for alliance members
+
+				//new ParallelRaceGroup( //
+						new DistanceDriveCommand(d, 45.0), // move off line
+						new DriveToBallCommand(d,p,i,1), // DRIVES TO BALL
+						new WaitCommand(4) // sanity check
+				//)
+		)),
+
         DO_NOTHING("Do Nothing", ((d,i,v,s,t,p) -> new DoNothingCommand())); // always put last
 
         AutonomousCommandGroupFactory(String name, CommandFactory commandFactory)

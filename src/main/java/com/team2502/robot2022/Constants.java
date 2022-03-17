@@ -59,7 +59,7 @@ public final class Constants {
        // public static final int VISION_TURRET_UNALIGN = 99;
         public static final int CENTER_TURRET = 11;
 
-       public static final int RELEASE_CLIMBER_BUTTON = 99;
+       //public static final int RELEASE_CLIMBER_BUTTON = 99;
 
         public static final int RUN_WINCH_RIGHT_FORWARD = 12;
         public static final int RUN_WINCH_LEFT_FORWARD = 13;
@@ -133,9 +133,9 @@ public final class Constants {
         }
 
         public static final class Turret {
-            public static final double TURRET_P = 0.0008;
+            public static final double TURRET_P = 0.0004;
             public static final double TURRET_I = 0.0;
-            public static final double TURRET_D = 0.0;
+            public static final double TURRET_D = 0.01;
             public static final double MAX_VEL = 1;
             public static final double MAX_ACCEL = 1;
 
