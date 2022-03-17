@@ -59,7 +59,7 @@ public final class Constants {
        // public static final int VISION_TURRET_UNALIGN = 99;
         public static final int CENTER_TURRET = 11;
 
-       public static final int RELEASE_CLIMBER_BUTTON = 99;
+       //public static final int RELEASE_CLIMBER_BUTTON = 99;
 
         public static final int RUN_WINCH_RIGHT_FORWARD = 12;
         public static final int RUN_WINCH_LEFT_FORWARD = 13;
@@ -126,16 +126,16 @@ public final class Constants {
             public static final double SHOOTER_I = 0.0;
             public static final double SHOOTER_D = 0.012;
             public static final double SHOOTER_IZ = 0;
-            public static final double SHOOTER_FF = 0.000187;
+            public static final double SHOOTER_FF = 0.00021;
             public static final double SHOOTER_MAX_OUTPUT = 1;
             public static final double SHOOTER_MIN_OUTPUT = -1;
             public static final double SHOOTER_MANUAL_RPM_MID = 2600; // center of manual range, max is ~4200 with current pid
         }
 
         public static final class Turret {
-            public static final double TURRET_P = 0.0008;
+            public static final double TURRET_P = 0.0004;
             public static final double TURRET_I = 0.0;
-            public static final double TURRET_D = 0.0;
+            public static final double TURRET_D = 0.01;
             public static final double MAX_VEL = 1;
             public static final double MAX_ACCEL = 1;
 

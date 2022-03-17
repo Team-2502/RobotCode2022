@@ -8,7 +8,6 @@ import com.team2502.robot2022.subsystems.PiVisionSubsystem;
 import com.team2502.robot2022.util.Trapezoidal;
 import com.team2502.robot2022.util.Util;
 import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class DriveToBallCommand extends CommandBase {
@@ -20,7 +19,7 @@ public class DriveToBallCommand extends CommandBase {
     double backOfRange;
     double steeringPower;
 
-    float powerDivide = 1.2f;
+    float powerDivide = 3.2f;
 
     private boolean seesTarget;
 
@@ -51,24 +50,30 @@ public class DriveToBallCommand extends CommandBase {
     public void execute() {
 
         double tx = vision.getTargetX();
-        double steering_adjust = 0.0;
+        double steering_adjust;
 
         seesTarget = vision.getTargetArea() != 0.0;
-        drivetrain.setHighGear();
+        drivetrain.setLowGear();
         drivetrain.getDrive().tankDrive(0.1,0.1);
 
+        steering_adjust = 0;
+
         if (seesTarget) {
-            drivetrain.getDrive().tankDrive(1,1);
-            double power = 0.25;
+            drivetrain.getDrive().tankDrive(0.1,0.1);
+            double power = 0.025;
             if (tx > 0.01) {
                 steering_adjust = p * tx + frictionConstant;
+                rightPower = -steering_adjust / powerDivide; // Dividing so it turns slower
+                leftPower = steering_adjust / powerDivide;
             } else if (tx < 0.01) {    //robot needs to turn left
                 steering_adjust = p * tx - frictionConstant;
-            } else {
+                rightPower = -steering_adjust / powerDivide; // Dividing so it turns slower
+                leftPower = steering_adjust / powerDivide;
+            } else if (tx == 0){
                 steering_adjust = 0;
             }
-            rightPower = -steering_adjust / powerDivide; // Dividing so it turns slower
-            leftPower = steering_adjust / powerDivide;
+            //rightPower = -steering_adjust / powerDivide; // Dividing so it turns slower
+            //leftPower = steering_adjust / powerDivide;
             //drive.getDrive().tankDrive(-leftJoystick.getY() + leftPower / 3.95 + -power / 4 + 0.3, -rightJoystick.getY() + rightPower / 3.95 + -power / 4 + 0.3);
             drivetrain.getDrive().tankDrive(leftPower - power, rightPower - power);
         } else {
