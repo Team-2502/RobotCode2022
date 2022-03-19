@@ -68,7 +68,7 @@ public final class Constants {
         public static final int RUN_WINCH_LEFT_BACKWARD = 14;
         public static final int RUN_WINCH_RIGHT_BACKWARD = 15;
 	
-        public static final int SPIN_FLYWHEEL_JUICED_BUTTON = 7;
+        public static final int SPIN_FLYWHEEL_JUICED_BUTTON = 10;
     }
 
     public static final class RobotMap {
@@ -175,7 +175,8 @@ public final class Constants {
 
             public static final double BASKET_HEIGHT = 100.5; // basket vision target to ground
 
-	    public static final double JUICE_FACTOR = .5; // amount to inflate distance
+	    public static final double JUICE_FACTOR = -.75; // amount to inflate distance
+	    public static final double JUICE_ADJ = 1D/12D; // amount to trim by
 
             //Everything in this class is referenced in the Vision Subsystem, and explained at least partially there.
             public static final String LIMELIGHT_NETWORK_TABLE = "limelight-turret"; //the name in the network table of the limelight
