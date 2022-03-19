@@ -196,13 +196,13 @@ public final class Constants {
                 distToRPMStandstill.put(0D, 1473D); // GOOD
                 distToRPMStandstill.put(5D, 1720D); //GOOD
                 distToRPMStandstill.put(7D, 1883D); // GOOD
-                distToRPMStandstill.put(7.1D, 2600D);
-                distToRPMStandstill.put(9D,2803D); // GOOD
-                distToRPMStandstill.put(11D,3020D); // GOOD
-                distToRPMStandstill.put(13D, 3325D); // GOOD
-                distToRPMStandstill.put(15D, 3500D); // GOOD
-                distToRPMStandstill.put(17D, 3534D); // GOOD
-                distToRPMStandstill.put(19D, 3820D); // GOOD
+
+		//new
+                distToRPMStandstill.put(8.2D, 2150D);
+                distToRPMStandstill.put(10.23D,2250D); // GOOD
+                distToRPMStandstill.put(11.02D,2300D); // GOOD
+                distToRPMStandstill.put(13.4D, 2458.373D); // GOOD
+                distToRPMStandstill.put(20.01D, 2900D); // GOOD
 
                     //add items to lookup table here
                     DIST_TO_RPM_STANDSTILL_TABLE = new LookupTable(distToRPMStandstill); //Initialize the DIST_TO_RPM_STANDSTILL_TABLE, setting it to the values of the above hashmap
