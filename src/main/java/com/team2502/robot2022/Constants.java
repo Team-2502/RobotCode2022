@@ -200,7 +200,8 @@ public final class Constants {
                 distToRPMStandstill.put(0D, 1299D);
                 distToRPMStandstill.put(4.1D, 1420D);
                 distToRPMStandstill.put(5.8D, 1620D);
-                distToRPMStandstill.put(8D, 1800D);
+                distToRPMStandstill.put(8D, 1650D);
+                distToRPMStandstill.put(8.19D, 1680D);
 
 		//high
                 distToRPMStandstill.put(8.2D, 2150D);
