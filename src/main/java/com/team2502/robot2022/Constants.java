@@ -195,16 +195,20 @@ public final class Constants {
                 //TARGETY_TO_DISTANCE_TABLE = new LookupTable(distToRPMStandstill); //Initialize the TARGETY_TO_DISTANCE_TABLE, setting it to the values of the above hashmap
 
                 //HashMap<Double, Double> distToRPMStandstill = new HashMap<>();//hashmap for the content of the DIST_TO_RPM_STANDSTILL_TABLE
-                distToRPMStandstill.put(0D, 1473D); // GOOD
-                distToRPMStandstill.put(5D, 1720D); //GOOD
-                distToRPMStandstill.put(7D, 1883D); // GOOD
+		//low 
+                distToRPMStandstill.put(0D, 1299D);
+                distToRPMStandstill.put(4.1D, 1420D);
+                distToRPMStandstill.put(5.8D, 1620D);
+                distToRPMStandstill.put(8D, 1800D);
 
-		//new
+		//high
                 distToRPMStandstill.put(8.2D, 2150D);
-                distToRPMStandstill.put(10.23D,2250D); // GOOD
-                distToRPMStandstill.put(11.02D,2300D); // GOOD
-                distToRPMStandstill.put(13.4D, 2458.373D); // GOOD
-                distToRPMStandstill.put(20.01D, 2900D); // GOOD
+                distToRPMStandstill.put(9.9D, 2200D);
+                distToRPMStandstill.put(10.23D,2250D);
+                distToRPMStandstill.put(11.02D,2300D);
+                distToRPMStandstill.put(13.4D, 2458.373D);
+                distToRPMStandstill.put(15.55D, 2600D);
+                distToRPMStandstill.put(20.01D, 2900D);
 
                     //add items to lookup table here
                     DIST_TO_RPM_STANDSTILL_TABLE = new LookupTable(distToRPMStandstill); //Initialize the DIST_TO_RPM_STANDSTILL_TABLE, setting it to the values of the above hashmap
