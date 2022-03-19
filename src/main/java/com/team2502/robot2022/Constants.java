@@ -124,7 +124,7 @@ public final class Constants {
     public static final class Subsystem {
 
         public static final class Shooter {
-            public static final double SHOOTER_P = 0.0004;
+            public static final double SHOOTER_P = 0.0006;
             public static final double SHOOTER_I = 0.0;
             public static final double SHOOTER_D = 0.01;
             public static final double SHOOTER_IZ = 0;
