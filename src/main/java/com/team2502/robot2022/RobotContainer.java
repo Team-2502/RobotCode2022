@@ -141,6 +141,8 @@ public class RobotContainer
 
 	JoystickButton runWinchRightBackward = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_WINCH_RIGHT_BACKWARD);
 	runWinchRightBackward.whileHeld(new RunSingleWinchCommand(CLIMBER,.4, RunSingleWinchCommand.Winch.RIGHT));
+	JoystickButton runShooterNTButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_SHOOTER_NT_BUTTON);
+	runShooterNTButton.whenHeld(new RunShooterNTCommand(SHOOTER));
     }
 
 

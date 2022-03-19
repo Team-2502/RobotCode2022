@@ -42,20 +42,22 @@ public final class Constants {
 	// 14 15 16
         public static final int VISION_DRIVETRAIN_ALIGN = 10;
 
-        public static final int TOGGLE_INTAKE = 4;
-
         public static final int SHOOT_BUTTON = 1;
-        public static final int SPIN_FLYWHEEL_BUTTON = 3;
 
         public static final int BUTTON_FLYWHEEL_MANUAL = 2; //used
 
-        public static final int RUN_INTAKE_BACKWARDS_BUTTON = 9;
-        //public static final int RUN_INTAKE_BUTTON = ;
+        public static final int SPIN_FLYWHEEL_BUTTON = 3;
 
-        public static final int RUN_CLIMBER_WENCH_BUTTON = 6;
+        public static final int TOGGLE_INTAKE = 4;
+
         public static final int RUN_CLIMBER_WENCH_BACKWARDS_BUTTON = 5;
+        public static final int RUN_CLIMBER_WENCH_BUTTON = 6;
+
+	public static final int RUN_SHOOTER_NT_BUTTON = 7;
 
         public static final int VISION_TURRET_ALIGN = 8;
+
+        public static final int RUN_INTAKE_BACKWARDS_BUTTON = 9;
        // public static final int VISION_TURRET_UNALIGN = 99;
         public static final int CENTER_TURRET = 11;
 
