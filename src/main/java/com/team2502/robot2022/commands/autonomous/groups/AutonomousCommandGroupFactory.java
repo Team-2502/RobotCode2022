@@ -16,6 +16,31 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
  * put new groups before the do nothing group
  * */
 public enum AutonomousCommandGroupFactory { // first auto is default
+        FOUR_BALL((d,i,v,s,t,p) -> new SequentialCommandGroup(
+				new ParallelRaceGroup( // intake while moving forward
+				new RunIntakeCommand(i, 0.5, 0.85, true), // intake
+				new DistanceDriveCommand(d, 97.0), // move to ball
+				new TraverseCommand(t, Constants.Subsystem.Turret.CENTER), // center turret
+				new WaitCommand(4)
+					),
+				new ParallelRaceGroup( // align, then shoot
+				new VisionAlignTurret(v, t),
+				new RunShooterCommand(s, v, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(11D),true), // ~11ft on lookup table if vision dead
+				new SmartShootCommand(s, i, .5, .5, .25, false),
+				new WaitCommand(5) // shoot for 6s before stopping
+					),
+				new ParallelRaceGroup( // intake while moving forward
+					new RunIntakeCommand(i, 0.5, 0.85, true), // intake
+					new DistanceDriveCommand(d, 87.0), // move to ball
+					new WaitCommand(4)
+				),
+				new ParallelRaceGroup( // align, then shoot
+				new VisionAlignTurret(v, t),
+				new RunShooterCommand(s, v, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(19D),true), // ~19ft on lookup table if vision dead
+				new SmartShootCommand(s, i, .5, .5, .25, false),
+				new WaitCommand(5) // shoot for 6s before stopping
+					)
+			)),
         THREE_BALL((d,i,v,s,t,p) -> new SequentialCommandGroup(
 				new ParallelRaceGroup( // intake while moving forward
 				new RunIntakeCommand(i, 0.5, 0.85, true), // intake
