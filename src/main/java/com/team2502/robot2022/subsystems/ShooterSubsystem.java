@@ -30,6 +30,7 @@ public class ShooterSubsystem extends SubsystemBase {
 
         SmartDashboard.putNumber("Shooter Target Velocity", 0);
 	    target = 0;
+	SmartDashboard.putNumber("NT RPM", 0); // for NT command
 
         shooterLeft.setSmartCurrentLimit(39);
         shooterRight.setSmartCurrentLimit(39);
@@ -43,7 +44,7 @@ public class ShooterSubsystem extends SubsystemBase {
     @Override
     public void periodic() { 
 	    SmartDashboard.putNumber("Shooter Velocity", rightEncoder.getVelocity()); 
-	    SmartDashboard.putBoolean("Within Constraints", Math.abs(rightEncoder.getVelocity() - target) < 25); 
+	    SmartDashboard.putBoolean("Within Constraints", atSpeed());
 
     }
 
@@ -51,6 +52,14 @@ public class ShooterSubsystem extends SubsystemBase {
         rightPID.setReference(speed, CANSparkMax.ControlType.kVelocity);
         SmartDashboard.putNumber("Shooter Target Velocity", speed);
 	target = speed;
+    }
+
+    /**
+    * is the shooter rpm within the defined constraints
+    * @return is shooter at speed
+     */
+    public boolean atSpeed() {
+	    return (target != 0 && Math.abs(rightEncoder.getVelocity() - target) < 25);
     }
 
     public void loadBalls(double speed) {
@@ -63,6 +72,10 @@ public class ShooterSubsystem extends SubsystemBase {
         rightPID.setReference(0, CANSparkMax.ControlType.kVelocity);
         SmartDashboard.putNumber("Shooter Target Velocity", 0);
 	target = 0;
+    }
+
+    public double getTargetVelocity() {
+	    return target;
     }
 
     public void stopLoader() {
