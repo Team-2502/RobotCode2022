@@ -59,7 +59,7 @@ public class ShooterSubsystem extends SubsystemBase {
     * @return is shooter at speed
      */
     public boolean atSpeed() {
-	    return (target != 0 && Math.abs(rightEncoder.getVelocity() - target) < 25);
+	    return (target != 0 && Math.abs(rightEncoder.getVelocity() - target) < Constants.Subsystem.Shooter.RPM_GOOD);
     }
 
     public void loadBalls(double speed) {
