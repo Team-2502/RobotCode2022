@@ -234,7 +234,7 @@ public final class Constants {
 	    public static final double TURN_I = 0;
 	    public static final double TURN_D = 0;
 	    public static final double TURN_F = 0.29; // friction    
-	    public static final double TURN_T = 0; // trapezoidal 
+	    public static final double TURN_T = 0.8; // trapezoidal 
 
 	    // constants for straight line movement
 	    public static final double LINE_P = 0.02;

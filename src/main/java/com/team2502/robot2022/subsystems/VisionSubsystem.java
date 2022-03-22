@@ -77,6 +77,15 @@ public class VisionSubsystem extends SubsystemBase {
         return targetArea;
     } //method to get the area(can somebody figure out what this is?)
 
+
+    /**
+     * Is the limelight locked onto anything?
+     * returns true if the target area is nonzero
+     * */
+    public boolean isTargetVisible() {
+	    return (getTargetArea() != 0);
+    }
+
     /**
      * Turns off the limelights LED's.
      * Gets the number that corresponds to the 'off' setting from the Constants class(specifically the 'limelightOff' variable),

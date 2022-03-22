@@ -63,4 +63,13 @@ public class PiVisionSubsystem extends SubsystemBase {
     public double getTargetArea() {
         return targetArea;
     } //method to get the area(can somebody figure out what this is?)
+
+    /**
+     * Is the PhotonVision locked onto anything?
+     * returns true if the target area is nonzero
+     * */
+    public boolean isTargetVisible() {
+	    return (getTargetArea() != 0);
+    }
+
 }
