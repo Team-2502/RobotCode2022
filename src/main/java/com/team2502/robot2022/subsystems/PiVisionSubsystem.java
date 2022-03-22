@@ -14,6 +14,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.team2502.robot2022.util.Util;
 
+/**
+ * Subsystem that allows you to
+ * access and retrieve data from
+ * the Logitech camera, also
+ * send data to Smartdashboard
+ */
+
 public class PiVisionSubsystem extends SubsystemBase {
     //private final NetworkTable camera; //Creates a NetworkTable object. This one is for getting data from the limelight.
     private final NetworkTable smartDashboard; //Creates a NetworkTable object. This one is for getting/sending data from/to Shuffleboard(on the driverstation)
