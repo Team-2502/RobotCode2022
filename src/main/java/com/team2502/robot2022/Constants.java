@@ -218,29 +218,28 @@ public final class Constants {
         }
 
         public static final class RaspberryVision {
-            // drivetrain
-            public static final double FRICTION_LOW = 0.29;
-            public static final double VISION_TURNING_P_LOW = 0.015;
+            public static final String PHOTONVISION_NETWORK_TABLE = "photonvision/runcam";
 
-            //Everything in this class is referenced in the Vision Subsystem, and explained at least partially there.
-            public static final String LIMELIGHT_NETWORK_TABLE = "PhotonVision"; //the name in the network table of the limelight
+	    public static final double CAMERA_HEIGHT = 25;
+	    public static final double CAMERA_ELEVATION = -18.47; // angle
+	    public static final double BALL_HEIGHT = 4;
         }
 
         public static final class Drivetrain {
             public static final double TICKS_PER_INCH = 839.548; // low gear
 
 	    // constants when turning from a standstill
-	    public static final double TURN_P = 0.15;
-	    public static final double TURN_I = 0;
+	    public static final double TURN_P = 0.031;
+	    public static final double TURN_I = 0.0011;
 	    public static final double TURN_D = 0;
-	    public static final double TURN_F = 0.29; // friction    
+	    public static final double TURN_F = 0.11; // friction    
 	    public static final double TURN_T = 0.8; // trapezoidal 
 
 	    // constants for straight line movement
 	    public static final double LINE_P = 0.02;
 	    public static final double LINE_I = 0.03;
 	    public static final double LINE_D = 0.03;
-	    public static final double LINE_F = 0.29; // friction
+	    public static final double LINE_F = 0.055; // friction
 	    public static final double LINE_T = 0.6; // trapezoidal
         }
     }

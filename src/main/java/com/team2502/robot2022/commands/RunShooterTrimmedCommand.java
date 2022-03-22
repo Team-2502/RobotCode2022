@@ -47,7 +47,7 @@ public class RunShooterTrimmedCommand extends CommandBase {
 	    }
 	}
 	vision.limelightOn();
-        if(vision.getTargetArea() > 0) {
+        if(vision.isTargetVisible()) {
 	    shooter.setShooterSpeedRPM(vision.getAdjustedShooterSpeed());
         }
         else {

@@ -40,7 +40,7 @@ public class VisionTrackBallCommand extends CommandBase {
     public void execute() {
 
         if (vision.isTargetVisible()) {
-	    double steering_adjust = vision.getTargetX();
+	    double steering_adjust = -vision.getTargetX();
 
 	    steering_adjust = pid.calculate(steering_adjust);
 	    steering_adjust = trapezoidal.calculate(steering_adjust);

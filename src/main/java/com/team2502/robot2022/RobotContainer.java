@@ -5,8 +5,10 @@
 
 package com.team2502.robot2022;
 
+import com.team2502.robot2022.commands.autonomous.ingredients.DistanceDriveCommand;
 import com.team2502.robot2022.commands.autonomous.ingredients.ShootCommand;
 import com.team2502.robot2022.commands.autonomous.ingredients.TraverseCommand;
+import com.team2502.robot2022.commands.autonomous.ingredients.VisionTrackBallCommand;
 import com.team2502.robot2022.Constants.Subsystem.Vision;
 import com.team2502.robot2022.commands.*;
 import com.team2502.robot2022.commands.solenoid.ShiftCommand;
@@ -80,7 +82,7 @@ public class RobotContainer
         RunShooterManualButton.whenHeld(new RunShooterManualCommand(SHOOTER, TURRET, Constants.Subsystem.Shooter.SHOOTER_MANUAL_RPM_MID, JOYSTICK_OPERATOR)); // use lever from operator joystick
 
         JoystickButton ShootButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.SHOOT_BUTTON);
-        ShootButton.whenHeld(new SmartShootCommand(SHOOTER, INTAKE, 0.5, 0, 0.25, false));
+        ShootButton.whenHeld(new SmartShootCommand(SHOOTER, INTAKE, 0.25, 0, 0.125, false));
 
         JoystickButton VisionAlignDrivetrainButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.VISION_DRIVETRAIN_ALIGN);
         VisionAlignDrivetrainButton.whenHeld(new VisionAlignDrivetrain(VISION, DRIVETRAIN, JOYSTICK_DRIVE_LEFT, JOYSTICK_DRIVE_RIGHT));
@@ -143,6 +145,13 @@ public class RobotContainer
 	runWinchRightBackward.whileHeld(new RunSingleWinchCommand(CLIMBER,.4, RunSingleWinchCommand.Winch.RIGHT));
 	JoystickButton runShooterNTButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_SHOOTER_NT_BUTTON);
 	runShooterNTButton.whenHeld(new RunShooterNTCommand(SHOOTER));
+
+	JoystickButton goTwoFeet = new JoystickButton(JOYSTICK_DRIVE_RIGHT, 4);
+	goTwoFeet.whenPressed(new DistanceDriveCommand(DRIVETRAIN, 48));
+
+	JoystickButton getBall = new JoystickButton(JOYSTICK_DRIVE_RIGHT, 3);
+	getBall.whileHeld(new VisionTrackBallCommand(PI_VISION, DRIVETRAIN, INTAKE));
+
     }
 
 
