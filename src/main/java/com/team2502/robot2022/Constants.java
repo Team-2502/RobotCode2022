@@ -228,6 +228,20 @@ public final class Constants {
 
         public static final class Drivetrain {
             public static final double TICKS_PER_INCH = 839.548; // low gear
+
+	    // constants when turning from a standstill
+	    public static final double TURN_P = 0.15;
+	    public static final double TURN_I = 0;
+	    public static final double TURN_D = 0;
+	    public static final double TURN_F = 0.29; // friction    
+	    public static final double TURN_T = 0; // trapezoidal 
+
+	    // constants for straight line movement
+	    public static final double LINE_P = 0.02;
+	    public static final double LINE_I = 0.03;
+	    public static final double LINE_D = 0.03;
+	    public static final double LINE_F = 0.29; // friction
+	    public static final double LINE_T = 0.6; // trapezoidal
         }
     }
 }

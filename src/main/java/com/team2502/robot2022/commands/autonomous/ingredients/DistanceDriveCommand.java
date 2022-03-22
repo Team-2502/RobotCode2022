@@ -4,6 +4,7 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import com.team2502.robot2022.util.Trapezoidal;
 import com.team2502.robot2022.util.Util;
+import com.team2502.robot2022.Constants.Subsystem.Drivetrain;;
 
 public class DistanceDriveCommand extends CommandBase {
 
@@ -32,7 +33,7 @@ public class DistanceDriveCommand extends CommandBase {
     public void initialize()
     {
         this.startPos = drivetrain.getInchesTraveled();
-        this.pid = new PIDController(0.02,0.03,0.03);
+        this.pid = new PIDController(Drivetrain.LINE_P,Drivetrain.LINE_I,Drivetrain.LINE_D);
         this.trapezoidal = new Trapezoidal(.6);
         pid.setTolerance(.2);
 
@@ -43,9 +44,11 @@ public class DistanceDriveCommand extends CommandBase {
     @Override
     public void execute() {
 	double error = (drivetrain.getInchesTraveled()-startPos)+goalPoint;
-	//double speed = pid.calculate(error);
-	double speed = trapezoidal.calculate(pid.calculate(error));
-        speed = Util.constrain(speed,.7);
+
+	double speed = pid.calculate(error);
+        speed = Util.constrain(speed,1); // constrain before ramp to reduce overshoot
+	speed = trapezoidal.calculate(speed);
+	speed = Util.frictionAdjust(speed, Drivetrain.LINE_F);
 	drivetrain.setSpeed(-speed,speed);
     }
 
