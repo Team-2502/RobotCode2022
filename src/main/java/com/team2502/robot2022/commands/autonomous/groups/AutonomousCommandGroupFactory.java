@@ -103,9 +103,9 @@ public enum AutonomousCommandGroupFactory { // first auto is default
 				new WaitCommand(1), // wait for alliance members
 
 				//new ParallelRaceGroup( //
-						new DistanceDriveCommand(d, 45.0), // move off line
-						new DriveToBallCommand(d,p,i,1), // DRIVES TO BALL
-						new WaitCommand(4) // sanity check
+						//new DistanceDriveCommand(d, 45.0), // move off line
+						new DriveToBallCommand(d,p,i,1) // DRIVES TO BALL
+						//new WaitCommand(4) // sanity check
 				//)
 		)),
 
