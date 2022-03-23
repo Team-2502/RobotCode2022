@@ -229,16 +229,23 @@ public final class Constants {
             public static final double TICKS_PER_INCH = 839.548; // low gear
 
 	    // constants when turning from a standstill
-	    public static final double TURN_P = 0.031;
-	    public static final double TURN_I = 0.0011;
+	    public static final double TURN_P = 0.039;
+	    public static final double TURN_I = 0.0;
 	    public static final double TURN_D = 0;
-	    public static final double TURN_F = 0.11; // friction    
+	    public static final double TURN_F = 0.03; // friction    
 	    public static final double TURN_T = 0.8; // trapezoidal 
 
+	    // constants when turning during a move
+	    public static final double CURVE_P = 0.022;
+	    public static final double CURVE_I = 0.0;
+	    public static final double CURVE_D = 0.1;
+	    public static final double CURVE_F = 0.055; // friction    
+	    public static final double CURVE_T = 0.5; // trapezoidal 
+
 	    // constants for straight line movement
-	    public static final double LINE_P = 0.02;
-	    public static final double LINE_I = 0.03;
-	    public static final double LINE_D = 0.03;
+	    public static final double LINE_P = 0.006;
+	    public static final double LINE_I = 0.0;
+	    public static final double LINE_D = 0.0;
 	    public static final double LINE_F = 0.055; // friction
 	    public static final double LINE_T = 0.6; // trapezoidal
         }
