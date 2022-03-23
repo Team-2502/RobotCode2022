@@ -243,7 +243,7 @@ public final class Constants {
 	    public static final double CURVE_T = 0.5; // trapezoidal 
 
 	    // constants for straight line movement
-	    public static final double LINE_P = 0.006;
+	    public static final double LINE_P = 0.009;
 	    public static final double LINE_I = 0.0;
 	    public static final double LINE_D = 0.0;
 	    public static final double LINE_F = 0.055; // friction

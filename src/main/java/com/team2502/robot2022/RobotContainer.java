@@ -7,6 +7,7 @@ package com.team2502.robot2022;
 
 import com.team2502.robot2022.commands.autonomous.ingredients.DistanceDriveCommand;
 import com.team2502.robot2022.commands.autonomous.ingredients.ShootCommand;
+import com.team2502.robot2022.commands.autonomous.ingredients.SidewinderCommand;
 import com.team2502.robot2022.commands.autonomous.ingredients.TraverseCommand;
 import com.team2502.robot2022.commands.autonomous.ingredients.VisionTrackBallCommand;
 import com.team2502.robot2022.Constants.Subsystem.Vision;
@@ -152,6 +153,8 @@ public class RobotContainer
 	JoystickButton getBall = new JoystickButton(JOYSTICK_DRIVE_RIGHT, 3);
 	getBall.whileHeld(new VisionTrackBallCommand(PI_VISION, DRIVETRAIN, INTAKE));
 
+	JoystickButton missile = new JoystickButton(JOYSTICK_DRIVE_RIGHT, 2);
+	missile.whenPressed(new SidewinderCommand(PI_VISION, DRIVETRAIN, INTAKE, 10*12));
     }
 
 
