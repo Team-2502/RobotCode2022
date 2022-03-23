@@ -39,7 +39,7 @@ public class DistanceDriveCommand extends CommandBase {
         this.pid = new PIDController(Drivetrain.LINE_P,Drivetrain.LINE_I,Drivetrain.LINE_D);
         this.trapezoidal = new Trapezoidal(Drivetrain.LINE_T);
 	this.turnPID = new PIDController(Drivetrain.CURVE_P,Drivetrain.CURVE_I,Drivetrain.CURVE_D);
-	this.turnTrapezoidal = new Trapezoidal(Drivetrain.TURN_T);
+	this.turnTrapezoidal = new Trapezoidal(Drivetrain.CURVE_T);
 	this.goalHeading = drivetrain.getHeading();
         pid.setTolerance(.2);
 

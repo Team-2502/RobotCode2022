@@ -129,6 +129,7 @@ public final class Constants {
             public static final double SHOOTER_D = 0.0037;
             public static final double SHOOTER_IZ = 100;
             public static final double SHOOTER_FF = 0.000209;
+            public static final double SHOOTER_NV = 11.4; // nominal voltage
             public static final double SHOOTER_MAX_OUTPUT = 1;
             public static final double SHOOTER_MIN_OUTPUT = -1;
             public static final double SHOOTER_MANUAL_RPM_MID = 2600; // center of manual range, max is ~4200 with current pid

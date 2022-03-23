@@ -36,6 +36,9 @@ public class ShooterSubsystem extends SubsystemBase {
         shooterLeft.setSmartCurrentLimit(39);
         shooterRight.setSmartCurrentLimit(39);
 
+	shooterLeft.enableVoltageCompensation(12.6);
+	shooterRight.enableVoltageCompensation(12.6);
+
         rightPID = shooterLeft.getPIDController();
         rightEncoder = shooterRight.getEncoder();
 
@@ -109,6 +112,8 @@ public class ShooterSubsystem extends SubsystemBase {
         rightPID.setD(SmartDashboard .getNumber("SHOOTER_D",0));
         rightPID.setIZone(SmartDashboard .getNumber("SHOOTER_IZ",0));
         rightPID.setFF(SmartDashboard .getNumber("SHOOTER_FF",0));
+	shooterLeft.enableVoltageCompensation(SmartDashboard.getNumber("SHOOTER_NV",12.6));
+	shooterRight.enableVoltageCompensation(SmartDashboard.getNumber("SHOOTER_NV",12.6));
     }
 
     public void NTInit() {
@@ -117,5 +122,6 @@ public class ShooterSubsystem extends SubsystemBase {
         SmartDashboard.putNumber("SHOOTER_D",Constants.Subsystem.Shooter.SHOOTER_D);  
         SmartDashboard.putNumber("SHOOTER_IZ",Constants.Subsystem.Shooter.SHOOTER_IZ); 
         SmartDashboard.putNumber("SHOOTER_FF",Constants.Subsystem.Shooter.SHOOTER_FF); 
+        SmartDashboard.putNumber("SHOOTER_NV",Constants.Subsystem.Shooter.SHOOTER_NV); 
     }
 }
