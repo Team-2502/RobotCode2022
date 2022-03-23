@@ -124,14 +124,16 @@ public final class Constants {
     public static final class Subsystem {
 
         public static final class Shooter {
-            public static final double SHOOTER_P = 0.0008;
-            public static final double SHOOTER_I = 0.000001;
-            public static final double SHOOTER_D = 0.04;
-            public static final double SHOOTER_IZ = 60;
-            public static final double SHOOTER_FF = 0.000215;
+            public static final double SHOOTER_P = 0.00019;
+            public static final double SHOOTER_I = 0.00000027;
+            public static final double SHOOTER_D = 0.0037;
+            public static final double SHOOTER_IZ = 100;
+            public static final double SHOOTER_FF = 0.000209;
             public static final double SHOOTER_MAX_OUTPUT = 1;
             public static final double SHOOTER_MIN_OUTPUT = -1;
             public static final double SHOOTER_MANUAL_RPM_MID = 2600; // center of manual range, max is ~4200 with current pid
+
+	    public static final boolean SHOOTER_NT_TUNE = false;
 
             public static final double RPM_GOOD = 40;
         }

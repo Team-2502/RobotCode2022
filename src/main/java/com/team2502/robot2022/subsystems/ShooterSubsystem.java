@@ -2,6 +2,7 @@ package com.team2502.robot2022.subsystems;
 
 import com.revrobotics.*;
 import com.team2502.robot2022.Constants;
+import com.team2502.robot2022.Constants.Subsystem.Shooter;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -39,12 +40,20 @@ public class ShooterSubsystem extends SubsystemBase {
         rightEncoder = shooterRight.getEncoder();
 
         setupPID();
+
+	if (SmartDashboard.getNumber("", -1) == -1 && Shooter.SHOOTER_NT_TUNE) {
+		NTInit();
+	}
     }
 
     @Override
     public void periodic() { 
 	    SmartDashboard.putNumber("Shooter Velocity", rightEncoder.getVelocity()); 
 	    SmartDashboard.putBoolean("Within Constraints", atSpeed());
+
+	    if (Constants.Subsystem.Shooter.SHOOTER_NT_TUNE) {
+		NTUpdate();
+	    }
 
     }
 
@@ -94,4 +103,19 @@ public class ShooterSubsystem extends SubsystemBase {
         shooterRight.burnFlash();
     }
 
+    public void NTUpdate() {
+        rightPID.setP(SmartDashboard.getNumber("SHOOTER_P", 0));
+        rightPID.setI(SmartDashboard.getNumber("SHOOTER_I",0));
+        rightPID.setD(SmartDashboard .getNumber("SHOOTER_D",0));
+        rightPID.setIZone(SmartDashboard .getNumber("SHOOTER_IZ",0));
+        rightPID.setFF(SmartDashboard .getNumber("SHOOTER_FF",0));
+    }
+
+    public void NTInit() {
+        SmartDashboard.putNumber("SHOOTER_P", Constants.Subsystem.Shooter.SHOOTER_P); 
+        SmartDashboard.putNumber("SHOOTER_I",Constants.Subsystem.Shooter.SHOOTER_I);  
+        SmartDashboard.putNumber("SHOOTER_D",Constants.Subsystem.Shooter.SHOOTER_D);  
+        SmartDashboard.putNumber("SHOOTER_IZ",Constants.Subsystem.Shooter.SHOOTER_IZ); 
+        SmartDashboard.putNumber("SHOOTER_FF",Constants.Subsystem.Shooter.SHOOTER_FF); 
+    }
 }
