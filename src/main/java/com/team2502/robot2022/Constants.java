@@ -133,7 +133,7 @@ public final class Constants {
             public static final double SHOOTER_MIN_OUTPUT = -1;
             public static final double SHOOTER_MANUAL_RPM_MID = 2600; // center of manual range, max is ~4200 with current pid
 
-	    public static final boolean SHOOTER_NT_TUNE = false;
+	    public static final boolean SHOOTER_NT_TUNE = true; // use with "sPID" shuffleboard tab
 
             public static final double RPM_GOOD = 40;
         }

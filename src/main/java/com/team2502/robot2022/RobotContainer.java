@@ -83,7 +83,7 @@ public class RobotContainer
         RunShooterManualButton.whenHeld(new RunShooterManualCommand(SHOOTER, TURRET, Constants.Subsystem.Shooter.SHOOTER_MANUAL_RPM_MID, JOYSTICK_OPERATOR)); // use lever from operator joystick
 
         JoystickButton ShootButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.SHOOT_BUTTON);
-        ShootButton.whenHeld(new SmartShootCommand(SHOOTER, INTAKE, 0.25, 0, 0.125, false));
+        ShootButton.whenHeld(new SmartShootCommand(SHOOTER, INTAKE, 0.35, 0, 0.225, false));
 
         JoystickButton VisionAlignDrivetrainButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.VISION_DRIVETRAIN_ALIGN);
         VisionAlignDrivetrainButton.whenHeld(new VisionAlignDrivetrain(VISION, DRIVETRAIN, JOYSTICK_DRIVE_LEFT, JOYSTICK_DRIVE_RIGHT));
