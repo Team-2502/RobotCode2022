@@ -22,7 +22,7 @@ public class TurnTurretCommand extends CommandBase {
                 Turret.TURRET_P,
                 Turret.TURRET_I,
                 Turret.TURRET_D,
-                new TrapezoidProfile.Constraints(Turret.MAX_VEL, Turret.MAX_ACCEL)
+                new TrapezoidProfile.Constraints(Turret.TURRET_MV, Turret.TURRET_MA)
         );
 
         this.vision = vision;

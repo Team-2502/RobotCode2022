@@ -134,7 +134,7 @@ public final class Constants {
             public static final double SHOOTER_MIN_OUTPUT = -1;
             public static final double SHOOTER_MANUAL_RPM_MID = 2600; // center of manual range, max is ~4200 with current pid
 
-	    public static final boolean SHOOTER_NT_TUNE = true; // use with "sPID" shuffleboard tab
+	    public static final boolean SHOOTER_NT_TUNE = false; // use with "sPID" shuffleboard tab
 
             public static final double RPM_GOOD = 40;
         }
@@ -142,9 +142,13 @@ public final class Constants {
         public static final class Turret {
             public static final double TURRET_P = 0.0004;
             public static final double TURRET_I = 0.0;
+            public static final double TURRET_IZ = 0.0;
             public static final double TURRET_D = 0.01;
-            public static final double MAX_VEL = 1;
-            public static final double MAX_ACCEL = 1;
+            public static final double TURRET_FF = 0.0;
+            public static final double TURRET_MV = 1; // max velocity
+            public static final double TURRET_MA = 1; // max accel
+	    
+            public static final boolean TURRET_NT_TUNE = true;
 
             public static final double MIN_ANGLE = 0;
             public static final double MAX_ANGLE = 180;
@@ -156,7 +160,7 @@ public final class Constants {
             public static final double TURN_TOLERANCE_DEG = 1;
             public static final double TURN_RATE_TOLERANCE_DEG_PER_S = 1;
 
-            public static final double TURRET_GEAR_RATIO = 0.08387; // 26/310
+            public static final double TURRET_GEAR_RATIO = 0.009318996416; // (1/9) * (26/310)
 
             public static final double TRAVERSE_POWER = 1; // (traverseInput ^ pow)
             public static final double TRAVERSE_FRICTION = 0.024; // min val for turret to move
@@ -251,7 +255,7 @@ public final class Constants {
 	    public static final double LINE_D = 0.1;
 	    public static final double LINE_F = 0.058; // friction
 	    public static final double LINE_T = 0.6; // trapezoidal
-	    public static final boolean LINE_NT_TUNE = true;
+	    public static final boolean LINE_NT_TUNE = false;
         }
     }
 }
