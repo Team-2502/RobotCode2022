@@ -20,6 +20,7 @@ public class SuicideBurnCommand extends CommandBase {
     private PIDController turnPID;
     private Trapezoidal turnTrapezoidal;
     private double decel;
+    private double accel;
 
     private boolean endFlag;
 
@@ -33,9 +34,10 @@ public class SuicideBurnCommand extends CommandBase {
     * @param speed maximum speed
     * @param decel time to stop
      */
-    public SuicideBurnCommand(DrivetrainSubsystem drivetrain, double goalPoint, double speed, double decel) {
+    public SuicideBurnCommand(DrivetrainSubsystem drivetrain, double goalPoint, double speed, double accel, double decel) {
         this.drivetrain = drivetrain;
 	this.maxSpeed = speed;
+	this.accel = accel;
 	this.decel = decel;
 
 	this.goalPoint = goalPoint;
@@ -49,14 +51,11 @@ public class SuicideBurnCommand extends CommandBase {
     public void initialize()
     {
         this.startPos = drivetrain.getInchesTraveled();
-        this.trapezoidal = new Trapezoidal(decel);
+        this.trapezoidal = new Trapezoidal(accel, decel, maxSpeed, 0);
 	this.turnPID = new PIDController(Drivetrain.CURVE_P,Drivetrain.CURVE_I,Drivetrain.CURVE_D);
 	this.turnTrapezoidal = new Trapezoidal(Drivetrain.CURVE_T);
 	this.goalHeading = drivetrain.getHeading();
-
-        trapezoidal.reset();
-	turnPID.reset();
-	turnTrapezoidal.reset();
+	endFlag = false;
     }
 
     @Override
@@ -76,12 +75,12 @@ public class SuicideBurnCommand extends CommandBase {
         steering_adjust = Util.frictionAdjust(steering_adjust, Drivetrain.CURVE_F);
 
         drivetrain.getDrive().tankDrive(steering_adjust-speed, steering_adjust+speed);
+
 	SmartDashboard.putNumber("Drivetrain Position", -(drivetrain.getInchesTraveled()-startPos));
 	SmartDashboard.putNumber("Drivetrain Goal Pos", goalPoint);
-	SmartDashboard.putNumber("Drivetrain angle", (drivetrain.getHeading()));
-	SmartDashboard.putNumber("Drivetrain Goal angle", goalHeading);
+	SmartDashboard.putNumber("Drivetrain speed", (speed));
 
-        endFlag = drivetrain.getInchesTraveled()-startPos < -goalPoint;
+        endFlag = (drivetrain.getInchesTraveled()-startPos) > -goalPoint ? true : endFlag;
 
     }
 

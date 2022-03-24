@@ -86,7 +86,7 @@ public class DrivetrainSubsystem extends SubsystemBase{
         drivetrainFrontLeft.setNeutralMode(nm);
     }
 
-    public double getRpm(){ return (drivetrainFrontLeft.getSelectedSensorVelocity() * 600) / 2048; }
+    public double getRpm(){ return (drivetrainFrontLeft.getSelectedSensorVelocity() / Drivetrain.TICKS_PER_INCH); }
 
     public double getHeading()
     {

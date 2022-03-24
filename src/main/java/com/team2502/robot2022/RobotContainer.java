@@ -149,11 +149,11 @@ public class RobotContainer
 	JoystickButton runShooterNTButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_SHOOTER_NT_BUTTON);
 	runShooterNTButton.whenHeld(new RunShooterNTCommand(SHOOTER));
 
-	JoystickButton goTwoFeet = new JoystickButton(JOYSTICK_DRIVE_RIGHT, 4);
-	goTwoFeet.whenPressed(new DistanceDriveCommand(DRIVETRAIN, 12*8));
+	//JoystickButton goTwoFeet = new JoystickButton(JOYSTICK_DRIVE_RIGHT, 4);
+	//goTwoFeet.whenPressed(new DistanceDriveCommand(DRIVETRAIN, 12*8));
 
-	JoystickButton flak = new JoystickButton(JOYSTICK_DRIVE_RIGHT, 3);
-	flak.whenPressed(new SuicideBurnCommand(DRIVETRAIN, 12*4, .8, .4));
+	JoystickButton falcon9 = new JoystickButton(JOYSTICK_DRIVE_RIGHT, 3);
+	falcon9.whenPressed(new SuicideBurnCommand(DRIVETRAIN, 12*6, 1, 1.3, .4));
 
 	JoystickButton missile = new JoystickButton(JOYSTICK_DRIVE_RIGHT, 2);
 	missile.whileHeld(new SidewinderCommand(PI_VISION, DRIVETRAIN, INTAKE, 10*12));
