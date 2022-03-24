@@ -239,10 +239,10 @@ public final class Constants {
 	    public static final double TURN_T = 0.8; // trapezoidal 
 
 	    // constants when turning during a move
-	    public static final double CURVE_P = 0.022;
-	    public static final double CURVE_I = 0.00027;
-	    public static final double CURVE_D = 0.1;
-	    public static final double CURVE_F = 0.055; // friction    
+	    public static final double CURVE_P = 0.0012;
+	    public static final double CURVE_I = 0.0;
+	    public static final double CURVE_D = 0.001;
+	    public static final double CURVE_F = 0.00155; // friction    
 	    public static final double CURVE_T = 0.5; // trapezoidal 
 
 	    // constants for straight line movement

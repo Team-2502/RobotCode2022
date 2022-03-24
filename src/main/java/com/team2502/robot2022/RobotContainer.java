@@ -6,8 +6,10 @@
 package com.team2502.robot2022;
 
 import com.team2502.robot2022.commands.autonomous.ingredients.DistanceDriveCommand;
+import com.team2502.robot2022.commands.autonomous.ingredients.FlakCommand;
 import com.team2502.robot2022.commands.autonomous.ingredients.ShootCommand;
 import com.team2502.robot2022.commands.autonomous.ingredients.SidewinderCommand;
+import com.team2502.robot2022.commands.autonomous.ingredients.SuicideBurnCommand;
 import com.team2502.robot2022.commands.autonomous.ingredients.TraverseCommand;
 import com.team2502.robot2022.commands.autonomous.ingredients.VisionTrackBallCommand;
 import com.team2502.robot2022.Constants.Subsystem.Vision;
@@ -150,11 +152,11 @@ public class RobotContainer
 	JoystickButton goTwoFeet = new JoystickButton(JOYSTICK_DRIVE_RIGHT, 4);
 	goTwoFeet.whenPressed(new DistanceDriveCommand(DRIVETRAIN, 12*8));
 
-	JoystickButton getBall = new JoystickButton(JOYSTICK_DRIVE_RIGHT, 3);
-	getBall.whileHeld(new VisionTrackBallCommand(PI_VISION, DRIVETRAIN, INTAKE));
+	JoystickButton flak = new JoystickButton(JOYSTICK_DRIVE_RIGHT, 3);
+	flak.whenPressed(new SuicideBurnCommand(DRIVETRAIN, 12*4, .8, .4));
 
 	JoystickButton missile = new JoystickButton(JOYSTICK_DRIVE_RIGHT, 2);
-	missile.whenPressed(new SidewinderCommand(PI_VISION, DRIVETRAIN, INTAKE, 10*12));
+	missile.whileHeld(new SidewinderCommand(PI_VISION, DRIVETRAIN, INTAKE, 10*12));
     }
 
 
