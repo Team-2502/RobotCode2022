@@ -80,7 +80,7 @@ public class SuicideBurnCommand extends CommandBase {
 	SmartDashboard.putNumber("Drivetrain Goal Pos", goalPoint);
 	SmartDashboard.putNumber("Drivetrain speed", (speed));
 
-        endFlag = (drivetrain.getInchesTraveled()-startPos) > -goalPoint ? true : endFlag;
+        endFlag = (drivetrain.getInchesTraveled()-startPos) > goalPoint ? true : endFlag;
 
     }
 
