@@ -40,7 +40,7 @@ public final class Constants {
 	// right side
 	// 13 12 11
 	// 14 15 16
-        public static final int VISION_DRIVETRAIN_ALIGN = 99;
+        public static final int VISION_DRIVETRAIN_ALIGN = 16;
 
         public static final int SHOOT_BUTTON = 1;
 
@@ -240,17 +240,18 @@ public final class Constants {
 
 	    // constants when turning during a move
 	    public static final double CURVE_P = 0.022;
-	    public static final double CURVE_I = 0.0;
+	    public static final double CURVE_I = 0.00027;
 	    public static final double CURVE_D = 0.1;
 	    public static final double CURVE_F = 0.055; // friction    
 	    public static final double CURVE_T = 0.5; // trapezoidal 
 
 	    // constants for straight line movement
-	    public static final double LINE_P = 0.009;
-	    public static final double LINE_I = 0.0;
-	    public static final double LINE_D = 0.0;
-	    public static final double LINE_F = 0.055; // friction
+	    public static final double LINE_P = 0.017;
+	    public static final double LINE_I = 0.00027;
+	    public static final double LINE_D = 0.1;
+	    public static final double LINE_F = 0.058; // friction
 	    public static final double LINE_T = 0.6; // trapezoidal
+	    public static final boolean LINE_NT_TUNE = true;
         }
     }
 }

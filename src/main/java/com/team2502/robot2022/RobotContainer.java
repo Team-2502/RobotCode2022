@@ -148,7 +148,7 @@ public class RobotContainer
 	runShooterNTButton.whenHeld(new RunShooterNTCommand(SHOOTER));
 
 	JoystickButton goTwoFeet = new JoystickButton(JOYSTICK_DRIVE_RIGHT, 4);
-	goTwoFeet.whenPressed(new DistanceDriveCommand(DRIVETRAIN, 48));
+	goTwoFeet.whenPressed(new DistanceDriveCommand(DRIVETRAIN, 12*8));
 
 	JoystickButton getBall = new JoystickButton(JOYSTICK_DRIVE_RIGHT, 3);
 	getBall.whileHeld(new VisionTrackBallCommand(PI_VISION, DRIVETRAIN, INTAKE));

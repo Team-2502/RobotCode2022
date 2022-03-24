@@ -44,7 +44,7 @@ public class ShooterSubsystem extends SubsystemBase {
 
         setupPID();
 
-	if (SmartDashboard.getNumber("", -1) == -1 && Shooter.SHOOTER_NT_TUNE) {
+	if (SmartDashboard.getNumber("SHOOTER_P", -1) == -1 && Shooter.SHOOTER_NT_TUNE) {
 		NTInit();
 	}
     }

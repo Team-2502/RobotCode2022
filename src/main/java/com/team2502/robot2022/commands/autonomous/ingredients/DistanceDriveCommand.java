@@ -1,6 +1,7 @@
 package com.team2502.robot2022.commands.autonomous.ingredients;
 import com.team2502.robot2022.subsystems.DrivetrainSubsystem;
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import com.team2502.robot2022.util.Trapezoidal;
 import com.team2502.robot2022.util.Util;
@@ -40,11 +41,15 @@ public class DistanceDriveCommand extends CommandBase {
         this.trapezoidal = new Trapezoidal(Drivetrain.LINE_T);
 	this.turnPID = new PIDController(Drivetrain.CURVE_P,Drivetrain.CURVE_I,Drivetrain.CURVE_D);
 	this.turnTrapezoidal = new Trapezoidal(Drivetrain.CURVE_T);
-	this.goalHeading = drivetrain.getHeading();
-        pid.setTolerance(.2);
+	this.goalHeading = drivetrain.getHeading() + 30;
+        pid.setTolerance(.3);
 
         pid.reset();
         trapezoidal.reset();
+
+	if (SmartDashboard.getNumber("LINE_P", -1) == -1 && Drivetrain.LINE_NT_TUNE) {
+		NTInit();
+	}
     }
 
     @Override
@@ -63,6 +68,14 @@ public class DistanceDriveCommand extends CommandBase {
         steering_adjust = Util.frictionAdjust(steering_adjust, Drivetrain.CURVE_F);
 
         drivetrain.getDrive().tankDrive(steering_adjust-speed, steering_adjust+speed);
+	SmartDashboard.putNumber("Drivetrain Position", -(drivetrain.getInchesTraveled()-startPos));
+	SmartDashboard.putNumber("Drivetrain Goal Pos", goalPoint);
+	SmartDashboard.putNumber("Drivetrain angle", (drivetrain.getHeading()));
+	SmartDashboard.putNumber("Drivetrain Goal angle", goalHeading);
+
+	if (Drivetrain.LINE_NT_TUNE) {
+	    NTUpdate();
+	}
     }
 
     @Override
@@ -72,6 +85,18 @@ public class DistanceDriveCommand extends CommandBase {
 
     @Override
     public boolean isFinished() {
-	return pid.atSetpoint();
+	return (drivetrain.getRpm() < 70 && pid.atSetpoint());
+    }
+
+    public void NTUpdate() {
+        pid.setP(SmartDashboard.getNumber("LINE_P", 0));
+        pid.setI(SmartDashboard.getNumber("LINE_I",0));
+        pid.setD(SmartDashboard.getNumber("LINE_D",0));
+    }
+
+    public void NTInit() {
+        SmartDashboard.putNumber("LINE_P", Drivetrain.LINE_P); 
+        SmartDashboard.putNumber("LINE_I", Drivetrain.LINE_I);  
+        SmartDashboard.putNumber("LINE_D", Drivetrain.LINE_D);  
     }
 }
