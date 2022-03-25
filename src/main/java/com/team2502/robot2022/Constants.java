@@ -162,6 +162,8 @@ public final class Constants {
 
             public static final double TURRET_GEAR_RATIO = 0.009318996416; // (1/9) * (26/310)
 
+	    public static final double TURRET_OFFSET = 90; // degrees from straight back at start
+
             public static final double TRAVERSE_POWER = 1; // (traverseInput ^ pow)
             public static final double TRAVERSE_FRICTION = 0.024; // min val for turret to move
 

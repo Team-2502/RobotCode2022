@@ -63,12 +63,15 @@ public class TurretSubsystem extends SubsystemBase {
      * @param angle angle to put the turret at
      */
     public void setAngle(double angle){
-        turnMotor.getPIDController().setReference(angle, ControlType.kSmartMotion);
+        turnMotor.getPIDController().setReference(
+			(angle + Constants.Subsystem.Turret.TURRET_OFFSET) / 
+			(360D * Constants.Subsystem.Turret.TURRET_GEAR_RATIO),
+			ControlType.kSmartMotion);
     }
 
     public double getAngle()
     {
-        return turnMotorEncoder.getPosition() * 360D * Constants.Subsystem.Turret.TURRET_GEAR_RATIO;
+        return (turnMotorEncoder.getPosition() * 360D * Constants.Subsystem.Turret.TURRET_GEAR_RATIO) - Constants.Subsystem.Turret.TURRET_OFFSET;
     }
 
     public double getRawAngle() {
