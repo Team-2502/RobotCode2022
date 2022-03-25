@@ -47,7 +47,7 @@ public enum AutonomousCommandGroupFactory { // first auto is default
 				new VisionAlignTurret(v, t),
 				sequence(
 					deadline(
-						new WaitCommand(2.5),
+						new TimeLeftCommand(3), // wait until near end of auto
 						new RunIntakeCommand(i, 0.5, 0.85, true) // intake
 					),
 					new SmartShootCommand(s, i, 0.35, 0, 0.225, false)
