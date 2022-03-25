@@ -153,7 +153,7 @@ public class RobotContainer
 	//goTwoFeet.whenPressed(new DistanceDriveCommand(DRIVETRAIN, 12*8));
 
 	JoystickButton falcon9 = new JoystickButton(JOYSTICK_DRIVE_RIGHT, 3);
-	falcon9.whenPressed(new SuicideBurnCommand(DRIVETRAIN, 12*2, 1, .4, 1.2));
+	falcon9.whenPressed(new SuicideBurnCommand(DRIVETRAIN, 12*2, 1, .8, 1.4));
 
 	JoystickButton missile = new JoystickButton(JOYSTICK_DRIVE_RIGHT, 2);
 	missile.whileHeld(new SidewinderCommand(PI_VISION, DRIVETRAIN, INTAKE, 10*12));

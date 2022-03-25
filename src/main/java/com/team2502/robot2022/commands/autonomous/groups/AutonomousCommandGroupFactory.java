@@ -19,7 +19,7 @@ import static edu.wpi.first.wpilibj2.command.CommandGroupBase.*;
 public enum AutonomousCommandGroupFactory { // first auto is default
 	FOUR_BALL((d,i,v,s,t,p) -> sequence(
 				deadline(
-				new SuicideBurnCommand(d, 12*4, 1, .4, 1.2),
+				new SuicideBurnCommand(d, 12*8, 1, .8, 1.4),
 				new RunIntakeCommand(i, 0.5, 0.85, true), // intake
 				sequence(
 					deadline(
@@ -37,7 +37,7 @@ public enum AutonomousCommandGroupFactory { // first auto is default
 				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(13.47))
 				),
 				deadline(
-				new SuicideBurnCommand(d, 12*1.6, 1, .4, 1.2),
+				new SuicideBurnCommand(d, 12*4, 1, .8, 1.4),
 				new RunIntakeCommand(i, 0.5, 0.85, true), // intake
 				new VisionAlignTurret(v, t),
 				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(19.76))
@@ -55,6 +55,7 @@ public enum AutonomousCommandGroupFactory { // first auto is default
 				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(19.76))
 				)
 			)),
+
         THREE_BALL((d,i,v,s,t,p) -> new SequentialCommandGroup(
 				new ParallelRaceGroup( // intake while moving forward
 				new RunIntakeCommand(i, 0.5, 0.85, true), // intake

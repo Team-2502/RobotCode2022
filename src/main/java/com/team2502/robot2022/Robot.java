@@ -4,13 +4,11 @@
 
 package com.team2502.robot2022;
 
-import com.team2502.robot2022.subsystems.DrivetrainSubsystem;
-import edu.wpi.first.wpilibj.PneumaticsModuleType;
-import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import com.team2502.robot2022.subsystems.IntakeSubsystem;
 
 
 
@@ -51,7 +49,10 @@ public class Robot extends TimedRobot {
     // commands, running already-scheduled commands, removing finished or interrupted commands,
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
+    double before = Timer.getFPGATimestamp();
     CommandScheduler.getInstance().run();
+    double elapsed = Timer.getFPGATimestamp() - before;
+    SmartDashboard.putNumber("RIO load (ms)", elapsed * 1000);
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
@@ -72,7 +73,6 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
-    m_robotContainer.INTAKE.deployIntake();
   }
 
   /** This function is called periodically during autonomous. */

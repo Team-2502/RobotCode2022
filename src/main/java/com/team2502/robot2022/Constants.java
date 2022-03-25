@@ -148,7 +148,7 @@ public final class Constants {
             public static final double TURRET_MV = 1; // max velocity
             public static final double TURRET_MA = 1; // max accel
 	    
-            public static final boolean TURRET_NT_TUNE = true;
+            public static final boolean TURRET_NT_TUNE = false;
 
             public static final double MIN_ANGLE = 0;
             public static final double MAX_ANGLE = 180;
