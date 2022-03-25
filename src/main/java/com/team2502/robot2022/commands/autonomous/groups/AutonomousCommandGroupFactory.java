@@ -17,30 +17,43 @@ import static edu.wpi.first.wpilibj2.command.CommandGroupBase.*;
  * put new groups before the do nothing group
  * */
 public enum AutonomousCommandGroupFactory { // first auto is default
-        FOUR_BALL((d,i,v,s,t,p) -> sequence(
-				race( // intake while moving forward
+	FOUR_BALL((d,i,v,s,t,p) -> sequence(
+				deadline(
+				new SuicideBurnCommand(d, 12*4, 1, .4, 1.2),
 				new RunIntakeCommand(i, 0.5, 0.85, true), // intake
-				new DistanceDriveCommand(d, 97.0), // move to ball
-				new TraverseCommand(t, Constants.Subsystem.Turret.CENTER), // center turret
-				new WaitCommand(4)
+				sequence(
+					deadline(
+						new WaitCommand(1.75),
+						new TraverseCommand(t, Constants.Subsystem.Turret.CENTER) // center turret
 					),
-				race( // align, then shoot
-				new VisionAlignTurret(v, t),
-				new RunShooterCommand(s, v, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(11D),true), // ~11ft on lookup table if vision dead
-				new SmartShootCommand(s, i, .5, .5, .25, false),
-				new WaitCommand(5) // shoot for 6s before stopping
-					),
-				race( // intake while moving forward
-					new RunIntakeCommand(i, 0.5, 0.85, true), // intake
-					new DistanceDriveCommand(d, 87.0), // move to ball
-					new WaitCommand(4)
+					new VisionAlignTurret(v, t)
 				),
-				race( // align, then shoot
+				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(13.47))
+				),
+				deadline(
+				new WaitCommand(3),
 				new VisionAlignTurret(v, t),
-				new RunShooterCommand(s, v, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(19D),true), // ~19ft on lookup table if vision dead
-				new SmartShootCommand(s, i, .5, .5, .25, false),
-				new WaitCommand(5) // shoot for 6s before stopping
-					)
+				new SmartShootCommand(s, i, 0.35, 0, 0.225, false),
+				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(13.47))
+				),
+				deadline(
+				new SuicideBurnCommand(d, 12*1.6, 1, .4, 1.2),
+				new RunIntakeCommand(i, 0.5, 0.85, true), // intake
+				new VisionAlignTurret(v, t),
+				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(19.76))
+				),
+				deadline(
+				new WaitCommand(10),
+				new VisionAlignTurret(v, t),
+				sequence(
+					deadline(
+						new WaitCommand(2.5),
+						new RunIntakeCommand(i, 0.5, 0.85, true) // intake
+					),
+					new SmartShootCommand(s, i, 0.35, 0, 0.225, false)
+				),
+				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(19.76))
+				)
 			)),
         THREE_BALL((d,i,v,s,t,p) -> new SequentialCommandGroup(
 				new ParallelRaceGroup( // intake while moving forward

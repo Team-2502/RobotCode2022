@@ -153,12 +153,13 @@ public class RobotContainer
 	//goTwoFeet.whenPressed(new DistanceDriveCommand(DRIVETRAIN, 12*8));
 
 	JoystickButton falcon9 = new JoystickButton(JOYSTICK_DRIVE_RIGHT, 3);
-	falcon9.whenPressed(new SuicideBurnCommand(DRIVETRAIN, 12*6, 1, 1.3, .4));
+	falcon9.whenPressed(new SuicideBurnCommand(DRIVETRAIN, 12*2, 1, .4, 1.2));
 
 	JoystickButton missile = new JoystickButton(JOYSTICK_DRIVE_RIGHT, 2);
 	missile.whileHeld(new SidewinderCommand(PI_VISION, DRIVETRAIN, INTAKE, 10*12));
     }
 
+    // 13.47
 
     /**
      * Use this to pass the autonomous command to the main {@link Robot} class.
