@@ -108,4 +108,20 @@ public class IntakeSubsystem extends SubsystemBase {
     {
         intakeDeploySolenoid.set(!intakeDeploySolenoid.get());
     }
+
+    /**
+    * feed belt position
+    * @return feed belt position
+     */
+    public double getBeltPos() {
+	    return bottomBelt.getEncoder().getPosition();
+    }
+
+    /**
+    * feed belt speed
+    * @return feed belt speed (-1 to 1)
+     */
+    public double getBeltSpeed() {
+	    return bottomBelt.get();
+    }
 }

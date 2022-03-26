@@ -274,5 +274,13 @@ public final class Constants {
 	        DIST_TO_VEL_ADJ_TABLE = new LookupTable(distToVelAdjTable);
             }
         }
+
+	public static final class Hopper {
+	    public static final double HOPPER_ROTATIONS_PER_INCH = 0.8; // rotations of belt motors per inch travel of balls in hopper
+	    public static final double HOPPER_LENGTH_ROTATIONS = 30
+		    * HOPPER_ROTATIONS_PER_INCH;
+	    public static final double BALL_LENGTH_ROTATIONS = 9 
+		    * HOPPER_ROTATIONS_PER_INCH;
+	}
     }
 }

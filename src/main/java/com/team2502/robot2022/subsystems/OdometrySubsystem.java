@@ -3,6 +3,7 @@ package com.team2502.robot2022.subsystems;
 import java.util.Deque;
 
 import com.team2502.robot2022.Constants;
+import com.team2502.robot2022.util.Ball;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -127,4 +128,10 @@ public class OdometrySubsystem extends SubsystemBase {
                 ).minus(robotPose.getRotation())
         .getDegrees();
     }
+
+    /**
+     * Hopper contents {@link Deque}
+     * front is intake, back is flywheel
+     * */
+    public Deque<Ball> hopperContents;
 }
