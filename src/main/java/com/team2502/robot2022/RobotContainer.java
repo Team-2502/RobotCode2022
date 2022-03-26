@@ -22,6 +22,7 @@ import com.team2502.robot2022.subsystems.*;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
 
@@ -41,6 +42,7 @@ public class RobotContainer
     protected final VisionSubsystem VISION = new VisionSubsystem();
     protected final PiVisionSubsystem PI_VISION = new PiVisionSubsystem();
     protected final ClimberSubsystem CLIMBER = new ClimberSubsystem();
+    protected final OdometrySubsystem ODOMETRY = new OdometrySubsystem();
 
     //Joysticks are defined here
     private static final Joystick JOYSTICK_DRIVE_RIGHT = new Joystick(Constants.OI.JOYSTICK_DRIVE_RIGHT);
@@ -55,6 +57,11 @@ public class RobotContainer
         DRIVETRAIN.setDefaultCommand(new DriveCommand(DRIVETRAIN, JOYSTICK_DRIVE_LEFT, JOYSTICK_DRIVE_RIGHT));
 
         TURRET.setDefaultCommand(new TurnTurretCommand(TURRET, JOYSTICK_OPERATOR));
+
+	// start odometry
+	CommandScheduler.getInstance().schedule(new DrivetrainOdometryCommand(DRIVETRAIN,ODOMETRY));
+	CommandScheduler.getInstance().schedule(new VisionOdometryCommand(DRIVETRAIN, VISION, TURRET, ODOMETRY));
+
         // Configure the button bindings
         configureButtonBindings();
 
@@ -158,8 +165,6 @@ public class RobotContainer
 	JoystickButton missile = new JoystickButton(JOYSTICK_DRIVE_RIGHT, 2);
 	missile.whileHeld(new SidewinderCommand(PI_VISION, DRIVETRAIN, INTAKE, 10*12));
     }
-
-    // 13.47
 
     /**
      * Use this to pass the autonomous command to the main {@link Robot} class.

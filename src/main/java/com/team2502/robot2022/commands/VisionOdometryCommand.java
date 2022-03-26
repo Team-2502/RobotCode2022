@@ -37,8 +37,13 @@ public class VisionOdometryCommand extends CommandBase {
     @Override
     public void execute() {
 	if (vision.isTargetVisible()) {
-	    double basketOffset = drivetrain.getHeading() + turret.getAngle() + vision.getTargetX();
+	    double basketOffset = Math.toRadians(drivetrain.getHeading() - turret.getAngle() - vision.getTargetX());
 	    double basketDistance = vision.getDistance();
+
+	    double offsetX = -Math.cos(basketOffset)*basketDistance;
+	    double offsetY = -Math.sin(basketOffset)*basketDistance;
+
+	    odometry.setPose(new Pose2d(offsetX, offsetY, new Rotation2d(drivetrain.getHeading())));
 	}
     }
 }

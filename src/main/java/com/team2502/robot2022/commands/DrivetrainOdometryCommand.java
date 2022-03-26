@@ -6,6 +6,7 @@ import com.team2502.robot2022.subsystems.OdometrySubsystem;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Transform2d;
+import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
@@ -37,9 +38,18 @@ public class DrivetrainOdometryCommand extends CommandBase {
     public void execute() {
 	    differentialDriveOdometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(-drivetrain.getHeading()));
 	    Pose2d pose = differentialDriveOdometry.update(Rotation2d.fromDegrees(-drivetrain.getHeading()), drivetrain.getInchesTraveled()-lastPos, drivetrain.getInchesTraveled()-lastPos);
-	    lastPos=drivetrain.getInchesTraveled();
 
 	    Transform2d transform = new Transform2d(pose.getTranslation(), new Rotation2d());
 	    odometry.addPose(transform);
+
+	    odometry.setVelocity(
+	    	new Transform2d(
+			new Translation2d(
+				drivetrain.getInchesTraveled() - lastPos, 
+				drivetrain.getHeading()),
+			new Rotation2d())
+	    );
+
+	    lastPos=drivetrain.getInchesTraveled();
     }
 }
