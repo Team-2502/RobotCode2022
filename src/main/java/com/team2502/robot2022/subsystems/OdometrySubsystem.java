@@ -5,6 +5,7 @@ import java.util.Deque;
 import com.team2502.robot2022.Constants;
 
 import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Transform2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
@@ -79,5 +80,51 @@ public class OdometrySubsystem extends SubsystemBase {
      */
     public double getAngle() {
 	return (robotPose.getRotation().getDegrees() + 180) % 360 ;
+    }
+
+    /**
+    * Get basket pose based on velocity and distance
+    * where to aim
+    * @return adjusted pose
+     */
+    public Pose2d getAdjustedPose() {
+	    return robotPose.plus(
+            robotVelocity
+            .inverse() // invert velocity vector
+            .times( // multiply by distance map
+                Constants.Subsystem.Drivetrain.DIST_TO_VEL_ADJ_TABLE.get(
+                        getDistance()
+                )
+            )
+        );
+    }
+
+    /**
+    * find distance to aim point
+    * @return distance to aim point
+     */
+    public double getAdjustedDistance() {
+	return getAdjustedPose().getTranslation()
+		.getDistance(new Translation2d());
+    }
+
+    /**
+    * angle to aim point
+    * @return angle to aim point (relative to front of robot)
+     */
+    public double getAdjustedAngle() {
+	return (robotPose.getRotation().getDegrees() + 180) % 360;
+    }
+    
+    /**
+    * correct turret angle to aim at basket with velocity adjustment
+    * @return turret angle to aim point
+     */
+    public double getAdjustedTurretAngle() {
+	return  // simply subtract the drivetrain angle to find the turret angle
+        Rotation2d.fromDegrees(
+                getAdjustedAngle()
+                ).minus(robotPose.getRotation())
+        .getDegrees();
     }
 }

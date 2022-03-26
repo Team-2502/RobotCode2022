@@ -258,6 +258,21 @@ public final class Constants {
 	    public static final double LINE_F = 0.058; // friction
 	    public static final double LINE_T = 0.6; // trapezoidal
 	    public static final boolean LINE_NT_TUNE = false;
+
+	    /**
+	     * Distance to Velocity adjustment
+	     * maps distance from target to a scalar velocity adjustment term
+	     *
+	     * higher values will lead the target more at x speed
+	     * */
+            public static final LookupTable DIST_TO_VEL_ADJ_TABLE;
+            static {
+                HashMap<Double, Double> distToVelAdjTable = new HashMap<>();
+                distToVelAdjTable.put(8.2D, 0.05D);
+                distToVelAdjTable.put(20.01D, 0.3D);
+
+	        DIST_TO_VEL_ADJ_TABLE = new LookupTable(distToVelAdjTable);
+            }
         }
     }
 }
