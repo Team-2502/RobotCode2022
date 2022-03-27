@@ -56,6 +56,26 @@ public enum AutonomousCommandGroupFactory { // first auto is default
 				)
 			)),
 
+	TWO_BALL_HANGAR((d,i,v,s,t,p) -> sequence(
+				deadline(
+				new SuicideBurnCommand(d, 12*8, 1, .8, 1.4),
+				new RunIntakeCommand(i, 0.5, 0.85, true), // intake
+				sequence(
+					deadline(
+						new WaitCommand(1.75),
+						new TraverseCommand(t, Constants.Subsystem.Turret.CENTER) // center turret
+					),
+					new VisionAlignTurret(v, t)
+				),
+				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(13.47))
+				),
+				deadline(
+				new WaitCommand(3),
+				new VisionAlignTurret(v, t),
+				new SmartShootCommand(s, i, 0.35, 0, 0.225, false),
+				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(13.47))
+				),
+
         THREE_BALL((d,i,v,s,t,p) -> new SequentialCommandGroup(
 				new ParallelRaceGroup( // intake while moving forward
 				new RunIntakeCommand(i, 0.5, 0.85, true), // intake
