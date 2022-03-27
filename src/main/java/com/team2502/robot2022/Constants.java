@@ -40,7 +40,7 @@ public final class Constants {
 	// right side
 	// 13 12 11
 	// 14 15 16
-        public static final int VISION_DRIVETRAIN_ALIGN = 16;
+        public static final int TOGGLE_CLIMBER = 16;
 
         public static final int SHOOT_BUTTON = 1;
 

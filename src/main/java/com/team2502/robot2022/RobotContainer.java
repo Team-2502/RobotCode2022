@@ -87,8 +87,8 @@ public class RobotContainer
         JoystickButton ShootButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.SHOOT_BUTTON);
         ShootButton.whenHeld(new SmartShootCommand(SHOOTER, INTAKE, 0.35, 0, 0.225, false));
 
-        JoystickButton VisionAlignDrivetrainButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.VISION_DRIVETRAIN_ALIGN);
-        VisionAlignDrivetrainButton.whenHeld(new VisionAlignDrivetrain(VISION, DRIVETRAIN, JOYSTICK_DRIVE_LEFT, JOYSTICK_DRIVE_RIGHT));
+        //JoystickButton VisionAlignDrivetrainButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.VISION_DRIVETRAIN_ALIGN);
+        //VisionAlignDrivetrainButton.whenHeld(new VisionAlignDrivetrain(VISION, DRIVETRAIN, JOYSTICK_DRIVE_LEFT, JOYSTICK_DRIVE_RIGHT));
 
         JoystickButton VisionAlignTurretButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.VISION_TURRET_ALIGN);
         VisionAlignTurretButton.whenHeld(new VisionAlignTurret(VISION, TURRET));
@@ -157,6 +157,9 @@ public class RobotContainer
 
 	JoystickButton missile = new JoystickButton(JOYSTICK_DRIVE_RIGHT, 2);
 	missile.whileHeld(new SidewinderCommand(PI_VISION, DRIVETRAIN, INTAKE, 10*12));
+
+	JoystickButton toggleClimber = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.TOGGLE_CLIMBER);
+	toggleClimber.whenPressed(new ReleaseClimberSolenoidCommand(CLIMBER));
     }
 
     // 13.47
