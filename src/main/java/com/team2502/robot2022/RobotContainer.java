@@ -135,7 +135,7 @@ public class RobotContainer
 
         // Add button to command mappings here.
         // See https://docs.wpilib.org/en/stable/docs/software/commandbased/binding-commands-to-triggers.html
-	JoystickButton runWinchLeftForward = new JoystickButton(JOYSTICK_DRIVE_LEFT, Constants.OI.RUN_WINCH_LEFT_FORWARD);
+	JoystickButton runWinchLeftForward = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_WINCH_LEFT_FORWARD);
 	runWinchLeftForward.whileHeld(new RunSingleWinchCommand(CLIMBER,.4, RunSingleWinchCommand.Winch.LEFT));
 
 	JoystickButton runWinchLeftBackward = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_WINCH_LEFT_BACKWARD);
