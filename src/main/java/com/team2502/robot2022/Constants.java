@@ -139,6 +139,11 @@ public final class Constants {
             public static final double RPM_GOOD = 40;
         }
 
+        public static final class Climber
+        {
+            public static final double CLIMBER_SPEED = 0.7;
+        }
+
         public static final class Turret {
             public static final double TURRET_P = 0.0004;
             public static final double TURRET_I = 0.0;

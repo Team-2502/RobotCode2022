@@ -101,10 +101,10 @@ public class RobotContainer
         ToggleIntakeButton.whenPressed(new ToggleIntakeCommand(INTAKE));
 
         JoystickButton RunClimberButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_CLIMBER_WENCH_BUTTON);
-        RunClimberButton.whenHeld(new RunClimberCommand(CLIMBER, 0.4));
+        RunClimberButton.whenHeld(new RunClimberCommand(CLIMBER, Constants.Subsystem.Climber.CLIMBER_SPEED));
 
         JoystickButton RunClimberBackwardsButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_CLIMBER_WENCH_BACKWARDS_BUTTON);
-        RunClimberBackwardsButton.whenHeld(new RunClimberCommand(CLIMBER, -0.4));
+        RunClimberBackwardsButton.whenHeld(new RunClimberCommand(CLIMBER, -Constants.Subsystem.Climber.CLIMBER_SPEED));
 
         JoystickButton RunShooterButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.SPIN_FLYWHEEL_BUTTON);
         RunShooterButton.whenHeld(new RunShooterCommand(SHOOTER, VISION, Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(0D),false)); // Shoot for 0 distance if not found
@@ -136,16 +136,16 @@ public class RobotContainer
         // Add button to command mappings here.
         // See https://docs.wpilib.org/en/stable/docs/software/commandbased/binding-commands-to-triggers.html
 	JoystickButton runWinchLeftForward = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_WINCH_LEFT_FORWARD);
-	runWinchLeftForward.whileHeld(new RunSingleWinchCommand(CLIMBER,.4, RunSingleWinchCommand.Winch.LEFT));
+	runWinchLeftForward.whileHeld(new RunSingleWinchCommand(CLIMBER,Constants.Subsystem.Climber.CLIMBER_SPEED, RunSingleWinchCommand.Winch.LEFT));
 
 	JoystickButton runWinchLeftBackward = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_WINCH_LEFT_BACKWARD);
-	runWinchLeftBackward.whileHeld(new RunSingleWinchCommand(CLIMBER,-.4, RunSingleWinchCommand.Winch.LEFT));
+	runWinchLeftBackward.whileHeld(new RunSingleWinchCommand(CLIMBER,-Constants.Subsystem.Climber.CLIMBER_SPEED, RunSingleWinchCommand.Winch.LEFT));
 
 	JoystickButton runWinchRightForward = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_WINCH_RIGHT_FORWARD);
-	runWinchRightForward.whileHeld(new RunSingleWinchCommand(CLIMBER,-.4, RunSingleWinchCommand.Winch.RIGHT));
+	runWinchRightForward.whileHeld(new RunSingleWinchCommand(CLIMBER,-Constants.Subsystem.Climber.CLIMBER_SPEED, RunSingleWinchCommand.Winch.RIGHT));
 
 	JoystickButton runWinchRightBackward = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_WINCH_RIGHT_BACKWARD);
-	runWinchRightBackward.whileHeld(new RunSingleWinchCommand(CLIMBER,.4, RunSingleWinchCommand.Winch.RIGHT));
+	runWinchRightBackward.whileHeld(new RunSingleWinchCommand(CLIMBER,Constants.Subsystem.Climber.CLIMBER_SPEED, RunSingleWinchCommand.Winch.RIGHT));
 	JoystickButton runShooterNTButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_SHOOTER_NT_BUTTON);
 	runShooterNTButton.whenHeld(new RunShooterNTCommand(SHOOTER));
 
