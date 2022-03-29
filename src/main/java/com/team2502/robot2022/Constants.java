@@ -58,7 +58,7 @@ public final class Constants {
         public static final int RUN_CLIMBER_WENCH_BACKWARDS_BUTTON = 5;
         public static final int RUN_CLIMBER_WENCH_BUTTON = 6;
 
-	public static final int RUN_SHOOTER_NT_BUTTON = 7;
+        public static final int RUN_SHOOTER_NT_BUTTON = 7;
 
         public static final int VISION_TURRET_ALIGN = 8;
 
@@ -111,10 +111,10 @@ public final class Constants {
             public static final int RELEASE_CLIMBER = 7;
         }
 
-	public static final class Sensors
-	{
+        public static final class Sensors
+        {
             public static final int CLIMBER_LIMIT_LEFT = 0;
-	}
+        }
     }
 
     public static final class Auto
@@ -139,7 +139,7 @@ public final class Constants {
             public static final double SHOOTER_MIN_OUTPUT = -1;
             public static final double SHOOTER_MANUAL_RPM_MID = 2600; // center of manual range, max is ~4200 with current pid
 
-	    public static final boolean SHOOTER_NT_TUNE = false; // use with "sPID" shuffleboard tab
+            public static final boolean SHOOTER_NT_TUNE = false; // use with "sPID" shuffleboard tab
 
             public static final double RPM_GOOD = 40;
         }
@@ -176,7 +176,7 @@ public final class Constants {
 
             public static final double TURRET_GEAR_RATIO = 0.009318996416; // (1/9) * (26/310)
 
-	    public static final double TURRET_OFFSET = 90; // degrees from straight back at start
+            public static final double TURRET_OFFSET = 90; // degrees from straight back at start
 
             public static final double TRAVERSE_POWER = 1; // (traverseInput ^ pow)
             public static final double TRAVERSE_FRICTION = 0.024; // min val for turret to move
@@ -198,8 +198,8 @@ public final class Constants {
 
             public static final double BASKET_HEIGHT = 100.5; // basket vision target to ground
 
-	    public static final double JUICE_FACTOR = -.75; // amount to inflate distance
-	    public static final double JUICE_ADJ = 1D/12D; // amount to trim by
+            public static final double JUICE_FACTOR = -.75; // amount to inflate distance
+            public static final double JUICE_ADJ = 1D/12D; // amount to trim by
 
             //Everything in this class is referenced in the Vision Subsystem, and explained at least partially there.
             public static final String LIMELIGHT_NETWORK_TABLE = "limelight-turret"; //the name in the network table of the limelight
@@ -219,14 +219,15 @@ public final class Constants {
                 //TARGETY_TO_DISTANCE_TABLE = new LookupTable(distToRPMStandstill); //Initialize the TARGETY_TO_DISTANCE_TABLE, setting it to the values of the above hashmap
 
                 //HashMap<Double, Double> distToRPMStandstill = new HashMap<>();//hashmap for the content of the DIST_TO_RPM_STANDSTILL_TABLE
-		//low 
+
+                //low
                 distToRPMStandstill.put(0D, 1299D);
                 distToRPMStandstill.put(4.1D, 1420D);
                 distToRPMStandstill.put(5.8D, 1620D);
                 distToRPMStandstill.put(8D, 1650D);
                 distToRPMStandstill.put(8.19D, 1680D);
 
-		//high
+                //high
                 distToRPMStandstill.put(8.2D, 2150D);
                 distToRPMStandstill.put(9.9D, 2200D);
                 distToRPMStandstill.put(10.23D,2250D);
@@ -235,43 +236,43 @@ public final class Constants {
                 distToRPMStandstill.put(15.55D, 2600D);
                 distToRPMStandstill.put(20.01D, 2900D);
 
-                    //add items to lookup table here
-                    DIST_TO_RPM_STANDSTILL_TABLE = new LookupTable(distToRPMStandstill); //Initialize the DIST_TO_RPM_STANDSTILL_TABLE, setting it to the values of the above hashmap
+                //add items to lookup table here
+                DIST_TO_RPM_STANDSTILL_TABLE = new LookupTable(distToRPMStandstill); //Initialize the DIST_TO_RPM_STANDSTILL_TABLE, setting it to the values of the above hashmap
             }
         }
 
         public static final class RaspberryVision {
             public static final String PHOTONVISION_NETWORK_TABLE = "photonvision/runcam";
 
-	    public static final double CAMERA_HEIGHT = 25;
-	    public static final double CAMERA_ELEVATION = -18.47; // angle
-	    public static final double BALL_HEIGHT = 4;
+            public static final double CAMERA_HEIGHT = 25;
+            public static final double CAMERA_ELEVATION = -18.47; // angle
+            public static final double BALL_HEIGHT = 4;
         }
 
         public static final class Drivetrain {
             public static final double TICKS_PER_INCH = 839.548; // low gear
 
-	    // constants when turning from a standstill
-	    public static final double TURN_P = 0.039;
-	    public static final double TURN_I = 0.0;
-	    public static final double TURN_D = 0;
-	    public static final double TURN_F = 0.03; // friction    
-	    public static final double TURN_T = 0.8; // trapezoidal 
+            // constants when turning from a standstill
+            public static final double TURN_P = 0.039;
+            public static final double TURN_I = 0.0;
+            public static final double TURN_D = 0;
+            public static final double TURN_F = 0.03; // friction
+            public static final double TURN_T = 0.8; // trapezoidal
 
-	    // constants when turning during a move
-	    public static final double CURVE_P = 0.0012;
-	    public static final double CURVE_I = 0.0;
-	    public static final double CURVE_D = 0.001;
-	    public static final double CURVE_F = 0.00155; // friction    
-	    public static final double CURVE_T = 0.5; // trapezoidal 
+            // constants when turning during a move
+            public static final double CURVE_P = 0.0012;
+            public static final double CURVE_I = 0.0;
+            public static final double CURVE_D = 0.001;
+            public static final double CURVE_F = 0.00155; // friction
+            public static final double CURVE_T = 0.5; // trapezoidal
 
-	    // constants for straight line movement
-	    public static final double LINE_P = 0.017;
-	    public static final double LINE_I = 0.00027;
-	    public static final double LINE_D = 0.1;
-	    public static final double LINE_F = 0.058; // friction
-	    public static final double LINE_T = 0.6; // trapezoidal
-	    public static final boolean LINE_NT_TUNE = false;
+            // constants for straight line movement
+            public static final double LINE_P = 0.017;
+            public static final double LINE_I = 0.00027;
+            public static final double LINE_D = 0.1;
+            public static final double LINE_F = 0.058; // friction
+            public static final double LINE_T = 0.6; // trapezoidal
+            public static final boolean LINE_NT_TUNE = false;
         }
     }
 }

@@ -58,5 +58,7 @@ public class TurnAngleCommand extends CommandBase {
 
     }
 
-    public boolean isFinished() { return pid.atSetpoint(); }
+    public boolean isFinished() {
+        return pid.atSetpoint();
+    }
 }

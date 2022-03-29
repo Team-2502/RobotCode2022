@@ -22,7 +22,7 @@ public class RunShooterTrimmedCommand extends CommandBase {
         this.shooter = shooter;
         this.vision = vision;
         this.defaultSpeed = defaultSpeed;
-	this.operator = operator;
+        this.operator = operator;
 
         addRequirements(shooter);
     }
@@ -30,25 +30,25 @@ public class RunShooterTrimmedCommand extends CommandBase {
     @Override
     public void initialize() {
         shooter.setShooterSpeedRPM(defaultSpeed);
-	vision.limelightOn();
+        vision.limelightOn();
     }
 
     @Override
     public void execute() {
-	if (operator.getPOV() == -1) {trimRising = false;}
+        if (operator.getPOV() == -1) {trimRising = false;}
 
-	if (!trimRising) {
-	    if (operator.getPOV() == 0) {
-	    	vision.juiceFactor += Constants.Subsystem.Vision.JUICE_ADJ;
-		trimRising = true;
-	    } else if (operator.getPOV() == 180) {
-	    	vision.juiceFactor -= Constants.Subsystem.Vision.JUICE_ADJ;
-		trimRising = true;
-	    }
-	}
-	vision.limelightOn();
+        if (!trimRising) {
+            if (operator.getPOV() == 0) {
+                vision.juiceFactor += Constants.Subsystem.Vision.JUICE_ADJ;
+            trimRising = true;
+            } else if (operator.getPOV() == 180) {
+                vision.juiceFactor -= Constants.Subsystem.Vision.JUICE_ADJ;
+            trimRising = true;
+            }
+        }
+        vision.limelightOn();
         if(vision.isTargetVisible()) {
-	    shooter.setShooterSpeedRPM(vision.getAdjustedShooterSpeed());
+            shooter.setShooterSpeedRPM(vision.getAdjustedShooterSpeed());
         }
         else {
             shooter.setShooterSpeedRPM(defaultSpeed);

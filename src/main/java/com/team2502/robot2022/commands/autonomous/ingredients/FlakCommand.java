@@ -33,11 +33,11 @@ public class FlakCommand extends CommandBase {
      */
     public FlakCommand(DrivetrainSubsystem drivetrain, double goalPoint, double speed) {
         this.drivetrain = drivetrain;
-	this.maxSpeed = speed;
+        this.maxSpeed = speed;
 
-	this.goalPoint = goalPoint;
+        this.goalPoint = goalPoint;
 
-	endFlag = false;
+        endFlag = false;
 
         addRequirements(drivetrain);
     }
@@ -47,13 +47,13 @@ public class FlakCommand extends CommandBase {
     {
         this.startPos = drivetrain.getInchesTraveled();
         this.trapezoidal = new Trapezoidal(Drivetrain.LINE_T);
-	this.turnPID = new PIDController(Drivetrain.CURVE_P,Drivetrain.CURVE_I,Drivetrain.CURVE_D);
-	this.turnTrapezoidal = new Trapezoidal(Drivetrain.CURVE_T);
-	this.goalHeading = drivetrain.getHeading();
+        this.turnPID = new PIDController(Drivetrain.CURVE_P,Drivetrain.CURVE_I,Drivetrain.CURVE_D);
+        this.turnTrapezoidal = new Trapezoidal(Drivetrain.CURVE_T);
+        this.goalHeading = drivetrain.getHeading();
 
         trapezoidal.reset();
-	turnPID.reset();
-	turnTrapezoidal.reset();
+        turnPID.reset();
+        turnTrapezoidal.reset();
     }
 
     @Override

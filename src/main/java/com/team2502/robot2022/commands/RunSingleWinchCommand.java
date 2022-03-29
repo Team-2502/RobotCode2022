@@ -25,18 +25,18 @@ public class RunSingleWinchCommand extends CommandBase {
     public RunSingleWinchCommand(ClimberSubsystem climber, double speed, Winch winch){
         this.climber = climber;
         this.speed = speed;
-	this.winch = winch;
+        this.winch = winch;
 
         addRequirements(climber);
     }
 
     @Override
-    public void execute(){
-	if (winch == Winch.LEFT) {
-		climber.runLeftClimber(speed);
-	} else if (winch == Winch.RIGHT) {
-		climber.runRightClimber(speed);
-	}
+    public void execute() {
+        if (winch == Winch.LEFT) {
+            climber.runLeftClimber(speed);
+        } else if (winch == Winch.RIGHT) {
+            climber.runRightClimber(speed);
+        }
     }
 
     @Override
