@@ -30,6 +30,11 @@ public final class Constants {
         // Right Drive Joystick
         public static final int SHIFT = 1;
 
+        public static final int CLIMBER_RESET_ENCODER = 14;
+        public static final int CLIMBER_EXTEND = 13;
+        public static final int CLIMBER_RETRACT = 12;
+        public static final int CLIMBER_CENTER = 11;
+
         // Left Drive Joystick
         public static final int RUN_INTAKE_DRIVER_BUTTON = 1;
         public static final int RUN_INTAKE_BACKWARDS_DRIVER_BUTTON = 2;
@@ -100,7 +105,7 @@ public final class Constants {
         public static final class Solenoids
         {
             public static final int DRIVETRAIN = 0;
-            public static final int INTAKE = 15;
+            public static final int INTAKE = 14;
             public static final int RIGHT_PASSIVE_CLIMBER = 3;
             public static final int LEFT_PASSIVE_CLIMBER = 4;
             public static final int RELEASE_CLIMBER = 7;
@@ -141,7 +146,11 @@ public final class Constants {
 
         public static final class Climber
         {
-            public static final double CLIMBER_SPEED = 0.7;
+            public static final double CLIMBER_SPEED = 1;
+            public static final double CLIMBER_ERROR = 250; // maximum acceptable error
+            public static final double CLIMBER_MAX_ENCODER = 253566; // right winch
+            public static final double CLIMBER_TRAVEL = 31;
+            public static final double CLIMBER_TICS_PER_INCH = CLIMBER_MAX_ENCODER / CLIMBER_TRAVEL;
         }
 
         public static final class Turret {

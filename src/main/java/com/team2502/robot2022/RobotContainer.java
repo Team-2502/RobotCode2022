@@ -19,9 +19,12 @@ import com.team2502.robot2022.commands.solenoid.ToggleIntakeCommand;
 import com.team2502.robot2022.commands.vision.VisionAlignDrivetrain;
 import com.team2502.robot2022.commands.vision.VisionAlignTurret;
 import com.team2502.robot2022.subsystems.*;
+
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
 
@@ -59,6 +62,7 @@ public class RobotContainer
         configureButtonBindings();
 
         AutoSwitcher.putToSmartDashboard();
+        CameraServer.getInstance().startAutomaticCapture("runcam-output", 0); // rio camera
     }
 
 
@@ -159,7 +163,20 @@ public class RobotContainer
 	missile.whileHeld(new SidewinderCommand(PI_VISION, DRIVETRAIN, INTAKE, 10*12));
 
 	JoystickButton toggleClimber = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.TOGGLE_CLIMBER);
-	toggleClimber.whenPressed(new ReleaseClimberSolenoidCommand(CLIMBER));
+	toggleClimber.whenPressed(new ReleaseClimberSolenoidCommand(CLIMBER))
+        .whileHeld(new TraverseCommand(TURRET, Constants.Subsystem.Turret.CENTER)); // center turret while climber up
+
+    JoystickButton resetClimber = new JoystickButton(JOYSTICK_DRIVE_RIGHT, Constants.OI.CLIMBER_RESET_ENCODER);
+    resetClimber.whenPressed(new InstantCommand(CLIMBER::resetClimber, CLIMBER));
+
+    JoystickButton centerClimber = new JoystickButton(JOYSTICK_DRIVE_RIGHT, Constants.OI.CLIMBER_CENTER);
+    centerClimber.whenPressed(new RunClimberDistanceCommand(CLIMBER, 15D));
+
+    JoystickButton retractClimber = new JoystickButton(JOYSTICK_DRIVE_RIGHT, Constants.OI.CLIMBER_RETRACT);
+    retractClimber.whenPressed(new RunClimberDistanceCommand(CLIMBER, 0D));
+
+    JoystickButton extendClimber = new JoystickButton(JOYSTICK_DRIVE_RIGHT, Constants.OI.CLIMBER_EXTEND);
+    extendClimber.whenPressed(new RunClimberDistanceCommand(CLIMBER, Constants.Subsystem.Climber.CLIMBER_TRAVEL));
     }
 
     // 13.47

@@ -1,8 +1,10 @@
 package com.team2502.robot2022.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FollowerType;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.team2502.robot2022.Constants;
+import com.team2502.robot2022.Constants.Subsystem.Climber;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
@@ -42,18 +44,51 @@ public class  ClimberSubsystem extends SubsystemBase {
         SmartDashboard.putBoolean("Climber Solenoid", releaseClimber.get());
 
         SmartDashboard.putBoolean("Climber limit", getLimitLeft());
+
+        SmartDashboard.putNumber("Right Distance", rightClimber.getSelectedSensorPosition());
+        SmartDashboard.putNumber("Left Distance", leftClimber.getSelectedSensorPosition());
+    }
+
+    /**
+     * Reset climber encoders
+     * */
+    public void resetClimber() {
+        leftClimber.setSelectedSensorPosition(0);
+        rightClimber.setSelectedSensorPosition(0);
+    }
+
+    /**
+     * go to given distance (0-31)
+     * */
+    public void setWinchInches(double distanceInches) {
+        double distanceCounts = distanceInches * Climber.CLIMBER_TICS_PER_INCH;
+        distanceCounts = Math.min(distanceCounts, Climber.CLIMBER_MAX_ENCODER);
+        leftClimber.set(ControlMode.Position, distanceCounts);
+        rightClimber.set(ControlMode.Position, -distanceCounts);
+    }
+
+    /**
+     * talon pid status
+     * @return is the talon pid within the given constraints
+     */
+    public boolean atSetpoint() {
+        return (
+                leftClimber.getClosedLoopError() < Climber.CLIMBER_ERROR
+                &&
+                rightClimber.getClosedLoopError() < Climber.CLIMBER_ERROR
+               );
     }
 
     public void runClimber(double speed) {
         //when runClimber command is run will ask for value and set motors speed to said value
-        rightClimber.set(speed);
-        leftClimber.set(-speed);
+        rightClimber.set(ControlMode.PercentOutput, speed);
+        leftClimber.set(ControlMode.PercentOutput, -speed);
     }
 
     public void stopClimber() {
         //will stop motors when command is run
-        rightClimber.set(0);
-        leftClimber.set(0);
+        rightClimber.set(ControlMode.PercentOutput, 0);
+        leftClimber.set(ControlMode.PercentOutput, 0);
     }
 
     public void releaseClimber() {
@@ -63,11 +98,11 @@ public class  ClimberSubsystem extends SubsystemBase {
 
 
     public void runLeftClimber(double speed) {
-        leftClimber.set(speed);
+        leftClimber.set(ControlMode.PercentOutput, speed);
     }
 
     public void runRightClimber(double speed) {
-        rightClimber.set(speed);
+        rightClimber.set(ControlMode.PercentOutput, speed);
     }
 
     /**
