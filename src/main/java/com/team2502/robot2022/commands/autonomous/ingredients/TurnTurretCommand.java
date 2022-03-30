@@ -19,10 +19,10 @@ public class TurnTurretCommand extends CommandBase {
 
     public TurnTurretCommand(TurretSubsystem turret, VisionSubsystem vision) {
         pPIDC = new ProfiledPIDController(
-                Turret.TURRET_P,
-                Turret.TURRET_I,
-                Turret.TURRET_D,
-                new TrapezoidProfile.Constraints(Turret.TURRET_MV, Turret.TURRET_MA)
+            Turret.TURRET_P,
+            Turret.TURRET_I,
+            Turret.TURRET_D,
+            new TrapezoidProfile.Constraints(Turret.TURRET_MV, Turret.TURRET_MA)
         );
 
         this.vision = vision;

@@ -29,25 +29,25 @@ public class TurretSubsystem extends SubsystemBase {
         */
         turnMotor.setSmartCurrentLimit(20);
 
-	turnMotor.setSoftLimit(SoftLimitDirection.kForward,Constants.Subsystem.Turret.LIMIT_MAX);
-	turnMotor.setSoftLimit(SoftLimitDirection.kReverse,Constants.Subsystem.Turret.LIMIT_MIN);
-	turnMotor.enableSoftLimit(SoftLimitDirection.kForward,true);
-	turnMotor.enableSoftLimit(SoftLimitDirection.kReverse,true);
+        turnMotor.setSoftLimit(SoftLimitDirection.kForward,Constants.Subsystem.Turret.LIMIT_MAX);
+        turnMotor.setSoftLimit(SoftLimitDirection.kReverse,Constants.Subsystem.Turret.LIMIT_MIN);
+        turnMotor.enableSoftLimit(SoftLimitDirection.kForward,true);
+        turnMotor.enableSoftLimit(SoftLimitDirection.kReverse,true);
 
         turnMotorEncoder = turnMotor.getEncoder();
 
-	if (SmartDashboard.getNumber("TURRET_P", -1) == -1 && Constants.Subsystem.Turret.TURRET_NT_TUNE) {
-		NTInit();
-	}
+        if (SmartDashboard.getNumber("TURRET_P", -1) == -1 && Constants.Subsystem.Turret.TURRET_NT_TUNE) {
+            NTInit();
+        }
     }
     @Override
     public void periodic(){ //Does not run anything constantly
         SmartDashboard.putNumber("Turret pos", turnMotorEncoder.getPosition());
         SmartDashboard.putNumber("Turret angle", getAngle());
 
-	if (Constants.Subsystem.Shooter.SHOOTER_NT_TUNE) {
-	    NTUpdate();
-	}
+        if (Constants.Subsystem.Shooter.SHOOTER_NT_TUNE) {
+            NTUpdate();
+        }
     }
 
     /**

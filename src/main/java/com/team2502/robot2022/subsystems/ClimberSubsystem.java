@@ -31,7 +31,7 @@ public class  ClimberSubsystem extends SubsystemBase {
         leftClimber = new WPI_TalonFX(Constants.RobotMap.Motors.LEFT_WENCH);
         releaseClimber = new Solenoid(PneumaticsModuleType.REVPH, Constants.RobotMap.Solenoids.RELEASE_CLIMBER);
 
-	leftLimit = new DigitalInput(Constants.RobotMap.Sensors.CLIMBER_LIMIT_LEFT);
+	    leftLimit = new DigitalInput(Constants.RobotMap.Sensors.CLIMBER_LIMIT_LEFT);
 
         leftClimber.follow(rightClimber);
     }
@@ -86,10 +86,10 @@ public class  ClimberSubsystem extends SubsystemBase {
      */
     public boolean atSetpoint() {
         return (
-                leftClimber.getClosedLoopError() < Climber.CLIMBER_ERROR
-                &&
-                rightClimber.getClosedLoopError() < Climber.CLIMBER_ERROR
-               );
+            leftClimber.getClosedLoopError() < Climber.CLIMBER_ERROR
+            &&
+            rightClimber.getClosedLoopError() < Climber.CLIMBER_ERROR
+       );
     }
 
     public void runClimber(double speed) {
@@ -124,9 +124,7 @@ public class  ClimberSubsystem extends SubsystemBase {
     * @return left limit switch status
      */
     public boolean getLimitLeft() {
-
 	    return leftLimit.get();
-	    
     }
 
 //    public void retractSolenoid() {

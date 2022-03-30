@@ -36,9 +36,9 @@ public class VisionOdometryCommand extends CommandBase {
 
     @Override
     public void execute() {
-	if (vision.isTargetVisible()) {
-	    double basketOffset = drivetrain.getHeading() + turret.getAngle() + vision.getTargetX();
-	    double basketDistance = vision.getDistance();
-	}
+        if (vision.isTargetVisible()) {
+            double basketOffset = drivetrain.getHeading() + turret.getAngle() + vision.getTargetX();
+            double basketDistance = vision.getDistance();
+        }
     }
 }

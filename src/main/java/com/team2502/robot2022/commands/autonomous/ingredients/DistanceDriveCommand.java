@@ -39,43 +39,43 @@ public class DistanceDriveCommand extends CommandBase {
         this.startPos = drivetrain.getInchesTraveled();
         this.pid = new PIDController(Drivetrain.LINE_P,Drivetrain.LINE_I,Drivetrain.LINE_D);
         this.trapezoidal = new Trapezoidal(Drivetrain.LINE_T);
-	this.turnPID = new PIDController(Drivetrain.CURVE_P,Drivetrain.CURVE_I,Drivetrain.CURVE_D);
-	this.turnTrapezoidal = new Trapezoidal(Drivetrain.CURVE_T);
-	this.goalHeading = drivetrain.getHeading() + 30;
+        this.turnPID = new PIDController(Drivetrain.CURVE_P,Drivetrain.CURVE_I,Drivetrain.CURVE_D);
+        this.turnTrapezoidal = new Trapezoidal(Drivetrain.CURVE_T);
+        this.goalHeading = drivetrain.getHeading() + 30;
         pid.setTolerance(.3);
 
         pid.reset();
         trapezoidal.reset();
 
-	if (SmartDashboard.getNumber("LINE_P", -1) == -1 && Drivetrain.LINE_NT_TUNE) {
-		NTInit();
-	}
+        if (SmartDashboard.getNumber("LINE_P", -1) == -1 && Drivetrain.LINE_NT_TUNE) {
+            NTInit();
+        }
     }
 
     @Override
     public void execute() {
-	double error = (drivetrain.getInchesTraveled()-startPos)+goalPoint;
+        double error = (drivetrain.getInchesTraveled()-startPos)+goalPoint;
 
-	double speed = pid.calculate(error);
+        double speed = pid.calculate(error);
         speed = Util.constrain(speed,1); // constrain before ramp to reduce overshoot
-	speed = trapezoidal.calculate(speed);
-	speed = Util.frictionAdjust(speed, Drivetrain.LINE_F);
+        speed = trapezoidal.calculate(speed);
+        speed = Util.frictionAdjust(speed, Drivetrain.LINE_F);
 
-	double steering_adjust = goalHeading - drivetrain.getHeading();
+        double steering_adjust = goalHeading - drivetrain.getHeading();
         steering_adjust = turnPID.calculate(steering_adjust);
         steering_adjust = Util.constrain(steering_adjust, .4);
         steering_adjust = turnTrapezoidal.calculate(steering_adjust);
         steering_adjust = Util.frictionAdjust(steering_adjust, Drivetrain.CURVE_F);
 
         drivetrain.getDrive().tankDrive(steering_adjust-speed, steering_adjust+speed);
-	SmartDashboard.putNumber("Drivetrain Position", -(drivetrain.getInchesTraveled()-startPos));
-	SmartDashboard.putNumber("Drivetrain Goal Pos", goalPoint);
-	SmartDashboard.putNumber("Drivetrain angle", (drivetrain.getHeading()));
-	SmartDashboard.putNumber("Drivetrain Goal angle", goalHeading);
+        SmartDashboard.putNumber("Drivetrain Position", -(drivetrain.getInchesTraveled()-startPos));
+        SmartDashboard.putNumber("Drivetrain Goal Pos", goalPoint);
+        SmartDashboard.putNumber("Drivetrain angle", (drivetrain.getHeading()));
+        SmartDashboard.putNumber("Drivetrain Goal angle", goalHeading);
 
-	if (Drivetrain.LINE_NT_TUNE) {
-	    NTUpdate();
-	}
+        if (Drivetrain.LINE_NT_TUNE) {
+            NTUpdate();
+        }
     }
 
     @Override

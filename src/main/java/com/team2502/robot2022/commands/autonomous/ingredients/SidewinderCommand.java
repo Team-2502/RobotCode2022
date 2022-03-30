@@ -13,7 +13,7 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class SidewinderCommand extends CommandBase {
+public class    SidewinderCommand extends CommandBase {
     private final PiVisionSubsystem vision;
     private final DrivetrainSubsystem drivetrain;
     private final IntakeSubsystem intake;
@@ -37,15 +37,15 @@ public class SidewinderCommand extends CommandBase {
         this.vision = vision;
         this.drivetrain = drivetrain;
         this.intake = intake;
-	this.goalPoint = goalDist;
+        this.goalPoint = goalDist;
 
-	this.turnPID = new PIDController(Drivetrain.CURVE_P,Drivetrain.CURVE_I,Drivetrain.CURVE_D);
-	this.turnTrapezoidal = new Trapezoidal(Drivetrain.TURN_T);
+        this.turnPID = new PIDController(Drivetrain.CURVE_P,Drivetrain.CURVE_I,Drivetrain.CURVE_D);
+        this.turnTrapezoidal = new Trapezoidal(Drivetrain.TURN_T);
 
-	this.straightPID = new PIDController(Drivetrain.LINE_P,Drivetrain.LINE_I,Drivetrain.LINE_D);
-	this.straightTrapezoidal = new Trapezoidal(Drivetrain.LINE_T);
+        this.straightPID = new PIDController(Drivetrain.LINE_P,Drivetrain.LINE_I,Drivetrain.LINE_D);
+        this.straightTrapezoidal = new Trapezoidal(Drivetrain.LINE_T);
 
-	this.finished = false;
+        this.finished = false;
 
 
         addRequirements(drivetrain, vision, intake);
@@ -54,39 +54,39 @@ public class SidewinderCommand extends CommandBase {
     @Override
     public void initialize() {
         drivetrain.setNeutralMode(NeutralMode.Coast);
-	this.startPOS = drivetrain.getInchesTraveled();
-	turnPID.reset();
-	turnTrapezoidal.reset();
-	straightPID.reset();
-	straightTrapezoidal.reset();
+        this.startPOS = drivetrain.getInchesTraveled();
+        turnPID.reset();
+        turnTrapezoidal.reset();
+        straightPID.reset();
+        straightTrapezoidal.reset();
 
-	startHeading = drivetrain.getHeading();
-	goalHeading =  drivetrain.getHeading();
+        startHeading = drivetrain.getHeading();
+        goalHeading =  drivetrain.getHeading();
 
-	double lastTX = 0;
+        double lastTX = 0;
     }
 
     @Override
     public void execute() {
 
-	double steering_adjust = 0;
-	double error = (drivetrain.getInchesTraveled()-startPOS)+goalPoint;
+        double steering_adjust = 0;
+        double error = (drivetrain.getInchesTraveled()-startPOS)+goalPoint;
 
         if (vision.isTargetVisible() && vision.getTargetX() != lastTX && vision.getDistance() > 5) {
-	    lastTX = vision.getTargetX(); // don't update goals if there isn't new data
+            lastTX = vision.getTargetX(); // don't update goals if there isn't new data
 
-	    startHeading = drivetrain.getHeading();
+            startHeading = drivetrain.getHeading();
             goalHeading = drivetrain.getHeading()-vision.getTargetX();
         }
 
-	error = (drivetrain.getInchesTraveled()-startPOS)+goalPoint;
-	error = Util.constrain(error, 150);
-	SmartDashboard.putNumber("flerror", error);
-	double power = straightPID.calculate(error) - .23;
-	power = straightTrapezoidal.calculate(power);
-	power = Util.frictionAdjust(power, Drivetrain.LINE_F);
+        error = (drivetrain.getInchesTraveled()-startPOS)+goalPoint;
+        error = Util.constrain(error, 150);
+        SmartDashboard.putNumber("flerror", error);
+        double power = straightPID.calculate(error) - .23;
+        power = straightTrapezoidal.calculate(power);
+        power = Util.frictionAdjust(power, Drivetrain.LINE_F);
 
-	steering_adjust = goalHeading - drivetrain.getHeading();
+        steering_adjust = goalHeading - drivetrain.getHeading();
         steering_adjust = turnPID.calculate(steering_adjust);
         steering_adjust = steering_adjust * error * 0.025;
         steering_adjust = Util.constrain(steering_adjust, .4);

@@ -34,7 +34,7 @@ public class VisionAlignDrivetrain extends CommandBase {
     public void initialize() {
         frictionConstant = Constants.Subsystem.Vision.FRICTION_LOW;
         p = Constants.Subsystem.Vision.VISION_TURNING_P_LOW;
-	vision.limelightOn();
+        vision.limelightOn();
     }
 
     @Override
@@ -61,7 +61,9 @@ public class VisionAlignDrivetrain extends CommandBase {
     }
 
     @Override
-    public boolean isFinished() { return false; }
+    public boolean isFinished() {
+        return false;
+    }
 
     @Override
     public void end(boolean interrupted) {

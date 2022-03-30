@@ -17,7 +17,7 @@ public class RunShooterCommand extends CommandBase {
         this.shooter = shooter;
         this.vision = vision;
         this.defaultSpeed = defaultSpeed;
-	this.useTestVal = useTestVal;
+        this.useTestVal = useTestVal;
 
         addRequirements(shooter);
     }
@@ -25,18 +25,18 @@ public class RunShooterCommand extends CommandBase {
     @Override
     public void initialize() {
         shooter.setShooterSpeedRPM(defaultSpeed);
-	vision.limelightOn();
+        vision.limelightOn();
     }
 
     @Override
     public void execute() {
-	vision.limelightOn();
+        vision.limelightOn();
         if(vision.getTargetArea() > 0) {
             if (useTestVal) {
-		    shooter.setShooterSpeedRPM(vision.getAdjustedShooterSpeed());
-	    } else {
-		    shooter.setShooterSpeedRPM(vision.getOptimalShooterSpeed());
-	    }
+                shooter.setShooterSpeedRPM(vision.getAdjustedShooterSpeed());
+            } else {
+                shooter.setShooterSpeedRPM(vision.getOptimalShooterSpeed());
+            }
         }
         else {
             shooter.setShooterSpeedRPM(defaultSpeed);
@@ -46,7 +46,7 @@ public class RunShooterCommand extends CommandBase {
     @Override
     public void end(boolean interrupted) {
         shooter.stopShooter();
-	vision.limelightOff();
+        vision.limelightOff();
     }
 
     @Override

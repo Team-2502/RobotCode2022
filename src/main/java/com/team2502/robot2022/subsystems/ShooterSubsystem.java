@@ -31,7 +31,7 @@ public class ShooterSubsystem extends SubsystemBase {
 
         SmartDashboard.putNumber("Shooter Target Velocity", 0);
 	    target = 0;
-	SmartDashboard.putNumber("NT RPM", 0); // for NT command
+	    SmartDashboard.putNumber("NT RPM", 0); // for NT command
 
         shooterLeft.setSmartCurrentLimit(39);
         shooterRight.setSmartCurrentLimit(39);
@@ -42,9 +42,9 @@ public class ShooterSubsystem extends SubsystemBase {
 
         setupPID();
 
-	if (Shooter.SHOOTER_NT_TUNE && SmartDashboard.getNumber("SHOOTER_P", -1) == -1) {
-		NTInit();
-	}
+        if (Shooter.SHOOTER_NT_TUNE && SmartDashboard.getNumber("SHOOTER_P", -1) == -1) {
+            NTInit();
+        }
     }
 
     @Override
@@ -53,7 +53,7 @@ public class ShooterSubsystem extends SubsystemBase {
 	    SmartDashboard.putBoolean("Within Constraints", atSpeed());
 
 	    if (Constants.Subsystem.Shooter.SHOOTER_NT_TUNE) {
-		NTUpdate();
+		    NTUpdate();
 	    }
 
     }
@@ -61,7 +61,7 @@ public class ShooterSubsystem extends SubsystemBase {
     public void setShooterSpeedRPM(double speed) {
         rightPID.setReference(speed, CANSparkMax.ControlType.kVelocity);
         SmartDashboard.putNumber("Shooter Target Velocity", speed);
-	target = speed;
+	    target = speed;
     }
 
     /**
@@ -80,7 +80,7 @@ public class ShooterSubsystem extends SubsystemBase {
     public void stopShooter() {
         rightPID.setReference(0, CANSparkMax.ControlType.kVoltage);
         SmartDashboard.putNumber("Shooter Target Velocity", 0);
-	target = 0;
+	    target = 0;
     }
 
     public double getTargetVelocity() {
@@ -101,8 +101,8 @@ public class ShooterSubsystem extends SubsystemBase {
         rightPID.setIZone(Constants.Subsystem.Shooter.SHOOTER_IZ);
         rightPID.setFF(Constants.Subsystem.Shooter.SHOOTER_FF);
         rightPID.setOutputRange(Constants.Subsystem.Shooter.SHOOTER_MIN_OUTPUT, Constants.Subsystem.Shooter.SHOOTER_MAX_OUTPUT);
-	shooterLeft.enableVoltageCompensation(Constants.Subsystem.Shooter.SHOOTER_NV);
-	shooterRight.enableVoltageCompensation(Constants.Subsystem.Shooter.SHOOTER_NV);
+        shooterLeft.enableVoltageCompensation(Constants.Subsystem.Shooter.SHOOTER_NV);
+        shooterRight.enableVoltageCompensation(Constants.Subsystem.Shooter.SHOOTER_NV);
         shooterRight.burnFlash();
     }
 
@@ -112,8 +112,8 @@ public class ShooterSubsystem extends SubsystemBase {
         rightPID.setD(SmartDashboard .getNumber("SHOOTER_D",0));
         rightPID.setIZone(SmartDashboard .getNumber("SHOOTER_IZ",0));
         rightPID.setFF(SmartDashboard .getNumber("SHOOTER_FF",0));
-	shooterLeft.enableVoltageCompensation(SmartDashboard.getNumber("SHOOTER_NV",12.6));
-	shooterRight.enableVoltageCompensation(SmartDashboard.getNumber("SHOOTER_NV",12.6));
+        shooterLeft.enableVoltageCompensation(SmartDashboard.getNumber("SHOOTER_NV",12.6));
+        shooterRight.enableVoltageCompensation(SmartDashboard.getNumber("SHOOTER_NV",12.6));
     }
 
     public void NTInit() {
