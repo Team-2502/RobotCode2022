@@ -1,6 +1,7 @@
 package com.team2502.robot2022.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.DemandType;
 import com.ctre.phoenix.motorcontrol.FollowerType;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.team2502.robot2022.Constants;
@@ -65,6 +66,18 @@ public class  ClimberSubsystem extends SubsystemBase {
         distanceCounts = Math.min(distanceCounts, Climber.CLIMBER_MAX_ENCODER);
         leftClimber.set(ControlMode.Position, distanceCounts);
         rightClimber.set(ControlMode.Position, -distanceCounts);
+    }
+
+    /**
+     * go to given distance (0-31), with the given feed forward
+     * @param distanceInches goal position
+     * @param arbFF feed forward value, added after control loop
+     */
+    public void setWinchInchesWFF(double distanceInches, double arbFF) {
+        double distanceCounts = distanceInches * Climber.CLIMBER_TICS_PER_INCH;
+        distanceCounts = Math.min(distanceCounts, Climber.CLIMBER_MAX_ENCODER);
+        leftClimber.set(ControlMode.Position, distanceCounts, DemandType.ArbitraryFeedForward, arbFF);
+        rightClimber.set(ControlMode.Position, -distanceCounts, DemandType.ArbitraryFeedForward, -arbFF);
     }
 
     /**

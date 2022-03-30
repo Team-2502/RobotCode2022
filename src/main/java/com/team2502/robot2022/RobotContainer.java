@@ -62,7 +62,7 @@ public class RobotContainer
         configureButtonBindings();
 
         AutoSwitcher.putToSmartDashboard();
-        CameraServer.getInstance().startAutomaticCapture("runcam-output", 0); // rio camera
+        //CameraServer.getInstance().startAutomaticCapture("runcam-output", 0); // rio camera
     }
 
 
