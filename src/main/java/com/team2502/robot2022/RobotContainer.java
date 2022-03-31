@@ -109,6 +109,7 @@ public class RobotContainer
 
         JoystickButton RunClimberBackwardsButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_CLIMBER_WENCH_BACKWARDS_BUTTON);
         RunClimberBackwardsButton.whenHeld(new RunClimberCommand(CLIMBER, -Constants.Subsystem.Climber.CLIMBER_SPEED));
+        RunClimberBackwardsButton.whenHeld(new TraverseCommand(TURRET, Constants.Subsystem.Turret.CENTER));
 
         JoystickButton RunShooterButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.SPIN_FLYWHEEL_BUTTON);
         RunShooterButton.whenHeld(new RunShooterCommand(SHOOTER, VISION, Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(0D),false)); // Shoot for 0 distance if not found
@@ -177,6 +178,7 @@ public class RobotContainer
 //
         JoystickButton extendClimber = new JoystickButton(JOYSTICK_DRIVE_LEFT, Constants.OI.CLIMBER_EXTEND);
         extendClimber.whenPressed(new RunClimberDistanceCommand(CLIMBER, Constants.Subsystem.Climber.CLIMBER_TRAVEL));
+        extendClimber.whenHeld(new TraverseCommand(TURRET, Constants.Subsystem.Turret.CENTER));
     }
 
     // 13.47
