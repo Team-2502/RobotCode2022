@@ -30,10 +30,10 @@ public final class Constants {
         // Right Drive Joystick
         public static final int SHIFT = 1;
 
-        public static final int CLIMBER_RESET_ENCODER = 14;
-        public static final int CLIMBER_EXTEND = 13;
-        public static final int CLIMBER_RETRACT = 12;
-        public static final int CLIMBER_CENTER = 11;
+        public static final int CLIMBER_RESET_ENCODER = 15;
+        public static final int CLIMBER_EXTEND = 11;
+        public static final int CLIMBER_RETRACT = 16;
+        public static final int CLIMBER_CENTER = 12;
 
         // Left Drive Joystick
         public static final int RUN_INTAKE_DRIVER_BUTTON = 1;

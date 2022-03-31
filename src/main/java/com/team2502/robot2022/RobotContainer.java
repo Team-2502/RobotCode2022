@@ -166,16 +166,16 @@ public class RobotContainer
         toggleClimber.whenPressed(new ReleaseClimberSolenoidCommand(CLIMBER))
             .whileHeld(new TraverseCommand(TURRET, Constants.Subsystem.Turret.CENTER)); // center turret while climber up
 
-        JoystickButton resetClimber = new JoystickButton(JOYSTICK_DRIVE_RIGHT, Constants.OI.CLIMBER_RESET_ENCODER);
+        JoystickButton resetClimber = new JoystickButton(JOYSTICK_DRIVE_LEFT, Constants.OI.CLIMBER_RESET_ENCODER);
         resetClimber.whenPressed(new InstantCommand(CLIMBER::resetClimber, CLIMBER));
 
-        JoystickButton centerClimber = new JoystickButton(JOYSTICK_DRIVE_RIGHT, Constants.OI.CLIMBER_CENTER);
+        JoystickButton centerClimber = new JoystickButton(JOYSTICK_DRIVE_LEFT, Constants.OI.CLIMBER_CENTER);
         centerClimber.whenPressed(new RunClimberDistanceCommand(CLIMBER, 15D));
 
-        JoystickButton retractClimber = new JoystickButton(JOYSTICK_DRIVE_RIGHT, Constants.OI.CLIMBER_RETRACT);
+        JoystickButton retractClimber = new JoystickButton(JOYSTICK_DRIVE_LEFT, Constants.OI.CLIMBER_RETRACT);
         retractClimber.whenPressed(new RunClimberDistanceCommand(CLIMBER, 0D));
 
-        JoystickButton extendClimber = new JoystickButton(JOYSTICK_DRIVE_RIGHT, Constants.OI.CLIMBER_EXTEND);
+        JoystickButton extendClimber = new JoystickButton(JOYSTICK_DRIVE_LEFT, Constants.OI.CLIMBER_EXTEND);
         extendClimber.whenPressed(new RunClimberDistanceCommand(CLIMBER, Constants.Subsystem.Climber.CLIMBER_TRAVEL));
     }
 
