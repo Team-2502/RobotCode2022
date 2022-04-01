@@ -37,7 +37,7 @@ public enum AutonomousCommandGroupFactory { // first auto is default
 				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(13.47))
 				),
 				deadline(
-				new SuicideBurnCommand(d, 12*4, 1, .8, 1.4),
+				new SuicideBurnCommand(d, 12*4.2, 1, .8, 1.4),
 				new RunIntakeCommand(i, 0.5, 0.85, true), // intake
 				new VisionAlignTurret(v, t),
 				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(19.76))
@@ -47,7 +47,7 @@ public enum AutonomousCommandGroupFactory { // first auto is default
 				new VisionAlignTurret(v, t),
 				sequence(
 					deadline(
-						new TimeLeftCommand(3), // wait until near end of auto
+						new TimeLeftCommand(3.5), // wait until near end of auto
 						new RunIntakeCommand(i, 0.5, 0.85, true) // intake
 					),
 					new SmartShootCommand(s, i, 0.35, 0, 0.225, false)
