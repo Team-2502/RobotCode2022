@@ -10,7 +10,7 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class DrivetrainOdometryCommand extends CommandBase {
+public class    DrivetrainOdometryCommand extends CommandBase {
 
     OdometrySubsystem odometry;
     DrivetrainSubsystem drivetrain;
@@ -38,7 +38,6 @@ public class DrivetrainOdometryCommand extends CommandBase {
     public void execute() {
 	    differentialDriveOdometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(-drivetrain.getHeading()));
 	    Pose2d pose = differentialDriveOdometry.update(Rotation2d.fromDegrees(-drivetrain.getHeading()), drivetrain.getInchesTraveled()-lastPos, drivetrain.getInchesTraveled()-lastPos);
-
 	    Transform2d transform = new Transform2d(pose.getTranslation(), new Rotation2d());
 	    odometry.addPose(transform);
 

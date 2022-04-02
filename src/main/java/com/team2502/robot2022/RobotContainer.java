@@ -19,10 +19,13 @@ import com.team2502.robot2022.commands.solenoid.ToggleIntakeCommand;
 import com.team2502.robot2022.commands.vision.VisionAlignDrivetrain;
 import com.team2502.robot2022.commands.vision.VisionAlignTurret;
 import com.team2502.robot2022.subsystems.*;
+
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
 
@@ -48,6 +51,7 @@ public class RobotContainer
     private static final Joystick JOYSTICK_DRIVE_RIGHT = new Joystick(Constants.OI.JOYSTICK_DRIVE_RIGHT);
     private static final Joystick JOYSTICK_DRIVE_LEFT = new Joystick(Constants.OI.JOYSTICK_DRIVE_LEFT);
     private static final Joystick JOYSTICK_OPERATOR = new Joystick(Constants.OI.JOYSTICK_OPERATOR);
+    private static final Joystick FIGHT_STICK = new Joystick(Constants.OI.FIGHT_STICK);
 
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -66,6 +70,7 @@ public class RobotContainer
         configureButtonBindings();
 
         AutoSwitcher.putToSmartDashboard();
+        //CameraServer.getInstance().startAutomaticCapture("runcam-output", 0); // rio camera
     }
 
 
@@ -86,6 +91,9 @@ public class RobotContainer
         RunIntakeBackwardsButton.whenHeld(new ShootCommand(SHOOTER, INTAKE, -0.6, -0.5, -0.85, false));
 
         JoystickButton RunIntakeBackwardsDriverButton = new JoystickButton(JOYSTICK_DRIVE_LEFT, Constants.OI.RUN_INTAKE_BACKWARDS_DRIVER_BUTTON);
+        RunIntakeBackwardsDriverButton.whenHeld(new RunIntakeCommand(INTAKE, -0.5, 0, true));
+
+        JoystickButton RunJustIntakeBackwardsDriverButton = new JoystickButton(JOYSTICK_DRIVE_LEFT, Constants.OI.RUN_JUST_INTAKE_BACKWARDS_DRIVER_BUTTON);
         RunIntakeBackwardsDriverButton.whenHeld(new RunIntakeCommand(INTAKE, -0.5, -0.85, true));
 
         JoystickButton RunShooterManualButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_FLYWHEEL_MANUAL);
@@ -94,8 +102,8 @@ public class RobotContainer
         JoystickButton ShootButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.SHOOT_BUTTON);
         ShootButton.whenHeld(new SmartShootCommand(SHOOTER, INTAKE, 0.35, 0, 0.225, false));
 
-        JoystickButton VisionAlignDrivetrainButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.VISION_DRIVETRAIN_ALIGN);
-        VisionAlignDrivetrainButton.whenHeld(new VisionAlignDrivetrain(VISION, DRIVETRAIN, JOYSTICK_DRIVE_LEFT, JOYSTICK_DRIVE_RIGHT));
+        //JoystickButton VisionAlignDrivetrainButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.VISION_DRIVETRAIN_ALIGN);
+        //VisionAlignDrivetrainButton.whenHeld(new VisionAlignDrivetrain(VISION, DRIVETRAIN, JOYSTICK_DRIVE_LEFT, JOYSTICK_DRIVE_RIGHT));
 
         JoystickButton VisionAlignTurretButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.VISION_TURRET_ALIGN);
         VisionAlignTurretButton.whenHeld(new VisionAlignTurret(VISION, TURRET));
@@ -108,10 +116,11 @@ public class RobotContainer
         ToggleIntakeButton.whenPressed(new ToggleIntakeCommand(INTAKE));
 
         JoystickButton RunClimberButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_CLIMBER_WENCH_BUTTON);
-        RunClimberButton.whenHeld(new RunClimberCommand(CLIMBER, 0.4));
+        RunClimberButton.whenHeld(new RunClimberCommand(CLIMBER, Constants.Subsystem.Climber.CLIMBER_SPEED));
 
         JoystickButton RunClimberBackwardsButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_CLIMBER_WENCH_BACKWARDS_BUTTON);
-        RunClimberBackwardsButton.whenHeld(new RunClimberCommand(CLIMBER, -0.4));
+        RunClimberBackwardsButton.whenHeld(new RunClimberCommand(CLIMBER, -Constants.Subsystem.Climber.CLIMBER_SPEED));
+        RunClimberBackwardsButton.whenHeld(new TraverseCommand(TURRET, Constants.Subsystem.Turret.CENTER));
 
         JoystickButton RunShooterButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.SPIN_FLYWHEEL_BUTTON);
         RunShooterButton.whenHeld(new RunShooterCommand(SHOOTER, VISION, Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(0D),false)); // Shoot for 0 distance if not found
@@ -142,28 +151,72 @@ public class RobotContainer
 
         // Add button to command mappings here.
         // See https://docs.wpilib.org/en/stable/docs/software/commandbased/binding-commands-to-triggers.html
-	JoystickButton runWinchLeftForward = new JoystickButton(JOYSTICK_DRIVE_LEFT, Constants.OI.RUN_WINCH_LEFT_FORWARD);
-	runWinchLeftForward.whileHeld(new RunSingleWinchCommand(CLIMBER,.4, RunSingleWinchCommand.Winch.LEFT));
+        JoystickButton runWinchLeftForward = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_WINCH_LEFT_FORWARD);
+        runWinchLeftForward.whileHeld(new RunSingleWinchCommand(CLIMBER,Constants.Subsystem.Climber.CLIMBER_SPEED, RunSingleWinchCommand.Winch.LEFT));
 
-	JoystickButton runWinchLeftBackward = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_WINCH_LEFT_BACKWARD);
-	runWinchLeftBackward.whileHeld(new RunSingleWinchCommand(CLIMBER,-.4, RunSingleWinchCommand.Winch.LEFT));
+        JoystickButton runWinchLeftBackward = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_WINCH_LEFT_BACKWARD);
+        runWinchLeftBackward.whileHeld(new RunSingleWinchCommand(CLIMBER,-Constants.Subsystem.Climber.CLIMBER_SPEED, RunSingleWinchCommand.Winch.LEFT));
 
-	JoystickButton runWinchRightForward = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_WINCH_RIGHT_FORWARD);
-	runWinchRightForward.whileHeld(new RunSingleWinchCommand(CLIMBER,-.4, RunSingleWinchCommand.Winch.RIGHT));
+        JoystickButton runWinchRightForward = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_WINCH_RIGHT_FORWARD);
+        runWinchRightForward.whileHeld(new RunSingleWinchCommand(CLIMBER,-Constants.Subsystem.Climber.CLIMBER_SPEED, RunSingleWinchCommand.Winch.RIGHT));
 
-	JoystickButton runWinchRightBackward = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_WINCH_RIGHT_BACKWARD);
-	runWinchRightBackward.whileHeld(new RunSingleWinchCommand(CLIMBER,.4, RunSingleWinchCommand.Winch.RIGHT));
-	JoystickButton runShooterNTButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_SHOOTER_NT_BUTTON);
-	runShooterNTButton.whenHeld(new RunShooterNTCommand(SHOOTER));
+        JoystickButton runWinchRightBackward = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_WINCH_RIGHT_BACKWARD);
+        runWinchRightBackward.whileHeld(new RunSingleWinchCommand(CLIMBER,Constants.Subsystem.Climber.CLIMBER_SPEED, RunSingleWinchCommand.Winch.RIGHT));
+        JoystickButton runShooterNTButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_SHOOTER_NT_BUTTON);
+        runShooterNTButton.whenHeld(new RunShooterNTCommand(SHOOTER));
 
-	//JoystickButton goTwoFeet = new JoystickButton(JOYSTICK_DRIVE_RIGHT, 4);
-	//goTwoFeet.whenPressed(new DistanceDriveCommand(DRIVETRAIN, 12*8));
+        //JoystickButton goTwoFeet = new JoystickButton(JOYSTICK_DRIVE_RIGHT, 4);
+        //goTwoFeet.whenPressed(new DistanceDriveCommand(DRIVETRAIN, 12*8));
 
-	JoystickButton falcon9 = new JoystickButton(JOYSTICK_DRIVE_RIGHT, 3);
-	falcon9.whenPressed(new SuicideBurnCommand(DRIVETRAIN, 12*2, 1, .8, 1.4));
+        JoystickButton falcon9 = new JoystickButton(JOYSTICK_DRIVE_RIGHT, 3);
+        falcon9.whenPressed(new SuicideBurnCommand(DRIVETRAIN, 12*2, 1, .8, 1.4));
 
-	JoystickButton missile = new JoystickButton(JOYSTICK_DRIVE_RIGHT, 2);
-	missile.whileHeld(new SidewinderCommand(PI_VISION, DRIVETRAIN, INTAKE, 10*12));
+        JoystickButton missile = new JoystickButton(JOYSTICK_DRIVE_RIGHT, 2);
+        missile.whileHeld(new SidewinderCommand(PI_VISION, DRIVETRAIN, INTAKE, 10*12));
+
+        JoystickButton toggleClimber = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.TOGGLE_CLIMBER);
+        toggleClimber.whenPressed(new ReleaseClimberSolenoidCommand(CLIMBER))
+            .whileHeld(new TraverseCommand(TURRET, Constants.Subsystem.Turret.CENTER)); // center turret while climber up
+
+        JoystickButton resetClimber = new JoystickButton(JOYSTICK_DRIVE_LEFT, Constants.OI.CLIMBER_RESET_ENCODER);
+        resetClimber.whenPressed(new InstantCommand(CLIMBER::resetClimber, CLIMBER));
+
+        JoystickButton centerClimber = new JoystickButton(JOYSTICK_DRIVE_LEFT, Constants.OI.CLIMBER_CENTER);
+        centerClimber.whenPressed(new RunClimberDistanceCommand(CLIMBER, 15D));
+
+        JoystickButton retractClimber = new JoystickButton(JOYSTICK_DRIVE_LEFT, Constants.OI.CLIMBER_RETRACT);
+        retractClimber.whenPressed(new RunClimberDistanceCommand(CLIMBER, 0D));
+//
+        JoystickButton extendClimber = new JoystickButton(JOYSTICK_DRIVE_LEFT, Constants.OI.CLIMBER_EXTEND);
+        extendClimber.whenPressed(new RunClimberDistanceCommand(CLIMBER, Constants.Subsystem.Climber.CLIMBER_TRAVEL)) 
+            .whenHeld(new TraverseCommand(TURRET, Constants.Subsystem.Turret.CENTER));
+
+        // fight stick
+        JoystickButton fightClimberResetButton = new JoystickButton(FIGHT_STICK,Constants.OI.FIGHT_CLIMBER_RESET_ENCODER);
+        fightClimberResetButton.whenPressed(new InstantCommand(CLIMBER::resetClimber, CLIMBER));
+
+        JoystickButton fightCenterClimber = new JoystickButton(FIGHT_STICK, Constants.OI.FIGHT_CLIMBER_CENTER);
+        fightCenterClimber.whenPressed(new RunClimberDistanceCommand(CLIMBER, 15D,Constants.Subsystem.Climber.CLIMBER_DOWN_PID_S1));
+
+        //JoystickButton fightRetractClimber = new JoystickButton(FIGHT_STICK, Constants.OI.FIGHT_CLIMBER_RETRACT);
+        //fightRetractClimber.whenPressed(new RunClimberDistanceCommand(CLIMBER, 0D));
+
+        // uncomment for alternate climb PID TODO: Phoenix tunerify it
+
+        JoystickButton fightRetractClimber = new JoystickButton(FIGHT_STICK, Constants.OI.FIGHT_CLIMBER_RETRACT);
+        fightRetractClimber.whenPressed(new RunClimberDistanceCommand(CLIMBER, 15D,Constants.Subsystem.Climber.CLIMBER_DOWN_PID_S1))
+            .whenReleased(new RunClimberDistanceCommand(CLIMBER, Constants.Subsystem.Climber.CLIMBER_LOAD_TARGET, Constants.Subsystem.Climber.CLIMBER_DOWN_PID_S2));
+
+        JoystickButton fightExtendClimber = new JoystickButton(FIGHT_STICK, Constants.OI.FIGHT_CLIMBER_EXTEND);
+        fightExtendClimber.whenPressed(new RunClimberDistanceCommand(CLIMBER, Constants.Subsystem.Climber.CLIMBER_TRAVEL)) 
+            .whenHeld(new TraverseCommand(TURRET, Constants.Subsystem.Turret.CENTER));
+
+        JoystickButton fightRunClimberButton = new JoystickButton(FIGHT_STICK, Constants.OI.FIGHT_RUN_CLIMBER_WENCH_BUTTON);
+        fightRunClimberButton.whenHeld(new RunClimberCommand(CLIMBER, Constants.Subsystem.Climber.CLIMBER_SPEED));
+
+        JoystickButton fightRunClimberBackwardsButton = new JoystickButton(FIGHT_STICK, Constants.OI.FIGHT_RUN_CLIMBER_WENCH_BACKWARDS_BUTTON);
+        fightRunClimberBackwardsButton.whenHeld(new RunClimberCommand(CLIMBER, -Constants.Subsystem.Climber.CLIMBER_SPEED))
+            .whenHeld(new TraverseCommand(TURRET, Constants.Subsystem.Turret.CENTER));
     }
 
     /**

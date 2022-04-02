@@ -86,7 +86,9 @@ public class DrivetrainSubsystem extends SubsystemBase{
         drivetrainFrontLeft.setNeutralMode(nm);
     }
 
-    public double getRpm(){ return (drivetrainFrontLeft.getSelectedSensorVelocity() / Drivetrain.TICKS_PER_INCH); }
+    public double getRpm() {
+        return (drivetrainFrontLeft.getSelectedSensorVelocity() / Drivetrain.TICKS_PER_INCH);
+    }
 
     public double getHeading()
     {
@@ -100,7 +102,7 @@ public class DrivetrainSubsystem extends SubsystemBase{
 
     public boolean getGear() {
         double highGear;
-        if(solenoid.get() == false){ return true; }
+        if(solenoid.get() == false) return true;
         else return false;
     }
 
@@ -114,8 +116,7 @@ public class DrivetrainSubsystem extends SubsystemBase{
 
         SmartDashboard.putNumber("Angle", navX.getAngle());
         SmartDashboard.putNumber("RPM", getRpm());
-	SmartDashboard.putNumber("fr temp", drivetrainFrontRight.getTemperature());
-
+	    SmartDashboard.putNumber("fr temp", drivetrainFrontRight.getTemperature());
         SmartDashboard.putBoolean("High Gear", getGear());
     }
 }

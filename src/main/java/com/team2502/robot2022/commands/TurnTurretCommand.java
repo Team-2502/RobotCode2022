@@ -19,7 +19,7 @@ public class TurnTurretCommand extends CommandBase {
         //sets turret and operator to values given from command
         this.turret = turret;
         this.operator = operator;
-	trapezoidal = new Trapezoidal(.5); // prevent driver from over-accelerating
+        trapezoidal = new Trapezoidal(.5); // prevent driver from over-accelerating
 
         //only one command can use the subsystem at a time
         addRequirements(turret);

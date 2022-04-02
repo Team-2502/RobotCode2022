@@ -13,7 +13,7 @@ public class SpinFlywheelCommand extends CommandBase {
 
     public SpinFlywheelCommand(ShooterSubsystem shooter, double speed) {
         this.shooter = shooter;
-	this.speed = speed;
+        this.speed = speed;
 
         addRequirements(shooter);
     }

@@ -29,7 +29,7 @@ public class IntakeSubsystem extends SubsystemBase {
 
         intakeDeploySolenoid = new Solenoid(PneumaticsModuleType.REVPH, Constants.RobotMap.Solenoids.INTAKE);
 
-	color = new ColorSensorV3(edu.wpi.first.wpilibj.I2C.Port.kOnboard);
+	    color = new ColorSensorV3(edu.wpi.first.wpilibj.I2C.Port.kOnboard);
 
         intakeMotor.setSmartCurrentLimit(40);
         topBelt.setSmartCurrentLimit(25);

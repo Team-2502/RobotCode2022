@@ -33,7 +33,7 @@ public class VisionSubsystem extends SubsystemBase {
         limelight = NetworkTableInstance.getDefault().getTable(Constants.Subsystem.Vision.LIMELIGHT_NETWORK_TABLE); //Tells the limelight object to correspond with the network table of a key specified in constants, which in turn corresponds with the limelight.
         smartDashboard = NetworkTableInstance.getDefault().getTable("SmartDashboard"); //Tells the smartDashboard object to correspond with the shuffleboard one.
 
-	juiceFactor = Constants.Subsystem.Vision.JUICE_FACTOR;
+        juiceFactor = Constants.Subsystem.Vision.JUICE_FACTOR;
     }
 
 
@@ -51,9 +51,9 @@ public class VisionSubsystem extends SubsystemBase {
         targetY = TY_ENTRY.getDouble(0.0);
         targetArea = AREA_ENTRY.getDouble(0.0);
 
-        SmartDashboard.putNumber("Limelight Target X", targetX);
-        SmartDashboard.putNumber("Limelight Target Y", targetY);
-        SmartDashboard.putNumber("Limelight Target Area", targetArea);
+        //SmartDashboard.putNumber("Limelight Target X", targetX);
+        //SmartDashboard.putNumber("Limelight Target Y", targetY);
+        //SmartDashboard.putNumber("Limelight Target Area", targetArea);
         SmartDashboard.putNumber("Limelight Target Distance (feet)", getDistance()/12);
         SmartDashboard.putNumber("Juice Factor", Math.round(juiceFactor*12));
 

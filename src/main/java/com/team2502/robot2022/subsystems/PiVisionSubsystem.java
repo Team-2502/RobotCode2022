@@ -50,10 +50,10 @@ public class PiVisionSubsystem extends SubsystemBase {
         targetY = TY_ENTRY.getDouble(0.0);
         targetArea = AREA_ENTRY.getDouble(0.0);
 
-        SmartDashboard.putNumber("PhotonVision X", targetX);
-        SmartDashboard.putNumber("PhotonVision Y", targetY);
-        SmartDashboard.putNumber("PhotonVision Area", targetArea);
-	SmartDashboard.putNumber("Ball Distance", getDistance());
+        //SmartDashboard.putNumber("PhotonVision X", targetX);
+        //SmartDashboard.putNumber("PhotonVision Y", targetY);
+        //SmartDashboard.putNumber("PhotonVision Area", targetArea);
+	    SmartDashboard.putNumber("Ball Distance", getDistance());
 
     }
 

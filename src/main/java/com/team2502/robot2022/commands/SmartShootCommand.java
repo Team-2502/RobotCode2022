@@ -35,13 +35,13 @@ public class SmartShootCommand extends CommandBase {
 
     @Override
     public void execute() {
-	if (shooter.atSpeed()) {
-		shooter.loadBalls(rollerSpeed);
-        	intake.run(intakeSpeed, beltSpeed);
-	} else {
-		shooter.loadBalls(-rollerSpeed/2);
-        	intake.run(intakeSpeed/2, beltSpeed/2);
-	}
+        if (shooter.atSpeed()) {
+            shooter.loadBalls(rollerSpeed);
+            intake.run(intakeSpeed, beltSpeed);
+        } else {
+            shooter.loadBalls(-rollerSpeed/2);
+            intake.run(intakeSpeed/2, beltSpeed/2);
+        }
 
     }
 

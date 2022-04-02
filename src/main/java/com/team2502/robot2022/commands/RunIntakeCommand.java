@@ -28,7 +28,7 @@ public class RunIntakeCommand extends CommandBase {
 
     @Override
     public void initialize() {
-        if(toggleIntake == true){ intake.deployIntake(); }
+        if(toggleIntake == true) intake.deployIntake();
     }
 
     @Override
