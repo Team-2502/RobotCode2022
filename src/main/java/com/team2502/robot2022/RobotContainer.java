@@ -116,8 +116,8 @@ public class RobotContainer
         JoystickButton ToggleIntakeButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.TOGGLE_INTAKE);
         ToggleIntakeButton.whenPressed(new ToggleIntakeCommand(INTAKE));
 
-        JoystickButton RunClimberButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_CLIMBER_WENCH_BUTTON);
-        RunClimberButton.whenHeld(new RunClimberCommand(CLIMBER, Constants.Subsystem.Climber.CLIMBER_SPEED));
+        //JoystickButton RunClimberButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_CLIMBER_WENCH_BUTTON);
+        //RunClimberButton.whenHeld(new RunClimberCommand(CLIMBER, Constants.Subsystem.Climber.CLIMBER_SPEED));
 
         JoystickButton RunClimberBackwardsButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_CLIMBER_WENCH_BACKWARDS_BUTTON);
         RunClimberBackwardsButton.whenHeld(new RunClimberCommand(CLIMBER, -Constants.Subsystem.Climber.CLIMBER_SPEED));
