@@ -12,27 +12,31 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class OdometrySubsystem extends SubsystemBase {
     private Pose2d robotPose;
     private Transform2d robotVelocity;
+    //private Field2d field;
     
     /**
      * Odometry Subsystem
      * space to store data that needs to be shared between subsystems, primarily odometry data
      * */
     public OdometrySubsystem() {
-	robotPose = new Pose2d();
+        robotPose = new Pose2d();
+	    //field.setRobotPose(robotPose);
+	    //Shuffleboard.getTab("Odometry")
+		//    .add("field", field)
+		//    .withWidget(BuiltInWidgets.kField);
     }
 
     @Override
     public void periodic() {
-	    Field2d field = new Field2d();
-	    field.setRobotPose(robotPose);
-	    Shuffleboard.getTab("Odometry")
-		    .add("field", field)
-		    .withWidget(BuiltInWidgets.kField);
+	    //field.setRobotPose(robotPose);
+        SmartDashboard.putNumber("xPos", robotPose.getX());
+        SmartDashboard.putNumber("yPos", robotPose.getY());
     }
 
     /**

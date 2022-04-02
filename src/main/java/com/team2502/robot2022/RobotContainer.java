@@ -219,6 +219,10 @@ public class RobotContainer
         fightRunClimberBackwardsButton.whenHeld(new RunClimberCommand(CLIMBER, -Constants.Subsystem.Climber.CLIMBER_SPEED))
             .whenHeld(new TraverseCommand(TURRET, Constants.Subsystem.Turret.CENTER));
 
+        new JoystickButton(JOYSTICK_DRIVE_RIGHT,2)
+            .whileActiveContinuous(new DrivetrainOdometryCommand(DRIVETRAIN,ODOMETRY))
+            .whileActiveContinuous(new VisionOdometryCommand(DRIVETRAIN, VISION, TURRET, ODOMETRY));
+
         new JoystickButton(JOYSTICK_OPERATOR, OI.RUN_INTAKE_BELTS_BUTTON)
             .whileHeld(new RunIntakeCommand(INTAKE, 0, 0.85, false));
     }
