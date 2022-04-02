@@ -117,7 +117,6 @@ public class DrivetrainSubsystem extends SubsystemBase{
         SmartDashboard.putNumber("Angle", navX.getAngle());
         SmartDashboard.putNumber("RPM", getRpm());
 	    SmartDashboard.putNumber("fr temp", drivetrainFrontRight.getTemperature());
-
         SmartDashboard.putBoolean("High Gear", getGear());
     }
 }

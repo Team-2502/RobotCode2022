@@ -77,8 +77,8 @@ public class Trapezoidal {
 		double thisTime = Timer.getFPGATimestamp();
 		double deltaTime = thisTime - lastTime;
 		this.lastTime = thisTime;
-		SmartDashboard.putNumber("trapezoidal deltat", deltaTime);
-		SmartDashboard.putNumber("trapezoidal delta", maxAccel*deltaTime);
+		//SmartDashboard.putNumber("trapezoidal deltat", deltaTime);
+		//SmartDashboard.putNumber("trapezoidal delta", maxAccel*deltaTime);
 		if (speed < target) { // accelerate if speed less than target
 			speed += deltaTime*maxAccel; // add maximum
 			speed = Math.min(speed,target); // constrain

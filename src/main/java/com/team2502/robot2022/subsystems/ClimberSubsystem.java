@@ -38,9 +38,9 @@ public class  ClimberSubsystem extends SubsystemBase {
 
     @Override
     public void periodic() {
-        //every few microseconds will send motor voltage to driverstation display
-        SmartDashboard.putNumber("Right voltage", rightClimber.getMotorOutputVoltage());
-        SmartDashboard.putNumber("Left voltage", leftClimber.getMotorOutputVoltage());
+        //every 20 milliseconds will send motor voltage to driverstation display
+        //SmartDashboard.putNumber("Right voltage", rightClimber.getMotorOutputVoltage());
+        //SmartDashboard.putNumber("Left voltage", leftClimber.getMotorOutputVoltage());
 
         SmartDashboard.putBoolean("Climber Solenoid", releaseClimber.get());
 
