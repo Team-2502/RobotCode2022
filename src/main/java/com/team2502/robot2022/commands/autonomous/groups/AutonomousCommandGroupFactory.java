@@ -70,7 +70,7 @@ public enum AutonomousCommandGroupFactory { // first auto is default
 				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(13.47))
 				),
 				deadline(
-				new WaitCommand(3),
+				new WaitCommand(4),
 				new VisionAlignTurret(v, t),
 				new SmartShootCommand(s, i, 0.35, 0, 0.225, false),
 				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(13.47))
@@ -107,7 +107,6 @@ public enum AutonomousCommandGroupFactory { // first auto is default
 				new RunIntakeCommand(i, 0.5, 0.85, true), // intake
 				new DistanceDriveCommand(d, 37.0), // move to ball
 				new TraverseCommand(t, Constants.Subsystem.Turret.CENTER), // center turret
-
 				new WaitCommand(4)
 					),
 				new ParallelRaceGroup( // align, then shoot
@@ -138,12 +137,7 @@ public enum AutonomousCommandGroupFactory { // first auto is default
 
 		GOTOBALL((d,i,v,s,t,p) -> new SequentialCommandGroup( // leaves the hangar
 				new WaitCommand(1), // wait for alliance members
-
-				//new ParallelRaceGroup( //
-						//new DistanceDriveCommand(d, 45.0), // move off line
-						new DriveToBallCommand(d,p,i,1) // DRIVES TO BALL
-						//new WaitCommand(4) // sanity check
-				//)
+                new DriveToBallCommand(d,p,i,1) // DRIVES TO BALL
 		)),
 
         DO_NOTHING("Do Nothing", ((d,i,v,s,t,p) -> new DoNothingCommand())); // always put last
