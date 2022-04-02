@@ -84,6 +84,9 @@ public class RobotContainer
         RunIntakeBackwardsButton.whenHeld(new ShootCommand(SHOOTER, INTAKE, -0.6, -0.5, -0.85, false));
 
         JoystickButton RunIntakeBackwardsDriverButton = new JoystickButton(JOYSTICK_DRIVE_LEFT, Constants.OI.RUN_INTAKE_BACKWARDS_DRIVER_BUTTON);
+        RunIntakeBackwardsDriverButton.whenHeld(new RunIntakeCommand(INTAKE, -0.5, 0, true));
+
+        JoystickButton RunJustIntakeBackwardsDriverButton = new JoystickButton(JOYSTICK_DRIVE_LEFT, Constants.OI.RUN_JUST_INTAKE_BACKWARDS_DRIVER_BUTTON);
         RunIntakeBackwardsDriverButton.whenHeld(new RunIntakeCommand(INTAKE, -0.5, -0.85, true));
 
         JoystickButton RunShooterManualButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_FLYWHEEL_MANUAL);
