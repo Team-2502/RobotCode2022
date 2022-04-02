@@ -81,6 +81,15 @@ public class  ClimberSubsystem extends SubsystemBase {
     }
 
     /**
+     * set active PID on winch talons
+     * @param pidID
+     */
+    public void setWinchPID(int pidID) {
+        rightClimber.selectProfileSlot(0, pidID);
+        leftClimber.selectProfileSlot(0, pidID);
+    }
+
+    /**
      * talon pid status
      * @return is the talon pid within the given constraints
      */

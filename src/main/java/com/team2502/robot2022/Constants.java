@@ -157,6 +157,9 @@ public final class Constants {
 
         public static final class Climber
         {
+            public static final int CLIMBER_UP_PID = 0;
+            public static final int CLIMBER_DOWN_PID = 1;
+
             public static final double CLIMBER_SPEED = 1;
             public static final double CLIMBER_ERROR = 250; // maximum acceptable error
             public static final double CLIMBER_MAX_ENCODER = 253566; // right winch

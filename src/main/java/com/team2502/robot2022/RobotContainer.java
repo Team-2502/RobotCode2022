@@ -194,6 +194,11 @@ public class RobotContainer
         JoystickButton fightRetractClimber = new JoystickButton(FIGHT_STICK, Constants.OI.FIGHT_CLIMBER_RETRACT);
         fightRetractClimber.whenPressed(new RunClimberDistanceCommand(CLIMBER, 0D));
 
+        // uncomment for alternate climb PID TODO: Phoenix tunerify it
+
+        //JoystickButton fightRetractClimber = new JoystickButton(FIGHT_STICK, Constants.OI.FIGHT_CLIMBER_RETRACT);
+        //fightRetractClimber.whenPressed(new RunClimberDistanceCommand(CLIMBER, 0D, Constants.Subsystem.Climber.CLIMBER_DOWN_PID));
+
         JoystickButton fightExtendClimber = new JoystickButton(FIGHT_STICK, Constants.OI.FIGHT_CLIMBER_EXTEND);
         fightExtendClimber.whenPressed(new RunClimberDistanceCommand(CLIMBER, Constants.Subsystem.Climber.CLIMBER_TRAVEL)) 
             .whenHeld(new TraverseCommand(TURRET, Constants.Subsystem.Turret.CENTER));
