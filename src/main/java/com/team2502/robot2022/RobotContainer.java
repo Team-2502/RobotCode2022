@@ -14,6 +14,7 @@ import com.team2502.robot2022.commands.autonomous.ingredients.TraverseCommand;
 import com.team2502.robot2022.commands.autonomous.ingredients.VisionTrackBallCommand;
 import com.team2502.robot2022.Constants.Subsystem.Vision;
 import com.team2502.robot2022.commands.*;
+import com.team2502.robot2022.Constants.OI;
 import com.team2502.robot2022.commands.solenoid.ShiftCommand;
 import com.team2502.robot2022.commands.solenoid.ToggleIntakeCommand;
 import com.team2502.robot2022.commands.vision.VisionAlignDrivetrain;
@@ -62,9 +63,9 @@ public class RobotContainer
 
         TURRET.setDefaultCommand(new TurnTurretCommand(TURRET, JOYSTICK_OPERATOR));
 
-	// start odometry
-	CommandScheduler.getInstance().schedule(new DrivetrainOdometryCommand(DRIVETRAIN,ODOMETRY));
-	CommandScheduler.getInstance().schedule(new VisionOdometryCommand(DRIVETRAIN, VISION, TURRET, ODOMETRY));
+        // start odometry
+        CommandScheduler.getInstance().schedule(false, new DrivetrainOdometryCommand(DRIVETRAIN,ODOMETRY));
+        CommandScheduler.getInstance().schedule(false, new VisionOdometryCommand(DRIVETRAIN, VISION, TURRET, ODOMETRY));
 
         // Configure the button bindings
         configureButtonBindings();
@@ -217,6 +218,9 @@ public class RobotContainer
         JoystickButton fightRunClimberBackwardsButton = new JoystickButton(FIGHT_STICK, Constants.OI.FIGHT_RUN_CLIMBER_WENCH_BACKWARDS_BUTTON);
         fightRunClimberBackwardsButton.whenHeld(new RunClimberCommand(CLIMBER, -Constants.Subsystem.Climber.CLIMBER_SPEED))
             .whenHeld(new TraverseCommand(TURRET, Constants.Subsystem.Turret.CENTER));
+
+        new JoystickButton(JOYSTICK_OPERATOR, OI.RUN_INTAKE_BELTS_BUTTON)
+            .whileHeld(new RunIntakeCommand(INTAKE, 0, 0.85, false));
     }
 
     /**

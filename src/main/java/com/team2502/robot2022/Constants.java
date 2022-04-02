@@ -67,7 +67,8 @@ public final class Constants {
         public static final int TOGGLE_INTAKE = 4;
 
         public static final int RUN_CLIMBER_WENCH_BACKWARDS_BUTTON = 5;
-        public static final int RUN_CLIMBER_WENCH_BUTTON = 6;
+
+        public static final int RUN_INTAKE_BELTS_BUTTON = 6;
 
         public static final int RUN_SHOOTER_NT_BUTTON = 7;
 
