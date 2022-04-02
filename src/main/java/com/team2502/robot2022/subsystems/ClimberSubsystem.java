@@ -48,6 +48,8 @@ public class  ClimberSubsystem extends SubsystemBase {
 
         SmartDashboard.putNumber("Right Distance", rightClimber.getSelectedSensorPosition());
         SmartDashboard.putNumber("Left Distance", leftClimber.getSelectedSensorPosition());
+        SmartDashboard.putNumber("Left Err", leftClimber.getClosedLoopError());
+        SmartDashboard.putNumber("Right Err", rightClimber.getClosedLoopError());
     }
 
     /**
@@ -85,8 +87,8 @@ public class  ClimberSubsystem extends SubsystemBase {
      * @param pidID
      */
     public void setWinchPID(int pidID) {
-        rightClimber.selectProfileSlot(0, pidID);
-        leftClimber.selectProfileSlot(0, pidID);
+        rightClimber.selectProfileSlot(pidID, 0);
+        leftClimber.selectProfileSlot(pidID, 0);
     }
 
     /**

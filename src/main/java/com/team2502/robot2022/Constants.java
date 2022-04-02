@@ -158,13 +158,16 @@ public final class Constants {
         public static final class Climber
         {
             public static final int CLIMBER_UP_PID = 0;
-            public static final int CLIMBER_DOWN_PID = 1;
+            public static final int CLIMBER_DOWN_PID_S1 = 2; // stage 1, slow
+            public static final int CLIMBER_DOWN_PID_S2 = 1; // stage 2, faster
 
             public static final double CLIMBER_SPEED = 1;
             public static final double CLIMBER_ERROR = 250; // maximum acceptable error
-            public static final double CLIMBER_MAX_ENCODER = 253566; // right winch
+            public static final double CLIMBER_MAX_ENCODER = 253566; // top position
+            public static final double CLIMBER_MIN_ENCODER = -20000; // bottom position (with tightly wound winch)
             public static final double CLIMBER_TRAVEL = 31;
             public static final double CLIMBER_TICS_PER_INCH = CLIMBER_MAX_ENCODER / CLIMBER_TRAVEL;
+            public static final double CLIMBER_LOAD_TARGET = CLIMBER_MIN_ENCODER/ CLIMBER_TICS_PER_INCH;
         }
 
         public static final class Turret {

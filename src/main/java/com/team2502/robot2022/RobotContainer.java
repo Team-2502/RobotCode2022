@@ -189,15 +189,16 @@ public class RobotContainer
         fightClimberResetButton.whenPressed(new InstantCommand(CLIMBER::resetClimber, CLIMBER));
 
         JoystickButton fightCenterClimber = new JoystickButton(FIGHT_STICK, Constants.OI.FIGHT_CLIMBER_CENTER);
-        fightCenterClimber.whenPressed(new RunClimberDistanceCommand(CLIMBER, 15D));
+        fightCenterClimber.whenPressed(new RunClimberDistanceCommand(CLIMBER, 15D,Constants.Subsystem.Climber.CLIMBER_DOWN_PID_S1));
 
-        JoystickButton fightRetractClimber = new JoystickButton(FIGHT_STICK, Constants.OI.FIGHT_CLIMBER_RETRACT);
-        fightRetractClimber.whenPressed(new RunClimberDistanceCommand(CLIMBER, 0D));
+        //JoystickButton fightRetractClimber = new JoystickButton(FIGHT_STICK, Constants.OI.FIGHT_CLIMBER_RETRACT);
+        //fightRetractClimber.whenPressed(new RunClimberDistanceCommand(CLIMBER, 0D));
 
         // uncomment for alternate climb PID TODO: Phoenix tunerify it
 
-        //JoystickButton fightRetractClimber = new JoystickButton(FIGHT_STICK, Constants.OI.FIGHT_CLIMBER_RETRACT);
-        //fightRetractClimber.whenPressed(new RunClimberDistanceCommand(CLIMBER, 0D, Constants.Subsystem.Climber.CLIMBER_DOWN_PID));
+        JoystickButton fightRetractClimber = new JoystickButton(FIGHT_STICK, Constants.OI.FIGHT_CLIMBER_RETRACT);
+        fightRetractClimber.whenPressed(new RunClimberDistanceCommand(CLIMBER, 15D,Constants.Subsystem.Climber.CLIMBER_DOWN_PID_S1))
+            .whenReleased(new RunClimberDistanceCommand(CLIMBER, Constants.Subsystem.Climber.CLIMBER_LOAD_TARGET, Constants.Subsystem.Climber.CLIMBER_DOWN_PID_S2));
 
         JoystickButton fightExtendClimber = new JoystickButton(FIGHT_STICK, Constants.OI.FIGHT_CLIMBER_EXTEND);
         fightExtendClimber.whenPressed(new RunClimberDistanceCommand(CLIMBER, Constants.Subsystem.Climber.CLIMBER_TRAVEL)) 
