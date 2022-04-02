@@ -24,8 +24,18 @@ public final class Constants {
         public static final int JOYSTICK_DRIVE_RIGHT = 0;
         public static final int JOYSTICK_DRIVE_LEFT = 1;
         public static final int JOYSTICK_OPERATOR = 2;
+        public static final int FIGHT_STICK = 3;
 
         // Buttons
+
+        // Fight Stick
+        public static final int FIGHT_CLIMBER_RESET_ENCODER = 1;
+        public static final int FIGHT_CLIMBER_EXTEND = 5;
+        public static final int FIGHT_CLIMBER_RETRACT = 2;
+        public static final int FIGHT_CLIMBER_CENTER = 4;
+
+        public static final int FIGHT_RUN_CLIMBER_WENCH_BACKWARDS_BUTTON = 6;
+        public static final int FIGHT_RUN_CLIMBER_WENCH_BUTTON = 3;
 
         // Right Drive Joystick
         public static final int SHIFT = 1;

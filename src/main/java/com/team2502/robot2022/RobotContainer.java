@@ -49,6 +49,7 @@ public class RobotContainer
     private static final Joystick JOYSTICK_DRIVE_RIGHT = new Joystick(Constants.OI.JOYSTICK_DRIVE_RIGHT);
     private static final Joystick JOYSTICK_DRIVE_LEFT = new Joystick(Constants.OI.JOYSTICK_DRIVE_LEFT);
     private static final Joystick JOYSTICK_OPERATOR = new Joystick(Constants.OI.JOYSTICK_OPERATOR);
+    private static final Joystick FIGHT_STICK = new Joystick(Constants.OI.FIGHT_STICK);
 
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -177,8 +178,29 @@ public class RobotContainer
         retractClimber.whenPressed(new RunClimberDistanceCommand(CLIMBER, 0D));
 //
         JoystickButton extendClimber = new JoystickButton(JOYSTICK_DRIVE_LEFT, Constants.OI.CLIMBER_EXTEND);
-        extendClimber.whenPressed(new RunClimberDistanceCommand(CLIMBER, Constants.Subsystem.Climber.CLIMBER_TRAVEL));
-        extendClimber.whenHeld(new TraverseCommand(TURRET, Constants.Subsystem.Turret.CENTER));
+        extendClimber.whenPressed(new RunClimberDistanceCommand(CLIMBER, Constants.Subsystem.Climber.CLIMBER_TRAVEL)) 
+            .whenHeld(new TraverseCommand(TURRET, Constants.Subsystem.Turret.CENTER));
+
+        // fight stick
+        JoystickButton fightClimberResetButton = new JoystickButton(FIGHT_STICK,Constants.OI.FIGHT_CLIMBER_RESET_ENCODER);
+        fightClimberResetButton.whenPressed(new InstantCommand(CLIMBER::resetClimber, CLIMBER));
+
+        JoystickButton fightCenterClimber = new JoystickButton(FIGHT_STICK, Constants.OI.FIGHT_CLIMBER_CENTER);
+        fightCenterClimber.whenPressed(new RunClimberDistanceCommand(CLIMBER, 15D));
+
+        JoystickButton fightRetractClimber = new JoystickButton(FIGHT_STICK, Constants.OI.FIGHT_CLIMBER_RETRACT);
+        fightRetractClimber.whenPressed(new RunClimberDistanceCommand(CLIMBER, 0D));
+
+        JoystickButton fightExtendClimber = new JoystickButton(FIGHT_STICK, Constants.OI.FIGHT_CLIMBER_EXTEND);
+        fightExtendClimber.whenPressed(new RunClimberDistanceCommand(CLIMBER, Constants.Subsystem.Climber.CLIMBER_TRAVEL)) 
+            .whenHeld(new TraverseCommand(TURRET, Constants.Subsystem.Turret.CENTER));
+
+        JoystickButton fightRunClimberButton = new JoystickButton(FIGHT_STICK, Constants.OI.FIGHT_RUN_CLIMBER_WENCH_BUTTON);
+        fightRunClimberButton.whenHeld(new RunClimberCommand(CLIMBER, Constants.Subsystem.Climber.CLIMBER_SPEED));
+
+        JoystickButton fightRunClimberBackwardsButton = new JoystickButton(FIGHT_STICK, Constants.OI.FIGHT_RUN_CLIMBER_WENCH_BACKWARDS_BUTTON);
+        fightRunClimberBackwardsButton.whenHeld(new RunClimberCommand(CLIMBER, -Constants.Subsystem.Climber.CLIMBER_SPEED))
+            .whenHeld(new TraverseCommand(TURRET, Constants.Subsystem.Turret.CENTER));
     }
 
     // 13.47
