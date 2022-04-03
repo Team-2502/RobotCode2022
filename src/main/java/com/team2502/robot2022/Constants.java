@@ -67,7 +67,8 @@ public final class Constants {
         public static final int TOGGLE_INTAKE = 4;
 
         public static final int RUN_CLIMBER_WENCH_BACKWARDS_BUTTON = 5;
-        public static final int RUN_CLIMBER_WENCH_BUTTON = 6;
+
+        public static final int RUN_INTAKE_BELTS_BUTTON = 6;
 
         public static final int RUN_SHOOTER_NT_BUTTON = 7;
 
@@ -273,15 +274,15 @@ public final class Constants {
             public static final double TURN_P = 0.039;
             public static final double TURN_I = 0.0;
             public static final double TURN_D = 0;
-            public static final double TURN_F = 0.03; // friction
-            public static final double TURN_T = 0.8; // trapezoidal
+            public static final double TURN_F = 0.03; // friction    
+            public static final double TURN_T = 0.8; // trapezoidal 
 
             // constants when turning during a move
             public static final double CURVE_P = 0.0012;
             public static final double CURVE_I = 0.0;
             public static final double CURVE_D = 0.001;
-            public static final double CURVE_F = 0.00155; // friction
-            public static final double CURVE_T = 0.5; // trapezoidal
+            public static final double CURVE_F = 0.00155; // friction    
+            public static final double CURVE_T = 0.5; // trapezoidal 
 
             // constants for straight line movement
             public static final double LINE_P = 0.017;
@@ -290,6 +291,29 @@ public final class Constants {
             public static final double LINE_F = 0.058; // friction
             public static final double LINE_T = 0.6; // trapezoidal
             public static final boolean LINE_NT_TUNE = false;
+
+            /**
+             * Distance to Velocity adjustment
+             * maps distance from target to a scalar velocity adjustment term
+             *
+             * higher values will lead the target more at x speed
+             * */
+            public static final LookupTable DIST_TO_VEL_ADJ_TABLE;
+            static {
+                HashMap<Double, Double> distToVelAdjTable = new HashMap<>();
+                distToVelAdjTable.put(8.2D, 0.05D);
+                distToVelAdjTable.put(20.01D, 0.3D);
+
+            DIST_TO_VEL_ADJ_TABLE = new LookupTable(distToVelAdjTable);
+            }
         }
+
+	public static final class Hopper {
+	    public static final double HOPPER_ROTATIONS_PER_INCH = 0.8; // rotations of belt motors per inch travel of balls in hopper
+	    public static final double HOPPER_LENGTH_ROTATIONS = 30
+		    * HOPPER_ROTATIONS_PER_INCH;
+	    public static final double BALL_LENGTH_ROTATIONS = 9 
+		    * HOPPER_ROTATIONS_PER_INCH;
+	}
     }
 }
