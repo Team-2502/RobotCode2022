@@ -31,7 +31,7 @@ public class DriveCommand extends CommandBase {
     @Override
     public void initialize()
     {
-        drivetrain.setNeutralMode(NeutralMode.Brake);
+        drivetrain.setNeutralMode(NeutralMode.Coast);
     }
 
     @Override
