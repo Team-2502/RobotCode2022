@@ -169,11 +169,11 @@ public class RobotContainer
         //JoystickButton goTwoFeet = new JoystickButton(JOYSTICK_DRIVE_RIGHT, 4);
         //goTwoFeet.whenPressed(new DistanceDriveCommand(DRIVETRAIN, 12*8));
 
-        JoystickButton falcon9 = new JoystickButton(JOYSTICK_DRIVE_RIGHT, 3);
-        falcon9.whenPressed(new SuicideBurnCommand(DRIVETRAIN, 12*2, 1, .8, 1.4));
+        //JoystickButton falcon9 = new JoystickButton(JOYSTICK_DRIVE_RIGHT, 3);
+        //falcon9.whenPressed(new SuicideBurnCommand(DRIVETRAIN, 12*2, 1, .8, 1.4));
 
-        JoystickButton missile = new JoystickButton(JOYSTICK_DRIVE_RIGHT, 2);
-        missile.whileHeld(new SidewinderCommand(PI_VISION, DRIVETRAIN, INTAKE, 10*12));
+        //JoystickButton missile = new JoystickButton(JOYSTICK_DRIVE_RIGHT, 2);
+        //missile.whileHeld(new SidewinderCommand(PI_VISION, DRIVETRAIN, INTAKE, 10*12));
 
         JoystickButton toggleClimber = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.TOGGLE_CLIMBER);
         toggleClimber.whenPressed(new ReleaseClimberSolenoidCommand(CLIMBER))
