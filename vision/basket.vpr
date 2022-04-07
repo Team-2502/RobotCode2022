@@ -4,7 +4,7 @@ area_similarity:0
 aspect_max:20.000000
 aspect_min:0.000000
 black_level:0
-blue_balance:1975
+blue_balance:1440
 calibration_type:0
 contour_grouping:0
 contour_sort_final:0
@@ -39,7 +39,7 @@ pipeline_led_enabled:1
 pipeline_led_power:100
 pipeline_res:0
 pipeline_type:1
-red_balance:1200
+red_balance:1639
 roi_x:0.000000
 roi_y:0.000000
 sat_max:255
