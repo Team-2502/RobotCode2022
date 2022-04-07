@@ -40,6 +40,7 @@ public class IntakeSubsystem extends SubsystemBase {
 
     @Override
     public void periodic() {
+        bottomBelt.setInverted(true); // getting forced false somehow or another
 	    /*
 	    SmartDashboard.putNumber("Color red: ", color.getRed());
 	    SmartDashboard.putNumber("Color uberred: ", color.getIR());
