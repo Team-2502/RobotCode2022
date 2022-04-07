@@ -18,7 +18,7 @@ public class IntakeSubsystem extends SubsystemBase {
     private final CANSparkMax topBelt;
     private final CANSparkMax bottomBelt;
 
-    private final ColorSensorV3 color;
+    //private final ColorSensorV3 color;
 
     private final Solenoid intakeDeploySolenoid;
 
@@ -29,7 +29,7 @@ public class IntakeSubsystem extends SubsystemBase {
 
         intakeDeploySolenoid = new Solenoid(PneumaticsModuleType.REVPH, Constants.RobotMap.Solenoids.INTAKE);
 
-	    color = new ColorSensorV3(edu.wpi.first.wpilibj.I2C.Port.kOnboard);
+	    //color = new ColorSensorV3(edu.wpi.first.wpilibj.I2C.Port.kOnboard);
 
         intakeMotor.setSmartCurrentLimit(40);
         topBelt.setSmartCurrentLimit(25);
@@ -57,7 +57,8 @@ public class IntakeSubsystem extends SubsystemBase {
     * @return whether or not a ball is in the intake
      */
     public boolean ballBySensor() {
-	    return color.getProximity() > 700;
+	    //return color.getProximity() > 700;
+        return false;
     }
 
     /**
@@ -65,7 +66,8 @@ public class IntakeSubsystem extends SubsystemBase {
     * @return is there a red ball in the hopper
      */
     public boolean hasRedBall() {
-	    return ballBySensor() && color.getRed() > 1000 && color.getBlue() < 4000;
+	    //return ballBySensor() && color.getRed() > 1000 && color.getBlue() < 4000;
+        return false;
     }
 
     /**
@@ -73,7 +75,8 @@ public class IntakeSubsystem extends SubsystemBase {
     * @return is there a blue ball in the hopper
      */
     public boolean hasBlueBall() {
-	    return ballBySensor() && color.getRed() < 1000 && color.getBlue() > 4000;
+	    //return ballBySensor() && color.getRed() < 1000 && color.getBlue() > 4000;
+        return false;
     }
 
     public void run(double intakeSpeed, double beltSpeed) {
