@@ -67,13 +67,13 @@ public enum AutonomousCommandGroupFactory { // first auto is default
 					),
 					new VisionAlignTurret(v, t)
 				),
-				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(13.47))
+				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(12.74))
 				),
 				deadline(
 				new WaitCommand(4),
 				new VisionAlignTurret(v, t),
 				new SmartShootCommand(s, i, 0.35, 0, 0.225, false),
-				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(13.47))
+				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(12.74))
 				)
                 )
             ),
