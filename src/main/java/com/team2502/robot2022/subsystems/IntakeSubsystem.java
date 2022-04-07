@@ -34,6 +34,8 @@ public class IntakeSubsystem extends SubsystemBase {
         intakeMotor.setSmartCurrentLimit(40);
         topBelt.setSmartCurrentLimit(25);
         bottomBelt.setSmartCurrentLimit(25);
+
+        bottomBelt.setInverted(true); // getting forced false somehow or another
     }
 
     @Override
