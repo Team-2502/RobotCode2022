@@ -29,6 +29,7 @@ public class RunIntakeCommand extends CommandBase {
     @Override
     public void initialize() {
         if(toggleIntake == true) intake.deployIntake();
+        intake.setBelt();
     }
 
     @Override

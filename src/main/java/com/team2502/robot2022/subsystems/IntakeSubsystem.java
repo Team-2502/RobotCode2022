@@ -40,7 +40,7 @@ public class IntakeSubsystem extends SubsystemBase {
 
     @Override
     public void periodic() {
-        bottomBelt.setInverted(true); // getting forced false somehow or another
+        //bottomBelt.setInverted(true); // getting forced false somehow or another
 	    /*
 	    SmartDashboard.putNumber("Color red: ", color.getRed());
 	    SmartDashboard.putNumber("Color uberred: ", color.getIR());
@@ -51,6 +51,14 @@ public class IntakeSubsystem extends SubsystemBase {
 	    SmartDashboard.putBoolean("Color is blue: ", hasBlueBall());
 	    SmartDashboard.putNumber("Color distance: ", color.getProximity());
 	    */
+    }
+
+    /**
+     * Set belt inversion status
+     * stopgap, getting uninverted often, every frame causes overrun
+     * */
+    public void setBelt() {
+        bottomBelt.setInverted(true); // getting forced false somehow or another
     }
 
     /**
