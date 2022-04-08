@@ -28,19 +28,19 @@ public enum AutonomousCommandGroupFactory { // first auto is default
 					),
 					new VisionAlignTurret(v, t)
 				),
-				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(12.74))
+				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(11.04))
 				),
 				deadline(
 				new WaitCommand(4.5),
 				new VisionAlignTurret(v, t),
                 sequence(
-                    deadline( // reverse for eighth second to clear flywheel
+                    deadline( // reverse for quarter second to clear flywheel
                         new WaitCommand(0.25),
 						new ShootCommand(s, i, -0.6, 0, -0.35, false)
                         ),
                     new SmartShootCommand(s, i, 0.35, 0, 0.35, false)
                 ),
-				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(12.74))
+				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(11.04))
 				),
 				deadline(
 				new SuicideBurnCommand(d, 12*5, 1, .8, 1.4),
