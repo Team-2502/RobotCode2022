@@ -116,7 +116,7 @@ public final class Constants {
 
         public static final class Solenoids
         {
-            public static final int DRIVETRAIN = 0;
+            public static final int DRIVETRAIN = 1;
             public static final int INTAKE = 14;
             public static final int RIGHT_PASSIVE_CLIMBER = 3;
             public static final int LEFT_PASSIVE_CLIMBER = 4;
