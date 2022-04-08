@@ -31,11 +31,11 @@ public enum AutonomousCommandGroupFactory { // first auto is default
 				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(12.74))
 				),
 				deadline(
-				new WaitCommand(4),
+				new WaitCommand(4.5),
 				new VisionAlignTurret(v, t),
                 sequence(
                     deadline( // reverse for eighth second to clear flywheel
-                        new WaitCommand(0.125),
+                        new WaitCommand(0.25),
 						new ShootCommand(s, i, -0.6, 0, -0.35, false)
                         ),
                     new SmartShootCommand(s, i, 0.35, 0, 0.35, false)
@@ -53,7 +53,7 @@ public enum AutonomousCommandGroupFactory { // first auto is default
 				new VisionAlignTurret(v, t),
 				sequence(
 					deadline(
-						new TimeLeftCommand(3.5), // wait until near end of auto
+						new TimeLeftCommand(4), // wait until near end of auto
 						new RunIntakeCommand(i, 0.5, 0.85, true) // intake
 					),
 					new SmartShootCommand(s, i, 0.35, 0, 0.35, false)
