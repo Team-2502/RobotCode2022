@@ -73,6 +73,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
+    m_robotContainer.INTAKE.setBelt();
   }
 
   /** This function is called periodically during autonomous. */
@@ -92,6 +93,7 @@ public class Robot extends TimedRobot {
     m_robotContainer.DRIVETRAIN.setLowGear();
     //m_robotContainer.INTAKE.deployIntake();
     m_robotContainer.SHOOTER.stopShooter();
+    m_robotContainer.INTAKE.setBelt();
   }
 
   /** This function is called periodically during operator control. */

@@ -225,6 +225,9 @@ public class RobotContainer
 
         new JoystickButton(JOYSTICK_OPERATOR, OI.RUN_INTAKE_BELTS_BUTTON)
             .whileHeld(new RunIntakeCommand(INTAKE, 0, 0.85, false));
+
+        JoystickButton resetBelt = new JoystickButton(JOYSTICK_DRIVE_LEFT, Constants.OI.RESET_BELT_STATE);
+        resetBelt.whenPressed(new InstantCommand(INTAKE::setBelt, INTAKE));
     }
 
     /**

@@ -49,6 +49,7 @@ public final class Constants {
         public static final int RUN_INTAKE_DRIVER_BUTTON = 1;
         public static final int RUN_INTAKE_BACKWARDS_DRIVER_BUTTON = 2;
         public static final int RUN_JUST_INTAKE_BACKWARDS_DRIVER_BUTTON = 3;
+        public static final int RESET_BELT_STATE = 4;
 
 
         // Operator Joystick
