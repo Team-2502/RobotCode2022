@@ -217,7 +217,7 @@ public final class Constants {
 
             public static final double BASKET_HEIGHT = 100.5; // basket vision target to ground
 
-            public static final double JUICE_FACTOR = -.75; // amount to inflate distance
+            public static final double JUICE_FACTOR = 0; // amount to inflate distance
             public static final double JUICE_ADJ = 1D/12D; // amount to trim by
 
             //Everything in this class is referenced in the Vision Subsystem, and explained at least partially there.
@@ -243,10 +243,10 @@ public final class Constants {
                 distToRPMStandstill.put(0D, 1299D);
                 distToRPMStandstill.put(4.1D, 1420D);
                 distToRPMStandstill.put(5.8D, 1620D);
-                distToRPMStandstill.put(8D, 1650D);
-                distToRPMStandstill.put(8.19D, 1680D);
+                distToRPMStandstill.put(7.7D, 1650D);
 //
                 //high
+                distToRPMStandstill.put(7.71D, 2200D);
                 distToRPMStandstill.put(8.2D, 2150D);
                 distToRPMStandstill.put(9.9D, 2200D);
                 distToRPMStandstill.put(10.23D,2250D);

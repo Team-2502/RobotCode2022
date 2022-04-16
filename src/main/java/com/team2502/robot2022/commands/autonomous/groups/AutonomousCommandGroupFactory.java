@@ -19,7 +19,7 @@ import static edu.wpi.first.wpilibj2.command.CommandGroupBase.*;
 public enum AutonomousCommandGroupFactory { // first auto is default
 	FOUR_BALL((d,i,v,s,t,p) -> sequence(
 				deadline(
-				new SuicideBurnCommand(d, 12*8, 1, .8, 1.4),
+				new SuicideBurnCommand(d, 12*10, 1, .8, 1.4),
 				new RunIntakeCommand(i, 0.5, 0.85, true), // intake
 				sequence(
 					deadline(
@@ -28,7 +28,7 @@ public enum AutonomousCommandGroupFactory { // first auto is default
 					),
 					new VisionAlignTurret(v, t)
 				),
-				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(11.04))
+				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(12.04))
 				),
 				deadline(
 				new WaitCommand(4.5),
@@ -40,7 +40,7 @@ public enum AutonomousCommandGroupFactory { // first auto is default
                         ),
                     new SmartShootCommand(s, i, 0.35, 0, 0.35, false)
                 ),
-				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(11.04))
+                new RunShooterCommand(s, v, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(12.04D),false) // Shoot at known distance if not found
 				),
 				deadline(
 				new SuicideBurnCommand(d, 12*5, 1, .8, 1.4),
@@ -53,12 +53,107 @@ public enum AutonomousCommandGroupFactory { // first auto is default
 				new VisionAlignTurret(v, t),
 				sequence(
 					deadline(
+						new TimeLeftCommand(5), // wait until near end of auto
+						new RunIntakeCommand(i, 0.5, 0.85, true) // intake
+					),
+                    deadline( // reverse for eighth second to clear flywheel
+                        new WaitCommand(0.125),
+						new ShootCommand(s, i, -0.6, 0, -0.35, false)
+                    ),
+					new SmartShootCommand(s, i, 0.35, 0, 0.35, false)
+				),
+                new RunShooterCommand(s, v, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(20.74D),false) // Shoot at known distance if not found
+				)
+			)),
+
+	FOUR_BALL_LIMELESS((d,i,v,s,t,p) -> sequence(
+				deadline(
+				new SuicideBurnCommand(d, 12*10, 1, .8, 1.4),
+				new RunIntakeCommand(i, 0.5, 0.85, true), // intake
+                new TraverseCommand(t, 31.21), // center turret
+				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(11.04))
+				),
+				deadline(
+				new WaitCommand(4.5),
+                sequence(
+                    deadline( // reverse for quarter second to clear flywheel
+                        new WaitCommand(0.25),
+						new ShootCommand(s, i, -0.6, 0, -0.35, false)
+                        ),
+                    new SmartShootCommand(s, i, 0.35, 0, 0.35, false)
+                ),
+				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(11.04))
+				),
+				deadline(
+				new SuicideBurnCommand(d, 12*5, 1, .8, 1.4),
+				new RunIntakeCommand(i, 0.5, 0.85, true), // intake
+                new TraverseCommand(t, 29.57), // align turret
+				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(17.65))
+				),
+				deadline(
+				new WaitCommand(10),
+				sequence(
+					deadline(
 						new TimeLeftCommand(4), // wait until near end of auto
 						new RunIntakeCommand(i, 0.5, 0.85, true) // intake
 					),
 					new SmartShootCommand(s, i, 0.35, 0, 0.35, false)
 				),
-				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(20.76))
+				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(17.65))
+				)
+			)),
+
+
+	ONE_BALL_LATE((d,i,v,s,t,p) -> sequence(
+                new TimeLeftCommand(8),
+				deadline(
+				new SuicideBurnCommand(d, 12*10, 1, .8, 1.4),
+				sequence(
+					deadline(
+						new WaitCommand(1.75),
+						new TraverseCommand(t, Constants.Subsystem.Turret.CENTER) // center turret
+					),
+					new VisionAlignTurret(v, t)
+				),
+				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(12.04))
+				),
+				deadline(
+				new WaitCommand(4.5),
+				new VisionAlignTurret(v, t),
+                sequence(
+                    deadline( // reverse for quarter second to clear flywheel
+                        new WaitCommand(0.25),
+						new ShootCommand(s, i, -0.6, 0, -0.35, false)
+                        ),
+                    new SmartShootCommand(s, i, 0.35, 0, 0.35, false)
+                ),
+                new RunShooterCommand(s, v, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(12.04D),false) // Shoot at known distance if not found
+				)
+			)),
+
+	ONE_BALL_EARLY((d,i,v,s,t,p) -> sequence(
+				deadline(
+				new SuicideBurnCommand(d, 12*10, 1, .8, 1.4),
+				sequence(
+					deadline(
+						new WaitCommand(1.75),
+						new TraverseCommand(t, Constants.Subsystem.Turret.CENTER) // center turret
+					),
+					new VisionAlignTurret(v, t)
+				),
+				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(12.04))
+				),
+				deadline(
+				new WaitCommand(4.5),
+				new VisionAlignTurret(v, t),
+                sequence(
+                    deadline( // reverse for quarter second to clear flywheel
+                        new WaitCommand(0.25),
+						new ShootCommand(s, i, -0.6, 0, -0.35, false)
+                        ),
+                    new SmartShootCommand(s, i, 0.35, 0, 0.35, false)
+                ),
+                new RunShooterCommand(s, v, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(12.04D),false) // Shoot at known distance if not found
 				)
 			)),
 
@@ -79,58 +174,76 @@ public enum AutonomousCommandGroupFactory { // first auto is default
 				new WaitCommand(4),
 				new VisionAlignTurret(v, t),
 				new SmartShootCommand(s, i, 0.35, 0, 0.225, false),
-				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(12.74))
+                new RunShooterCommand(s, v, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(12.74D),false) // Shoot at known distance if not found
 				)
                 )
             ),
 
-        THREE_BALL((d,i,v,s,t,p) -> new SequentialCommandGroup(
-				new ParallelRaceGroup( // intake while moving forward
+	TWO_BALL_WALL_HIGH((d,i,v,s,t,p) -> sequence(
+				deadline(
+				new SuicideBurnCommand(d, 12*1.3, 1, .8, 1.4),
 				new RunIntakeCommand(i, 0.5, 0.85, true), // intake
-				new DistanceDriveCommand(d, 77.0), // move to ball
-				new TraverseCommand(t, Constants.Subsystem.Turret.CENTER), // center turret
-				new WaitCommand(4)
+				sequence(
+					deadline(
+						new WaitCommand(1.75),
+						new TraverseCommand(t, 23) // center turret
 					),
-				new ParallelRaceGroup( // align, then shoot
+					new VisionAlignTurret(v, t)
+				),
+				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(7.74))
+				),
+                parallel( // backup second stage while clearing intake
+				new SuicideBurnCommand(d, 12*0.43, 1, .8, 1.4),
+                sequence(
+                    deadline(
+                        new WaitCommand(1.5),
+                        new RunIntakeCommand(i, 0.5, 0.85, false) // intake
+                    ),
+                    deadline( // reverse for quarter second to clear flywheel
+                        new WaitCommand(0.125),
+                        new ShootCommand(s, i, -0.6, 0, -0.35, false)
+                    )
+                )
+                ),
+				deadline(
+				new WaitCommand(6),
 				new VisionAlignTurret(v, t),
-				new SpinFlywheelCommand(s, 3030), // ~11ft on lookup table
-				new SequentialCommandGroup (
-					new ParallelRaceGroup ( // reverse intake for 1s to unjam flywheel
-						new WaitCommand(.2),
-						new ShootCommand(s, i, -0.6, -0.5, -0.85, true)
-						),
-					new WaitCommand(1.8), // spool up
-					new ShootCommand(s, i, 0.2, 0.85, 0.45, true) // shoot
-					),
-				new WaitCommand(11) // shoot for 6s before stopping
-					),
-				new FreezeCommand(v,i,d,t,s),
-				new SpinFlywheelCommand(s, 0) // stop flywheel
-			)),
+                new SmartShootCommand(s, i, 0.35, 0, 0.225, false),
+				new RunShooterAtSpeedCommand(s, 2250)
+				)
+                )
+            ),
 
-        TWO_BALL((d,i,v,s,t,p) -> new SequentialCommandGroup(
-				new ParallelRaceGroup( // intake while moving forward
+	TWO_BALL_WALL((d,i,v,s,t,p) -> sequence(
+				deadline(
+				new SuicideBurnCommand(d, 12*1.3, 1, .8, 1.4),
 				new RunIntakeCommand(i, 0.5, 0.85, true), // intake
-				new DistanceDriveCommand(d, 37.0), // move to ball
-				new TraverseCommand(t, Constants.Subsystem.Turret.CENTER), // center turret
-				new WaitCommand(4)
+				sequence(
+					deadline(
+						new WaitCommand(1.75),
+						new TraverseCommand(t, 23) // center turret
 					),
-				new ParallelRaceGroup( // align, then shoot
+					new VisionAlignTurret(v, t)
+				),
+				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(7.74))
+				),
+                deadline(
+                    new WaitCommand(1.5),
+                    new RunIntakeCommand(i, 0.5, 0.85, false) // intake
+                ),
+                deadline( // reverse for quarter second to clear flywheel
+                    new WaitCommand(0.125),
+                    new ShootCommand(s, i, -0.6, 0, -0.35, false)
+                ),
+				deadline(
+				new WaitCommand(4),
 				new VisionAlignTurret(v, t),
-				new SpinFlywheelCommand(s, 3030), // ~11ft on lookup table
-				new SequentialCommandGroup (
-					new ParallelRaceGroup ( // reverse intake for 1s to unjam flywheel
-						new WaitCommand(.2),
-						new ShootCommand(s, i, -0.6, -0.5, -0.85, false)
-						),
-					new WaitCommand(1.8), // spool up
-					new ShootCommand(s, i, 0.2, 0, 0.45, false) // shoot
-					),
-				new WaitCommand(8) // shoot for 6s before stopping
-					),
-				new FreezeCommand(v,i,d,t,s),
-				new SpinFlywheelCommand(s, 0) // stop flywheel
-			)),
+                new SmartShootCommand(s, i, 0.35, 0, 0.225, false),
+                new RunShooterCommand(s, v, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(7.74D),false) // Shoot at known distance if not found
+				),
+				new SuicideBurnCommand(d, 12*0.6, 1, .8, 1.4)
+                )
+            ),
 
         TAXI((d,i,v,s,t,p) -> new SequentialCommandGroup( // leaves the hangar
 				new WaitCommand(10), // wait for alliance members
