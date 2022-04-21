@@ -1,5 +1,6 @@
 package com.team2502.robot2022.commands;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.team2502.robot2022.Constants;
 import com.team2502.robot2022.subsystems.DrivetrainSubsystem;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -41,7 +42,7 @@ public class DriveCommand extends CommandBase {
                 drivetrain.getDrive().tankDrive(-leftJoystick.getY(), rightJoystick.getY(), true);
                 break;
             case Arcade:
-                drivetrain.getDrive().arcadeDrive(rightJoystick.getX(), -leftJoystick.getY(), true);
+                drivetrain.getDrive().arcadeDrive(rightJoystick.getX() * Constants.Subsystem.Drivetrain.TELEOP_TURN_GAIN, -leftJoystick.getY(), true);
                 break;
             case Reverse:
                 drivetrain.getDrive().tankDrive(leftJoystick.getY(), rightJoystick.getY(), true);

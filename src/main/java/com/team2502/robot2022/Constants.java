@@ -269,6 +269,7 @@ public final class Constants {
         }
 
         public static final class Drivetrain {
+            public static final double TELEOP_TURN_GAIN = 0.75; 
             public static final double TICKS_PER_INCH = 839.548; // low gear
 
             // constants when turning from a standstill
