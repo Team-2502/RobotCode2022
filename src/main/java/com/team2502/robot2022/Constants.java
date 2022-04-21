@@ -217,8 +217,8 @@ public final class Constants {
 
             public static final double BASKET_HEIGHT = 100.5; // basket vision target to ground
 
-            public static final double JUICE_FACTOR = 0; // amount to inflate distance
-            public static final double JUICE_ADJ = 1D/12D; // amount to trim by
+            public static final double JUICE_FACTOR = 0; // amount to inflate distance by default
+            public static final double JUICE_ADJ = 2D/12D; // amount to trim by
 
             //Everything in this class is referenced in the Vision Subsystem, and explained at least partially there.
             public static final String LIMELIGHT_NETWORK_TABLE = "limelight-turret"; //the name in the network table of the limelight

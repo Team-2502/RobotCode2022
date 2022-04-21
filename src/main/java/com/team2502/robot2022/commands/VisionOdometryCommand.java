@@ -32,6 +32,10 @@ public class VisionOdometryCommand extends CommandBase {
     public void initialize() {
     }
 
+    // turret R : - val
+    // drivetrain R : + val
+    // limelight R : - val
+
     @Override
     public void execute() {
         if (vision.isTargetVisible()) {
