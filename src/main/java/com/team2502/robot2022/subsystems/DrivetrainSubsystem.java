@@ -40,6 +40,8 @@ public class DrivetrainSubsystem extends SubsystemBase{
         drivetrainFrontRight.setNeutralMode(NeutralMode.Brake);
         drivetrainFrontLeft.setNeutralMode(NeutralMode.Brake);
         drive = new DifferentialDrive(drivetrainFrontLeft, drivetrainFrontRight);
+
+        drive.setSafetyEnabled(false); // suppress "watchdog not fed" errors
     }
 
     public DifferentialDrive getDrive(){
