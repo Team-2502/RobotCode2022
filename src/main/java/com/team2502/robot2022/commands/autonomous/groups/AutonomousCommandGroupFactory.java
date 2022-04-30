@@ -19,7 +19,7 @@ import static edu.wpi.first.wpilibj2.command.CommandGroupBase.*;
 public enum AutonomousCommandGroupFactory { // first auto is default
 	FOUR_BALL((d,i,v,s,t,p) -> sequence(
 				deadline(
-				new SuicideBurnCommand(d, 12*10, 1, .8, 1.4),
+				new SuicideBurnCommand(d, 12*12, 1, .8, 1.4),
 				new RunIntakeCommand(i, 0.5, 0.85, true), // intake
 				sequence(
 					deadline(
@@ -43,7 +43,7 @@ public enum AutonomousCommandGroupFactory { // first auto is default
                 new RunShooterCommand(s, v, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(12.04D),false) // Shoot at known distance if not found
 				),
 				deadline(
-				new SuicideBurnCommand(d, 12*5, 1, .8, 1.4),
+				new SuicideBurnCommand(d, 12*3, 1, .8, 1.4),
 				new RunIntakeCommand(i, 0.5, 0.85, true), // intake
 				new VisionAlignTurret(v, t),
 				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(19.76))
@@ -53,11 +53,11 @@ public enum AutonomousCommandGroupFactory { // first auto is default
 				new VisionAlignTurret(v, t),
 				sequence(
 					deadline(
-						new TimeLeftCommand(5), // wait until near end of auto
+						new TimeLeftCommand(5.5), // wait until near end of auto
 						new RunIntakeCommand(i, 0.5, 0.85, true) // intake
 					),
                     deadline( // reverse for eighth second to clear flywheel
-                        new WaitCommand(0.125),
+                        new WaitCommand(0.25),
 						new ShootCommand(s, i, -0.6, 0, -0.35, false)
                     ),
 					new SmartShootCommand(s, i, 0.35, 0, 0.35, false)
