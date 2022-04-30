@@ -154,7 +154,7 @@ public final class Constants {
 
             public static final boolean SHOOTER_NT_TUNE = false; // use with "sPID" shuffleboard tab
 
-            public static final double RPM_GOOD = 40;
+            public static final double RPM_GOOD = 0.025;
         }
 
         public static final class Climber
