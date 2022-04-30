@@ -142,11 +142,11 @@ public final class Constants {
     public static final class Subsystem {
 
         public static final class Shooter {
-            public static final double SHOOTER_P = 0.00019;
-            public static final double SHOOTER_I = 0.00000027;
-            public static final double SHOOTER_D = 0.0037;
+            public static final double SHOOTER_P = 0.000069;
+            public static final double SHOOTER_I = 0.000000266;
+            public static final double SHOOTER_D = 0.00420;
             public static final double SHOOTER_IZ = 100;
-            public static final double SHOOTER_FF = 0.000209;
+            public static final double SHOOTER_FF = 0.0002;
             public static final double SHOOTER_NV = 11.4; // nominal voltage
             public static final double SHOOTER_MAX_OUTPUT = 1;
             public static final double SHOOTER_MIN_OUTPUT = -1;
