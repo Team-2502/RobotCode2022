@@ -142,19 +142,19 @@ public final class Constants {
     public static final class Subsystem {
 
         public static final class Shooter {
-            public static final double SHOOTER_P = 0.000069;
-            public static final double SHOOTER_I = 0.000000266;
-            public static final double SHOOTER_D = 0.00420;
+            public static final double SHOOTER_P = 0.00008;
+            public static final double SHOOTER_I = 7.95E-7;
+            public static final double SHOOTER_D = 0.09;
             public static final double SHOOTER_IZ = 100;
-            public static final double SHOOTER_FF = 0.0002;
-            public static final double SHOOTER_NV = 11.4; // nominal voltage
+            public static final double SHOOTER_FF = 1.84E-4;
+            public static final double SHOOTER_NV = 12.12; // nominal voltage
             public static final double SHOOTER_MAX_OUTPUT = 1;
             public static final double SHOOTER_MIN_OUTPUT = -1;
             public static final double SHOOTER_MANUAL_RPM_MID = 2600; // center of manual range, max is ~4200 with current pid
 
             public static final boolean SHOOTER_NT_TUNE = false; // use with "sPID" shuffleboard tab
 
-            public static final double RPM_GOOD = 0.025;
+            public static final double RPM_GOOD = 0.018;
         }
 
         public static final class Climber
