@@ -66,12 +66,70 @@ public enum AutonomousCommandGroupFactory { // first auto is default
 				)
 			)),
 
+	FOUR_BALL_PANIC((d,i,v,s,t,p) -> sequence( // Panic shoot even if not at speed 
+				deadline(
+				new SuicideBurnCommand(d, 12*12, 1, .8, 1.4),
+				new RunIntakeCommand(i, 0.5, 0.85, true), // intake
+				sequence(
+					deadline(
+						new WaitCommand(1.75),
+						new TraverseCommand(t, Constants.Subsystem.Turret.CENTER) // center turret
+					),
+					new VisionAlignTurret(v, t)
+				),
+				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(12.04))
+				),
+				deadline(
+				new WaitCommand(4.5),
+				new VisionAlignTurret(v, t),
+                sequence(
+                    deadline( // reverse to clear flywheel
+                        new WaitCommand(0.25),
+						new ShootCommand(s, i, -0.6, 0, -0.35, false)
+                        ),
+                    deadline( // only pay attention to constraints for 2s 
+                        new WaitCommand(2.0),
+                        new SmartShootCommand(s, i, 0.35, 0, 0.35, false)
+                    ),
+                    new ShootCommand(s, i, 0.35, 0, 0.35, false) // empty hopper to avoid penalties
+                ),
+                new RunShooterCommand(s, v, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(12.04D),false) // Shoot at known distance if not found
+				),
+				deadline(
+				new SuicideBurnCommand(d, 12*3, 1, .8, 1.4),
+				new RunIntakeCommand(i, 0.5, 0.85, true), // intake
+				new VisionAlignTurret(v, t),
+				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(19.76))
+				),
+				deadline(
+				new WaitCommand(10),
+				new VisionAlignTurret(v, t),
+				sequence(
+					deadline(
+						new TimeLeftCommand(5.5), // wait until near end of auto
+						new RunIntakeCommand(i, 0.5, 0.85, true) // intake
+					),
+                    deadline( // reverse to clear flywheel
+                        new WaitCommand(0.25),
+						new ShootCommand(s, i, -0.6, 0, -0.35, false)
+                    ),
+                    deadline( // pay attention to constraints for 2s
+                        new WaitCommand(2.0),
+                        new SmartShootCommand(s, i, 0.35, 0, 0.35, false)
+                    ),
+                    new ShootCommand(s, i, 0.35, 0, 0.35, false) // empty hopper
+				),
+                new RunShooterCommand(s, v, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(20.74D),false) // Shoot at known distance if not found
+				)
+			)),
+
+
 	FOUR_BALL_LIMELESS((d,i,v,s,t,p) -> sequence(
 				deadline(
 				new SuicideBurnCommand(d, 12*10, 1, .8, 1.4),
 				new RunIntakeCommand(i, 0.5, 0.85, true), // intake
                 new TraverseCommand(t, 31.21), // center turret
-				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(11.04))
+				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(13.04))
 				),
 				deadline(
 				new WaitCommand(4.5),
@@ -82,13 +140,13 @@ public enum AutonomousCommandGroupFactory { // first auto is default
                         ),
                     new SmartShootCommand(s, i, 0.35, 0, 0.35, false)
                 ),
-				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(11.04))
+				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(13.04))
 				),
 				deadline(
 				new SuicideBurnCommand(d, 12*5, 1, .8, 1.4),
 				new RunIntakeCommand(i, 0.5, 0.85, true), // intake
                 new TraverseCommand(t, 29.57), // align turret
-				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(17.65))
+				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(18.31))
 				),
 				deadline(
 				new WaitCommand(10),
@@ -99,7 +157,7 @@ public enum AutonomousCommandGroupFactory { // first auto is default
 					),
 					new SmartShootCommand(s, i, 0.35, 0, 0.35, false)
 				),
-				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(17.65))
+				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(18.31))
 				)
 			)),
 
