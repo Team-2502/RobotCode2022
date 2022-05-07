@@ -51,6 +51,7 @@ public class ShooterSubsystem extends SubsystemBase {
     public void periodic() { 
 	    SmartDashboard.putNumber("Shooter Velocity", rightEncoder.getVelocity()); 
 	    SmartDashboard.putBoolean("Within Constraints", atSpeed());
+        SmartDashboard.putBoolean("Shooter active", getTargetVelocity() != 0); 
 
 	    if (Constants.Subsystem.Shooter.SHOOTER_NT_TUNE) {
 		    NTUpdate();
