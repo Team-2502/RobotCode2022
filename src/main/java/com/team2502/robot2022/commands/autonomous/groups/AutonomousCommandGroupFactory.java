@@ -123,6 +123,57 @@ public enum AutonomousCommandGroupFactory { // first auto is default
 				)
 			)),
 
+	FOUR_BALL_HALFLIME((d,i,v,s,t,p) -> sequence( // limelight for angles, not dist
+				deadline(
+				new SuicideBurnCommand(d, 12*10, 1, .8, 1.4),
+				new RunIntakeCommand(i, 0.5, 0.85, true), // intake
+                sequence(
+                    deadline(
+                        new WaitCommand(1.5),
+                        new TraverseCommand(t, 31.21) // center turret
+                    ),
+                    new VisionAlignTurret(v, t) // v-align turret
+                ),
+				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(13.04))
+				),
+				deadline(
+				new WaitCommand(4.5),
+                sequence(
+                    deadline( // reverse for quarter second to clear flywheel
+                        new WaitCommand(0.25),
+						new ShootCommand(s, i, -0.6, 0, -0.35, false)
+                        ),
+                    new SmartShootCommand(s, i, 0.35, 0, 0.35, false)
+                ),
+				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(13.04)),
+                new VisionAlignTurret(v, t) // v-align turret
+				),
+				deadline(
+				new SuicideBurnCommand(d, 12*5, 1, .8, 1.4),
+				new RunIntakeCommand(i, 0.5, 0.85, true), // intake
+                sequence(
+                    deadline(
+                        new WaitCommand(1.5),
+                        new TraverseCommand(t, 29.57) // align turret
+                    ),
+                    new VisionAlignTurret(v, t) // v-align turret
+                ),
+				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(18.31))
+				),
+				deadline(
+				new WaitCommand(10),
+				sequence(
+					deadline(
+						new TimeLeftCommand(4), // wait until near end of auto
+						new RunIntakeCommand(i, 0.5, 0.85, true) // intake
+					),
+					new SmartShootCommand(s, i, 0.35, 0, 0.35, false)
+				),
+				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(18.31)),
+                new VisionAlignTurret(v, t) // v-align turret
+				)
+			)),
+
 
 	FOUR_BALL_LIMELESS((d,i,v,s,t,p) -> sequence(
 				deadline(
