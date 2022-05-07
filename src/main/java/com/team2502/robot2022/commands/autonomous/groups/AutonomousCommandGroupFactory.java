@@ -143,7 +143,11 @@ public enum AutonomousCommandGroupFactory { // first auto is default
                         new WaitCommand(0.25),
 						new ShootCommand(s, i, -0.6, 0, -0.35, false)
                         ),
-                    new SmartShootCommand(s, i, 0.35, 0, 0.35, false)
+                    deadline( // only pay attention to constraints for 2s 
+                        new WaitCommand(3.2),
+                        new SmartShootCommand(s, i, 0.35, 0, 0.35, false)
+                    ),
+                    new ShootCommand(s, i, 0.35, 0, 0.35, false) // empty hopper to avoid penalties
                 ),
 				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(13.04)),
                 new VisionAlignTurret(v, t) // v-align turret
