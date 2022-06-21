@@ -53,6 +53,7 @@ public class RobotContainer
     private static final Joystick JOYSTICK_DRIVE_LEFT = new Joystick(Constants.OI.JOYSTICK_DRIVE_LEFT);
     private static final Joystick JOYSTICK_OPERATOR = new Joystick(Constants.OI.JOYSTICK_OPERATOR);
     private static final Joystick FIGHT_STICK = new Joystick(Constants.OI.FIGHT_STICK);
+    private static final Joystick GROOVY_STICK = new Joystick(Constants.OI.GROOVY_STICK);
 
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -229,6 +230,9 @@ public class RobotContainer
 
         JoystickButton resetBelt = new JoystickButton(JOYSTICK_DRIVE_LEFT, Constants.OI.RESET_BELT_STATE);
         resetBelt.whenPressed(new InstantCommand(INTAKE::setBelt, INTAKE));
+
+        JoystickButton StartDDR = new JoystickButton(GROOVY_STICK, Constants.OI.DDR_START);
+        StartDDR.toggleWhenPressed(new DDRDriveCommand(DRIVETRAIN, GROOVY_STICK));
     }
 
     /**
