@@ -7,7 +7,9 @@ import com.team2502.robot2022.subsystems.TurretSubsystem;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
+import com.team2502.robot2022.util.KonamiHandler;
 import com.team2502.robot2022.util.Trapezoidal;
+import com.team2502.robot2022.util.KonamiHandler.BUTTONS;
 
 public class DDRDriveCommand extends CommandBase {
 
@@ -17,6 +19,7 @@ public class DDRDriveCommand extends CommandBase {
     private Trapezoidal speedTrapezoidal;
     private Trapezoidal rotationTrapezoidal;
     private Trapezoidal turretRotationTrapezoidal;
+    private KonamiHandler konamiHandler;
 
     public DDRDriveCommand(DrivetrainSubsystem drivetrain, TurretSubsystem turret, Joystick groovyJoystick) {
         this.drivetrain = drivetrain;
@@ -25,6 +28,7 @@ public class DDRDriveCommand extends CommandBase {
         this.speedTrapezoidal = new Trapezoidal(2);
         this.rotationTrapezoidal = new Trapezoidal(2);
         this.turretRotationTrapezoidal = new Trapezoidal(0.7);
+        this.konamiHandler = new KonamiHandler();
 
         addRequirements(drivetrain);
     }
@@ -40,8 +44,31 @@ public class DDRDriveCommand extends CommandBase {
         double speed = 0;
         double rotation = 0;
         double turretRotation = 0;
-        final double topSpeed = .4;
-        final double topSpeedTurret = .2;
+
+        double topSpeed = konamiHandler.isFinished() ? 1 : .4;
+        double topSpeedTurret = konamiHandler.isFinished() ? 1 : .2;
+
+
+
+
+        if (groovyJoystick.getRawButtonPressed(Constants.OI.DDR_UP)) {
+            konamiHandler.handle(BUTTONS.UP);
+        }
+        if (groovyJoystick.getRawButtonPressed(Constants.OI.DDR_DOWN)) {
+            konamiHandler.handle(BUTTONS.DOWN);
+        }
+        if (groovyJoystick.getRawButtonPressed(Constants.OI.DDR_LEFT)) {
+            konamiHandler.handle(BUTTONS.LEFT);
+        }
+        if (groovyJoystick.getRawButtonPressed(Constants.OI.DDR_RIGHT)) {
+            konamiHandler.handle(BUTTONS.RIGHT);
+        }
+        if (groovyJoystick.getRawButtonPressed(Constants.OI.DDR_TURRET_LEFT)) {
+            konamiHandler.handle(BUTTONS.A);
+        }
+        if (groovyJoystick.getRawButtonPressed(Constants.OI.DDR_TURRET_RIGHT)) {
+            konamiHandler.handle(BUTTONS.B);
+        }
 
         if (groovyJoystick.getRawButton(Constants.OI.DDR_UP)) {
             speed = topSpeed;
