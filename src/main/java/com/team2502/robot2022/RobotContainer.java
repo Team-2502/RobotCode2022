@@ -232,7 +232,15 @@ public class RobotContainer
         resetBelt.whenPressed(new InstantCommand(INTAKE::setBelt, INTAKE));
 
         JoystickButton StartDDR = new JoystickButton(GROOVY_STICK, Constants.OI.DDR_START);
-        StartDDR.toggleWhenPressed(new DDRDriveCommand(DRIVETRAIN, GROOVY_STICK));
+        StartDDR.toggleWhenPressed(new DDRDriveCommand(DRIVETRAIN, TURRET, GROOVY_STICK));
+
+        JoystickButton DDRIntake = new JoystickButton(GROOVY_STICK, Constants.OI.DDR_INTAKE);
+        DDRIntake.toggleWhenPressed(new RunIntakeCommand(INTAKE, 0.5, 0.85, true));
+
+        JoystickButton DDRShoot = new JoystickButton(GROOVY_STICK, Constants.OI.DDR_SHOOT);
+        DDRShoot.whenHeld(new SmartShootCommand(SHOOTER, INTAKE, 0.35, 0, 0.225, false))
+        //.whenHeld(new RunShooterCommand(SHOOTER, VISION, Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(0D),false)); // Shoot for 0 distance if not found
+        .whenHeld(new RunShooterAtSpeedCommand(SHOOTER, 1000D));
     }
 
     /**
