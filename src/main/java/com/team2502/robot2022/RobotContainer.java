@@ -240,7 +240,11 @@ public class RobotContainer
         JoystickButton DDRShoot = new JoystickButton(GROOVY_STICK, Constants.OI.DDR_SHOOT);
         DDRShoot.whenHeld(new SmartShootCommand(SHOOTER, INTAKE, 0.35, 0, 0.225, false))
         //.whenHeld(new RunShooterCommand(SHOOTER, VISION, Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(0D),false)); // Shoot for 0 distance if not found
-        .whenHeld(new RunShooterAtSpeedCommand(SHOOTER, 1000D));
+//        .whenHeld(new RunShooterAtSpeedCommand(SHOOTER, 1000D));
+        .whileHeld(new RunShooterTrimmedCommand(SHOOTER, VISION, Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(0D), JOYSTICK_OPERATOR));
+
+        JoystickButton DDRAlign = new JoystickButton(GROOVY_STICK, Constants.OI.DDR_ALIGN);
+        DDRAlign.whenHeld(new VisionAlignTurret(VISION, TURRET));
     }
 
     /**

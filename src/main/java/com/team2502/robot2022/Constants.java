@@ -31,6 +31,7 @@ public final class Constants {
 
         // DDR Pad
         public static final int DDR_START = 10;
+        public static final int DDR_ALIGN = 9;
         public static final int DDR_UP = 3;
         public static final int DDR_DOWN = 2;
         public static final int DDR_LEFT = 1;

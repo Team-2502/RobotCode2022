@@ -34,6 +34,10 @@ public class KonamiHandler {
         return finished;
     }
 
+    public void reset() {
+        finished = false;
+    }
+
     public void handle(BUTTONS button) {
         if (index == code.length) {
             finished = true;
