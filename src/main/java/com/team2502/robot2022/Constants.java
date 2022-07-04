@@ -54,6 +54,8 @@ public final class Constants {
         public static final int SHIFT = 1;
         
         public static final int TOGGLE_DDR_DRIVER_BUTTON = 2;
+        public static final int DRIVER_FULL_SPEED_FLYWHEEL = 3;
+        public static final int DRIVER_SHOOT = 4;
 
         public static final int CLIMBER_RESET_ENCODER = 15;
         public static final int CLIMBER_EXTEND = 11;

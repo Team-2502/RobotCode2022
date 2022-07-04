@@ -14,6 +14,7 @@ import com.team2502.robot2022.commands.autonomous.ingredients.TraverseCommand;
 import com.team2502.robot2022.commands.autonomous.ingredients.VisionTrackBallCommand;
 import com.team2502.robot2022.Constants.Subsystem.Vision;
 import com.team2502.robot2022.commands.*;
+import com.team2502.robot2022.commands.RunShooterUnlimited;
 import com.team2502.robot2022.Constants.OI;
 import com.team2502.robot2022.commands.solenoid.ShiftCommand;
 import com.team2502.robot2022.commands.solenoid.ToggleIntakeCommand;
@@ -249,6 +250,12 @@ public class RobotContainer
 
         JoystickButton DDRAlign = new JoystickButton(GROOVY_STICK, Constants.OI.DDR_ALIGN);
         DDRAlign.whenHeld(new VisionAlignTurret(VISION, TURRET));
+
+        JoystickButton FullSpeedFLywheel = new JoystickButton(JOYSTICK_DRIVE_RIGHT, Constants.OI.DRIVER_FULL_SPEED_FLYWHEEL);
+        FullSpeedFLywheel.whenHeld(new RunShooterUnlimited(SHOOTER));
+
+        JoystickButton Shoot = new JoystickButton(JOYSTICK_DRIVE_RIGHT, Constants.OI.DRIVER_SHOOT);
+        Shoot.whenHeld(new ShootCommand(SHOOTER, INTAKE, 0.35, 0, 0.225, false));
     }
 
     /**

@@ -65,6 +65,10 @@ public class ShooterSubsystem extends SubsystemBase {
 	    target = speed;
     }
 
+    public void setShooterVoltage(double voltage) {
+        rightPID.setReference(voltage, CANSparkMax.ControlType.kVoltage);
+    }
+
     /**
     * is the shooter rpm within the defined constraints
     * @return is shooter at speed
