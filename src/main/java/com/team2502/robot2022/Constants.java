@@ -52,6 +52,8 @@ public final class Constants {
 
         // Right Drive Joystick
         public static final int SHIFT = 1;
+        
+        public static final int TOGGLE_DDR_DRIVER_BUTTON = 2;
 
         public static final int CLIMBER_RESET_ENCODER = 15;
         public static final int CLIMBER_EXTEND = 11;

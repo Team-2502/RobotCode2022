@@ -234,6 +234,9 @@ public class RobotContainer
         JoystickButton StartDDR = new JoystickButton(GROOVY_STICK, Constants.OI.DDR_START);
         StartDDR.toggleWhenPressed(new DDRDriveCommand(DRIVETRAIN, TURRET, GROOVY_STICK));
 
+        JoystickButton StartDDRDriver = new JoystickButton(JOYSTICK_DRIVE_RIGHT, Constants.OI.TOGGLE_DDR_DRIVER_BUTTON);
+        StartDDRDriver.toggleWhenPressed(new DDRDriveCommand(DRIVETRAIN, TURRET, GROOVY_STICK));
+
         JoystickButton DDRIntake = new JoystickButton(GROOVY_STICK, Constants.OI.DDR_INTAKE);
         DDRIntake.toggleWhenPressed(new RunIntakeCommand(INTAKE, 0.5, 0.85, true));
 
@@ -241,7 +244,8 @@ public class RobotContainer
         DDRShoot.whenHeld(new SmartShootCommand(SHOOTER, INTAKE, 0.35, 0, 0.225, false))
         //.whenHeld(new RunShooterCommand(SHOOTER, VISION, Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(0D),false)); // Shoot for 0 distance if not found
 //        .whenHeld(new RunShooterAtSpeedCommand(SHOOTER, 1000D));
-        .whileHeld(new RunShooterTrimmedCommand(SHOOTER, VISION, Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(0D), JOYSTICK_OPERATOR));
+        .whileHeld(new RunShooterTrimmedCommand(SHOOTER, VISION, Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(0D), JOYSTICK_OPERATOR))
+        .whenHeld(new VisionAlignTurret(VISION, TURRET));
 
         JoystickButton DDRAlign = new JoystickButton(GROOVY_STICK, Constants.OI.DDR_ALIGN);
         DDRAlign.whenHeld(new VisionAlignTurret(VISION, TURRET));

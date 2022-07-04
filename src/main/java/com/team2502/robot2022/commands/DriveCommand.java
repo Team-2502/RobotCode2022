@@ -23,6 +23,7 @@ public class DriveCommand extends CommandBase {
 
         typeEntry.addOption("Tank", Drivetype.Tank);
         // typeEntry.addOption("Reverse", Drivetype.Reverse);
+        typeEntry.addOption("Crowd-safe Arcade", Drivetype.KidzArcade);
         typeEntry.setDefaultOption("Split Arcade", Drivetype.Arcade);
         SmartDashboard.putData("Drive Type", typeEntry);
 
@@ -44,6 +45,9 @@ public class DriveCommand extends CommandBase {
             case Arcade:
                 drivetrain.getDrive().arcadeDrive(rightJoystick.getX() * Constants.Subsystem.Drivetrain.TELEOP_TURN_GAIN, -leftJoystick.getY(), true);
                 break;
+            case KidzArcade:
+                drivetrain.getDrive().arcadeDrive(.4* rightJoystick.getX() * Constants.Subsystem.Drivetrain.TELEOP_TURN_GAIN,.4 * -leftJoystick.getY(), true);
+                break;
             case Reverse:
                 drivetrain.getDrive().tankDrive(leftJoystick.getY(), rightJoystick.getY(), true);
         }
@@ -54,6 +58,7 @@ public class DriveCommand extends CommandBase {
     private enum Drivetype {
         Tank,
         Arcade,
+        KidzArcade,
         Reverse
     }
 }
