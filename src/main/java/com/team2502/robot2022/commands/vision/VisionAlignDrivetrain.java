@@ -1,8 +1,10 @@
 package com.team2502.robot2022.commands.vision;
 
-import com.team2502.robot2022.Constants;
+import com.team2502.robot2022.Constants.Subsystem.Vision;
 import com.team2502.robot2022.subsystems.DrivetrainSubsystem;
 import com.team2502.robot2022.subsystems.VisionSubsystem;
+
+import com.team2502.robot2022.util.Util;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -18,9 +20,6 @@ public class VisionAlignDrivetrain extends CommandBase {
 
     private boolean seesTarget;
 
-    private double p;
-    private double frictionConstant;
-
     public VisionAlignDrivetrain(VisionSubsystem vision_subsystem, DrivetrainSubsystem drive_subsystem, Joystick leftJoystick, Joystick rightJoystick){
         vision = vision_subsystem;
         drive = drive_subsystem;
@@ -32,31 +31,25 @@ public class VisionAlignDrivetrain extends CommandBase {
 
     @Override
     public void initialize() {
-        frictionConstant = Constants.Subsystem.Vision.FRICTION_LOW;
-        p = Constants.Subsystem.Vision.VISION_TURNING_P_LOW;
         vision.limelightOn();
     }
 
     @Override
     public void execute() {
-	vision.limelightOn();
-        double tx = vision.getTargetX();
-        double steering_adjust = 0.0f;
+        double power = Util.constrain(leftJoystick.getY() + rightJoystick.getY(),1);
 
+        vision.limelightOn();
+        double error = vision.getTargetX();
         seesTarget = vision.getTargetArea() != 0.0;
 
         if(seesTarget) {
-            if (tx > 1.0) {
-                steering_adjust = p * tx;
-            } else if (tx < 1.0) {    //robot needs to turn left
-                steering_adjust = p * tx;
-            }
-            leftPower = steering_adjust;
-            rightPower = -steering_adjust;
-            drive.getDrive().tankDrive(-leftPower, rightPower);
+            double turnPower = Vision.VISION_TURNING_P_LOW * error;
+            turnPower = Util.frictionAdjust(turnPower, Vision.FRICTION_LOW);
+
+            drive.getDrive().tankDrive(turnPower-power, turnPower+power); // left, -right
         }
         else {
-            drive.getDrive().tankDrive(0, 0, true);
+            drive.getDrive().tankDrive(-power, power, true);
         }
     }
 

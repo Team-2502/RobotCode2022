@@ -105,8 +105,13 @@ public class RobotContainer
         JoystickButton ShootButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.SHOOT_BUTTON);
         ShootButton.whenHeld(new SmartShootCommand(SHOOTER, INTAKE, 0.35, 0, 0.225, false));
 
-        //JoystickButton VisionAlignDrivetrainButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.VISION_DRIVETRAIN_ALIGN);
-        //VisionAlignDrivetrainButton.whenHeld(new VisionAlignDrivetrain(VISION, DRIVETRAIN, JOYSTICK_DRIVE_LEFT, JOYSTICK_DRIVE_RIGHT));
+        JoystickButton VisionAlignDrivetrainButton = new JoystickButton(JOYSTICK_DRIVE_RIGHT, Constants.OI.VISION_DRIVETRAIN_ALIGN);
+        VisionAlignDrivetrainButton.
+            whenHeld(new VisionAlignDrivetrain(VISION, DRIVETRAIN, JOYSTICK_DRIVE_LEFT, JOYSTICK_DRIVE_RIGHT))
+            .whenHeld(new RunShooterTrimmedCommand(SHOOTER, VISION, Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(0D), JOYSTICK_DRIVE_RIGHT));
+
+        JoystickButton DriverFireButton = new JoystickButton(JOYSTICK_DRIVE_RIGHT, Constants.OI.DRIVETRAIN_FIRE);
+        DriverFireButton.whenHeld(new SmartShootCommand(SHOOTER, INTAKE, 0.35, 0, 0.225, false));
 
         JoystickButton VisionAlignTurretButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.VISION_TURRET_ALIGN);
         VisionAlignTurretButton.whenHeld(new VisionAlignTurret(VISION, TURRET));

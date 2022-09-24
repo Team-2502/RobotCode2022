@@ -62,6 +62,9 @@ public final class Constants {
         public static final int CLIMBER_RETRACT = 16;
         public static final int CLIMBER_CENTER = 12;
 
+        public static final int VISION_DRIVETRAIN_ALIGN = 8;
+        public static final int DRIVETRAIN_FIRE = 9;
+
         // Left Drive Joystick
         public static final int RUN_INTAKE_DRIVER_BUTTON = 1;
         public static final int RUN_INTAKE_BACKWARDS_DRIVER_BUTTON = 2;
@@ -221,8 +224,8 @@ public final class Constants {
 
         public static final class Vision {
             // drivetrain
-            public static final double FRICTION_LOW = 0.29;
-            public static final double VISION_TURNING_P_LOW = 0.015;
+            public static final double FRICTION_LOW = 0.03;
+            public static final double VISION_TURNING_P_LOW = 0.039;
 
             // turret
             public static final double FRICTION_TURRET = 0.018;
