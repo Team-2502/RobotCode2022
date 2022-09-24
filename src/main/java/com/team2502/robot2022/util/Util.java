@@ -82,10 +82,7 @@ public class Util {
 		    (2 * pixel *
 			Math.tan(
 			  Math.toRadians(fov/4))
-			)
-		    /
-		    resolution
-		    )
+			)/resolution)
 	    );
     }
 
@@ -99,8 +96,7 @@ public class Util {
      */
     public static double findDist(double camHeight, double camElevation, double basketHeight, double targetElevation) {
 	    return (
-			    (basketHeight - camHeight)
-			    /
+			    (basketHeight - camHeight) /
 			    Math.tan(Math.toRadians(targetElevation+ camElevation))
 		   );
     }

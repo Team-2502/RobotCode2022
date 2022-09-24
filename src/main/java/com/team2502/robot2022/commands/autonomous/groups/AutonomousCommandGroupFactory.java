@@ -284,14 +284,16 @@ public enum AutonomousCommandGroupFactory { // first auto is default
 				new RunShooterAtSpeedCommand(s, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(12.74))
 				),
 				deadline(
-				new WaitCommand(6),
-				new VisionAlignTurret(v, t),
-                deadline( // only pay attention to constraints for 2s 
-                    new WaitCommand(3.0),
-                    new SmartShootCommand(s, i, 0.35, 0, 0.35, false)
-                ),
-                new ShootCommand(s, i, 0.35, 0, 0.35, false), // empty hopper to avoid penalties
-                new RunShooterCommand(s, v, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(12.74D),false) // Shoot at known distance if not found
+                    new WaitCommand(6),
+                    new VisionAlignTurret(v, t),
+                    sequence(
+                        deadline( // only pay attention to constraints for 2s 
+                            new WaitCommand(3.0),
+                            new SmartShootCommand(s, i, 0.35, 0, 0.35, false)
+                        ),
+                        new ShootCommand(s, i, 0.35, 0, 0.35, false) // empty hopper to avoid penalties
+                    ),
+                    new RunShooterCommand(s, v, Constants.Subsystem.Vision.DIST_TO_RPM_STANDSTILL_TABLE.get(12.74D),false) // Shoot at known distance if not found
 				)
                 )
             ),
