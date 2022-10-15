@@ -237,6 +237,7 @@ public class RobotContainer
         JoystickButton resetBelt = new JoystickButton(JOYSTICK_DRIVE_LEFT, Constants.OI.RESET_BELT_STATE);
         resetBelt.whenPressed(new InstantCommand(INTAKE::setBelt, INTAKE));
 
+        /* ddr
         JoystickButton StartDDR = new JoystickButton(GROOVY_STICK, Constants.OI.DDR_START);
         StartDDR.toggleWhenPressed(new DDRDriveCommand(DRIVETRAIN, TURRET, GROOVY_STICK));
 
@@ -255,6 +256,7 @@ public class RobotContainer
 
         JoystickButton DDRAlign = new JoystickButton(GROOVY_STICK, Constants.OI.DDR_ALIGN);
         DDRAlign.whenHeld(new VisionAlignTurret(VISION, TURRET));
+        */
 
         JoystickButton FullSpeedFLywheel = new JoystickButton(JOYSTICK_DRIVE_RIGHT, Constants.OI.DRIVER_FULL_SPEED_FLYWHEEL);
         FullSpeedFLywheel.whenHeld(new RunShooterUnlimited(SHOOTER));
