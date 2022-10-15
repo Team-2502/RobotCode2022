@@ -21,10 +21,10 @@ public class DriveCommand extends CommandBase {
         leftJoystick = joystickDriveLeft;
         rightJoystick = joystickDriveRight;
 
-        typeEntry.addOption("Tank", Drivetype.Tank);
         // typeEntry.addOption("Reverse", Drivetype.Reverse);
         typeEntry.addOption("Crowd-safe Arcade", Drivetype.KidzArcade);
-        typeEntry.setDefaultOption("Split Arcade", Drivetype.Arcade);
+        typeEntry.setOption("Split Arcade", Drivetype.Arcade);
+        typeEntry.addDefaultOption("Tank", Drivetype.Tank);
         SmartDashboard.putData("Drive Type", typeEntry);
 
         addRequirements(drivetrain);
