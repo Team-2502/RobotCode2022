@@ -23,8 +23,8 @@ public class DriveCommand extends CommandBase {
 
         // typeEntry.addOption("Reverse", Drivetype.Reverse);
         typeEntry.addOption("Crowd-safe Arcade", Drivetype.KidzArcade);
-        typeEntry.setOption("Split Arcade", Drivetype.Arcade);
-        typeEntry.addDefaultOption("Tank", Drivetype.Tank);
+        typeEntry.addOption("Split Arcade", Drivetype.Arcade);
+        typeEntry.setDefaultOption("Tank", Drivetype.Tank);
         SmartDashboard.putData("Drive Type", typeEntry);
 
         addRequirements(drivetrain);

@@ -42,13 +42,14 @@ public final class Constants {
         public static final int DDR_TURRET_RIGHT = 8;
 
         // Fight Stick
-        public static final int FIGHT_CLIMBER_RESET_ENCODER = 1;
+        static final boolean ALT_MODE = true; // account for gamepad occasionally inverting values
+        public static final int FIGHT_CLIMBER_RESET_ENCODER = ALT_MODE ? 1 : 2;
         public static final int FIGHT_CLIMBER_EXTEND = 5;
-        public static final int FIGHT_CLIMBER_RETRACT = 2;
+        public static final int FIGHT_CLIMBER_RETRACT = ALT_MODE ? 2 : 3;
         public static final int FIGHT_CLIMBER_CENTER = 4;
 
         public static final int FIGHT_RUN_CLIMBER_WENCH_BACKWARDS_BUTTON = 6;
-        public static final int FIGHT_RUN_CLIMBER_WENCH_BUTTON = 3;
+        public static final int FIGHT_RUN_CLIMBER_WENCH_BUTTON = ALT_MODE ? 3 : 1;
 
         // Right Drive Joystick
         public static final int SHIFT = 1;
